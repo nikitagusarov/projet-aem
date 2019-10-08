@@ -1,4 +1,4 @@
-# Analyse empiriques des marchés
+# Analyse empirique des marchés
 
 ## Analyse de l'influence des prix des produits finis viticulturaux sur les quntité des pesticides demandés dans le secteur.
 
