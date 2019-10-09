@@ -19,6 +19,8 @@
 
 # RStudio files
 .Rproj.user/
+*.Rproj
+*.Rproj*
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
