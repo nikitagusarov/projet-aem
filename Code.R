@@ -23,4 +23,4 @@ vin = vin %>% drop_na(annee)
 View(vin)
 ## Saving results
 write.csv(vin, file = "Donnees_ref/vin-p.csv")
-## End first changes
+## End first changes  
