@@ -26,6 +26,9 @@ write.csv(vin, file = "Donnees_ref/vin-p.csv")
 ## End first changes  
 
 ##loading data
-usage=read.csv("Donnees_ref/usage_pa.csv")
+usage=read.csv("C:/Users/jupiter/Documents/projet-aem-s/Donnees_ref/usages_pa.csv")
+write.csv(usage, file = "Donnees_ref/usage_pa.csv")
 superficie=read.csv("Donnees/superficie départementale par an de vignes.csv", sep = ";", skip = 7, header = T)
+write.csv(superficie, file = "Donnees_ref/superficie_vignes.csv")
 View(superficie)
+
