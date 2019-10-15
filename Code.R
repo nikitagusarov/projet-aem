@@ -24,3 +24,8 @@ View(vin)
 ## Saving results
 write.csv(vin, file = "Donnees_ref/vin-p.csv")
 ## End first changes  
+
+##loading data
+usage=read.csv("Donnees_ref/usage_pa.csv")
+superficie=read.csv("Donnees/superficie départementale par an de vignes.csv", sep = ";", skip = 7, header = T)
+View(superficie)
