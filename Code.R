@@ -33,6 +33,8 @@ write.csv(superficie, file = "Donnees_ref/superficie_vignes.csv")
 View(superficie)
 
 #Construction de la table pesticides
+library(tidyverse)
+usage %>% as.numeric(X.produit..numero.AMM)
 
 pesticide=left_join(bnvd, usage, by=c("amm"="X.produit..numero.AMM"))
 
