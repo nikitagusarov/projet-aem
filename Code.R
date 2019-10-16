@@ -26,9 +26,15 @@ write.csv(vin, file = "Donnees_ref/vin-p.csv")
 ## End first changes  
 
 ##loading data
-usage=read.csv("C:/Users/jupiter/Documents/projet-aem-s/Donnees_ref/usages_pa.csv")
+usage=read.csv("C:/Users/jupiter/Documents/Blanc Arnaud/master MIASHS C2ES/M2/analyse empirique de marché/pesticides/info/usages_des_produits_autorises_v2_utf8.csv", sep = ";")
 write.csv(usage, file = "Donnees_ref/usage_pa.csv")
-superficie=read.csv("Donnees/superficie départementale par an de vignes.csv", sep = ";", skip = 7, header = T)
+superficie=read.csv("C:/Users/jupiter/Documents/projet-aem-s/Donnees/superficie départementale par an de vignes.csv", sep = ";", skip = 7, header = T)
 write.csv(superficie, file = "Donnees_ref/superficie_vignes.csv")
 View(superficie)
+
+#Construction de la table pesticides
+
+pesticide=left_join(bnvd, usage, by=c("amm"="X.produit..numero.AMM"))
+
+
 
