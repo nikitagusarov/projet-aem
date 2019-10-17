@@ -24,6 +24,8 @@ View(vin)
 ## Saving results
 write.csv(vin, file = "Donnees_ref/vin-p.csv")
 ## End first changes  
+vin.p = read.csv("Donnees_ref/vin-p.csv")
+View(vin.p)
 
 ##loading data
 # usage=read.csv("C:/Users/jupiter/Documents/Blanc Arnaud/master MIASHS C2ES/M2/analyse empirique de march�/pesticides/info/usages_des_produits_autorises_v2_utf8.csv", sep = ";")
@@ -67,3 +69,7 @@ bnvdvin.n = bnvdvin.n[, c(1:7, 16:18, 20:32)]
 ## Find a way to reduce data weight
 ## Saving
 write.csv(bnvdvin.n, file = "Donnees_ref/bnvdvin.csv")
+
+# Loading donnees bnvdvin
+bnvdvin = read.csv("Donnees_ref/bnvdvin.csv")
+View(bnvdvin)
