@@ -115,6 +115,10 @@ summary(vin)
 # Save results
 write.csv(vin.r, "Donnees_ref/vin_final.csv")
 
+
+# Read data
+vin = read.csv("Donnees_ref/vin_final.csv", stringsAsFactors = F)
+pesticides = read.csv("Donnees_ref/pesticides.csv", stringsAsFactors = F)
 # Department verification
 dep = data.frame(v = unique(vin$departement), 
     p = append(unique(as.character(pesticides$departement)), rep(NA, 29)))
@@ -123,6 +127,45 @@ dep2 = data.frame(v = append(unique(vin$number), rep(NA, 4)),
 View(dep)
 View(dep2)
 # Department correction
+# Ndep ordered by depname
+reg = as.character(c("01", "02", "03", "04", "06", "07", "08", "09", 10, 11, 12, 67, 13, 14, 15, 16, 17, 18, 19, "2A", 21, 22, 23, 79, 24, 25, 26, 91, 27, 28, 29, 30, 32, 33, 971, 973, "2B", 31, 43, 52, "05", 70, 74, 65, 87, 68, 92, 34, 35, 36, 37, 38, 39, 974, 40, 42, 44, 45, 41, 46, 47, 48, 49, 50, 51, 972, 53, 54, 55, 56, 57, 58, 59, 60, 61, 75, 62, 63, 64, 66, 69, 71, 72, 73, 77, 76, 93, 80, 81, 82, 90, 94, 95, 85, 83, 84, 86, 88, 89, 78))
+# Assignement
 ndep = data.frame(
-    d = sort(unique(as.character(pesticides$departement))),
-    nd = c(01, 02, 03, 04, 06, 07, 08, 09, 10, 11, 12, 67, 13, 14, 15, 16, 17, 18, 19, 2A, 21, 22, 23, 79, 24, 25, 26, 91, 27, 28, 29, 30, 32, 33, 971, 973, 2B, 31, 43, 52, 05, 70, 74, 65, 87, 68, 92, 34, 35, 36, 37, 38, 39, 974, 40, 42, 44, 45, 41, 46, 47, 48, 49, 50, 51, 972, 53, 976, 54, 55, 56, 57, 58, 59, 60, 61, 75, 62, 63, 64, 66, 69, 71, 72, 73, 77, 76, 93, 80, 81, 82, 90, 94, 95, 85, 83, 84, 86, 88, 89, 78, )
+    departement = sort(unique(as.character(pesticides$departement))),
+    number = reg, stringsAsFactors = F)
+# Concatenate
+vin.x = left_join(vin[,-4], ndep, by = "number")
+vin.x[is.na(vin.x$departement),] # verification of the NA presence
+pesticides.x = left_join(pesticides, ndep, by = "departement")
+pesticides.x[is.na(pesticides.x$number),] # verification of the NA presence
+# Change to numeric vin surface and quantities
+vin.x = vin.x %>% 
+    mutate(
+        qq_total = as.numeric(gsub("[[:space:]]", "", qq_total)),
+        surface = as.numeric(gsub("[[:space:]]", "", surface))
+    )
+# Save
+write.csv(vin.x, file = "Donnees_ref/vin_final.csv")
+write.csv(pesticides.x, file = "Donnees_ref/pesticides.csv")
+
+# Joining data
+# Read data
+vin = read.csv("Donnees_ref/vin_final.csv", stringsAsFactors = F)
+pesticides = read.csv("Donnees_ref/pesticides.csv", stringsAsFactors = F)
+# Concatenate (what for?)
+vxp = left_join(vin, pesticides, by = c("number", "annee"))
+# dim(vxp) # There is no sense in this
+# Removing NAs
+vin = na.omit(vin)
+# Correlation analysis
+cor(vin[,6:7])
+# Combining data
+names(vxp)
+vxp = vxp[, c(4:7, 12:14)]
+summary(vxp)
+# Removing missing data
+vxp.c = na.omit(vxp)
+summary(vxp)
+unique(vxp$conditionnement)
+class(vxp$quantite_produit)
+# Problem !!!!!
