@@ -83,6 +83,23 @@ bnvdvin.n = bnvdvin.n[, c(1:7, 16:18, 20:32)]
 ## Saving
 write.csv(bnvdvin.n, file = "Donnees_ref/bnvdvin.csv")
 
-# Loading donnees bnvdvin
-bnvdvin = read.csv("Donnees_ref/pesticides.csv")
+# Loading donnees pesticides
+pesticides = read.csv("Donnees_ref/pesticides.csv")
 View(pesticides)
+
+# Loading data for vin
+vin = read.csv("Donnees_ref/vin-p.csv")
+View(vin)
+names(vin)
+# Creating reduced database
+# Changing n_dep
+vin.r = vin %>% 
+    select(annee, n_dep, surface, qq_total) %>%
+    separate(n_dep, 
+        c("number", "departement"), 
+        " ", extra = "merge")
+# Writting database
+write.csv(vin.r, "Donnees_ref/vin.csv")
+
+# Read vin data
+vin = read.csv("Donnees_ref/vin.csv")
