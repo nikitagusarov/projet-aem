@@ -65,11 +65,24 @@ View(bnvdvin) # verification
 bnvdvin.n = bnvdvin[is.na(bnvdvin$X.produit..numero.AMM) == F,]
 View(bnvdvin.n) # verif
 names(bnvdvin.n)
+class(bnvdvin.n[,26])
+# Group data and create final dataframe for estimation
+bnvdvin.sh = bnvdvin.n[, c(1:5, 25:26)] %>% 
+    group_by(annee, departement, amm, quantite_produit,
+        conditionnement, dose.retenue.unite) %>%
+    summarise(mean.dose = mean(dose.retenue))
+View(bnvdvin.sh)
+# Aggregation test
+dim(bnvdvin.sh)
+# Saving main file
+write.csv(bnvdvin.sh, file = "Donnees_ref/pesticides.csv")
+
+# Saving auxilary dataframe
 bnvdvin.n = bnvdvin.n[, c(1:7, 16:18, 20:32)]
 ## Find a way to reduce data weight
 ## Saving
 write.csv(bnvdvin.n, file = "Donnees_ref/bnvdvin.csv")
 
 # Loading donnees bnvdvin
-bnvdvin = read.csv("Donnees_ref/bnvdvin.csv")
-View(bnvdvin)
+bnvdvin = read.csv("Donnees_ref/pesticides.csv")
+View(pesticides)
