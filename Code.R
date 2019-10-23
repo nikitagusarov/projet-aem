@@ -204,6 +204,8 @@ dev.off()
 
 png(filename="Graphiques/QvinQpest.png", width = 600, height = 600)
 vxp %>% filter(quantite_produit < 1000000) %>% 
+    group_by(annee, number) %>%
+    summarise(qq_total = mean(qq_total), quantite_produit = mean(quantite_produit)) %>%
     ggplot(aes(y = qq_total, x = as.numeric(quantite_produit))) +
     geom_point() +
     xlab("Quantité des pésticides") +
@@ -212,6 +214,8 @@ dev.off()
 
 png(filename="Graphiques/SvinQpest.png", width = 600, height = 600)
 vxp %>% filter(quantite_produit < 1000000) %>% 
+    group_by(annee, number) %>%
+    summarise(surface = mean(surface), quantite_produit = mean(quantite_produit)) %>%
     ggplot(aes(y = surface, x = as.numeric(quantite_produit))) +
     geom_point() +
     xlab("Surface des vignes") +
