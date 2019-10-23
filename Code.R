@@ -201,3 +201,19 @@ vin %>%
     xlab("Surface des vignes") +
     ylab("Quantité de vin produit")
 dev.off()
+
+png(filename="Graphiques/QvinQpest.png", width = 600, height = 600)
+vxp %>% filter(quantite_produit < 1000000) %>% 
+    ggplot(aes(y = qq_total, x = as.numeric(quantite_produit))) +
+    geom_point() +
+    xlab("Quantité des pésticides") +
+    ylab("Quantité de vin produit")
+dev.off()
+
+png(filename="Graphiques/SvinQpest.png", width = 600, height = 600)
+vxp %>% filter(quantite_produit < 1000000) %>% 
+    ggplot(aes(y = surface, x = as.numeric(quantite_produit))) +
+    geom_point() +
+    xlab("Surface des vignes") +
+    ylab("Quantité de vin produit")
+dev.off()
