@@ -221,3 +221,47 @@ vxp %>% filter(quantite_produit < 1000000) %>%
     xlab("Surface des vignes") +
     ylab("Quantité de vin produit")
 dev.off()
+
+png(filename="Graphiques/QvinQpestAnnee.png", width = 600, height = 600)
+vxp %>% filter(quantite_produit < 1000000) %>% 
+    group_by(annee, number) %>%
+    summarise(qq_total = mean(qq_total), quantite_produit = mean(quantite_produit)) %>%
+    ggplot(aes(y = qq_total, x = as.numeric(quantite_produit), col = as.factor(annee))) +
+    geom_point() +
+    geom_smooth(method = "lm", se = F) + 
+    xlab("Quantité des pésticides") +
+    ylab("Quantité de vin produit")
+dev.off()
+
+png(filename="Graphiques/QvinQpestRegion.png", width = 600, height = 600)
+vxp %>% filter(quantite_produit < 1000000) %>% 
+    group_by(annee, number) %>%
+    summarise(qq_total = mean(qq_total), quantite_produit = mean(quantite_produit)) %>%
+    ggplot(aes(y = qq_total, x = as.numeric(quantite_produit), col = as.factor(number))) +
+    geom_point() +
+    geom_smooth(method = "lm", se = F) + 
+    xlab("Quantité des pésticides") +
+    ylab("Quantité de vin produit")
+dev.off()
+
+png(filename="Graphiques/SvinQpestAnnee.png", width = 600, height = 600)
+vxp %>% filter(quantite_produit < 1000000) %>% 
+    group_by(annee, number) %>%
+    summarise(surface = mean(surface), quantite_produit = mean(quantite_produit)) %>%
+    ggplot(aes(y = surface, x = as.numeric(quantite_produit), col = as.factor(annee))) +
+    geom_point() +
+    geom_smooth(method = "lm", se = F) + 
+    xlab("Quantité des pésticides") +
+    ylab("Surface des vignes")
+dev.off()
+
+png(filename="Graphiques/SvinQpestRegion.png", width = 600, height = 600)
+vxp %>% filter(quantite_produit < 1000000) %>% 
+    group_by(annee, number) %>%
+    summarise(surface = mean(surface), quantite_produit = mean(quantite_produit)) %>%
+    ggplot(aes(y = surface, x = as.numeric(quantite_produit), col = as.factor(number))) +
+    geom_point() +
+    geom_smooth(method = "lm", se = F) + 
+    xlab("Quantité des pésticides") +
+    ylab("Surface des vignes")
+dev.off()
