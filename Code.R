@@ -307,3 +307,7 @@ vxp %>% filter(quantite_produit < 1000000) %>%
     xlab("Quantité des pésticides") +
     ylab("Quantité de vin produit")
 dev.off()
+
+dim(vin) # 869*8
+dim(pesticides) # 134025*10
+dim(vxp) # 114730*16
