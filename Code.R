@@ -164,6 +164,7 @@ write.csv(vin.x, file = "Donnees_ref/vin_final.csv")
 write.csv(pesticides.x, file = "Donnees_ref/pesticides.csv")
 
 # Joining data
+require(tidyverse)
 # Read data
 vin = read.csv("Donnees_ref/vin_final.csv", stringsAsFactors = F)
 pesticides = read.csv("Donnees_ref/pesticides.csv", stringsAsFactors = F)
@@ -184,4 +185,38 @@ summary(vxp)
 unique(vxp$conditionnement)
 class(vxp$quantite_produit)
 # Problem !!!!!
+<<<<<<< HEAD
 >>>>>>> b218823e9f4e9eb4d25e1e3b715561b5567e7f04
+=======
+
+# Plots
+png(filename="Graphiques/SurfaceVinBox.png", width = 600, height = 600)
+vin %>% 
+    ggplot(aes(y = surface, color = as.factor(annee))) + 
+    geom_boxplot() +
+    xlab("Annee") +
+    ylab("Surface des vignes")
+dev.off()
+
+vin %>%
+    ggplot(aes(y = surface, x = annee)) +
+    geom_smooth() + 
+    geom_point()
+
+png(filename="Graphiques/QVinBox.png", width = 600, height = 600)
+vin %>% 
+    ggplot(aes(y = qq_total, color = as.factor(annee))) +
+    geom_boxplot() +
+    xlab("Annee") +
+    ylab("Quantité de vin produit")
+dev.off()
+
+png(filename="Graphiques/QSurfacePoint.png", width = 600, height = 600)
+vin %>% 
+    ggplot(aes(y = qq_total, x = surface)) +
+    geom_point() +
+    geom_smooth() +
+    xlab("Surface des vignes") +
+    ylab("Quantité de vin produit")
+dev.off()
+>>>>>>> 980b4e792e80f4cb0faf3075959e497082a626ea
