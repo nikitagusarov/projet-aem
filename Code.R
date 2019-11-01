@@ -219,4 +219,117 @@ vin %>%
     xlab("Surface des vignes") +
     ylab("Quantité de vin produit")
 dev.off()
+<<<<<<< HEAD
 >>>>>>> 980b4e792e80f4cb0faf3075959e497082a626ea
+=======
+
+png(filename="Graphiques/QvinQpest.png", width = 600, height = 600)
+vxp %>% filter(quantite_produit < 1000000) %>% 
+    group_by(annee, number) %>%
+    summarise(qq_total = mean(qq_total), quantite_produit = mean(quantite_produit)) %>%
+    ggplot(aes(y = qq_total, x = as.numeric(quantite_produit))) +
+    geom_point() +
+    xlab("Quantité des pésticides") +
+    ylab("Quantité de vin produit")
+dev.off()
+
+png(filename="Graphiques/SvinQpest.png", width = 600, height = 600)
+vxp %>% filter(quantite_produit < 1000000) %>% 
+    group_by(annee, number) %>%
+    summarise(surface = mean(surface), quantite_produit = mean(quantite_produit)) %>%
+    ggplot(aes(y = surface, x = as.numeric(quantite_produit))) +
+    geom_point() +
+    xlab("Surface des vignes") +
+    ylab("Quantité de vin produit")
+dev.off()
+
+png(filename="Graphiques/QvinQpestAnnee.png", width = 600, height = 600)
+vxp %>% filter(quantite_produit < 1000000) %>% 
+    group_by(annee, number) %>%
+    summarise(qq_total = mean(qq_total), quantite_produit = mean(quantite_produit)) %>%
+    ggplot(aes(y = qq_total, x = as.numeric(quantite_produit), col = as.factor(annee))) +
+    geom_point() +
+    geom_smooth(method = "lm", se = F) + 
+    xlab("Quantité des pésticides") +
+    ylab("Quantité de vin produit")
+dev.off()
+
+png(filename="Graphiques/QvinQpestRegion.png", width = 600, height = 600)
+vxp %>% filter(quantite_produit < 1000000) %>% 
+    group_by(annee, number) %>%
+    summarise(qq_total = mean(qq_total), quantite_produit = mean(quantite_produit)) %>%
+    ggplot(aes(y = qq_total, x = as.numeric(quantite_produit), col = as.factor(number))) +
+    geom_point() +
+    geom_smooth(method = "lm", se = F) + 
+    xlab("Quantité des pésticides") +
+    ylab("Quantité de vin produit")
+dev.off()
+
+png(filename="Graphiques/SvinQpestAnnee.png", width = 600, height = 600)
+vxp %>% filter(quantite_produit < 1000000) %>% 
+    group_by(annee, number) %>%
+    summarise(surface = mean(surface), quantite_produit = mean(quantite_produit)) %>%
+    ggplot(aes(y = surface, x = as.numeric(quantite_produit), col = as.factor(annee))) +
+    geom_point() +
+    geom_smooth(method = "lm", se = F) + 
+    xlab("Quantité des pésticides") +
+    ylab("Surface des vignes")
+dev.off()
+
+png(filename="Graphiques/SvinQpestRegion.png", width = 600, height = 600)
+vxp %>% filter(quantite_produit < 1000000) %>% 
+    group_by(annee, number) %>%
+    summarise(surface = mean(surface), quantite_produit = mean(quantite_produit)) %>%
+    ggplot(aes(y = surface, x = as.numeric(quantite_produit), col = as.factor(number))) +
+    geom_point() +
+    geom_smooth(method = "lm", se = F) + 
+    xlab("Quantité des pésticides") +
+    ylab("Surface des vignes")
+dev.off()
+
+png(filename="Graphiques/QvinQpest2.png", width = 600, height = 600)
+vxp %>% filter(quantite_produit < 1000000) %>% 
+    group_by(annee, number) %>%
+    summarise(qq_total = mean(qq_total), quantite_produit = sum(quantite_produit)) %>%
+    ggplot(aes(y = qq_total, x = as.numeric(quantite_produit))) +
+    geom_point() +
+    xlab("Quantité des pésticides") +
+    ylab("Quantité de vin produit")
+dev.off()
+
+png(filename="Graphiques/SvinQpest2.png", width = 600, height = 600)
+vxp %>% filter(quantite_produit < 1000000) %>% 
+    group_by(annee, number) %>%
+    summarise(surface = mean(surface), quantite_produit = sum(quantite_produit)) %>%
+    ggplot(aes(y = surface, x = as.numeric(quantite_produit))) +
+    geom_point() +
+    xlab("Surface des vignes") +
+    ylab("Quantité de vin produit")
+dev.off()
+
+png(filename="Graphiques/QvinQpestAnnee2.png", width = 600, height = 600)
+vxp %>% filter(quantite_produit < 1000000) %>% 
+    group_by(annee, number) %>%
+    summarise(qq_total = mean(qq_total), quantite_produit = sum(quantite_produit)) %>%
+    ggplot(aes(y = qq_total, x = as.numeric(quantite_produit), col = as.factor(annee))) +
+    geom_point() +
+    geom_smooth(method = "lm", se = F) + 
+    xlab("Quantité des pésticides") +
+    ylab("Quantité de vin produit")
+dev.off()
+
+png(filename="Graphiques/QvinQpestRegion2.png", width = 600, height = 600)
+vxp %>% filter(quantite_produit < 1000000) %>% 
+    group_by(annee, number) %>%
+    summarise(qq_total = mean(qq_total), quantite_produit = sum(quantite_produit)) %>%
+    ggplot(aes(y = qq_total, x = as.numeric(quantite_produit), col = as.factor(number))) +
+    geom_point() +
+    geom_smooth(method = "lm", se = F) + 
+    xlab("Quantité des pésticides") +
+    ylab("Quantité de vin produit")
+dev.off()
+
+dim(vin) # 869*8
+dim(pesticides) # 134025*10
+dim(vxp) # 114730*16
+>>>>>>> c184c3b37128495fb06f51a1e862196ccc299a0e
