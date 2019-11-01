@@ -1,8 +1,10 @@
 ---
-title: "revue de la littérature"
+title: "revue de la littÃ©rature"
 author: "BLANC Arnaud"
 date: "28 octobre 2019"
-output: pdf_document
+output:
+  word_document: default
+  pdf_document: default
 ---
 
 #article 7 : Forecasting Bordeaux wine prices using state-space methods
