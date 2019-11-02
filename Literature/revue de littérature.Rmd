@@ -1,5 +1,5 @@
 ---
-title: "revue de la littÃ©rature"
+title: "revue de la littÃƒÂ©rature"
 author: "BLANC Arnaud"
 date: "28 octobre 2019"
 output:
@@ -9,12 +9,12 @@ output:
 
 #article 7 : Forecasting Bordeaux wine prices using state-space methods
 
-Les prix sont des déterminants très important dans le marché du vin. En effet, il conditionnent les décisions d'achat et de vente Pour estimer ces prix, on utilise soit les déterminants de l'offre et de la demande, soit les mouvements de prix sur la base des prix futurs, soit en se basant sur le taux d'échange, utiliser un réseau neuronal ou utiliser des modèle de série teporelles. De nombreux auteurs utilisent des relations hédoniques pour déterminer le prix du vin. Le vin de bordeaux génériques représentent 40% de la production totale. Ce type de vin voit de large volume fait l'objet d'échange et la qualité devrait être constante. Il n'y a pas de prix futur pour le vin car les participants à ce marché n'ont pas suffisemment d'information pour faire des prédictions. 
-Les prix du vin sont considérés comme très volatiles. Ils créent donc une incertitude importante pour les acteurs.Les auteurs de cet article cherche à construire un modèle de prévision du prix du vin rouge générique de Bordeaux.
-Cela n'a pas été fait avant à cause du manque de données disponibles Pour ce papier, ils ont eu accès à des données mensuelles sur les prix, le volume et le nombre de contrat, avec le la quantité de récolte annuelle provenant de l'organisation professionnel d'échange des vins de bordeaux, entre 1999 et 2016.
-Pour obtenir cette prévisions ils utilisent un modèle univarié pour le prix moyen du vin.
+Les prix sont des dÃ©terminants trÃ¨s important dans le marchÃ© du vin. En effet, il conditionnent les dÃ©cisions d'achat et de vente Pour estimer ces prix, on utilise soit les dÃ©terminants de l'offre et de la demande, soit les mouvements de prix sur la base des prix futurs, soit en se basant sur le taux d'Ã©change, utiliser un rÃ©seau neuronal ou utiliser des modÃ¨le de sÃ©rie teporelles. De nombreux auteurs utilisent des relations hÃ©doniques pour dÃ©terminer le prix du vin. Le vin de bordeaux gÃ©nÃ©riques reprÃ©sentent 40% de la production totale. Ce type de vin voit de large volume fait l'objet d'Ã©change et la qualitÃ© devrait Ãªtre constante. Il n'y a pas de prix futur pour le vin car les participants Ã  ce marchÃ© n'ont pas suffisemment d'information pour faire des prÃ©dictions. 
+Les prix du vin sont considÃ©rÃ©s comme trÃ¨s volatiles. Ils crÃ©ent donc une incertitude importante pour les acteurs.Les auteurs de cet article cherche Ã  construire un modÃ¨le de prÃ©vision du prix du vin rouge gÃ©nÃ©rique de Bordeaux.
+Cela n'a pas Ã©tÃ© fait avant Ã  cause du manque de donnÃ©es disponibles Pour ce papier, ils ont eu accÃ¨s Ã  des donnÃ©es mensuelles sur les prix, le volume et le nombre de contrat, avec le la quantitÃ© de rÃ©colte annuelle provenant de l'organisation professionnel d'Ã©change des vins de bordeaux, entre 1999 et 2016.
+Pour obtenir cette prÃ©visions ils utilisent un modÃ¨le univariÃ© pour le prix moyen du vin.
 
-## Les données et le modèle
+## Les donnÃ©es et le modÃ¨le
 The specific series that we use is the monthly average
 price per barrel (containing 900 l) for the period late
 1999 to June 2016. The average is taken of the prices
@@ -76,7 +76,7 @@ The different parameters of the model are obtained
 using Gaussian state-space methods, involving the
 Kalman filter and maximum-likelihood estimation.
 
-##Les résultats
+##Les rÃ©sultats
  It
 would be difficult to model the path of wine prices
 with a deterministic trend specification. The stochastic nature of seasonal component is apparent from
@@ -169,7 +169,7 @@ many wines sold in the off-trade are sold by way of promotional discounts. The
 empirical study uses a survey comprising actual retail prices of 7062 bottles of still
 wine, identified by 'objective' labelling attributes (region of origin, vintage etc.). 
 
-##Le marché du vin britannique
+##Le marchÃ© du vin britannique
 The structure of the off-licence trade is such
 that two main commercial categories can be distinguished: those firms who only
 have wines and other alcoholic drinks on offer (the 'wine specialists') and others,
@@ -199,9 +199,9 @@ are found, and since most varietal wines which are sold off-licence in the UK
 originate from the region of Languedoc-Roussillon (86% by volume in 2000,
 CFCE, 2001), consider the evolution of production of varietal wines versus AOC
 wines in this region. Figure 3 displays the production of AOC wines, VdP from
-Languedoc-Roussillon, 'VdP de petite zone' and 'VdP de région'. 
+Languedoc-Roussillon, 'VdP de petite zone' and 'VdP de rÃ©gion'. 
 
-##L'application du modèle hédonique à la labellisation de vin
+##L'application du modÃ¨le hÃ©donique Ã  la labellisation de vin
 
 What is being
 estimated in Rosen's (1974) description of a competitive equilibrium is the locus of
@@ -239,18 +239,18 @@ dummy variable. Further, we rely on a procedure for adjusting dummy variable
 coefficient estimates that does not result in the discarding of variables from the
 equation (Suits, 1984). 
 
-Le modèle hédonique est donné par :
+Le modÃ¨le hÃ©donique est donnÃ© par :
 P=a2*Xa2+a3*Xa3+B1*Xb1+B3*Xb3+B4*Xb4+u
-where p is a N ×1 vector of transformed observations on the price per bottle P ,
-there are five N ×1 vectors of X observations, ?? and ?? define the unknown
-parameters, and  is a N ×1 vector of unknown stochastic disturbances. A
+where p is a N Ã—1 vector of transformed observations on the price per bottle P ,
+there are five N Ã—1 vectors of X observations, ?? and ?? define the unknown
+parameters, and  is a N Ã—1 vector of unknown stochastic disturbances. A
 symmetrical substitution generates estimates for the remaining coefficients ??1 and
 ??2.  So, for example, the
 estimated implicit price differences between Cabernet Sauvignon and Merlot would
 be assumed to be the same across all regions. To avoid this equivalence effect we
 specify an empirical model that includes interaction terms.
 
-###Les données et variables
+###Les donnÃ©es et variables
 
 Our analysis relies on bottle prices and labelling attributes of French still wines
 from a survey that was undertaken in August 1994 in 94 retail outlets of different
@@ -267,8 +267,8 @@ variety, region of origin, category (e.g. AOC), importer, volume, producer, plac
 bottling and vintage. Thus all information that appears on the label of the bottles
 was recorded, except for the degree of alcohol. Summary statistics of the variables
 used in the following analysis are presented in Table 3. It is striking that the mean
-price of Appellations Contrôlées is more than twice as high as that for vin de pays,
-and that there is a much larger variance in Appellations Contrôlées prices (36.82)
+price of Appellations ContrÃ´lÃ©es is more than twice as high as that for vin de pays,
+and that there is a much larger variance in Appellations ContrÃ´lÃ©es prices (36.82)
 compared to that for the vin de pays prices (0.31). 
 
 ###3.4 The functional form
@@ -334,7 +334,7 @@ interpreted as follows. The relative impact of red and white wines on price (1.9
 and ???0.99%, respectively) suggests that market participants attribute a higher
 valuation to red wines, although the impact is close to average. This is expected
 insofar as France is better known in Britain for its classic reds (clarets) than for its
-white wines. The fact that rosé wines are relatively less appreciated seems to be
+white wines. The fact that rosÃ© wines are relatively less appreciated seems to be
 reflected in the negative impact on price (???20.26%). 
 
 As for the wine categories, consumers appear to value regional appellations (AOC
@@ -360,7 +360,7 @@ Alsace (-27.2%) is especially surprising and suggests that consumers' valuation 
 Muscat from other regions has a far greater influence on Muscat's overall impact on
 price (+41.5%) than the impact of Muscat from Alsace. 
 
- While Syrah is the noble grape of many Rhône
+ While Syrah is the noble grape of many RhÃ´ne
 wines (it also goes into red AOC Chateauneuf-du-Pape wines), our finding of a
 positive impact on price is also supported by its high appreciation when LanguedocRoussillon is its regional origin (Robinson, 1994, p.942). Gamay, which is the
 basis for Beaujolais, is generally not known for superior quality.25 The estimate for
@@ -540,15 +540,15 @@ safely assume serial independence.
 An alternative approach to estimating SEMs with panel data is to use the fixed effects
 transformation and then to apply an IV technique such as pooled 2SLS. A simple procedure
 is to estimate the time-demeaned equation by pooled 2SLS, which would look like
-ÿit1 ???= a1ÿt2 +??? ¨zit1b1+ ??? üit1, t= ??? 1, 2, ., T, [16.42]
-where ¨zit1 and ¨zit2 are IVs. This is equivalent to using 2SLS in the dummy variable formulation, where the unit-specific dummy variables act as their own instruments. Ayres and
+Ã¿it1 ???= a1Ã¿t2 +??? Â¨zit1b1+ ??? Ã¼it1, t= ??? 1, 2, ., T, [16.42]
+where Â¨zit1 and Â¨zit2 are IVs. This is equivalent to using 2SLS in the dummy variable formulation, where the unit-specific dummy variables act as their own instruments. Ayres and
 Levitt (1998) applied 2SLS to a time-demeaned equation to estimate the effect of LoJack
 electronic theft prevention devices on car theft rates in cities. If (16.42) is estimated directly, then the df needs to be corrected to N(T ???- 1) -??? k1, where k1 is the total number of
 elements in a1 and b1. Including unit-specific dummy variables and applying pooled 2SLS
 to the original data produces the correct df. A detailed treatment of 2SLS with panel data
 is given in Wooldridge (2010, Chapter 11).
 
-##En résumer
+##En rÃ©sumer
 Simultaneous equations models are appropriate when each equation in the system has a ceteris
 paribus interpretation. Good examples are when separate equations describe different sides
 of a market or the behavioral relationships of different economic agents. Supply and demand
@@ -582,325 +582,371 @@ common and are not especially difficult to estimate.
 
 En 1960, le vignoble occupait en Suisse une surface de 12 310 ha
 et a produit 1 104 000 hl de vin. 
-Le prix des vignes ne cesse de monter. On en a vendu cette année
-jusqu'à 25 F le m2 (1), on parle même de 37 F. Couramment des vignes
+Le prix des vignes ne cesse de monter. On en a vendu cette annÃ©e
+jusqu'Ã  25 F le m2 (1), on parle mÃªme de 37 F. Couramment des vignes
 atteignent 10 F le m2, 100 000 F l'ha, 12 millions d'anciens francs.
  En moyenne, la
-production équilibre la consommation, mais la surproduction est une
-menace permanente, d'autant plus que la désaffection pour le vin
-blanc a tendance à s'affirmer, et en particulier pour les vins
+production Ã©quilibre la consommation, mais la surproduction est une
+menace permanente, d'autant plus que la dÃ©saffection pour le vin
+blanc a tendance Ã  s'affirmer, et en particulier pour les vins
 blancs secs que produisent les vignobles nationaux 
-Les vignerons ne peuvent produire un vin de qualité qu'au prix
-d'une culture intensive qui revient très cher. Les traitements se
-multiplient, le machinisme pénétre de plus en plus dans le vignoble,
-les salaires des indispensables ouvriers augmentent chaque année.
-A cause de la poussée des prix industriels et des salaires les frais de
+Les vignerons ne peuvent produire un vin de qualitÃ© qu'au prix
+d'une culture intensive qui revient trÃ¨s cher. Les traitements se
+multiplient, le machinisme pÃ©nÃ©tre de plus en plus dans le vignoble,
+les salaires des indispensables ouvriers augmentent chaque annÃ©e.
+A cause de la poussÃ©e des prix industriels et des salaires les frais de
 culture vont croissant.
-L'enquête s'étend
-actuellement à 300 exploitations des différentes régions viticoles de la
+L'enquÃªte s'Ã©tend
+actuellement Ã  300 exploitations des diffÃ©rentes rÃ©gions viticoles de la
 Suisse. Le questionnaire ne comprend pas moins de 60 pages et entre
-dans tous les détails de la technique et de l'économie des
+dans tous les dÃ©tails de la technique et de l'Ã©conomie des
 exploitations.
-Les calculs sur le prix de revient révèlent que 45 % du coût de
+Les calculs sur le prix de revient rÃ©vÃ¨lent que 45 % du coÃ»t de
 production sont dus aux travaux manuels. Or, c'est la main-d'ouvre
-qui a proportionnellement le plus renchéri. Les ouvriers agricoles
+qui a proportionnellement le plus renchÃ©ri. Les ouvriers agricoles
 se font de plus en plus rares, leurs salaires et leurs exigences vont
-croissant. Leur salaire annuel qui se montait à 1 200 F pendant la
-guerre atteint plus de 2 500 F actuellement, et comme leur entretien est entièrement à la charge de leur employeur, le salaire réel se monte
-à plus de 5 000 F par an.  
-Les vignerons reçoivent des conseils sur le
-choix des plants, la façon de les tailler, la vinification du vin rouge. 
- Les nouveaux plants sont plus résistants
-aux gelées, à la sécheresse, au mildiou, mais les raisins sont plus
-sensibles à la pourriture et sont attaqués par une dégénérescence
-infectieuse contre laquelle on sait mal lutter. Leur rendement est en général
-plus faible à l'hectare et il faudrait les vendre plus cher que les blancs. 
-Cépages. Certains vignerons, dès avant la guerre, avaient pensé
-trouver une solution à ce problème par l'abandon des plants européens
-peu productifs et fragiles, remplacés par des hybrides producteurs
-directs beaucoup plus résistants aux maladies et aux parasites, dont
-la culture est très simplifiée et qui donnent des rendements à l'hectare
-bien plus élevés.
-La taille. L'enquête révèle que les soins donnés aux ceps.
-La mécanisation. Le machinisme pénètre de plus en plus dans la
-culture de la vigne et sans cesse de nouveaux engins adaptés aux
-circonstances apparaissent sur le marché. Des treuils, des tracteurs
+croissant. Leur salaire annuel qui se montait Ã  1 200 F pendant la
+guerre atteint plus de 2 500 F actuellement, et comme leur entretien est entiÃ¨rement Ã  la charge de leur employeur, le salaire rÃ©el se monte
+Ã  plus de 5 000 F par an.  
+Les vignerons reÃ§oivent des conseils sur le
+choix des plants, la faÃ§on de les tailler, la vinification du vin rouge. 
+ Les nouveaux plants sont plus rÃ©sistants
+aux gelÃ©es, Ã  la sÃ©cheresse, au mildiou, mais les raisins sont plus
+sensibles Ã  la pourriture et sont attaquÃ©s par une dÃ©gÃ©nÃ©rescence
+infectieuse contre laquelle on sait mal lutter. Leur rendement est en gÃ©nÃ©ral
+plus faible Ã  l'hectare et il faudrait les vendre plus cher que les blancs. 
+CÃ©pages. Certains vignerons, dÃ¨s avant la guerre, avaient pensÃ©
+trouver une solution Ã  ce problÃ¨me par l'abandon des plants europÃ©ens
+peu productifs et fragiles, remplacÃ©s par des hybrides producteurs
+directs beaucoup plus rÃ©sistants aux maladies et aux parasites, dont
+la culture est trÃ¨s simplifiÃ©e et qui donnent des rendements Ã  l'hectare
+bien plus Ã©levÃ©s.
+La taille. L'enquÃªte rÃ©vÃ¨le que les soins donnÃ©s aux ceps.
+La mÃ©canisation. Le machinisme pÃ©nÃ¨tre de plus en plus dans la
+culture de la vigne et sans cesse de nouveaux engins adaptÃ©s aux
+circonstances apparaissent sur le marchÃ©. Des treuils, des tracteurs
 enjambeurs, tirant des charrues vigneronnes ou des sarcleuses
-permettent d'économiser 60 % du temps nécessaire aux travaux de la
-terre. Les traitements chimiques, grâce aux compresseurs et aux
+permettent d'Ã©conomiser 60 % du temps nÃ©cessaire aux travaux de la
+terre. Les traitements chimiques, grÃ¢ce aux compresseurs et aux
 atomiseurs se font aussi beaucoup plus rapidement. 
-Le vigneron actuel est mieux armé que ses parents contre les
-aléas de la récolte. Il sait doser scientifiquement ses engrais,
-sélectionner au mieux ses plants,
+Le vigneron actuel est mieux armÃ© que ses parents contre les
+alÃ©as de la rÃ©colte. Il sait doser scientifiquement ses engrais,
+sÃ©lectionner au mieux ses plants,
 L'examen
-de ces prix est intéressant : acceptés par les producteurs, ils donnent
-une idée de la valeur que doivent atteindre les vins pour que la culture
-soit rentable en année moyenne; consentis par les commerçants ils
-permettent de classer les crus d'après leur réputation et leur valeur
+de ces prix est intÃ©ressant : acceptÃ©s par les producteurs, ils donnent
+une idÃ©e de la valeur que doivent atteindre les vins pour que la culture
+soit rentable en annÃ©e moyenne; consentis par les commerÃ§ants ils
+permettent de classer les crus d'aprÃ¨s leur rÃ©putation et leur valeur
 marchande (1). 
 
-#Le fonctionnement des marchés entre vignoble et négoce dans le secteur des vins d'AOC : Trois études régionales
-mieux cerner les conditions à réunir pour assurer l'ajustement offre-demande
+#Le fonctionnement des marchÃ©s entre vignoble et nÃ©goce dans le secteur des vins d'AOC : Trois Ã©tudes rÃ©gionales
+mieux cerner les conditions Ã  rÃ©unir pour assurer l'ajustement offre-demande
 de raisin et de vins ;
-- mettre en évidence l'effet possible sur les équilibres offre-demande de divers
-leviers d'action (vendangeoirs, regroupement de l'offre, création d'outils de
+- mettre en Ã©vidence l'effet possible sur les Ã©quilibres offre-demande de divers
+leviers d'action (vendangeoirs, regroupement de l'offre, crÃ©ation d'outils de
 stockage, contrats d'approvisionnement...).
 
-La première étude concernant les vins rosés de Loire a été réalisée en 1998. Elle a pour
-objectif d'identifier les mécanismes qui, au sein de cette filière, induisent de fortes variations
-des cours et des volumes des transactions entre vignoble te négoce. Le diagnostic débouche
-sur des propositions d'action en vue de d'améliorer l'organisation de la filière.
+La premiÃ¨re Ã©tude concernant les vins rosÃ©s de Loire a Ã©tÃ© rÃ©alisÃ©e en 1998. Elle a pour
+objectif d'identifier les mÃ©canismes qui, au sein de cette filiÃ¨re, induisent de fortes variations
+des cours et des volumes des transactions entre vignoble te nÃ©goce. Le diagnostic dÃ©bouche
+sur des propositions d'action en vue de d'amÃ©liorer l'organisation de la filiÃ¨re.
 
-La seconde étude portant sur les appellations du Beaujolais a été réalisée en 2000. Elle se
-focalise sur l'analyse de variations de cours et tente d'identifier les déterminants de ces
+La seconde Ã©tude portant sur les appellations du Beaujolais a Ã©tÃ© rÃ©alisÃ©e en 2000. Elle se
+focalise sur l'analyse de variations de cours et tente d'identifier les dÃ©terminants de ces
 variations.
 
-La troisième étude sur les Appellations Régionales de Bourgogne a été menée1999. Elle a été
-conduite dans le cadre du contrat INRA-BIVB initié par l'équipe INRA-ESR de Dijon. La
-partie présentée ici concerne la possibilité d'instaurer des contrats pour améliorer le niveau
-qualitatif des vins achetés par le négoce. L'étude propose une démarche de simulation pour
-évaluer les impacts possibles du développement de tels types de contrats.
+La troisiÃ¨me Ã©tude sur les Appellations RÃ©gionales de Bourgogne a Ã©tÃ© menÃ©e1999. Elle a Ã©tÃ©
+conduite dans le cadre du contrat INRA-BIVB initiÃ© par l'Ã©quipe INRA-ESR de Dijon. La
+partie prÃ©sentÃ©e ici concerne la possibilitÃ© d'instaurer des contrats pour amÃ©liorer le niveau
+qualitatif des vins achetÃ©s par le nÃ©goce. L'Ã©tude propose une dÃ©marche de simulation pour
+Ã©valuer les impacts possibles du dÃ©veloppement de tels types de contrats.
 
-#Deuxième partie :
+#DeuxiÃ¨me partie :
 Etude sur les variations des cours
 dans les Appellations de Beaujolais
 
-Les opérateurs du Vignoble et du Négoce de la filière Beaujolais sont confrontés depuis de
-nombreuses années à de fortes variations interannuelles des volumes et des prix des produits
-qui circulent de la production jusqu'au marché. Ces variations portent par exemple sur :
-. les niveau des récoltes et des quantités de vin disponibles chaque année ;
-. les stocks dont le niveau peut varier d'une année sur l'autre de façon importante
+Les opÃ©rateurs du Vignoble et du NÃ©goce de la filiÃ¨re Beaujolais sont confrontÃ©s depuis de
+nombreuses annÃ©es Ã  de fortes variations interannuelles des volumes et des prix des produits
+qui circulent de la production jusqu'au marchÃ©. Ces variations portent par exemple sur :
+. les niveau des rÃ©coltes et des quantitÃ©s de vin disponibles chaque annÃ©e ;
+. les stocks dont le niveau peut varier d'une annÃ©e sur l'autre de faÃ§on importante
 .les sorties 
-. les cours à la production dont les variations d'une année sur l'autre peuvent atteindre +36%
+. les cours Ã  la production dont les variations d'une annÃ©e sur l'autre peuvent atteindre +36%
 (entre 88/89 et 89/90) et - 27% (entre 90/91 et 91/92) dans le cas des Beaujolais rouges ;
 En particulier, les
-fluctuations des quantités disponibles et leurs conséquences en termes de prix finaux peuvent
-se traduire par des pertes de parts de marchés auprès d'importateurs qui attendent une certaine
-régularité dans les volumes et les prix des produits offerts.
-Les raisons peuvent en être multiples et mêler des facteurs « exogènes » (aléas
-climatiques, par exemple) et d'autres qui tiennent au jeu stratégique des opérateurs les uns par
-rapport aux autres (stratégies de « rationnement », par exemple, en vue de maintenir les prix à
-la production ; stratégies de « sur-achat » certaines années en raison des difficultés à anticiper
-marchés futurs ; constitution de stocks de sécurité...)
-- une analyse qualitative des stratégies d'achats et de vente à chaque niveau de la filière
-(interfaces Vignoble/Négoce, Vignoble/Coopératives, Coopératives/Négoce, Opérateurs
-/Marché) en relation avec les fluctuations observées des volumes et des prix des transactions.
-- une analyse quantitative des données disponibles sur les transactions et les flux (volumes et
-valeur) de la production jusqu'au marché sur les grandes catégories d'appellations en
-Beaujolais. Cette étude économétrique a été réalisée avec la collaboration de S. Lecocq et de
+fluctuations des quantitÃ©s disponibles et leurs consÃ©quences en termes de prix finaux peuvent
+se traduire par des pertes de parts de marchÃ©s auprÃ¨s d'importateurs qui attendent une certaine
+rÃ©gularitÃ© dans les volumes et les prix des produits offerts.
+Les raisons peuvent en Ãªtre multiples et mÃªler des facteurs Â« exogÃ¨nes Â» (alÃ©as
+climatiques, par exemple) et d'autres qui tiennent au jeu stratÃ©gique des opÃ©rateurs les uns par
+rapport aux autres (stratÃ©gies de Â« rationnement Â», par exemple, en vue de maintenir les prix Ã 
+la production ; stratÃ©gies de Â« sur-achat Â» certaines annÃ©es en raison des difficultÃ©s Ã  anticiper
+marchÃ©s futurs ; constitution de stocks de sÃ©curitÃ©...)
+- une analyse qualitative des stratÃ©gies d'achats et de vente Ã  chaque niveau de la filiÃ¨re
+(interfaces Vignoble/NÃ©goce, Vignoble/CoopÃ©ratives, CoopÃ©ratives/NÃ©goce, OpÃ©rateurs
+/MarchÃ©) en relation avec les fluctuations observÃ©es des volumes et des prix des transactions.
+- une analyse quantitative des donnÃ©es disponibles sur les transactions et les flux (volumes et
+valeur) de la production jusqu'au marchÃ© sur les grandes catÃ©gories d'appellations en
+Beaujolais. Cette Ã©tude Ã©conomÃ©trique a Ã©tÃ© rÃ©alisÃ©e avec la collaboration de S. Lecocq et de
 P. Leroy (INRA-ESR).
 
-##Analyse des fluctuations de cours et identification des variables déterminantes
- une divergence entre l'estimation des ventes au moment où la
-campagne d'achat se réalise et les ventes effectives.
+##Analyse des fluctuations de cours et identification des variables dÃ©terminantes
+ une divergence entre l'estimation des ventes au moment oÃ¹ la
+campagne d'achat se rÃ©alise et les ventes effectives.
 Tout d'abord, le vignoble n'a
-pas de visibilité sur les ventes du négoce et constate en début de campagne un stock initial
-propriété faible, ce qui ne l'incite pas à réajuster les cours ; ensuite s'intercale la campagne
-des nouveaux qui fonctionne sur une logique de demande finale différente. Si le cours des
-primeurs baisse, alors le réajustement a lieu sur les non nouveaux (91/92), sinon à nouveau
-une année supplémentaire peut être nécessaire (98/99) pour retrouver un cours d'équilibre.
+pas de visibilitÃ© sur les ventes du nÃ©goce et constate en dÃ©but de campagne un stock initial
+propriÃ©tÃ© faible, ce qui ne l'incite pas Ã  rÃ©ajuster les cours ; ensuite s'intercale la campagne
+des nouveaux qui fonctionne sur une logique de demande finale diffÃ©rente. Si le cours des
+primeurs baisse, alors le rÃ©ajustement a lieu sur les non nouveaux (91/92), sinon Ã  nouveau
+une annÃ©e supplÃ©mentaire peut Ãªtre nÃ©cessaire (98/99) pour retrouver un cours d'Ã©quilibre.
 i un choc positif se produit
-sur la demande finale, l'intermédiaire achète non seulement pour recompléter son stock
-mais pour tenir compte d'un réajustement à la hausse de son estimation de la demande
-future (et réciproquement à l'inverse). A ceci peut s'ajouter une anticipation de
-rationnement futur (ou de hausse du cours) qui amplifie à nouveau la commande
-d'approvisionnement. Enfin, le décalage temporel entre les achats et la vente ainsi que le
+sur la demande finale, l'intermÃ©diaire achÃ¨te non seulement pour recomplÃ©ter son stock
+mais pour tenir compte d'un rÃ©ajustement Ã  la hausse de son estimation de la demande
+future (et rÃ©ciproquement Ã  l'inverse). A ceci peut s'ajouter une anticipation de
+rationnement futur (ou de hausse du cours) qui amplifie Ã  nouveau la commande
+d'approvisionnement. Enfin, le dÃ©calage temporel entre les achats et la vente ainsi que le
 non fractionnement possible des commandes d'approvisionnement amplifient le
-phénomène.
+phÃ©nomÃ¨ne.
  C'est donc l'offre initiale du vignoble et la politique de
-gestion de stock du négoce qui semblent les facteurs déterminants du cours des non
-nouveaux, plus que les ventes finales du négoce ou les ventes directes du vignoble.
+gestion de stock du nÃ©goce qui semblent les facteurs dÃ©terminants du cours des non
+nouveaux, plus que les ventes finales du nÃ©goce ou les ventes directes du vignoble.
 
-##Analyse quantitative des relations entre variables déterminantes à des fins de gestion prévisionnelle
-SIp : Stock Initial Propriété évalué fin Août
-SFp : Stock Final Propriété évalué fin Août
-E : Enregistrements totaux (achats en vrac du négoce au vignoble)
+##Analyse quantitative des relations entre variables dÃ©terminantes Ã  des fins de gestion prÃ©visionnelle
+SIp : Stock Initial PropriÃ©tÃ© Ã©valuÃ© fin AoÃ»t
+SFp : Stock Final PropriÃ©tÃ© Ã©valuÃ© fin AoÃ»t
+E : Enregistrements totaux (achats en vrac du nÃ©goce au vignoble)
 ENN : Enregistrements Non Nouveaux (=Hors Primeurs)
 EN : Enregistrements Nouveaux (=Primeurs)
-CMC : Cours moyen de campagne (moyenne sur l'année des cours mensuels des transactions
-en vrac entre vignoble et négoce)
-CMP : Cours moyen pondéré (coût des approvisionnements du négoce calculé en établissant
-la moyenne pondérée des stocks initiaux du négoce achetés au cours de l'année antérieure et
-des enregistrements de l'année réalisés au cours moyen de l'année)
+CMC : Cours moyen de campagne (moyenne sur l'annÃ©e des cours mensuels des transactions
+en vrac entre vignoble et nÃ©goce)
+CMP : Cours moyen pondÃ©rÃ© (coÃ»t des approvisionnements du nÃ©goce calculÃ© en Ã©tablissant
+la moyenne pondÃ©rÃ©e des stocks initiaux du nÃ©goce achetÃ©s au cours de l'annÃ©e antÃ©rieure et
+des enregistrements de l'annÃ©e rÃ©alisÃ©s au cours moyen de l'annÃ©e)
 CNN : Cours des Non Nouveaux
 CN : Cours des Nouveaux
-VD : Vente directe (vente du vignoble sur le marché final)
-Ce sont donc des données internes au Beaujolais qui ont été utilisées pour reconstituer les flux
-entre vignoble et négoce ou en direction du marché final. Dans cette analyse, ne sont pas
-intégrées des données externes parce qu'elles ne sont pas disponibles sur des séries d'années
-suffisamment longues être significatives sur le plan statistique.
-Dans la suite, nous essayons de déterminer les relations entre les variables de sorties et les
-cours. Nous commençons par étudier les sorties totales en fonction des cours des
-enregistrements ; puis les ventes finales du négoce en fonction des cours ; puis les
+VD : Vente directe (vente du vignoble sur le marchÃ© final)
+Ce sont donc des donnÃ©es internes au Beaujolais qui ont Ã©tÃ© utilisÃ©es pour reconstituer les flux
+entre vignoble et nÃ©goce ou en direction du marchÃ© final. Dans cette analyse, ne sont pas
+intÃ©grÃ©es des donnÃ©es externes parce qu'elles ne sont pas disponibles sur des sÃ©ries d'annÃ©es
+suffisamment longues Ãªtre significatives sur le plan statistique.
+Dans la suite, nous essayons de dÃ©terminer les relations entre les variables de sorties et les
+cours. Nous commenÃ§ons par Ã©tudier les sorties totales en fonction des cours des
+enregistrements ; puis les ventes finales du nÃ©goce en fonction des cours ; puis les
 enregistrements en fonction des cours.
-Quand on examine les relations entre variables deux à deux, on constate que les variations du
-CMC expliquent une très faible partie des variations des sorties totales. La relation est
-négative (les sorties varient en sens inverse du CMC) mais le R² est très faible : le CMC
+Quand on examine les relations entre variables deux Ã  deux, on constate que les variations du
+CMC expliquent une trÃ¨s faible partie des variations des sorties totales. La relation est
+nÃ©gative (les sorties varient en sens inverse du CMC) mais le RÂ² est trÃ¨s faible : le CMC
 n'explique que 4% des variations des sorties totales (tableau 1).
 Il existe, par contre, une relation significative entre les sorties totales et le CMP. On constate
-que le CMP explique mieux les sorties totales que le CMC : le R² est de 0,41 (le CMP
+que le CMP explique mieux les sorties totales que le CMC : le RÂ² est de 0,41 (le CMP
 explique donc 41% de la variation inter-annuelle des sorties totales) (tableau 2).
- La meilleure estimation passe par la prise en compte des stocks, de la récolte, de
-la part de nouveaux sur la récolte et des cours des nouveaux. On obtient alors des R² de 0.49
+ La meilleure estimation passe par la prise en compte des stocks, de la rÃ©colte, de
+la part de nouveaux sur la rÃ©colte et des cours des nouveaux. On obtient alors des RÂ² de 0.49
 avec le CMC (tableau 3) et de 0.58 avec le CMP (tableau 4).
  Ceci montre
-que les cours qui influencent les sorties totales sont par ordre décroissant le CMP, le cours des
-nouveaux puis, de façon beaucoup plus faible, le CMC.
-- d'une part, les sorties totales sont forcément influencées par des conditions de marché
+que les cours qui influencent les sorties totales sont par ordre dÃ©croissant le CMP, le cours des
+nouveaux puis, de faÃ§on beaucoup plus faible, le CMC.
+- d'une part, les sorties totales sont forcÃ©ment influencÃ©es par des conditions de marchÃ©
 externes qui ne sont pas prises en compte par le jeu de variables disponibles ;
-- d'autre part, les sorties totales comprennent les ventes du négoce et les ventes directes du
-vignoble, ces dernières n'étant probablement influencées qu'indirectement par le niveau
-des cours. Cette remarque est attestée par le tableau 5 dans lequel on voit que les sorties en
-vente directe ne sont expliquées par le CMC qu'avec un R² de 0.2.
-Pour ces deux raisons, on se concentre maintenant sur les seules ventes finales du négoce.
-On trouve des relations significatives entre les ventes finales du négoce et les cours des
-transactions entre vignoble et négoce. De façon générale, ces relations sont négatives (les
-ventes finales varient en sens inverse des cours). Si on s'en tient à ces deux seuls éléments, on
-obtient des R² d'environ 0,4. Cela signifie qu'on explique environ 40% de la variabilité des
-ventes du négoce à partir des seules informations sur les cours.
-Si on ajoute des variables de stocks, la récolte, la part des beaujolais nouveaux dans la récolte
-et le cours des nouveaux, on améliore sensiblement l'explication de la variabilité des ventes
-finales puisqu'on atteint des R² d'environ 0,6. Avec cet ensemble de variables, on explique
-donc environ 60% de la variabilité des sorties du négoce.
-Le CMP, associé à des variables de stocks, à la récolte, la part des nouveaux sur la récolte, est
-donc clairement un facteur explicatif des sorties du négoce.
-- Les enregistrements totaux ne sont pas reliés de façon significative aux cours moyens de
-campagne. Ceux-ci sont fondamentalement déterminés par le niveau des stocks du vignoble,
-la récolte et le volumes des achats en nouveau. Ces variables permettent d'expliquer plus de
-60% des variations du CMC (tableau 8). On peut comprendre cela dans la mesure où la
-tension offre-demande sur ce marché peut probablement être approchée par, d'un côté, les
-stocks vignoble et la récolte (offre), de l'autre côté, le rapport du volume d'achats en
-nouveaux sur la récolte (demande anticipée).
+- d'autre part, les sorties totales comprennent les ventes du nÃ©goce et les ventes directes du
+vignoble, ces derniÃ¨res n'Ã©tant probablement influencÃ©es qu'indirectement par le niveau
+des cours. Cette remarque est attestÃ©e par le tableau 5 dans lequel on voit que les sorties en
+vente directe ne sont expliquÃ©es par le CMC qu'avec un RÂ² de 0.2.
+Pour ces deux raisons, on se concentre maintenant sur les seules ventes finales du nÃ©goce.
+On trouve des relations significatives entre les ventes finales du nÃ©goce et les cours des
+transactions entre vignoble et nÃ©goce. De faÃ§on gÃ©nÃ©rale, ces relations sont nÃ©gatives (les
+ventes finales varient en sens inverse des cours). Si on s'en tient Ã  ces deux seuls Ã©lÃ©ments, on
+obtient des RÂ² d'environ 0,4. Cela signifie qu'on explique environ 40% de la variabilitÃ© des
+ventes du nÃ©goce Ã  partir des seules informations sur les cours.
+Si on ajoute des variables de stocks, la rÃ©colte, la part des beaujolais nouveaux dans la rÃ©colte
+et le cours des nouveaux, on amÃ©liore sensiblement l'explication de la variabilitÃ© des ventes
+finales puisqu'on atteint des RÂ² d'environ 0,6. Avec cet ensemble de variables, on explique
+donc environ 60% de la variabilitÃ© des sorties du nÃ©goce.
+Le CMP, associÃ© Ã  des variables de stocks, Ã  la rÃ©colte, la part des nouveaux sur la rÃ©colte, est
+donc clairement un facteur explicatif des sorties du nÃ©goce.
+- Les enregistrements totaux ne sont pas reliÃ©s de faÃ§on significative aux cours moyens de
+campagne. Ceux-ci sont fondamentalement dÃ©terminÃ©s par le niveau des stocks du vignoble,
+la rÃ©colte et le volumes des achats en nouveau. Ces variables permettent d'expliquer plus de
+60% des variations du CMC (tableau 8). On peut comprendre cela dans la mesure oÃ¹ la
+tension offre-demande sur ce marchÃ© peut probablement Ãªtre approchÃ©e par, d'un cÃ´tÃ©, les
+stocks vignoble et la rÃ©colte (offre), de l'autre cÃ´tÃ©, le rapport du volume d'achats en
+nouveaux sur la rÃ©colte (demande anticipÃ©e).
 Les cours des non nouveaux (BJL et Villages non nouveaux et ensemble des Crus) sont
-déterminés de façon significative par les stocks initiaux du vignoble (STINIV), la récolte en
+dÃ©terminÃ©s de faÃ§on significative par les stocks initiaux du vignoble (STINIV), la rÃ©colte en
 non nouveaux (RECOHN), les enregistrements en non nouveaux (ENN), les enregistrements
 en nouveaux (EN) et le cours des nouveaux (CN). Les cours des non nouveaux varient dans le
-même sens que les enregistrements en nouveaux et non nouveaux ainsi que dans l emême sens
-que les cours des nouveaux ; ils varient en sens inverse des stocks du vignoble et de la récolte
+mÃªme sens que les enregistrements en nouveaux et non nouveaux ainsi que dans l emÃªme sens
+que les cours des nouveaux ; ils varient en sens inverse des stocks du vignoble et de la rÃ©colte
 hors nouveaux.
-On explique aussi de façon très significative les enregistrements en non nouveaux. Les cours
+On explique aussi de faÃ§on trÃ¨s significative les enregistrements en non nouveaux. Les cours
 des non nouveaux sont dans une relation positive avec les enregistrements. Pour des raisons
-techniques (absence de variable non corrélée aux ENN permettant « d'instrumenter » les cours
-des non nouveaux), on ne peut cependant pas prendre en compte les CNN dans la prévision
+techniques (absence de variable non corrÃ©lÃ©e aux ENN permettant Â« d'instrumenter Â» les cours
+des non nouveaux), on ne peut cependant pas prendre en compte les CNN dans la prÃ©vision
 des enregistrements. La meilleure relation obtenue est la suivante :
-![](images/modèles.jpg)
+![](images/modÃ¨les.jpg)
 Elle montre que la meilleure base
-pour faire des prévisions reste la détermination simultanée des cours et des enregistrements en
+pour faire des prÃ©visions reste la dÃ©termination simultanÃ©e des cours et des enregistrements en
 non nouveaux, une fois connue la campagne des nouveaux.
-En l'absence de phénomène nouveau (ne s'étant pas produit dans les dix dernières années) et
-si les comportements des acteurs obéissent à des logiques de même nature que lors des années
-passées, les cours et volumes des enregistrements en non nouveaux devraient se situer aux
-niveaux indiqués par la prévision simultanée.
-Pour faciliter la construction de ces scénarios, le comité interprofessionnel doit s'entendre sur
-les hypothèses clés à formuler (dont la réalisation sera suivie) pour expliquer les variations de
-vente par circuit de distribution d'une année à l'autre : taux de change et conjoncture par
-grande zone géographique pour l'export, concurrence des grands vignobles français pour la
-GMS, efforts de promotion, état des stocks dans les circuits. Pour être en mesure de bâtir ces
-scénarios le plus rapidement possible et d'en suivre la réalisation, un effort doit être accompli
-en matière de remontée et de communication de données concernant l'aval de la filière au
-comité de pilotage : évolution des stocks du négoce par appellation, indicateurs sur les stocks
+En l'absence de phÃ©nomÃ¨ne nouveau (ne s'Ã©tant pas produit dans les dix derniÃ¨res annÃ©es) et
+si les comportements des acteurs obÃ©issent Ã  des logiques de mÃªme nature que lors des annÃ©es
+passÃ©es, les cours et volumes des enregistrements en non nouveaux devraient se situer aux
+niveaux indiquÃ©s par la prÃ©vision simultanÃ©e.
+Pour faciliter la construction de ces scÃ©narios, le comitÃ© interprofessionnel doit s'entendre sur
+les hypothÃ¨ses clÃ©s Ã  formuler (dont la rÃ©alisation sera suivie) pour expliquer les variations de
+vente par circuit de distribution d'une annÃ©e Ã  l'autre : taux de change et conjoncture par
+grande zone gÃ©ographique pour l'export, concurrence des grands vignobles franÃ§ais pour la
+GMS, efforts de promotion, Ã©tat des stocks dans les circuits. Pour Ãªtre en mesure de bÃ¢tir ces
+scÃ©narios le plus rapidement possible et d'en suivre la rÃ©alisation, un effort doit Ãªtre accompli
+en matiÃ¨re de remontÃ©e et de communication de donnÃ©es concernant l'aval de la filiÃ¨re au
+comitÃ© de pilotage : Ã©volution des stocks du nÃ©goce par appellation, indicateurs sur les stocks
 et ventes finales par circuit de distribution.
 
-#Les facteurs déterminants les prix du vin
-prend en compte la pluralité des situations d'échange ainsi que le rôle spécifique de
+#Les facteurs dÃ©terminants les prix du vin
+prend en compte la pluralitÃ© des situations d'Ã©change ainsi que le rÃ´le spÃ©cifique de
 l'information. L'analyse peut aussi prendre en compte la relation entre le prix d'un vin,
-déterminé par ses caractéristiques individuelles, et la tendance du marché. Finalement, dans
-une situation d'offre et de demande, l'effet de rareté peut aussi expliquer certains prix. 
+dÃ©terminÃ© par ses caractÃ©ristiques individuelles, et la tendance du marchÃ©. Finalement, dans
+une situation d'offre et de demande, l'effet de raretÃ© peut aussi expliquer certains prix. 
 
 Pourtant, la
-médiatisation du marché du vin a déplacé l'attention sur une minorité de domaines prestigieux
-pour lesquels l'image, la rareté, la spéculation, le rêve, sont les déterminants du prix sur des
-critères proches du monde du produit de luxe ou de l'ouvre d'art. Pour l'immense majorité des
+mÃ©diatisation du marchÃ© du vin a dÃ©placÃ© l'attention sur une minoritÃ© de domaines prestigieux
+pour lesquels l'image, la raretÃ©, la spÃ©culation, le rÃªve, sont les dÃ©terminants du prix sur des
+critÃ¨res proches du monde du produit de luxe ou de l'ouvre d'art. Pour l'immense majoritÃ© des
 domaines viticoles, cette logique ne s'applique pas. 
-En revanche, si les acheteurs sont des profanes, ce qui est la situation la plus fréquente, le prix
-devient une variable contrôlée par les offreurs pour suggérer un niveau de qualité. 
-##Revue de la littérature sur la formation du prix du vin
-Facteurs géo-viticoles Climat Sol Région Cépage
-Facteurs temporels Age Millésime
-Coûts de production Coûts fixes et variables Type de vin Rendement
-Information Etiquette Appellation Réputation
-Offre et demande Rareté Culture
+En revanche, si les acheteurs sont des profanes, ce qui est la situation la plus frÃ©quente, le prix
+devient une variable contrÃ´lÃ©e par les offreurs pour suggÃ©rer un niveau de qualitÃ©. 
+##Revue de la littÃ©rature sur la formation du prix du vin
+Facteurs gÃ©o-viticoles Climat Sol RÃ©gion CÃ©page
+Facteurs temporels Age MillÃ©sime
+CoÃ»ts de production CoÃ»ts fixes et variables Type de vin Rendement
+Information Etiquette Appellation RÃ©putation
+Offre et demande RaretÃ© Culture
 
-Le rendement dépend lui-même du type et de l'âge des vignes, du climat et des
-conditions météorologiques, et de la qualité du travail du vigneron. 
+Le rendement dÃ©pend lui-mÃªme du type et de l'Ã¢ge des vignes, du climat et des
+conditions mÃ©tÃ©orologiques, et de la qualitÃ© du travail du vigneron. 
 
  Le prix est une variable mais les producteurs
-utilisent généralement plusieurs critères pour signaler au consommateur la qualité de leur vin :
-le style de la bouteille, le dessin de l'étiquette, des campagnes de publicité 
+utilisent gÃ©nÃ©ralement plusieurs critÃ¨res pour signaler au consommateur la qualitÃ© de leur vin :
+le style de la bouteille, le dessin de l'Ã©tiquette, des campagnes de publicitÃ© 
 
-Elle permet d'intégrer dans l'évaluation du prix les facteurs géo-viticoles
+Elle permet d'intÃ©grer dans l'Ã©valuation du prix les facteurs gÃ©o-viticoles
 (Jones & Storchmann (2001), les facteurs temporels (Horowitz et al. (2002), Ashenfelter
-(2008), et surtout des facteurs liés à l'information révélée sur le marché (Lecocq & Visser
+(2008), et surtout des facteurs liÃ©s Ã  l'information rÃ©vÃ©lÃ©e sur le marchÃ© (Lecocq & Visser
 (2006), Hadj et al (2008), Miler et al. (2007), Horowitz et al. (2002).
 
-Le principal inconvénient de la méthode dite des prix hédonistiques est qu'elle est uniquement
-conçue pour s'appliquer aux cas d'information parfaite. Si les acheteurs sont des profanes, ce
-qui est la situation la plus fréquente, le prix devient une variable contrôlée par les offreurs
-pour suggérer un niveau de qualité. On est dans une situation typique d'asymétrie
-d'information. La formation des prix dépend essentiellement de la réputation perçue par le
-consommateur et cette réputation est évolutive dans le temps
+Le principal inconvÃ©nient de la mÃ©thode dite des prix hÃ©donistiques est qu'elle est uniquement
+conÃ§ue pour s'appliquer aux cas d'information parfaite. Si les acheteurs sont des profanes, ce
+qui est la situation la plus frÃ©quente, le prix devient une variable contrÃ´lÃ©e par les offreurs
+pour suggÃ©rer un niveau de qualitÃ©. On est dans une situation typique d'asymÃ©trie
+d'information. La formation des prix dÃ©pend essentiellement de la rÃ©putation perÃ§ue par le
+consommateur et cette rÃ©putation est Ã©volutive dans le temps
 
-##Le marché peut-il évaluer les différences entre les prix des vins ?
+##Le marchÃ© peut-il Ã©valuer les diffÃ©rences entre les prix des vins ?
 
-On suppose que tous les individus ont les mêmes anticipations sur le prix et la qualité des
-vins, qu'ils sont rationnels et cherchent à maximiser leurs achats. Il existe un nombre fixe de
-produits pour une quantité connue et tous les individus ont accès à une même cave potentielle
-(un catalogue de vins) qui représente le marché. Selon les hypothèses habituelles de
-concurrence, les produits sont tous parfaitement disponibles et il n'y a pas de coûts de
-transaction ni d'imperfections sur le marché.
- L'espérance et la variance du
-rendement sur le marché dépendent à la fois des caractéristiques du vin et des caractéristiques
-du marché.
- Le portefeuille de marché capte les
-effets qui affectent en moyenne l'ensemble des vins (inflation générale à la production,
-millésime par exemple).7
- Par contre la mesure de la volatilité (l'élasticité) qui existe entre le
-prix du vin et le prix du marché capte la qualité associée à un vin en particulier et permet de
-différencier les AOC réputées des autres.
- L'existence d'un marché garantit la convergence des
-prix en fonction de la qualité des vins. Le prix d'un vin est donc conditionné par un ensemble
-de variables qui sont captées par le marché et la sensibilité des prix du vin par rapport au
-marché est révélatrice des caractéristiques propres au vin.
-L'hétérogénéité des prix est fortement liée au système d'appellation d'origine mis en place en
-France et qui lève en partie l'asymétrie d'information sur la qualité des vins.8
+On suppose que tous les individus ont les mÃªmes anticipations sur le prix et la qualitÃ© des
+vins, qu'ils sont rationnels et cherchent Ã  maximiser leurs achats. Il existe un nombre fixe de
+produits pour une quantitÃ© connue et tous les individus ont accÃ¨s Ã  une mÃªme cave potentielle
+(un catalogue de vins) qui reprÃ©sente le marchÃ©. Selon les hypothÃ¨ses habituelles de
+concurrence, les produits sont tous parfaitement disponibles et il n'y a pas de coÃ»ts de
+transaction ni d'imperfections sur le marchÃ©.
+ L'espÃ©rance et la variance du
+rendement sur le marchÃ© dÃ©pendent Ã  la fois des caractÃ©ristiques du vin et des caractÃ©ristiques
+du marchÃ©.
+ Le portefeuille de marchÃ© capte les
+effets qui affectent en moyenne l'ensemble des vins (inflation gÃ©nÃ©rale Ã  la production,
+millÃ©sime par exemple).7
+ Par contre la mesure de la volatilitÃ© (l'Ã©lasticitÃ©) qui existe entre le
+prix du vin et le prix du marchÃ© capte la qualitÃ© associÃ©e Ã  un vin en particulier et permet de
+diffÃ©rencier les AOC rÃ©putÃ©es des autres.
+ L'existence d'un marchÃ© garantit la convergence des
+prix en fonction de la qualitÃ© des vins. Le prix d'un vin est donc conditionnÃ© par un ensemble
+de variables qui sont captÃ©es par le marchÃ© et la sensibilitÃ© des prix du vin par rapport au
+marchÃ© est rÃ©vÃ©latrice des caractÃ©ristiques propres au vin.
+L'hÃ©tÃ©rogÃ©nÃ©itÃ© des prix est fortement liÃ©e au systÃ¨me d'appellation d'origine mis en place en
+France et qui lÃ¨ve en partie l'asymÃ©trie d'information sur la qualitÃ© des vins.8
  Mais cette
-hétérogénéité n'est pas aléatoire et dépend largement de la relation avec le marché. On peut
-considérer que les vins ayant la même sensibilité par rapport au marché appartiennent à la
-même catégorie de vins et on peut ainsi classer les vins par appellation, de la plus prestigieuse
-à l'appellation la plus ordinaire.
+hÃ©tÃ©rogÃ©nÃ©itÃ© n'est pas alÃ©atoire et dÃ©pend largement de la relation avec le marchÃ©. On peut
+considÃ©rer que les vins ayant la mÃªme sensibilitÃ© par rapport au marchÃ© appartiennent Ã  la
+mÃªme catÃ©gorie de vins et on peut ainsi classer les vins par appellation, de la plus prestigieuse
+Ã  l'appellation la plus ordinaire.
 
-##Le cas de la réputation individuelle et l'effet de rareté
- la réputation individuelle du vin ou du producteur à une incidence majeure sur le prix. Cette réputation individuelle est elle-même souvent liée a l'image crée par
+##Le cas de la rÃ©putation individuelle et l'effet de raretÃ©
+ la rÃ©putation individuelle du vin ou du producteur Ã  une incidence majeure sur le prix. Cette rÃ©putation individuelle est elle-mÃªme souvent liÃ©e a l'image crÃ©e par
 des experts. 
-L'approche walrassienne du marché concurrentiel où les prix résultent de la rencontre d'une
-offre et d'une demande, n'est-elle pas toujours valable? Walras considère que la valeur d'un
-bien est fonction de sa rareté. Il a été démontré (Shannon, 1948) que la rareté d'un bien peut
-être appréhendée par la probabilité de disposer de ce bien. Cette mesure entropique peut être
-représentée graphiquement (Graphique 1) et montre que la valeur (le prix) d'un bien est une
-fonction croissante de la rareté (ou de la probabilité décroissante de disposer de ce bien). Une
-telle analyse est-elle applicable à la formation du prix du vin ? 
+L'approche walrassienne du marchÃ© concurrentiel oÃ¹ les prix rÃ©sultent de la rencontre d'une
+offre et d'une demande, n'est-elle pas toujours valable? Walras considÃ¨re que la valeur d'un
+bien est fonction de sa raretÃ©. Il a Ã©tÃ© dÃ©montrÃ© (Shannon, 1948) que la raretÃ© d'un bien peut
+Ãªtre apprÃ©hendÃ©e par la probabilitÃ© de disposer de ce bien. Cette mesure entropique peut Ãªtre
+reprÃ©sentÃ©e graphiquement (Graphique 1) et montre que la valeur (le prix) d'un bien est une
+fonction croissante de la raretÃ© (ou de la probabilitÃ© dÃ©croissante de disposer de ce bien). Une
+telle analyse est-elle applicable Ã  la formation du prix du vin ? 
 
-La rareté sur le marché peut être due à une limitation de l'offre réelle (production limitée) ou
-provoquée (le marketing de la rareté), à un coût de production très élevé, ou à une demande
-accrue due à une cause de popularité ou un effet de mode ou de collection. Les exemples sont
-nombreux dans le domaine du vin et pourtant l'analyse de la relation prix-rareté n'a pour
+La raretÃ© sur le marchÃ© peut Ãªtre due Ã  une limitation de l'offre rÃ©elle (production limitÃ©e) ou
+provoquÃ©e (le marketing de la raretÃ©), Ã  un coÃ»t de production trÃ¨s Ã©levÃ©, ou Ã  une demande
+accrue due Ã  une cause de popularitÃ© ou un effet de mode ou de collection. Les exemples sont
+nombreux dans le domaine du vin et pourtant l'analyse de la relation prix-raretÃ© n'a pour
 l'instant pas eu d'application sur le prix des vins rares. Les voies de recherches envisageables
 peuvent concerner aussi bien la distribution que le comportement du consommateur.
-Outreville(2009) étudie l'effet de rareté du à de la taille des bouteilles de champagne sur le
-prix. Si l'on calcule le prix relatif du vin par rapport à la taille de la bouteille, il varie d'un
-facteur de 1.0 pour une bouteille standard (0,75cl) à plus de 2.0 pour les grandes bouteilles
+Outreville(2009) Ã©tudie l'effet de raretÃ© du Ã  de la taille des bouteilles de champagne sur le
+prix. Si l'on calcule le prix relatif du vin par rapport Ã  la taille de la bouteille, il varie d'un
+facteur de 1.0 pour une bouteille standard (0,75cl) Ã  plus de 2.0 pour les grandes bouteilles
 (Balthazar, Nabuchodonosor). Le prix augmente quand la taille de la bouteille augmente
-quelle que soit le nom du producteur ou la qualité du vin mis en bouteille. L'hypothèse de
-rareté de Walras est confirmée puisque la valeur du vin augmente en fonction de la taille des
-bouteilles et donc de la rareté de l'offre. 
+quelle que soit le nom du producteur ou la qualitÃ© du vin mis en bouteille. L'hypothÃ¨se de
+raretÃ© de Walras est confirmÃ©e puisque la valeur du vin augmente en fonction de la taille des
+bouteilles et donc de la raretÃ© de l'offre. 
 ##Conclusion
-Produit de consommation mondialement répandu, le vin obéit aujourd'hui à des normes de
-production bien établies et fait l'objet, sur un marché concurrentiel, d'une offre et d'une
-demande qui s'équilibrent en fonction de son prix.
+Produit de consommation mondialement rÃ©pandu, le vin obÃ©it aujourd'hui Ã  des normes de
+production bien Ã©tablies et fait l'objet, sur un marchÃ© concurrentiel, d'une offre et d'une
+demande qui s'Ã©quilibrent en fonction de son prix.
 Son prix
-porte donc la trace d'un grand nombre facteurs qui déterminent son niveau et son évolution.
+porte donc la trace d'un grand nombre facteurs qui dÃ©terminent son niveau et son Ã©volution.
 Pour reprendre les termes de Chiffoleau et Laporte (2004), l'analyse de la formation des prix
-est aussi liée aux situations d'incertitude sur la qualité du produit. 
-Mais le vin ne saurait être réduit à une simple fonction d'usage. Il y a l'objet marchand,
+est aussi liÃ©e aux situations d'incertitude sur la qualitÃ© du produit. 
+Mais le vin ne saurait Ãªtre rÃ©duit Ã  une simple fonction d'usage. Il y a l'objet marchand,
 produit de consommation, l'objet culturel, et pour quelques cas d'exception, l'objet de
 collection et de toutes les convoitises.
+
+## Article nÂ°13 : Les rÃ©ponses de la recherche aux nouveaux enjeux de lâ€™Ã©conomie vivi-viticole.
+
+Secteur vini-viticole : emblÃ©matique des recherchÃ© en agro-alimentaire. DiffÃ©renciation des produits au niveau consommateur + signes officiels de qualitÃ© plus dÃ©veloppÃ©s en amont (protection de lâ€™environnement, innovations des modes dâ€™encÃ©agementâ€¦) et Ã  aval(techniques de vinification, systÃ¨me de commercializationâ€¦). Dâ€™oÃ¹ une complexification de lâ€™arbitrage â€œrapport qualitÃ©/prixâ€ au niveau consommateur.
+Viticulture : decisive dans lâ€™activitÃ© Ã©conomique et sociale dans certaines regions (peut dÃ©passer 30% de la production agricole finale) mais rÃ©alitÃ©s diffÃ©rentes dâ€™une region viticole Ã  lâ€™autre (dimension du vignoble, degrÃ© de specialisation des exploitations et des types de vins produits)
+DiversitÃ© offre de vin : illustre richesse culturelle du secteur et garantit une meilleure segmentation des marches + brouillage de lâ€™information donnÃ©e au consommateur + multiplication des comportements opportunistes des intervenants sur le marchÃ©.
+Questions de recherchÃ© : lâ€™offre de vin est-elle adaptÃ©e Ã  la demande des consommateurs (actuels et futurs)? Faut-il maintenir et renforcer les marques collectives symbolisÃ©es par les signes de qualitÃ© (appellation dâ€™origine : AOP, AOCâ€¦etc.)? Faut-il harmoniser Ã  un niveau international  lâ€™ensemble des rÃ¨gles de production et de consummation agissant sur les Ã©changes internationaux?
+Valorisation de la production via les marques-ombrelles : gamme restreinte de produits standardizes facilement identifiables par le consommateur ( + bonnes relation avec la grande distribution.
+Mode de production issu des cooperatives, grands groupes industriels dans le secteur du nÃ©goce : entraine relations complexes dâ€™Ã©changes de matiÃ¨res premiÃ¨res ou de produits finis dâ€™oÃ¹ difficulties de coordination puis difficultÃ©s de commercialisation des produits sur les marchÃ©s dâ€™exportation via la grande distribution alimentaire.
+SchÃ©ma opposÃ© de production viticole : artisanat de la production de vin mais moins present au niveau national
+Bilan mitigÃ© de lâ€™intÃ©rÃªt des AOC : crÃ©dibilitÃ© du systÃ¨me franÃ§ais car element de marketing percutant ou bien promotion privÃ©e de marques industrielles ?
+CritÃ¨res de la demande des consommateurs sur le vin : plutÃ´t des elements hors-prix (caractÃ©ristiques des produits) : critÃ¨res organoleptiques (gout, odeur), critÃ¨res marketing, reputation des divers signes de qualitÃ©  (classement, mention â€œvieilli en fÃ»t de chÃªne), respect de lâ€™environnement, mode de distribution du vin (vente directe, caviste, grande distributionâ€¦etc.)
+Travaux antÃ©rieurs : analyses Ã©conomÃ©triques sur la substitution vin/ autres boissons alcoolisÃ©es/ soft drinks/ eaux minerals : recours aux elasticitÃ©s-prix croisÃ©es : utilization souvent du modÃ¨le AIDS (Almost ideal demand system). En France, forte substitution entre vin de qualitÃ© et eaux minerals (et degree moindre pour les soft drinks) mais biÃ¨re produit complÃ©mentaire du vin.
+Aujourdâ€™hui : relation qualitÃ© prix des produits Ã©tudiÃ©e via method des prix hÃ©doniques : regression prix sur caractÃ©ristiques et mesure de la disponibilitÃ© Ã  payer des consommateurs. Constat : caractÃ©ristiques objectives (classement, millÃ©simeâ€¦) expliquent plus les differences de prix que les caractÃ©ristiques sensorielles (car ces derniÃ¨res sont plus difficiles Ã  apprÃ©cier).
+RÃ©ussite Ã©conomique dâ€™un systÃ¨me dâ€™organisation et production viticole : ne depend pas essentiellement de la maniÃ¨re de se signaler auprÃ¨s des consommateurs mais surtout de lâ€™efficacitÃ© productive de la filiÃ¨re et de son mode dâ€™organisation (du producteur au consommateur : prise en compte des intermediaries comme les nÃ©gociants et les distributeurs).
+ProblÃ¨me de dissociation de la production du raisin de celle du vin : approvisionnement en raisin qui nâ€™arrive pas Ã  suivre les investissements sur la promotion privÃ©e de la marquee de vin
+
+## Texte 14 : La regulation des pesticides : le cas du vin franÃ§ais.
+
+Question de recherche : Etude des effets potentiels de l'introduction d'une taxe sur les pesticides sur le marchÃ© franÃ§ais du vin.
+Cadre dâ€™analyse du marchÃ© Ã©tudiÃ© : oligopole non rÃ©glementÃ©.
+Constat : Le rÃ©gime dâ€™appelation favorise lâ€™utilisiation des pesticides tout en limitant la quantitÃ© de raisins  utilisÃ©e dans la production de vin par rapport Ã  la situation non rÃ©glementÃ©e.
+ Raisons: les rendements des plantation viticoles sont limitÃ©es par certaines rÃ©glementation professionnelles si bien que lâ€™utilisation des pesticides est peu sensible Ã  un faible niveau dâ€™imposition car incitation Ã  administrer une plus forte dose de pesticides sur les cultures pour permettre aux producteurs de garantir une bonne qualitÃ© du vin produit et donc la perception de revenus suffisants pour que leur exploitation perpÃ©tue dans le temps.
+Une rÃ©glementation Ã©conomique Ã  elle seule nâ€™est pas suffisante pour limiter les dommages environnementaux commis par les pesticides. 
+
+## Texte nÂ°15 : Segmentation du marchÃ© du vin en fonction du prix : rÃ©gression hÃ©donique lorsque des prix diffÃ©rents signifient des produits different
+
+Estimation de fonctions hÃ©doniques spÃ©cifiques aux gammes de prix des vins car on cherche Ã  montrer que le marchÃ© du vin est segmentÃ© en plusieurs classes de produits ou segments de marchÃ©. 
+DÃ©terminants du prix du vin : essentiellement caractÃ©ristiques objectives (classement Ã©tablit par experts, le millÃ©simeâ€¦) mais peu dâ€™influence des caractÃ©ristiques sensorielles (meme raison quâ€™avant, caractÃ©ristiques difficielement identifiables, peu de consommateurs sont de vrais connaisseurs du produit donc lâ€™avis des experts agit comme un signal de qualitÃ© sur les consommateurs ce qui impacte les prix du vin). En particulier, intÃ©ressant dâ€™intÃ©grer les cÃ´tes de vin octroyÃ©es par des revues spÃ©cialisÃ©es pour modÃ©liser les prix du vin. 
+De plus, la rÃ©gion de production, les diffÃ©rences de coÃ»ts de production et les effets de la collectivisation - la reputation du territoire et le millÃ©sime sont souvent prÃ©sentÃ©s comme des variables significatives.
+Conclusion : Nous constatons qu'un modÃ¨le qui tient compte de l'existence des classes de vin est plus en mesure d'expliquer la variabilitÃ© des donnÃ©es et produit des rÃ©sultats plus prÃ©cis et interprÃ©tables en ce qui concerne les prix implicites des attributs. L'analyse identifie les classes de vins en fonction de fourchettes de prix ainsi que dâ€™informations hors Ã©chantillon relatives Ã  l'existence de diffÃ©rents segments de vin. En spÃ©cifiant des fonctions hÃ©doniques pour diffÃ©rentes catÃ©gories de produits, nous trouvons la preuve que les consommateurs apprÃ©cient les mÃªmes attributs du vin diffÃ©remment d'une catÃ©gorie Ã  l'autre. Toutefois, il serait possible dâ€™amÃ©liorer cette segmentation (meilleur decoupage des classes de vin) en recourant Ã  des informations complÃ©mentaires au prix  afin de determiner de maniÃ¨re endogÃ¨ne le nombre de segments de prix.
+
+## Texte nÂ°16 : Le goÃ»t ou la rÃ©putation : ce qui motive  les prix du marchÃ© dans l'industrie vitivinicole ? Estimation d'un modÃ¨le hÃ©donique pour Vins italiens haut de gamme
+
+Le but de cet article est de fournir de nouvelles preuves sur les facteurs affectant les prix du vin pour des raisons Ã  la fois mÃ©thodologiques et factuelles. Sur le plan mÃ©thodologique, cette Ã©tude est la premiÃ¨re Ã  appliquer une mÃ©thode gÃ©nÃ©rale de Box-Cox via une transformation dans le cadre de modÃ¨les hÃ©doniques qui exploitent toutes les variables (caractÃ©ristiques objectives et sensorielles, rÃ©putation) mises en avant par la littÃ©rature antÃ©rieure comme Ã©tant pertinentes dans la dÃ©termination des prix de marchÃ© du vin. Sur le plan factuel, l'article comble le manque de preuves empiriques sur la question pour l'Italie, l'un des principaux producteurs de vin, en utilisant un large ensemble de donnÃ©es sur deux vins de premiÃ¨re qualitÃ© (Barolo et Barbaresco) couvrant les millÃ©simes 1995-1998. Les donnÃ©es ont Ã©tÃ© collectÃ©es via une inspection des publications sur le vin ainsi que des entrevues avec les producteurs. Les rÃ©sultats corroborent les preuves obtenues Ã  partir de donnÃ©es antÃ©rieurs provenant d'autres pays, montrant que les traits sensoriels, la rÃ©putation des vins et des producteurs, ainsi que des variables objectives sont tous des facteurs importants qui influencent la volontÃ© de payer des consommateurs. Ces resultats ont Ã©tÃ© obtenues via une estimation gÃ©nÃ©rale Box-Cox des diffÃ©rents modÃ¨les sensoriels (CLV) et de rÃ©putation (LS), qui n'imposent pas de restrictions prÃ©alables sur la forme de la fonction de prix hÃ©donique. Plus important encore, en recourant Ã  un test statistique non intÃ©grÃ© (Vuong, 1989) entre les deux modÃ¨les dâ€™estimation prÃ©sentant deux spÃ©cifications alternatives (goÃ»t et reputation ) du prix du vin,  on constate que le modÃ¨le de rÃ©putation surpasse largement celui du goÃ»t, ce qui suggÃ¨re qu'une plus grande quantitÃ© d'informations sur la faÃ§on dont le prix du vin est formÃ© est contenue dans le modÃ¨le avec spÃ©cification de la rÃ©putation.
+Implication pertinente pour strategies des enterprises : cela suggÃ¨re avant tout que les producteurs visent Ã  se forger une rÃ©putation bien Ã©tablie - tant au niveau du vin qu'au niveau de l'entreprise - par des activitÃ©s promotionnelles (par exemple, la participation Ã  des expositions de vins) qui facilitent les citations dans des guides bien connus tout ceci pour accroÃ®tre le prix de vente de leur vin.
+
+## Texte nÂ°17 : L'IMPACT DE LA DEMANDE ET DU FOURNISSEUR SUR LA PERFORMANCE DE LA CHAÃNE D'APPROVISIONNEMENT DU VIN
+
+ce rapport vise Ã  identifier et Ã  mesurer l'effet des variables latentes  telles que la demande, les fournisseurs, la qualitÃ© et les dÃ©lais de livraison sur les bÃ©nÃ©fices financiers des caves. Les variables latentes ont Ã©tÃ© intÃ©grÃ©es par les variables observÃ©es et un questionnaire a Ã©tÃ© distribuÃ© Ã  64 Ã©tablissements vinicoles de La Rioja, en Espagne. Une analyse descriptive apparaÃ®t pour les indicateurs et les variables latentes qui ont Ã©tÃ© reliÃ©s Ã  l'aide de la modÃ©lisation par Ã©quation structurelle. Les rÃ©sultats indiquent qu'il n'y a pas d'effet direct entre une prÃ©vision efficace de la demande et des fournisseurs sur les bÃ©nÃ©fices financiers et sociaux des Ã©tablissements vinicoles, mais qu'il y a des effets indirects sur la qualitÃ© et le dÃ©lai de livraison, la variable la plus importante analysÃ©e. Les responsables de chais doivent porter leur attention sur la qualitÃ© et les dÃ©lais de livraison aux clients, tout en ayant une relation directe avec les fournisseurs. Les directeurs de cave doivent s'efforcer de disposer dâ€™ une prÃ©diction rapide des variantes dans la prÃ©vision et ajuster la commande aux fournisseurs et au processus de production afin que la chaÃ®ne d'approvisionnement puisse Ãªtre plus agile et avec des livraisons de qualitÃ© et dans les dÃ©lais, le rÃ©sultat final Ã©tant le bÃ©nÃ©fice financier de l'entreprise. Une chaÃ®ne d'approvisionnement agile avec des produits de qualitÃ© semble Ãªtre insignifiante pour les gestionnaires des vignobles.
+
+## Texte nÂ°18 : QUE CONTIENT LA BASE DE DONNÃ‰ES ANNUELLE DES MARCHÃ‰S MONDIAUX DU VIN, DE 1835 Ã€ 2016 ?
+
+Cet article documente une nouvelle base de donnÃ©es annuelle unique en son genre sur les marchÃ©s mondiaux du vin, couvrant la pÃ©riode de 1835 Ã  2016. La base de donnÃ©es Ã©largit considÃ©rablement les possibilitÃ©s de mener des Ã©tudes sur la production, la consommation et le commerce du vin dans une perspective historique pour le monde dans son ensemble et pour la plupart des pays concernÃ©s. La combinaison de ces informations de base avec d'autres variables Ã©conomiques telles que le PIB rÃ©el, la population, le commerce total de marchandises, et la consommation d'autres boissons alcoolisÃ©es  a permis de gÃ©nÃ©rer une myriade de variables dÃ©rivÃ©es qui sont utiles pour des analyses comparatives ainsi que pour Ã©tudier les deux vagues de la mondialisation.
+Structure de la base de donnÃ©es :  La base de donnÃ©es fournit des informations quantitatives historiques pour tous les pays clÃ©s impliquÃ©s dans la production, la consommation et le commerce du vin. Elle dispose Ã©galement de donnÃ©es auxiliaires sur des variables macroÃ©conomiques telles que la superficie totale des cultures agricoles, la population totale et la population adulte, le PIB rÃ©el aux prix de 1990, les taux de change courants de la monnaie locale par rapport au dollar amÃ©ricain, les exportations et importations totales de marchandises, les volumes de production, la consommation et le commerce de la biÃ¨re, et la consommation des autres boissons alcoolisÃ©es et donc de tout alcool (exprimÃ©e en litres d'alcool). Ces indicateurs sont prÃ©cieux pour le calcul d'indicateurs intensifs, par exemple par habitant et par dollar du PIB rÃ©el, afin de compenser les diffÃ©rences de taille des pays. Les annÃ©es couvertes diffÃ¨rent d'une variable Ã  l'autre en fonction de la disponibilitÃ© des donnÃ©es. Bien que certains tableaux commencent avant le XIXe siÃ¨cle, la base de donnÃ©es principale commence en 1835 mais n'est pas complÃ¨te pour tous les pays Ã  partir de cette annÃ©e. Il existe des donnÃ©es complÃ¨tes pour le monde entier en termes de superficie plantÃ©e en vigne Ã  partir de 1900.
+Deux organisations internationales se sont spÃ©cialisÃ©es dans la compilation de donnÃ©es agricoles mondiales : l'Institut international de l'agriculture (IIA) et l'Organisation des Nations Unies pour l'alimentation et l'agriculture (FAO). Ils constituent la principale source de donnÃ©es sur les superficies viticoles, la superficie totale des cultures agricoles, la production de vin et de biÃ¨re et les volumes commerciaux. Les donnÃ©es publiÃ©es par l'IIA et la FAO sont basÃ©es sur les statistiques nationales officielles de chaque pays membre. Leur qualitÃ© dÃ©pend donc de la qualitÃ© des donnÃ©es rassemblÃ©es par les offices statistiques nationaux.
