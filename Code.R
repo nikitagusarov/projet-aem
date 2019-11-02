@@ -333,3 +333,27 @@ dim(vin) # 869*8
 dim(pesticides) # 134025*10
 dim(vxp) # 114730*16
 >>>>>>> c184c3b37128495fb06f51a1e862196ccc299a0e
+
+#Construction de la base de données sur les prix du vin
+#Données de 2000 à 2016
+vin_blanc<-read.csv2("Donnees/cotation-vin-blanc.csv", sep=",", skip=3, header=T)
+names(vin_blanc)
+library(tidyverse)
+vin_blanc %>% 
+  select(Mois,semaine.dans.la.campagne,en.milliers.d.hl,en.euros.hl,X)->vin_blanc_sans_IG
+vin_blanc %>% 
+  select(Mois, semaine.dans.la.campagne, en.milliers.d.hl.1,en.euros.hl.1,X)->vin_blanc_IGP
+names(vin_blanc_sans_IG)[5]<-"campagne"
+vin_rouge<-read.csv2("Donnees/cotation-vin-rouge.csv", sep=",", skip=3, header = T)
+names(vin_rouge)
+vin_rouge %>% 
+  select(Mois..,semaine.dans.la.campagne,en.milliers.d.hl,en.euros.hl,X)->vin_rouge_sans_IG
+vin_rouge %>% 
+  select(Mois..,semaine.dans.la.campagne,en.milliers.d.hl.1,en.euros.hl.1,X)->vin_rouge_IGP
+#Suite de la base de données années 2009 à 2019
+vin_rouge_blanc<-read.csv2("Donnees/cotation-vin-rouge-blanc .csv", sep=",", skip=3, header=T)
+names(vin_rouge_blanc)
+vin_rouge_blanc %>% 
+  select(X,X.1,Vin.AOP,Vin.IGP,Vin.sans.IG.avec.mention.de.cépages,Vin.sans.IG.sans.mention.de.cépages)->cotation_vin_rouge
+vin_rouge_blanc %>% 
+  select(X,X.1,Vin.AOP.1,Vin.IGP.1,Vin.sans.IG.avec.mention.de.cépages.1,Vin.sans.IG.sans.mention.de.cépages.1)->cotation_vin_blanc
