@@ -76,13 +76,76 @@
 % Je vous demande de me renvoyer ces éléments sur Modèle avant le 5 novembre à 17h00 que je puisse les consulter avant notre cours.
 
 \section*{Question économique traitée}
+Nous étudions les impacts des fluctuations du prix des vins de table (les vins simples) sur la demande des pesticides par des agriculteurs français.
 
 \section*{Références et synthèses}
 % référence et synthèse des 2/3 articles fondateurs
+Pour le moment nous avons étudié et synthétisé 14 articles sur le marché du vin, ainsi bien que 2 articles sur le traitement économétrique des systèmes d'équations simultanés. 
+\par
+Parmi les articles traitant la viticulture et le marché du vin, nous avons :
+\begin{itemize}
+    \item 
+\end{itemize}
+Les travaux théoriques, sont des extraits du manuel de Wooldridge :
+\begin{itemize}
+    \item 
+\end{itemize}
+\par
+Maintenant, nous allons donner un aperçu des articles les plus pertinents dans notre cas d'étude.
+\subsection*{}
+\subsection*{}
+\subsection*{}
 
 \section*{Modèle économique}
+Nous partons du principe que le marché des vins est divisé en deux parties :
+\begin{itemize}
+    \item La haute gamme (les vins IGP, vendus dans des magasins spécifiques) ;
+    \item La gamme basse (les vins de table non IGP, vendus en grands surfaces).
+\end{itemize}
+La première partie est soumise à des règlements spécifiques : limitations des quantités produites, origine contrôlé, un caractère de la demande spécifique. 
+Nous, dans notre étude, traitons les vins simples distribués dans les grands surfaces.
+Nos suppositions au niveau du marché du vin sont :
+\begin{itemize}
+    \item La demande pour les vins simples est unique pour toute la France. On n'observe pas les quantités consommés par régions, mais pour tout le pays, avec un prix unique. 
+    \item La production du vin varie par région, suite à des différences climatologiques.
+    \item On n'observe que l'équilibre sur le marché au niveau du pays (la quantité demandé est égale à la quantité offerte par l'ensemble des régions).
+\end{itemize}
+En ce qui concerne les pesticides, nous supposons que :
+\begin{itemize}
+    \item La demande des pesticides est inélastique par prix, ce qui nous permet d'exclure la partie de l'offre des pesticides du notre analyse. La quantité des pesticides utilisée demande seulement des intentions et des besoins des agriculteurs. 
+    \item 
+\end{itemize}
+Formalisant notre modèle théorique, nous posons, que la demande de vin a la forme suivante :
+\begin{equation}
+    Q_d = \alpha_d + \beta_d P_d + \gamma_d Z 
+\end{equation}
+Avec $Z$ étant l'ensemble des variables ayant l'influence sur la demande du vin, dans le cas le plus simple nous n'utilisons que les revenus (c'est une des variables les plus utilisées dans des études empiriques sur le marché du vin).
+\par
+L'offre est donnée par l'équation suivante : 
+\begin{equation}
+    Q_o = \sum_{i = 1}^{N} q_i
+\end{equation}
+Ou $i \in \{1, ..., N\}$ sont des régions, chacun ayant sa propre fonction de production et d'offre unique : 
+\begin{equation}
+    q_i = a_i + b_i P + c_i X
+\end{equation}
+Avec $X$ étant un vecteur des variables explicatives influençant la production (dans le cas le plus simple nous ne prenons en compte que les quantités des pesticides utilisées).
+Nous pouvons réécrire l'équation de l'offre sous la forme :
+\begin{equation}
+    Q_o = \sum_{i = 1}^{N} (a_i + b_i P + c_i X) = \sum_{i = 1}^{N} a_i + \sum_{i = 1}^{N} b_i P + \sum_{i = 1}^{N} c_i X
+\end{equation}
+Nous obtenons enfin un système de $N + 2$ équations : 
+\begin{align*}
+    Q_d & = \alpha_d + \beta_d P_d + \gamma_d Z
+    Q_o & = \sum_{i = 1}^{N} a_i + \sum_{i = 1}^{N} b_i P + \sum_{i = 1}^{N} c_i X
+    q_1 = 
+\end{align*}
 
 \section*{Les données}
+Nous avons utilisé les bases des données suivantes pour notre analyse :
+\begin{itemize}
+    \item 
+\end{itemize}
 
 \subsection*{Les données mobilisées}
 % les étapes de la construction de votre BDD ainsi que les différents appariements sont à mentionner.
@@ -91,8 +154,26 @@
 % + analyses bivariées avec la variable dépendante.
 
 \section*{Modèle économétrique}
+Comme c'était déjà mentionné, nous n'observons que les quantités et les prix moyens pour les points des équilibres où $Q_o = Q_d = Q$ et $P_o = P_d = P$.
+Ce fait nous amène à l'utilisation des systèmes des équations simultanées, ce qui nous permettra de capter les décisions simultanées des vendeurs et des acheteurs. 
+\par
+Afin de pouvoir estimer le système, qu'on a spécifié dans la partie précédente, nous allons d'abord nos servir de la suppositions que au point d'équilibre observé nous avons : $Q_o = Q_d = Q$.
+Alors : 
+\begin{equation}
+    \alpha_d + \beta_d P_d + \gamma_d Z + \epsilon = 
+        \sum_{i = 1}^{N} a_i + \sum_{i = 1}^{N} b_i P + \sum_{i = 1}^{N} c_i X + \sum_{i = 1}^{N} u_i
+\end{equation}
+D'où on obtient :
+\begin{equation}
+    P_d = \frac{\sum_{i = 1}^{N} a_i - \alpha_d}{\beta_d - \sum_{i = 1}^{N} b_i} + 
+        \frac{\sum_{i = 1}^{N} c_i}{\beta_d - \sum_{i = 1}^{N} b_i} X +
+        \frac{-\gamma_d}{\beta_d - \sum_{i = 1}^{N} b_i} Z + 
+        \frac{\sum_{i = 1}^{N} - \epsilon}{\beta_d - \sum_{i = 1}^{N} b_i}
+\end{equation}
 
 \subsection*{Méthode d'estimation envisagée}
+Nous devrions estimer les les équations structurelles identifiés dans la partie précédente de cette note. 
+Ayant identifié ces coefficients nous pourrions en dériver les coefficients des équations de départ, dont on a besoin pour faire des conclusions.
 
 % \subsection*{Premiers résultats économétriques} 
 
