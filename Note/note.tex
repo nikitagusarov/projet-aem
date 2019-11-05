@@ -267,15 +267,36 @@ Cela nous permettra de passer à l'échelle logarithmique, ce qui peut être ava
 \section*{Les données}
 Nous avons utilisé les bases des données suivantes pour notre analyse :
 \begin{itemize}
-    \item AGRESTE (les données sur les pesticides)
-    \item France AgriMer (les prix du vin)
-    \item INSEE (les données sur la population)
-    \item Les données statistiques du ministère des finances (les données sur le vin)
+    \item Les données de ventes de pesticides par département : Institut National de l’Environnement Industriel et des Risques (INERIS)
+    \item Les données sur les prix du vin (France Agrimer)
+    \item Les données sur la population (INSEE)
+    \item Les données sur la production de vin (service statistique du ministère des Finances)
 \end{itemize}
+\par
+Au niveau des pesticides, on va s’intéresser plus particulièrement aux quantités de produits vendus par département entre 2009 et 2017 utilisés principalement sur les cultures viticoles. 
+Il faut faire preuve de vigilance sur le conditionnement des produits qui n’est pas exprimé dans la même unité au sein de cette base : en litres ou en kilos.
+\par
+En ce qui concerne les données sur le prix du vin, on s’intéresse principalement au prix moyen des vins rouge- rosés et blancs sans IG (Indication Géographique) sur la période 2009-2017. 
+Ces prix sont déflatés par l’indice des prix à la consommation (base 100 en 2014). 
+On ne considère ici que le prix moyen déflaté au niveau national.
+\par
+Au niveau des données sur la population, la variable qui nous intéresse ici est relative au niveau de revenu, exprimée encore à l’échelon national. 
+Plus précisément, on va utiliser le revenu disponible brut arbitrable. 
+Cette variable a été construite en soustrayant au revenu disponible brut les dépenses pré-engagées (ex : loyer, Internet, téléphonie, chauffage…) et est exprimée en milliard d’euros courant. 
+Elle est aussi déflatée de l’indice des prix à la consommation (base 100 en 2014).
+\par
+Enfin, nous avons exploité les variables suivantes au niveau de la production de vin : la surface totale de culture viticole en hectares, la surface utilisé pour les vins non IG, la quantité produite de vins rouges-rosés et blancs sans IG en hectolitres, pour chaque département et sur la période 2009-2017.
 
 \subsection*{Les données mobilisées}
 % les étapes de la construction de votre BDD ainsi que les différents appariements sont à mentionner.
-
+Nous avons commencé par chercher à fusionner les bases de données relatives à la production de vin puis aux quantités de pesticides vendues. 
+Dans cette optique, nous allons utiliser deux clefs de fusion : le département et l’année. 
+Néanmoins, au niveau des prix et des revenus, nous avons décidé de nous placer à l’échelon national par manque de données disponibles suffisamment détaillées pour caractériser chaque département. 
+Nous avons donc concaténer ces deux bases en se basant uniquement sur l’année comme clef de fusion.
+\par
+En ce qui concerne les points de blockage, nous allons probablement rencontrer un problème en ce qui concerne l’identification des variables dépendantes qui sont les prix et les quantités. 
+Ce problème d’identification provient potentiellement d’un manque de variabilité dans notre jeu de donnée lié au choix d’un niveau de prix moyen au niveau  national  qui entraînerait une estimation biaisée de l’influence du prix sur les quantités demandées de pesticides. 
+En effet, il est très probable que cet impact change selon le département et donc notre estimation ne tienne pas assez compte des disparités nationales.
 
 \subsection*{Statistiques descriptives des variables clé}
 % + analyses bivariées avec la variable dépendante.
@@ -285,35 +306,58 @@ Les statistiques descriptives pour le vin :
 \hline
  & Overall (N=869)\\
 \hline
-\textbf{s_total} & \\
+\textbf{s\_total} & \\
 \hline
 ~~~Mean (SD) & 8712.440 (18688.158)\\
 \hline
 ~~~Range & 0.000 - 119477.000\\
 \hline
-\textbf{s_vin_simple} & \\
+\textbf{s\_vin\_simple} & \\
 \hline
 ~~~Mean (SD) & 1119.855 (5330.847)\\
 \hline
 ~~~Range & 0.000 - 66732.000\\
 \hline
-\textbf{q_blanc} & \\
+\textbf{q\_blanc} & \\
 \hline
 ~~~Mean (SD) & 13492.842 (58516.783)\\
 \hline
 ~~~Range & 0.000 - 985816.000\\
 \hline
-\textbf{q_rouge} & \\
+\textbf{q\_rouge} & \\
 \hline
 ~~~Mean (SD) & 19971.033 (64624.948)\\
 \hline
 ~~~Range & 0.000 - 758966.000\\
 \hline
-\textbf{q_total} & \\
+\textbf{q\_total} & \\
 \hline
 ~~~Mean (SD) & 523306.181 (1140670.047)\\
 \hline
 ~~~Range & 0.000 - 6707680.000\\
+\hline
+\end{tabular}
+\end{center}
+Pour les pesticides :
+\begin{center}
+    \begin{tabular}{l|c|c|c|r}
+\hline
+ & K (N=68299) & L (N=65726) & Total (N=134025) & p value\\
+\hline
+\textbf{quantité\_produit} &  &  &  & < 0.001\\
+\hline
+~~~Mean (SD) & 5091.148 (23863.372) & 2611.743 (11616.564) & 3875.245 (18918.434) 
+& \\
+\hline
+~~~Range & 0.000 - 2032128.000 & 0.000 - 685012.000 & 0.000 - 2032128.000 & \\
+\hline
+\textbf{mean.dose} &  &  &  & < 0.001\\
+\hline
+~~~N-Miss & 2771 & 6205 & 8976 & \\
+\hline
+~~~Mean (SD) & 8.279 (35.856) & 2.264 (2.837) & 5.416 (26.202) & \\
+\hline
+~~~Range & 0.030 - 500.000 & 0.060 - 40.000 & 0.030 - 500.000 & \\
 \hline
 \end{tabular}
 \end{center}
