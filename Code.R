@@ -93,8 +93,6 @@ bnvdvin.n = bnvdvin.n[, c(1:7, 17:19, 21:33)]
 ## Saving
 write.csv(bnvdvin.n, file = "Donnees_ref/bnvdvin.csv")
 
-<<<<<<< HEAD
-=======
 # Loading donnees pesticides
 pesticides = read.csv("Donnees_ref/pesticides.csv")
 View(pesticides)
@@ -102,18 +100,30 @@ names(pesticides)
 pesticides %>% select(-X)->pesticides
 
 # Loading data for vin
-vin = read.csv("Donnees_ref/vin-p.csv")
-View(vin)
+vin = read.csv("Donnees_ref/vin-p.csv", stringsAsFactors = F)
+vin.s = lapply(vin, function(x) gsub(" ", "", x))
+write.csv(vin.s, "Donnees_ref/vin-pS.csv")
+vin = read.csv("Donnees_ref/vin-pS.csv", stringsAsFactors = F)
 names(vin)
-vin %>% select(-c(X.2,X.1,X))->vin
+summary(vin)
 names(vin)
+require(tidyverse)
 # Creating reduced database
+vin.red = vin %>% 
+    mutate_all(~replace(., is.na(.), 0)) %>%
+    mutate(s_total = surface, 
+        s_vin_simple = s_autres + s_vsig,
+        q_blanc = q_autres_b + q_b + q_vsig_b,
+        q_rouge = q_autres_r + q_r + q_vsig_rg + q_vsig_rs,
+        q_total = qq_total) %>%
+    select(s_total, s_vin_simple,
+        q_blanc, q_rouge, q_total,
+        n_dep, annee)
 # Changing n_dep
-vin.r = vin %>% 
-    select(annee, n_dep, surface, qq_total) %>%
+vin.r = vin.red %>% 
     separate(n_dep, 
         c("number", "departement"), 
-        " ", extra = "merge")
+        2, extra = "merge")
 # Writting database
 write.csv(vin.r, "Donnees_ref/vin.csv")
 # Clear workspace
@@ -121,7 +131,7 @@ list = ls()
 rm(list)
 
 # Read vin data
-vin = read.csv("Donnees_ref/vin.csv")
+vin = read.csv("Donnees_ref/vin.csv", stringsAsFactors = F)
 vin = vin %>% 
     mutate(departement = as.character(departement),
         number = as.character(number)) %>%
@@ -148,20 +158,18 @@ reg = as.character(c("01", "02", "03", "04", "06", "07", "08", "09", 10, 11, 12,
 ndep = data.frame(
     departement = sort(unique(as.character(pesticides$departement))),
     number = reg, stringsAsFactors = F)
+write.csv(ndep, "Donnees_ref/ndep.csv")
+ndep = read.csv("Donnees_ref/ndep.csv")
 # Concatenate
-vin.x = left_join(vin[,-4], ndep, by = "number")
+vin.x = left_join(vin, ndep, by = "number")
 vin.x[is.na(vin.x$departement),] # verification of the NA presence
+head(vin.x)
+write.csv(vin.x[,-c(1,10)], "Donnees_ref/vin_final.csv")
 pesticides.x = left_join(pesticides, ndep, by = "departement")
 pesticides.x[is.na(pesticides.x$number),] # verification of the NA presence
-# Change to numeric vin surface and quantities
-vin.x = vin.x %>% 
-    mutate(
-        qq_total = as.numeric(gsub("[[:space:]]", "", qq_total)),
-        surface = as.numeric(gsub("[[:space:]]", "", surface))
-    )
-# Save
-write.csv(vin.x, file = "Donnees_ref/vin_final.csv")
-write.csv(pesticides.x, file = "Donnees_ref/pesticides.csv")
+head(pesticides)
+pesticides.x = pesticides.x[,-c(1:2, 11)]
+write.csv(pesticides.x, "Donnees_ref/pesticides_final.csv")
 
 # Joining data
 require(tidyverse)
@@ -334,8 +342,8 @@ dim(pesticides) # 134025*10
 dim(vxp) # 114730*16
 >>>>>>> c184c3b37128495fb06f51a1e862196ccc299a0e
 
-#Construction de la base de données sur les prix du vin
-#Données de 2000 à 2016
+#Construction de la base de donnï¿½es sur les prix du vin
+#Donnï¿½es de 2000 ï¿½ 2016
 vin_blanc<-read.csv2("Donnees/cotation-vin-blanc.csv", sep=",", skip=3, header=T)
 names(vin_blanc)
 library(tidyverse)
@@ -350,10 +358,20 @@ vin_rouge %>%
   select(Mois..,semaine.dans.la.campagne,en.milliers.d.hl,en.euros.hl,X)->vin_rouge_sans_IG
 vin_rouge %>% 
   select(Mois..,semaine.dans.la.campagne,en.milliers.d.hl.1,en.euros.hl.1,X)->vin_rouge_IGP
-#Suite de la base de données années 2009 à 2019
+#Suite de la base de donnï¿½es annï¿½es 2009 ï¿½ 2019
 vin_rouge_blanc<-read.csv2("Donnees/cotation-vin-rouge-blanc .csv", sep=",", skip=3, header=T)
 names(vin_rouge_blanc)
 vin_rouge_blanc %>% 
-  select(X,X.1,Vin.AOP,Vin.IGP,Vin.sans.IG.avec.mention.de.cépages,Vin.sans.IG.sans.mention.de.cépages)->cotation_vin_rouge
+  select(X,X.1,Vin.AOP,Vin.IGP,Vin.sans.IG.avec.mention.de.cï¿½pages,Vin.sans.IG.sans.mention.de.cï¿½pages)->cotation_vin_rouge
 vin_rouge_blanc %>% 
-  select(X,X.1,Vin.AOP.1,Vin.IGP.1,Vin.sans.IG.avec.mention.de.cépages.1,Vin.sans.IG.sans.mention.de.cépages.1)->cotation_vin_blanc
+  select(X,X.1,Vin.AOP.1,Vin.IGP.1,Vin.sans.IG.avec.mention.de.cï¿½pages.1,Vin.sans.IG.sans.mention.de.cï¿½pages.1)->cotation_vin_blanc
+
+
+list = ls()
+rm(list)
+vin = read.csv("./Donnees_ref/vin_final.csv")
+pesticides = read.csv("./Donnees_ref/pesticides_final.csv")
+
+require(arsenal)
+t1 = tableby( ~ s_total + s_vin_simple + q_blanc + q_rouge + q_total, vin)
+summary(t1, text = "latex")
