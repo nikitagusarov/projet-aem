@@ -52,6 +52,7 @@
 \usepackage{lipsum}
 \usepackage{alltt}
 \usepackage{graphicx}
+\usepackage[authoryear, round]{natbib}
 %\usepackage{fontspec}
 %\usepackage[french]{babel}
 %\usepackage{fontspec}
@@ -62,7 +63,11 @@
 \addto\captionsfrench{\def\tablename{Tableau}}
 \DeclareMathOperator*{\argmin}{argmin}
 \DeclareMathOperator*{\argmax}{argmax}
-\newcommand{\printarticle}[1]{\citeauthor{#1}, ``\usebibentry{#1}{title}''}
+%\usepackage{usebib}
+%\newcommand{\printarticle}[1]{\citeauthor{#1}, ``\usebibentry{#1}{title}''}
+%\bibinput{biblio}
+%\usepackage{bibtex}
+\bibliographystyle{plainnat}
 
 \begin{document}
 
@@ -83,34 +88,36 @@ Dans notre travail nous étudions les impacts des fluctuations du prix des vins 
 % référence et synthèse des 2/3 articles fondateurs
 Pour le moment nous avons étudié et synthétisé 14 articles sur le marché du vin, ainsi bien que 2 articles sur le traitement économétrique des systèmes d'équations simultanés. 
 \par
-Parmi les articles traitant la viticulture et le marché du vin, nous avons :
+Parmi les articles traitant la viticulture et le marché du vin, nous avons les travaux de :
 \begin{itemize}
-    \item \cite{rebelo2019}
-    \item \cite{anderson2018s}
-    \item \cite{bazen2018}
-    \item \cite{garcia2016}
-    \item \cite{cembalo2014}
-    \item \cite{outreville2010}
-    \item \cite{benfratello2009}
-    \item \cite{davis2008}
-    \item \cite{christophe2008}
-    \item \cite{costanigro2007}
-    \item \cite{steiner2004}
-    \item \cite{soler2002}
-    \item \cite{giraud2001}
-    \item \cite{gergaud1998}
-    \item \cite{labys1976}
-    \item \cite{daillens1962}
+    \item \citet*{rebelo2019}
+    \item \citet*{anderson2018s}
+    \item \citet*{bazen2018}
+    \item \citet*{garcia2016}
+    \item \citet*{cembalo2014}
+    \item \citet*{outreville2010}
+    \item \citet*{benfratello2009}
+    \item \citet*{davis2008}
+    \item \citet*{christophe2008}
+    \item \citet*{costanigro2007}
+    \item \citet*{steiner2004}
+    \item \citet*{soler2002}
+    \item \citet*{giraud2001}
+    \item \citet*{gergaud1998}
+    \item \citet*{labys1976}
+    \item \citet*{daillens1962}
 \end{itemize}
 Les travaux théoriques et méthodologiques sont des extraits du manuel de Wooldridge :
 \begin{itemize}
-    \item \cite{wooldridge_panel}
+    \item \citet*{wooldridge2016introductory}
+    \item \citet*{wooldridgepanel}
 \end{itemize}
 \par
 Maintenant, nous allons donner un aperçu des articles les plus pertinents dans notre cas d'étude.
 
 \subsection*{"Drinking cheaply: the demand for basic wine in Italy"}
 Un travail de Luigi Cembalo, Francesco Caracciolo et Eugenio Pomarici, publié en 2014.
+Ce recherche nous servira pour la base, car il traite la plus part des problèmes dont on rencontre dans cet étude. 
 \par
 Cet article détermine s'il existence un éventuel degré d’hétérogénéité dans les vins non premium et essaye le mesurer.
 Cela est fait par calcul de l’élasticité, les relations entre les catégories de vins agrégées avec des critères allant au-delà du prix (producteur, type, couleur, etc). 
@@ -123,6 +130,7 @@ Nous dans notre analyse, supposons, que ces effets d'hétérogénéité sont sim
 
 \subsection*{"French Wines on the decline ? Econometric evidence from Britain"}
 Cet analyse effectué par Bodo Steiner en 2002 contribue à la littérature existante des prix hédoniques sur le marché du vin en UK. 
+\par
 Les auteurs développent l’approche des variables nominales % mise au point par Kennedy (1986) et Oczkowski (1994) 
 pour obtenir une contribution distincte et comparable de chaque attribut à la variation des prix. 
 Dans leurs étude, % contrairement à Combris et al. (1997), 
@@ -136,15 +144,31 @@ Les auteurs constatent la diminution globale du rôle des vins français en Gran
 
 \subsection*{"Les facteurs déterminants les prix du vin"}
 Un travail de J. François Outreville fait en 2009.
+\par
 L'auteur identifie les facteurs les facteurs les plus fréquemment utilisé dans la littérature portant sur l'analyse des vins et du marché du vin.
 \begin{center}
-\begin{tabular}{l|l|l|l|l}
-    Facteurs géo-viticoles & Facteurs temporels & Coûts de production & Information & Offre et demande\\
+\begin{tabular}{l|l|l}
     \hline
-    ~~~~ Climat & ~~~~Age & ~~~~Coûts fixes et variables & ~~~~Etiquette & ~~~~Rareté \\
-    ~~~~ Sol & ~~~~Millésime & ~~~~Type de vin & ~~~~Appellation & ~~~~Culture\\
-    ~~~~ Région & & ~~~~Rendement & ~~~~Réputation & \\
-    ~~~~ Cépage & & & & \\
+    \hline
+    Facteurs géo-viticoles & Facteurs temporels & Coûts de production \\
+    \hline
+    ~~~~ Climat & ~~~~Age & ~~~~Coûts fixes et variables \\
+    ~~~~ Sol & ~~~~Millésime & ~~~~Type de vin \\
+    ~~~~ Région & & ~~~~Rendement \\
+    ~~~~ Cépage & & \\
+    \hline
+\end{tabular}
+\par
+\begin{tabular}{l|l}
+    \hline
+    \hline
+    Information & Offre et demande \\
+    \hline
+    ~~~~Etiquette & ~~~~Rareté \\
+    ~~~~Appellation & ~~~~Culture \\
+    ~~~~Réputation & \\
+    & \\
+    \hline
 \end{tabular}
 \end{center}
 
@@ -161,13 +185,13 @@ Nous supposons, que la demande des pesticides ne depend que des besoins des agri
 
 \section*{Modèle économique}
 % Cembalo2014
-Dans le commerce du vin, il est courant de diviser les vins en deux grandes classes en fonction de leurs prix : 
+Dans le commerce du vin, il est courant de diviser les vins en deux grandes classes en fonction de leurs prix \cite{cembalo2014} : 
 \begin{itemize}
     \item les vins de qualité inférieure, les moins chers avec les caractéristiques de qualité de base ;
     \item les vins de qualité supérieure plus chers, dotés de caractéristiques qualitatives complexes et d'une image de grande valeur.
 \end{itemize} % (Anderson et Nelgen 2011).
-% FrenchWines
-De plus, pour les vins français, le système européen de classification des "\textit{vins de qualité produits dans certaines régions}" (VQPRD) contient à la fois des vins AOC et des "\textit{vins de haute qualité provenant d'un vignoble régional agréé}" (VDQS). 
+\par
+De plus, pour les vins français, selon \citet{steiner2004}, le système européen de classification des "\textit{vins de qualité produits dans certaines régions}" (VQPRD) contient à la fois des vins AOC et des "\textit{vins de haute qualité provenant d'un vignoble régional agréé}" (VDQS). 
 Les vins de cépage appartiennent à la catégorie des vins autres que VQPRD, qui comprend les \textbf{vins de table} et les \textbf{vins de pays}.
 \par
 Tenant en compte cet information, nous utilisons la méthodologie du ministère d'agriculture et divisons le marché en deux parties :
@@ -175,20 +199,18 @@ Tenant en compte cet information, nous utilisons la méthodologie du ministère 
     \item La haute gamme (les vins IGP, vendus dans des magasins spécifiques) ;
     \item La gamme basse (les vins non IGP, vendus en grands surfaces).
 \end{itemize}
+\par
 La première partie est soumise à des règlements spécifiques : limitations des quantités produites, origine contrôlé, un caractère de la demande spécifique. 
-% Cembalo2014
-La deuxième, c'est-à-dire le marché des vins moins chers est aussi en quelque sens complexe. Les produits, classés dans cette catégorie proposée, sont susceptible d'avoir un certain degré d'hétérogénéité.
+La deuxième, c'est-à-dire le marché des vins moins chers, est aussi en quelque sens complexe. Les produits, classés dans cette catégorie proposée, sont susceptible d'avoir un certain degré d'hétérogénéité, comme cela a été montré par \citet{cembalo2014}.
 \par
 Nous, dans notre étude, traitons que les vins simples (non IGP). 
 La situation sur cet marché est sensé d'influencer le plus l'utilisation des pesticides, car les volumes de productions sont plus significatives que pour le marché des vins IGP.
 \par 
-% Cembalo2014
-Suivant le raisonnement des chercheurs, dans une catégorie de vin avec une fourchette de prix étroite, il existe une homogénéité presque parfaite due à des vins ayant des attributs intrinsèques simples, une complexité de qualité médiocre et donc une différenciation peu marquée.
+Suivant le raisonnement des chercheurs \cite{cembalo2014}, dans une catégorie de vin avec une fourchette de prix étroite, il existe une homogénéité presque parfaite due à des vins ayant des attributs intrinsèques simples, une complexité de qualité médiocre et donc une différenciation peu marquée.
 Nous ignorons les interactions internationales. 
 Cela nous permet d'analyser le marché par régions est non par des marques/produits.
-% Cembalo2014
 \par
-Comme proposé dans la littérature, notre étude sur les vins non coûteux (non IGP) est effectué au niveau du pays pour deux raisons:
+Comme proposé dans la littérature, notre étude sur les vins non coûteux (non IGP) est effectué au niveau du pays \cite{cembalo2014} pour deux raisons :
 \begin{itemize}
     \item Les prix de vente moyens des marchés diffèrent en raison des droits de douane à l'importation et des taxes à la consommation différents % (Anderson et Nelgen 2011);
     \item La perception des produits de consommation varie d'un pays à l'autre % (Makela et al. 2006).
@@ -201,16 +223,16 @@ Pour conclure, nos suppositions au niveau du marché de vin sont suivantes :
     \item La production du vin varie par région, suite à des différences climatologiques.
     \item On n'observe que l'équilibre sur le marché au niveau du pays (la quantité demandé est égale à la quantité offerte par l'ensemble des régions).
 \end{itemize}
+\par
 En ce qui concerne les pesticides, nous supposons que :
 \begin{itemize}
     \item La demande des pesticides est inélastique par prix, ce qui nous permet d'exclure la partie de l'offre des pesticides du notre analyse. La quantité des pesticides utilisée demande seulement des intentions et des besoins des agriculteurs. 
     \item 
 \end{itemize}
+\par
 % Cembalo2014
 % A Quadratic Almost Ideal Demand System (QUAIDS) was implemented (Banks et al. 1997). The use of a model allowing a more general Engel curve shape than the popular Almost Ideal Demand System (AIDS) of Deaton and Muellbauer (1980) was required.
 % Banks et al. (1997) show that the demand for some goods, particularly alcohol and clothing, has a quadratic relationship with the logarithm of total expenditure at higher income levels.
-% FrenchWines
-% When we employ a log-lin hedonic price function, we assume non-constant marginal Engel prices (the prices paid for incremental units of characteristics when purchased as part of the same bundle) and constancy of relative prices with respect to changes in proportions of characteristics (Triplett, 1975). This log-lin specification therefore assumes homotheticity of the utility function, hence homogeneity of degree zero of the demand equations for attributes. 
 Formalisant notre modèle théorique, nous posons, que la demande de vin a la forme suivante :
 \begin{equation}
     Q_d = \alpha_d + \beta_d P_d + \gamma_d Z 
@@ -238,6 +260,9 @@ Nous obtenons enfin un système de $N + 2$ équations :
     \vdots \\ 
     q_N & = a_N + b_N P_o + c_N X \\
 \end{align*}
+Théoriquement, nous pouvons aussi supposer la presence des prix marginaux non constants et la constance des prix relatifs par rapport aux modifications des proportions des caractéristiques, comme cela a été fait par \citet{steiner2004}. 
+Cette spécification suppose une fonction log-linéaire. 
+Cela nous permettra de passer à l'échelle logarithmique, ce qui peut être avantageux (bien que cela risque de poser des problèmes lors d'estimation).
 
 \section*{Les données}
 Nous avons utilisé les bases des données suivantes pour notre analyse :
@@ -251,19 +276,17 @@ Nous avons utilisé les bases des données suivantes pour notre analyse :
 \subsection*{Les données mobilisées}
 % les étapes de la construction de votre BDD ainsi que les différents appariements sont à mentionner.
 
+
 \subsection*{Statistiques descriptives des variables clé}
 % + analyses bivariées avec la variable dépendante.
 
 \section*{Modèle économétrique}
-% Cembalo2014
-% The AIDS and the other demand models previously reported in the literature have many shortcomings that make them unsuitable to address wine market disequilibria.
-% Their ‘aggregate’ product-level nature and restrictive market structure assumptions mean that they cannot adequately capture the varying levels of disequilibria that exist in the market.
-% As they do not take into account the different attributes of wine, they appear inadequate to analyse a market that is by nature inherently differentiated. 
+L'AIDS et les autres modèles de demande cités dans la littérature ont de nombreuses lacunes qui les rendent impropres pour l'estimation du marché du vin, selon \citet{cembalo2014}. 
+Quand même, dans notre étude nous allons utiliser ce modèle là, sous des suppositions restrictives. 
+\par
 Comme c'était déjà mentionné dans la partie théorique, nous n'observons que les quantités et les prix moyens pour les points des équilibres où $Q_o = Q_d = Q$ et $P_o = P_d = P$.
 Ce fait nous amène à l'utilisation des systèmes des équations simultanées, ce qui nous permettra de capter les décisions simultanées des vendeurs et des acheteurs. 
-\par
-% LeMarchéPeutil
-% L'existence d'un marché garantit la convergence des prix en fonction de la qualité des vins. Le prix d'un vin est donc conditionné par un ensemble de variables qui sont captées par le marché et la sensibilité des prix du vin par rapport au marché est révélatrice des caractéristiques propres au vin. 
+\par 
 Afin de pouvoir estimer le système, qu'on a spécifié dans la partie précédente, nous allons d'abord nos servir de la suppositions que au point d'équilibre observé nous avons : $Q_o = Q_d = Q$.
 Alors, pour l'offre régionale :
 \begin{equation}
@@ -295,7 +318,6 @@ Ayant identifié ces coefficients nous pourrions en dériver les coefficients de
 
 % \subsection*{Premiers résultats économétriques} 
 
-\bibliographystyle{plain}
 \bibliography{biblio}
 
 \end{document}
