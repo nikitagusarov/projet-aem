@@ -377,3 +377,117 @@ t1 = tableby( ~ s_total + s_vin_simple + q_blanc + q_rouge + q_total, vin)
 summary(t1, text = "latex")
 t2 = tableby(conditionnement ~ quantite_produit + mean.dose, pesticides)
 summary(t2, text = "latex")
+
+require(openxlsx)
+prix = read.xlsx("./Donnees_ref/prix_vin_revenu.xlsx")
+summary(prix)
+prix2 = prix[,c(2,9,11,13)]
+write.csv(prix2, file = "./Donnees_ref/prix_revenu.csv")
+
+list = ls()
+rm(list)
+prix = read.csv("./Donnees_ref/prix_revenu.csv")
+vin = read.csv("./Donnees_ref/vin_final.csv")
+pesticides = read.csv("./Donnees_ref/pesticides_final.csv")
+
+require(tidyverse)
+names(vin)
+names(prix)[2] = "annee"
+prixvin = left_join(vin, prix, by = "annee")
+summary(prixvin)
+prixvin %>% 
+    group_by(annee) %>%
+    summarise(mean(s_vin_simple), ratio_s = mean(s_vin_simple)/mean(s_total),
+        mean(s_total), 
+        mean(q_blanc), ratio_b = mean(q_blanc)/mean(q_total),
+        mean(q_rouge), ratio_r = mean(q_rouge)/mean(q_total),
+        q_br = mean(q_blanc) + mean(q_rouge),
+        ratio_br = (mean(q_blanc) + mean(q_rouge))/mean(q_total),
+        mean(q_total),
+        mean(prix_vin_blanc_sans_IG),
+        mean(prix_vin_rouge_sans_IG)) %>%
+    View()
+prixvin %>% 
+    group_by(departement.y) %>%
+    summarise(mean(s_vin_simple), ratio_s = mean(s_vin_simple)/mean(s_total),
+        mean(s_total), 
+        mean(q_blanc), ratio_b = mean(q_blanc)/mean(q_total),
+        mean(q_rouge), ratio_r = mean(q_rouge)/mean(q_total),
+        q_br = mean(q_blanc) + mean(q_rouge),
+        ratio_br = (mean(q_blanc) + mean(q_rouge))/mean(q_total),
+        mean(q_total),
+        mean(prix_vin_blanc_sans_IG),
+        mean(prix_vin_rouge_sans_IG)) %>%
+    View()
+
+pv1 = prixvin %>% 
+    select(annee, ndep = number, 
+        dep = departement.y,
+        s_nig = s_vin_simple, 
+        s_total,
+        q_blanc, q_rouge, q_total, 
+        p_blanc = prix_vin_blanc_sans_IG,
+        p_rouge = prix_vin_rouge_sans_IG,
+        revenu = revenu.déflaté)
+write.csv(pv1, file = "./Donnees_ref/prixETvin.csv")
+
+list = ls()
+rm(list)
+pesticides = read.csv("./Donnees_ref/pesticides_final.csv")
+pv = read.csv("./Donnees_ref/prixETvin.csv")
+names(pv)
+names(pesticides)
+pest = pesticides %>% 
+    select(annee, ndep = number.y,
+        q_prod = quantite_produit,
+        cond = conditionnement)
+write.csv(pest, file = "./Donnees_ref/pest.csv")
+
+list = ls()
+rm(list)
+pest = read.csv("./Donnees_ref/pest.csv")
+pv = read.csv("./Donnees_ref/prixETvin.csv")
+
+pvp = left_join(pv, pest, by = c("annee", "ndep"))
+View(pvp)
+names(pvp)
+pvp1 = pvp[,-c(1,13)]
+write.csv(pvp1, file = "./Donnees_ref/pvp1.csv")
+
+pvp1 = pvp1 %>% na.omit()
+write.csv(pvp1, file = "./Donnees_ref/pvp1.csv")
+
+list = ls()
+rm(list)
+pvp = read.csv("./Donnees_ref/pvp1.csv")
+pvpx = pvp %>% 
+    mutate(K = as.numeric(cond == "K"), 
+        L = as.numeric(cond == "L"),
+        cond = as.numeric(cond)) %>%
+    mutate(qk_prod = q_prod*K,
+        ql_prod = q_prod*L) %>%
+    group_by(annee, ndep, dep) %>%
+    summarise(s_nig = mean(s_nig), s_total = mean(s_total),
+        q_blanc = mean(q_blanc), q_rouge = mean(q_rouge),
+        q_total = mean(q_total), 
+        p_blanc = mean(p_blanc), p_rouge = mean(p_rouge),
+        revenu = mean(revenu),
+        qk_prod = sum(qk_prod), ql_prod = sum(ql_prod))
+write.csv(pvpx, file = "./Donnees_ref/prefinal.csv")    
+
+list = ls()
+rm(list)
+pvp = read.csv("./Donnees_ref/prefinal.csv")
+depdel = pvp %>% 
+    group_by(ndep) %>%
+    count() %>% 
+    filter(n != 9) %>%
+    select(ndep) %>%
+    as.list()
+pvpx = pvp %>% 
+    filter(ndep != depdel)
+write.csv(pvpx, file = "./Donnees_ref/final.csv")
+
+list = ls()
+rm(list)
+pvp = read.csv("./Donnees_ref/final.csv")
