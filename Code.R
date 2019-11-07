@@ -495,17 +495,24 @@ write.csv(pvpy[,-1], file = "./Donnees_ref/final.csv", row.names = FALSE)
 list = ls()
 rm(list)
 pvp = read.csv("./Donnees_ref/final.csv")
+names(pvp)
+pvp[, -c(2:3)] %>%  
+    cor() %>% View()
 pvp %>% 
-    group_by(annee) %>%
-    summarise_each(mean) %>%
-    cor() %>%
-    View()
-x = pvp %>% 
+    group_by(dep) %>%
+    summarise_each(var) %>%
+    xtable(type = "latex", include.rownames = FALSE)
+pvps = pvp %>% 
+    mutate(q = q_blanc + q_rouge) %>%
     group_by(ndep, dep) %>%
     summarise_each(mean) 
-x[, -c(1:2)] %>%
-    cor() %>%
+pvps %>% 
+    arrange(q) %>% 
     View()
+x = 
+x[, -c(1:2)] %>%
+    cor() %>% View()
+    xtable(type = "latex")
 
 require(arsenal) 
 names(pvp)
@@ -522,11 +529,68 @@ ta = tableby(annee ~ s_nig + s_total + q_blanc + q_rouge +
     qk_prod + ql_prod, data = pvp, 
     control = mycontrols, digits = 2) %>%
     summary(text = "latex")
-pvp %>% 
+tn = tableby( ~ s_nig + s_total + 
+    q_blanc + q_rouge + q_total + 
+    qk_prod + ql_prod, 
+    strata = dep,
+    data = pvp, 
+    control = mycontrols, digits = 2) %>%
+    summary(text = "latex")
+
+list = ls()
+rm(list)
+require(tidyverse)
+pvp = read.csv("./Donnees_ref/final.csv")
+require(xtable)
+ta = pvp %>% 
     group_by(annee) %>%
+    summarise_each(mean) %>%
+    xtable(type = "latex")
+td = pvp %>% 
+    group_by(dep) %>%
+    select(s_nig, s_total, q_blanc, q_rouge,
+        q_total, qk_prod, ql_prod) %>% 
+    summarise_each(mean) %>%
+    xtable(type = "latex")
+
+pvpx = pvp %>% 
+    filter(annee > 2012) %>% 
+    group_by(annee) %>%
+    summarise(s = log(sum(s_nig)), 
+        q = log(sum(q_blanc) + sum(q_rouge)), 
+        p = log(mean(p_blanc + p_rouge)/2),
+        r = log(mean(revenu)),
+        qk = log(sum(qk_prod)),
+        ql = log(sum(ql_prod)))
+require(xtable)
+pvpx %>% 
+    cor() %>%
+    xtable(type = "latex") 
+pvpx = pvp %>% 
+    filter(s_nig != 0 & q_rouge != 0 & q_blanc != 0) %>%
+    mutate(s = log(s_nig), 
+        q = log(q_blanc + q_rouge), 
+        p = log((p_blanc + p_rouge)/2),
+        r = log(revenu),
+        qk = log(qk_prod + ql_prod),
+        t = annee)
+model = lm(p ~ s + r + qk + ql, data = pvpx)
+require(stargazer)
+stargazer(model, type="latex")
+
+pvp %>% group_by(dep) %>% 
+    summarise_each()
+
+pvpx = pvp %>% 
+    #filter(annee > 2012) %>% 
+    group_by(annee) %>%
+    summarise(s = log(sum(s_nig)), 
+        q = log(sum(q_blanc) + sum(q_rouge)), 
+        p = log(mean(p_blanc + p_rouge)/2),
+        r = log(mean(revenu)),
+        qk = log(sum(qk_prod)),
+        ql = log(sum(ql_prod)))
+require(xtable)
+pvpx %>% 
     summarise_each(var) %>%
-    View()
-pvp %>% 
-    group_by(ndep, dep) %>%
-    summarise_each(var) %>%
-    View()
+    xtable(type = "latex") 
