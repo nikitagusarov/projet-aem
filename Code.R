@@ -481,13 +481,52 @@ pvp = read.csv("./Donnees_ref/prefinal.csv")
 depdel = pvp %>% 
     group_by(ndep) %>%
     count() %>% 
-    filter(n != 9) %>%
-    select(ndep) %>%
-    as.list()
+    filter(n == 9) %>%
+    select(ndep)
 pvpx = pvp %>% 
-    filter(ndep != depdel)
-write.csv(pvpx, file = "./Donnees_ref/final.csv")
+    filter(ndep %in% depdel$ndep)
+pvpx %>% 
+    group_by(ndep) %>%
+    count()
+pvpy = filter(pvpx, annee >= 2012)
+names(pvpy)
+write.csv(pvpy[,-1], file = "./Donnees_ref/final.csv", row.names = FALSE)
 
 list = ls()
 rm(list)
 pvp = read.csv("./Donnees_ref/final.csv")
+pvp %>% 
+    group_by(annee) %>%
+    summarise_each(mean) %>%
+    cor() %>%
+    View()
+x = pvp %>% 
+    group_by(ndep, dep) %>%
+    summarise_each(mean) 
+x[, -c(1:2)] %>%
+    cor() %>%
+    View()
+
+require(arsenal) 
+names(pvp)
+mycontrols = 
+    tableby.control(test = FALSE, total = FALSE,
+        numeric.test = "kwt", cat.test = "chisq",
+        numeric.stats = 
+            c("mean"),
+        cat.stats = c("countpct"),
+        stats.labels = 
+            list(mean = 'Mean'))
+ta = tableby(annee ~ s_nig + s_total + q_blanc + q_rouge +
+    q_total + p_blanc + p_rouge + revenu +
+    qk_prod + ql_prod, data = pvp, 
+    control = mycontrols, digits = 2) %>%
+    summary(text = "latex")
+pvp %>% 
+    group_by(annee) %>%
+    summarise_each(var) %>%
+    View()
+pvp %>% 
+    group_by(ndep, dep) %>%
+    summarise_each(var) %>%
+    View()

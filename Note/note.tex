@@ -87,33 +87,33 @@ Dans notre travail nous étudions les impacts des fluctuations du prix des vins 
 \section*{Références et synthèses}
 % référence et synthèse des 2/3 articles fondateurs
 Pour le moment nous avons étudié et synthétisé 14 articles sur le marché du vin, ainsi bien que 2 articles sur le traitement économétrique des systèmes d'équations simultanés. 
-\par
-Parmi les articles traitant la viticulture et le marché du vin, nous avons les travaux de :
-\begin{itemize}
-    \item \citet*{rebelo2019}
-    \item \citet*{anderson2018s}
-    \item \citet*{bazen2018}
-    \item \citet*{garcia2016}
-    \item \citet*{cembalo2014}
-    \item \citet*{outreville2010}
-    \item \citet*{benfratello2009}
-    \item \citet*{davis2008}
-    \item \citet*{christophe2008}
-    \item \citet*{costanigro2007}
-    \item \citet*{steiner2004}
-    \item \citet*{soler2002}
-    \item \citet*{giraud2001}
-    \item \citet*{gergaud1998}
-    \item \citet*{labys1976}
-    \item \citet*{daillens1962}
-\end{itemize}
-Les travaux théoriques et méthodologiques sont des extraits du manuel de Wooldridge :
-\begin{itemize}
-    \item \citet*{wooldridge2016introductory}
-    \item \citet*{wooldridgepanel}
-\end{itemize}
-\par
-Maintenant, nous allons donner un aperçu des articles les plus pertinents dans notre cas d'étude.
+% \par
+% Parmi les articles traitant la viticulture et le marché du vin, nous avons les travaux de :
+% \begin{itemize}
+%     \item \citet*{rebelo2019}
+%     \item \citet*{anderson2018s}
+%     \item \citet*{bazen2018}
+%     \item \citet*{garcia2016}
+%     \item \citet*{cembalo2014}
+%     \item \citet*{outreville2010}
+%     \item \citet*{benfratello2009}
+%     \item \citet*{davis2008}
+%     \item \citet*{christophe2008}
+%     \item \citet*{costanigro2007}
+%     \item \citet*{steiner2004}
+%     \item \citet*{soler2002}
+%     \item \citet*{giraud2001}
+%     \item \citet*{gergaud1998}
+%     \item \citet*{labys1976}
+%     \item \citet*{daillens1962}
+% \end{itemize}
+% Les travaux théoriques et méthodologiques sont des extraits du manuel de Wooldridge :
+% \begin{itemize}
+%     \item \citet*{wooldridge2016introductory}
+%     \item \citet*{wooldridgepanel}
+% \end{itemize}
+% \par
+% Maintenant, nous allons donner un aperçu des articles les plus pertinents dans notre cas d'étude.
 
 \subsection*{"Drinking cheaply: the demand for basic wine in Italy"}
 Un travail de Luigi Cembalo, Francesco Caracciolo et Eugenio Pomarici, publié en 2014.
@@ -300,67 +300,80 @@ En effet, il est très probable que cet impact change selon le département et d
 
 \subsection*{Statistiques descriptives des variables clé}
 % + analyses bivariées avec la variable dépendante.
-Les statistiques descriptives pour le vin :
+Les statistiques descriptives par année :
+\begin{sidewaystable}
 \begin{center}
-    \begin{tabular}{l|c}
+
+\begin{tabular}{l|c|c|c|c|c|c|c|r}
 \hline
- & Overall (N=869)\\
+ & 2012 (N=76) & 2013 (N=76) & 2014 (N=76) & 2015 (N=76) & 2016 (N=76) & 2017 (N=76) & Total (N=456) & p value\\
 \hline
-\textbf{s\_total} & \\
+\textbf{s\_nig} &  &  &  &  &  &  &  & 0.909\\
 \hline
-~~~Mean (SD) & 8712.440 (18688.158)\\
+~~~Mean (SD) & 532.7 (1021.5) & 532.8 (1194.7) & 519.1 (1028.5) & 468.7 (958.4) & 
+466.2 (877.1) & 370.0 (757.6) & 481.6 (978.6) & \\
 \hline
-~~~Range & 0.000 - 119477.000\\
+~~~Range & 0.0 - 6580.0 & 0.0 - 8400.0 & 0.0 - 6205.0 & 0.0 - 6171.0 & 0.0 - 4740.0 & 0.0 - 4018.0 & 0.0 - 8400.0 & \\
 \hline
-\textbf{s\_vin\_simple} & \\
+\textbf{s\_total} &  &  &  &  &  &  &  & 1.000\\
 \hline
-~~~Mean (SD) & 1119.855 (5330.847)\\
+~~~Mean (SD) & 9932.2 (19671.2) & 9937.4 (19735.2) & 9897.3 (19646.4) & 9835.6 (19647.6) & 9927.3 (19691.8) & 9803.2 (19599.4) & 9888.9 (19557.0) & \\
 \hline
-~~~Range & 0.000 - 66732.000\\
+~~~Range & 0.0 - 115348.0 & 1.0 - 115416.0 & 1.0 - 114724.0 & 0.0 - 113645.0 & 0.0 - 114074.0 & 0.0 - 114554.0 & 0.0 - 115416.0 & \\
 \hline
-\textbf{q\_blanc} & \\
+\textbf{q\_blanc} &  &  &  &  &  &  &  & 0.954\\
 \hline
-~~~Mean (SD) & 13492.842 (58516.783)\\
+~~~Mean (SD) & 9818.9 (37582.3) & 8426.9 (23900.6) & 9717.5 (31633.2) & 13260.0 (45214.5) & 13313.5 (58197.6) & 8692.9 (39943.3) & 10538.3 (40672.1) & \\
 \hline
-~~~Range & 0.000 - 985816.000\\
+~~~Range & 0.0 - 316535.0 & 0.0 - 148947.0 & 0.0 - 256848.0 & 0.0 - 358423.0 & 0.0 - 500707.0 & 0.0 - 343950.0 & 0.0 - 500707.0 & \\
 \hline
-\textbf{q\_rouge} & \\
+\textbf{q\_rouge} &  &  &  &  &  &  &  & 0.792\\
 \hline
-~~~Mean (SD) & 19971.033 (64624.948)\\
+~~~Mean (SD) & 20108.2 (53695.9) & 22206.0 (86392.0) & 22482.1 (60350.2) & 20594.1 (61907.9) & 19245.1 (49739.6) & 9841.5 (25259.6) & 19079.5 (58898.1) & \\
 \hline
-~~~Range & 0.000 - 758966.000\\
+~~~Range & 0.0 - 362016.0 & 0.0 - 679217.0 & 0.0 - 367227.0 & 0.0 - 426007.0 & 0.0 - 246513.0 & 0.0 - 145364.0 & 0.0 - 679217.0 & \\
 \hline
-\textbf{q\_total} & \\
+\textbf{q\_total} &  &  &  &  &  &  &  & 0.977\\
 \hline
-~~~Mean (SD) & 523306.181 (1140670.047)\\
+~~~Mean (SD) & 559299.7 (1153972.5) & 557533.5 (1140441.8) & 619663.4 (1216546.1) 
+& 629678.8 (1295892.4) & 599501.7 (1237585.5) & 483986.2 (940617.1) & 574943.9 (1164203.2) & \\
 \hline
-~~~Range & 0.000 - 6707680.000\\
+~~~Range & 0.0 - 5622317.0 & 4.0 - 5716091.0 & 2.0 - 5642353.0 & 7.0 - 5672267.0 & 3.0 - 6707680.0 & 0.0 - 4036480.0 & 0.0 - 6707680.0 & \\
+\hline
+\textbf{p\_blanc} &  &  &  &  &  &  &  & < 0.001\\
+\hline
+~~~Mean (SD) & 57.9 (0.0) & 73.9 (0.0) & 82.3 (0.0) & 88.0 (0.0) & 83.3 (0.0) & 72.0 (0.0) & 76.2 (9.9) & \\
+\hline
+~~~Range & 57.9 - 57.9 & 73.9 - 73.9 & 82.3 - 82.3 & 88.0 - 88.0 & 83.3 - 83.3 & 72.0 - 72.0 & 57.9 - 88.0 & \\
+\hline
+\textbf{p\_rouge} &  &  &  &  &  &  &  & < 0.001\\
+\hline
+~~~Mean (SD) & 57.8 (0.0) & 64.7 (0.0) & 70.9 (0.0) & 76.4 (0.0) & 74.5 (0.0) & 67.4 (0.0) & 68.6 (6.3) & \\
+\hline
+~~~Range & 57.8 - 57.8 & 64.7 - 64.7 & 70.9 - 70.9 & 76.4 - 76.4 & 74.5 - 74.5 & 67.4 - 67.4 & 57.8 - 76.4 & \\
+\hline
+\textbf{revenu} &  &  &  &  &  &  &  & < 0.001\\
+\hline
+~~~Mean (SD) & 942.2 (0.0) & 917.7 (0.0) & 929.0 (0.0) & 935.9 (0.0) & 952.8 (0.0) & 963.4 (0.0) & 940.2 (15.0) & \\
+\hline
+~~~Range & 942.2 - 942.2 & 917.7 - 917.7 & 929.0 - 929.0 & 935.9 - 935.9 & 952.8 - 952.8 & 963.4 - 963.4 & 917.7 - 963.4 & \\
+\hline
+\textbf{qk\_prod} &  &  &  &  &  &  &  & 0.905\\
+\hline
+~~~Mean (SD) & 425722.6 (686257.6) & 475289.7 (785255.2) & 542842.5 (903963.4) & 409088.2 (691753.1) & 503527.0 (806042.3) & 460057.0 (727731.5) & 469421.2 (767642.3) & \\
+\hline
+~~~Range & 918.7 - 4122377.1 & 1017.0 - 4996688.4 & 1155.7 - 5690871.0 & 1546.4 - 
+3936737.5 & 925.0 - 4639864.2 & 834.0 - 4126278.8 & 834.0 - 5690871.0 & \\
+\hline
+\textbf{ql\_prod} &  &  &  &  &  &  &  & 0.001\\
+\hline
+~~~Mean (SD) & 177201.7 (202507.6) & 209489.5 (257214.8) & 238727.0 (289051.7) & 233416.1 (282277.8) & 315884.2 (374359.1) & 368507.9 (397210.3) & 257204.4 (312929.2) & \\
+\hline
+~~~Range & 5368.6 - 1172228.0 & 6336.5 - 1536180.8 & 6313.8 - 1760148.3 & 7075.6 - 1765786.0 & 6296.9 - 2104959.6 & 6744.2 - 2157743.5 & 5368.6 - 2157743.5 & \\
 \hline
 \end{tabular}
 \end{center}
-Pour les pesticides :
-\begin{center}
-    \begin{tabular}{l|c|c|c|r}
-\hline
- & K (N=68299) & L (N=65726) & Total (N=134025) & p value\\
-\hline
-\textbf{quantité\_produit} &  &  &  & < 0.001\\
-\hline
-~~~Mean (SD) & 5091.148 (23863.372) & 2611.743 (11616.564) & 3875.245 (18918.434) 
-& \\
-\hline
-~~~Range & 0.000 - 2032128.000 & 0.000 - 685012.000 & 0.000 - 2032128.000 & \\
-\hline
-\textbf{mean.dose} &  &  &  & < 0.001\\
-\hline
-~~~N-Miss & 2771 & 6205 & 8976 & \\
-\hline
-~~~Mean (SD) & 8.279 (35.856) & 2.264 (2.837) & 5.416 (26.202) & \\
-\hline
-~~~Range & 0.030 - 500.000 & 0.060 - 40.000 & 0.030 - 500.000 & \\
-\hline
-\end{tabular}
-\end{center}
+\end{sidewaystable}
 
 \section*{Modèle économétrique}
 L'AIDS et les autres modèles de demande cités dans la littérature ont de nombreuses lacunes qui les rendent impropres pour l'estimation du marché du vin, selon \citet{cembalo2014}. 
