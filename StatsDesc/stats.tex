@@ -72,16 +72,37 @@
 
 \begin{document}
 
-\begin{landscape}
 \begin{center}
     \Large\textbf{Statistiques descriptives des variables clé}
     \par
     \large\textit{A. Blanc, N. Gusarov, S. Picon}
 \end{center}
 
+\section*{Question de recherche.}
+Dans cette étude, nous nous intéressons à l’effet de la quantité de pesticides utilisé sur l’équilibre du marché des vins de table.
+
 \section*{Dictionnaire des variables.}
+\begin{tabular}{c|l}
+  \hline
+  Variable & Déscription \\
+  \hline
+qnnee & qnnée \\
+dep & département \\
+s\_nig & superficie de vigne sans indication géographique en hectare \\
+s\_total & superficie de vigne totale en hectare \\
+q\_blanc & quantité de vins blancs produits en hectolitre \\
+q\_rouge & quantité de vins rouges produits en hectolitre \\
+q\_total & quantité totale de vins produits en hectolitre \\
+p\_blanc & prix moyens des vins blancs sans indication géographique en euros par hectolitre déflatés \\
+p\_rouge & prix moyens des vins rouges sans indication géographique en euros par hectolitre déflatés \\
+revenu & revenu disponible brut des ménages français déflatés \\
+qk\_prod & quantité de produits de pesticides achetés en kilogrammes \\
+ql\_prod & quantité de produits de pesticides achetés en litre \\
+\hline
+\end{tabular}
 
 \newpage
+\begin{landscape}
 \section*{Les statistiques descriptives par année.}
 \par
 Moyennes :
@@ -218,6 +239,33 @@ Les moyennes (continu) :
    \hline
 \end{tabular}
 \FloatBarrier
+\par
+Dans cette partie, nous nous intéressons particulièrement aux variations entre les individus qui sont les départements Français. 
+Ici nous nous concentrons sur 76 départements. 
+Nous étudions les variables de surfaces de vignes sans indication géographique, les surfaces de vignes totales, les quantités de vins blancs sans indications géographiques produites, les quantités de vins rouges sans indication géographique produites, les quantités totales de vins produites en hectolitre, la quantité de pesticides achetés par  les agriculteurs en kilos et la quantité de pesticides en litres.
+\par
+Cela nous permet d’étudier les moyennes des principales variables. 
+Ainsi, on peut voir que les superficies de vignes sans indication géographiques sont très diverses entre les départements. 
+On peut voir également que dans la plupart des départements  les superficies totales des vignes est clairement supérieures à la surface sans indication géographique. 
+Néanmoins, certains départements ont très peu de vignes. 
+Ces départements utilisent exclusivement des vignes sans indication géographique. 
+C’est le cas, par exemple, de la Mayenne dont la surface moyenne sur les 5 années d’études est de 1 hectare 50. 
+En moyenne, dans ce département la surface de vignes sans indication géographique correspond à la surface totale de vignes. 
+Ces départements sont la Mayenne, le Nord, l’Oise, les Vosges, l’Eure-et-Loir et la Haute-Garonne. 
+En moyenne, dans l’échantillon la surface de vignes sans indication géographique est de 481.6 hectares contre 9889 hectares pour la superficie totale de vignes.
+\par
+On peut voir aussi que la quantité de vin blanc ou rouge sans indication géographique dépend du département. 
+En effet, certains départements produisent, en moyenne, plus de vins blancs, alors que d’autres produisent plus de vins rouges. Par exemple, le département de la Mayenne produite 42 hectolitres de vins blancs contre 17 hectolitres de vins rouges. 
+A l’inverse, les Vosges produisent 353.83 hectolitres de vins rouges contre 37.50 hectolitres de vins blancs. 
+Au niveau de l’échantillon, les producteurs de vins produisent plus de vins rouges que de vins blancs.  
+On remarque également que certains départements ne produisent que des vins sans indication géographique, alors que d’autres ne produisent que des vins avec des indications géographiques. 
+Ainsi, le département de la Seine-et-Marne ne produit, en moyenne, que des vins avec des indications géographiques. 
+A l’inverse, d’autres départements ne produisent que des vins sans indication géographique. 
+Ces départements produisent, en moyenne, beaucoup moins de vins que les autres départements. 
+Tous les départements utilisent beaucoup de pesticides dans le vin. 
+Cela peut s’expliquer par le fait que certains pesticides pouvant être utilisés dans les vignes peuvent aussi être utilisés dans d’autres cultures. 
+De manière générale, on peut aussi voir que quand la quantité de pesticides est basse l’utilisation d’un pesticide liquide est plus haute.
+
 \newpage
 \begin{landscape}
 Les variances :
@@ -325,21 +373,25 @@ Les variances (continu) :
      \hline
   \end{tabular}
   \FloatBarrier
+  \par
+Certaines dispersions de la superficie sans indication géographique sont faibles. 
+Cela correspond en majorité au département qui avait une faible surface moyenne. 
+Certains départements ont une dispersion très importante. 
+C’est le cas de l’Hérault, par exemple. 
+Au niveau des quantités de pesticides, les dispersions sont très importantes. 
+La dispersion est particulièrement importante dans la Marne.
 \end{landscape}
 \newpage
 \section*{Corrélation.}
 \par
 Code pour agréger les variables au niveau d'année :
 \begin{alltt}
-  pvpx = pvp %>% 
-  filter(annee > 2012) %>% 
-  group_by(annee) %>%
-  summarise(s = log(sum(s_nig)), 
-      q = log(sum(q_blanc) + sum(q_rouge)), 
-      p = log(mean(p_blanc + p_rouge)/2),
-      r = log(mean(revenu)),
-      qk = log(sum(qk_prod)),
-      ql = log(sum(ql_prod)))
+      s = log(sum(s_nig)) 
+      q = log(sum(q_blanc) + sum(q_rouge)) 
+      p = log(mean(p_blanc + p_rouge)/2)
+      r = log(mean(revenu))
+      qk = log(sum(qk_prod))
+      ql = log(sum(ql_prod))
 \end{alltt}
 Résultats :
 \FloatBarrier
@@ -378,6 +430,132 @@ Tableau de corrélation :
 \end{tabular}
 \end{center}
 \FloatBarrier
+\newpage
+\section*{Modèle économétrique.}
+Dans cette étude, nous nous intéressons à l’effet de la quantité de pesticides utilisé sur l’équilibre du marché des vins de table?
+Le modèle économique :
+Formalisant notre modèle théorique, nous posons, que la demande aggregé de vin a la forme suivante :
+\begin{equation}
+    Qd_t = \alpha_d + \beta_d Pd_t + \gamma_d Z_t
+\end{equation}
+Avec $Z$ étant l'ensemble des variables ayant l'influence sur la demande du vin, dans le cas le plus simple nous n'utilisons que les revenus (c'est une des variables les plus utilisées dans des études empiriques sur le marché du vin).
+\par
+L'offre aggregé pour toute la France est donnée par l'équation suivante : 
+\begin{equation}
+    Qo_t = \sum_{i = 1}^{N} q_{i,t}
+\end{equation}
+Avec :
+\begin{itemize}
+  \item $Qd$ : la quantité demandée de vin en hectolitre
+  \item $Pd$ : Le prix du vin moyen en euros/hectolitres
+  \item $Z$ : Le revenu disponible brut déflaté
+\end{itemize}
+Ou $i \in \{1, ..., N\}$ sont des régions, chacun ayant sa propre fonction de production et d'offre unique : 
+\begin{equation}
+    q_{i,t} = a_i + b_i Po_t + c_i X_{i,t}
+\end{equation}
+Avec $X$ étant un vecteur des variables explicatives influençant la production (dans le cas le plus simple nous ne prenons en compte que les quantités des pesticides utilisées).
+Plus précisement :
+\begin{itemize}
+  \item $q_i$ : la quantité de vin en hectolitre dans chaque département
+  \item $Po$ : prix moyen en hectolitre
+  \item $X$ : la quantité de pesticide
+  \item $Y$ : La superficie en hectare
+\end{itemize}
+Nous pouvons réécrire l'équation de l'offre sous la forme :
+\begin{equation}
+    Qo_{i,t} = \sum_{i = 1}^{N} (a_i + b_i Po_{t} + c_i X_{i,t}) = \sum_{i = 1}^{N} a_i + \sum_{i = 1}^{N} b_i Po_{t} + \sum_{i = 1}^{N} c_i X_{i,t}
+\end{equation}
+Nous obtenons enfin un système de $N + 2$ équations : 
+\begin{align*}
+    Qd_t & = \alpha_d + \beta_d Pd_t + \gamma_d Z_t \\
+    Qo_t & = \sum_{i = 1}^{N} q_{i,t} \\
+    q_1 & = a_1 + b_1 Po_{t} + c_1 X_{1,t} \\ 
+    \vdots \\ 
+    q_N & = a_N + b_N Po_{t} + c_N X_{N,t} \\
+\end{align*}
+A l'équilibre nous vons $Po_t = Pd_t = P_t$ et $Qo_t = Qd_t = Q_t$.
+
+\section*{Modèle économétrique.}
+N'ayant les valeurs que pour l'équilibre, nous pouvons réecrire notre modèle comme :
+\begin{align*}
+  Q_t & = \alpha_d + \beta_d P_t + \gamma_d Z_t + \epsilon_t \\
+  Q_t & = \sum_{i = 1}^{N} q_{i,t} \\
+  q_1 & = a_1 + b_1 P_{t} + c_1 X_{1,t} + u_{1,t}\\ 
+  \vdots \\ 
+  q_N & = a_N + b_N P_{t} + c_N X_{N,t} + u_{N,t}\\
+\end{align*}
+Ce qui nous donne : 
+\begin{equation}
+    \alpha_d + \beta_d P_t + \gamma_d Z_t + \epsilon_t = 
+        \sum_{i = 1}^{N} a_i + \sum_{i = 1}^{N} b_i P_t + \sum_{i = 1}^{N} c_i X_{i,t} + \sum_{i = 1}^{N} u_{i,t}
+\end{equation}
+D'où on obtient :
+\begin{equation}
+    P_t = \frac{\sum_{i = 1}^{N} a_i - \alpha_d}{\beta_d - \sum_{i = 1}^{N} b_i} + 
+        \frac{\sum_{i = 1}^{N} c_i}{\beta_d - \sum_{i = 1}^{N} b_i} X_{i,t} +
+        \frac{-\gamma_d}{\beta_d - \sum_{i = 1}^{N} b_i} Z_t + 
+        \frac{\sum_{i = 1}^{N} u_{i,t} - \epsilon_t}{\beta_d - \sum_{i = 1}^{N} b_i}
+\end{equation}
+Ce qu'on peut réecrire comme :
+\begin{equation}
+  P_t = \pi_1 + 
+      \pi_2 X_{i,t} +
+      \pi_3 Z_t + 
+      v_t
+\end{equation}
+Respectivement on peut dériver équation structurelle pour $Q$ :
+\begin{multline}
+    Q_t = (\alpha_d + \beta_d \frac{\sum_{i = 1}^{N} a_i - \alpha_d}{\beta_d - \sum_{i = 1}^{N} b_i}) + 
+        (\beta_d \frac{\sum_{i = 1}^{N} c_i}{\beta_d - \sum_{i = 1}^{N} b_i}) \sum_{i = 1}^{N} X_{i,t} + \\
+        (\gamma_d + \beta_d \frac{-\gamma_d}{\beta_d - \sum_{i = 1}^{N} b_i}) Z_t + 
+        (\epsilon_t + \beta_d \frac{\sum_{i = 1}^{N} u_{i,t} - \epsilon_t}{\beta_d - \sum_{i = 1}^{N} b_i})
+\end{multline}
+Ce qui se réecrit sous forme :
+\begin{equation}
+  Q_t = \theta_1 + 
+      \theta_2 \sum_{i = 1}^{N} X_{i,t} +
+      \theta_3 Z_t + 
+      w_t
+\end{equation}
+Le reste est éstimé comme :
+\begin{multline}
+  q_{i,t} = (a_i + b_i \frac{\sum_{i = 1}^{N} a_i - \alpha_d}{\beta_d - \sum_{i = 1}^{N} b_i}) + 
+      (c_i + b_i \frac{\sum_{i = 1}^{N} c_i}{\beta_d - \sum_{i = 1}^{N} b_i}) X_{i,t} + \\
+      (b_i \frac{-\gamma_d}{\beta_d - \sum_{i = 1}^{N} b_i}) Z_t + 
+      (u_{i,t} + b_i \frac{\sum_{i = 1}^{N} u_{i,t} - \epsilon_t}{\beta_d - \sum_{i = 1}^{N} b_i})
+\end{multline}
+En simplifiant on le réecrit : 
+\begin{equation}
+  q_{i,t} = \psi_{i,1} + 
+      \psi_{i,2} X_{i,t} +
+      \psi_{i,3} Z_t + 
+      e_{i,t}
+\end{equation}
+Ce qui avec $i$ le numéro de département, nous donne suffisament des differences entre les coefficients pour identifier les parametres des équations de départ. 
+\par
+Avec les deux prémières équations structurelles on obtient les coefficients pour la prémière équation de départ, qui décrit la demande aggregé :
+\begin{align}
+  \alpha_d & = \theta_1 - \frac{\pi_1 \theta_2}{\pi_2} \\
+  \beta_d & = \frac{\theta_2}{\pi_2} \\
+  \gamma_d & = \frac{\theta_2 \pi_3}{\pi_2} - \theta_3
+\end{align}
+Ainsi bien que pour celle, qui décrit l'offre aggregé :
+\begin{align}
+  \sum_{i = 1}^{N} a_i & = \theta_1 - \frac{\pi_1 \theta_3}{\pi_3} \\
+  \sum_{i = 1}^{N} b_i & = \frac{\theta_3}{\pi_3} \\
+  \sum_{i = 1}^{N} c_i & = \theta_2 - \frac{\theta_3 \pi_2}{\pi_3}
+\end{align}
+Les coefficients uniques pour les régions $a_i$, $b_i$ et $c_i$ sont a identifier sepparémént avec les estimateurs du reste des équations.
+On les obtient d'une maniere suivante :
+\begin{align}
+  a_i & = \psi_{i,1} - \frac{\psi_{i,3} \pi_1}{\pi_3} \\
+  b_i & = \frac{\psi_{i,3}}{\pi_3} \\
+  c_i & = \psi_{i,2} - \frac{\psi_{i,3} \pi_2}{\pi_3}
+\end{align}
+\par
+En ce qui concerne la variance des estimateurs obtenus, il reste encore à vérifier.
+
 \newpage
 \section*{Premières estimations des équations structurelles.}
 \par
@@ -419,6 +597,10 @@ F Statistic & 1.794 (df = 4; 1) \\
 \end{tabular} 
 \end{center}
 \FloatBarrier
+Les résultats déestimation obtenus sont non-significatifs.
+Nous pouvons supposerque ce fait est dû à la manque de puissance statistique et une taille d'échantillon insuffisante.
+\par
+Les effets controverces obtenus pour les quantités des pésticides implimentés en litres et en kilogrammes nous confirment la non-significativité du modèle.
 \newpage
 Prix :
 \FloatBarrier
@@ -458,6 +640,10 @@ F Statistic & 0.559 (df = 4; 1) \\
 \end{tabular}
 \end{center}
 \FloatBarrier
-
+Identiquement aux résultats pour les quantités, pour les prix nous obtenons de résultats non-significatifs. 
+Dans ce cas, même la statistique générale de Fisher nous indique que le modèle n'est pas correctement spécifié. 
+\par
+Il est fortement probable, qu'il faut repenser l'approche à la création des variables utilisées dans le modèle.
+Par example, il peut être sensible de créer un indice commun pour aggreger le montant des pésticides utilisés, ainsi que d'ajouter plus de la variablité pour les prix et le révenu entre les départements. 
 
 \end{document}
