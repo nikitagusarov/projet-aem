@@ -84,9 +84,9 @@ Dans cette étude, nous nous intéressons à l’effet de la quantité de pestic
 \section*{Dictionnaire des variables.}
 \begin{tabular}{c|l}
   \hline
-  Variable & Déscription \\
+  Variable & Description \\
   \hline
-qnnee & qnnée \\
+année & année \\
 dep & département \\
 s\_nig & superficie de vigne sans indication géographique en hectare \\
 s\_total & superficie de vigne totale en hectare \\
@@ -101,17 +101,13 @@ ql\_prod & quantité de produits de pesticides achetés en litre \\
 \hline
 \end{tabular}
 
-\newpage
-\begin{landscape}
 \section*{Les statistiques descriptives par année.}
 \par
 Moyennes :
 \FloatBarrier
-\hskip-2.0cm
-\begin{center}
-\begin{tabular}{lrrrrrrrrrrrr}
+\hskip-2.0cm\begin{tabular}{lrrrrrrrrrrrr}
   \hline
-  annee & s\_nig & s\_total & q\_blanc & q\_rouge & q\_total & p\_blanc & p\_rouge & revenu & qk\_prod & ql\_prod \\ 
+  année & s\_nig & s\_total & q\_blanc & q\_rouge & q\_total & p\_blanc & p\_rouge & revenu & qk\_prod & ql\_prod \\ 
   \hline
   2012 & 532.71 & 9932.25 & 9818.91 & 20108.16 & 559299.67 & 57.90 & 57.79 & 942.24 & 425722.60 & 177201.72 \\ 
   2013 & 532.75 & 9937.45 & 8426.86 & 22206.01 & 557533.49 & 73.94 & 64.66 & 917.73 & 475289.67 & 209489.47 \\ 
@@ -121,23 +117,36 @@ Moyennes :
   2017 & 370.03 & 9803.24 & 8692.91 & 9841.47 & 483986.24 & 72.03 & 67.41 & 963.37 & 460057.02 & 368507.95 \\ 
    \hline
 \end{tabular} 
-\end{center}
 \FloatBarrier
+Dans cette partie, nous nous attacherons à donner un premier aperçu de l’évolution des différentes variables pertinentes à intégrer dans notre modèle économétrique, que l’on a agrégées pour l’ensemble des départements français étudiés, au cours de notre période d’intérêt : 2012-2017. 
+\par
+Tout d’abord, nous pouvons constater que les prix moyens  en hectolitres des vins blancs et rouges sans IG suivent une tendance relativement  similaire : ils augmentent entre 2012 et 2015 avant de chuter à partir de 2016 (la baisse la plus importante enregistrée étant celle entre 2016 et 2017 pour les 2 types de vins). Si l’on regarde parallèlement l’évolution des quantités de vins rouges et blanc non IG produits, nous remarquons qu’ils suivent une trajectoire plus ou moins identique. En ce qui concerne le vin rouge non IG, sa production s’accroit jusqu’en 2014 avant de chuter ensuite tandis que la production de vin blanc non IG commence à se réduire après 2016. Chez les 2 types de vin, on observe une nette rupture de la production en 2017. En effet, la production de vin blanc non IG s’est vu diminuée quasiment de moitié (19245 hectolitres en 2016 contre 9841 en 2017) et la production de vin rouge non IG a connu aussi une baisse importante (réduction environ de 5000 hectolitres).  Nous pouvons  constater que la corrélation positive entre les prix moyens des vins blancs et rouges non IG et l’offre de vins blancs et rouge non IG semble donc se vérifier empiriquement.
+\par
+Cette tendance à la baisse de l’offre de vin blanc et rouge non IG peut éventuellement être reliée à la diminution du nombre de terres consacrées à la culture du vin non IG comme en témoigne la réduction progressive de la superficie de vignes non IG que l’on peut observer (celle-ci est passée de 532 hectares à 370 hectares). Si on rapporte cette évolution à la superficie totale des vignes, nous remarquons que la part des cultures viticoles non IG parmi l’ensemble des cultures viticoles est passée de 5,4\% à 3,8\%.
+\par 
+Si nous nous intéressons maintenant à l’évolution de la quantité de pesticides achetée, nous pouvons remarquer que le volume de vente de pesticides en litres tend à s’accroître : il a ainsi doublé entre 2012 et 2017. En revanche, en ce qui concerne le volume de vente de pesticides en kilos, on ne peut pas dégager de tendance stable car il connaît d’importantes fluctuations.
+\par
+\begin{landscape}
 Variance :
 \FloatBarrier
-\hskip-1.0cm\begin{tabular}{lrrrrrrrrrrrr}
+\begin{tabular}{lrrrrrrrrrrrr}
     \hline
-   annee & s\_nig & s\_total & q\_blanc & q\_rouge & q\_total & p\_blanc & p\_rouge & revenu & qk\_prod & ql\_prod \\
+   année & s\_nig & s\_total & q\_blanc & q\_rouge & q\_total & qk\_prod & ql\_prod \\
     \hline
-    2012 & 1043361.38 & 386955859.34 & 1412431531.02 & 2883252646.05 & 1331652487300.94 & 0.00 & 0.00 & 0.00 & 470949549172.93 & 41009340396.57 \\
-    2013 & 1427194.86 & 389478005.82 & 571236508.42 & 7463574770.76 & 1300607411760.71 & 0.00 & 0.00 & 0.00 & 616625683955.09 & 66159445924.66 \\
-    2014 & 1057736.13 & 385979855.89 & 1000660487.43 & 3642144579.67 & 1479984358653.09 & 0.00 & 0.00 & 0.00 & 817149839911.48 & 83550909830.82 \\
-    2015 & 918544.20 & 386029875.50 & 2044354563.93 & 3832584199.88 & 1679337190916.28 & 0.00 & 0.00 & 0.00 & 478522356091.13 & 79680732342.85 \\
-    2016 & 769340.83 & 387768110.30 & 3386957695.08 & 2474027779.56 & 1531617776697.46 & 0.00 & 0.00 & 0.00 & 649704148521.73 & 140144745416.74 \\
-    2017 & 573910.61 & 384137572.80 & 1595466012.51 & 638048439.40 & 884760490114.93 & 0.00 & 0.00 & 0.00 & 529593130518.92 & 157776032472.36 \\
+    2012 & 1043361.38 & 386955859.34 & 1412431531.02 & 2883252646.05 & 1331652487300.94 & 470949549172.93 & 41009340396.57 \\
+    2013 & 1427194.86 & 389478005.82 & 571236508.42 & 7463574770.76 & 1300607411760.71 & 616625683955.09 & 66159445924.66 \\
+    2014 & 1057736.13 & 385979855.89 & 1000660487.43 & 3642144579.67 & 1479984358653.09 & 817149839911.48 & 83550909830.82 \\
+    2015 & 918544.20 & 386029875.50 & 2044354563.93 & 3832584199.88 & 1679337190916.28 & 478522356091.13 & 79680732342.85 \\
+    2016 & 769340.83 & 387768110.30 & 3386957695.08 & 2474027779.56 & 1531617776697.46 & 649704148521.73 & 140144745416.74 \\
+    2017 & 573910.61 & 384137572.80 & 1595466012.51 & 638048439.40 & 884760490114.93 & 529593130518.92 & 157776032472.36 \\
      \hline
   \end{tabular}
-\FloatBarrier
+\FloatBarrier 
+Les dispersions constatées au niveau de chacune de ces variables sont très importantes mais ceci est normal puisqu’on a agrégé les données de l’ensemble des départements français, chacun de ces départements ayant des caractéristiques différentes en ce qui concerne le poids de l’activité viticole et, plus globalement de l’agriculture, au sein de leurs activités économiques. 
+Les prix moyens des vins blanc  rouge ainsi que le revenu disponible brut moyen des français ont une variance nulle puisque ces variables étaient déjà agrégées initialement lorsque nous avons collectés les données nécessaires pour construire notre base de données finale.  
+Il s’avérait trop complexe de collecter des données sur les prix moyens ou le revenu disponible brut à l’échelon départemental. 
+Une description plus fidèle de la variabilité de notre jeu de données est menée ci-dessous lorsqu’on affine les données pour chaque département. 
+
 \end{landscape}
 \newpage
 \section*{Les statistiques descriptives par département.}
@@ -412,10 +421,35 @@ Résultats :
 \end{tabular}
 \end{center}
 \FloatBarrier
+Dans ce tableau nous observons la disparité entre les années. 
+En effet, nous observons les moyennes des variables structurelles. 
+Ainsi, en moyenne, le log de la superficie de vignes sans indication géographique est de 10.61 hectares, en 2012. 
+Ces surfaces restent constantes, en 2013. 
+Entre 2014 et 2017, cette superficie baisse. 
+Ainsi, en 2017, le log de la superficie de vignes sans indication géographique atteint 10.24 hectares. 
+La dispersion observée sur cette variable reste très limité. 
+En effet,  la surface de vignes sans indication géographique varie de 0.02 hectare. 
+De la même façon, les quantités produites de vins blancs et rouges augmentent lors des 4 premières années, c’est-à-dire entre 2012 et 2015. 
+En effet, cette production passe de 14.64 à 14.76. 
+Ensuite, les quantités de vins produites ont baissé, atteignant pour finir 14,16 hectolitres de vins. 
+La variabilité du log de la quantité produite est de 0.05 hectolitres. 
+Le log des prix des vins sans indication géographique suit les mêmes variations que celles des quantités produites. 
+Ainsi, entre 2012 et 2015, les prix augmentent passant de 4.06 à 4.41 log(euros). 
+Ensuite, les prix des vins baissent pour rejoindre 4.24. La dispersion des prix est très limitée puisque ceux-ci varient de 0.02. 
+Entre 2012 et 2013, le log du revenu disponible brut baisse en passant de 6.85 à 6.82. 
+Par la suite, le revenu augmente. 
+Il n’y a donc pas de variabilité dans le log du revenu disponible brut. 
+Pour le log des quantités de pesticides les deux variables varient dans le même sens. 
+En effet, le log des quantités augmente entre 2012 et 2014. 
+Ensuite, elles baissent entre 2014 et 2015, puis elles augmentent entre 2015 et 2017. 
+Néanmoins, la variabilité des données est différentes puisque pour le log des quantités de pesticides en kilos est de 0.01 kilogrammes. 
+Le log des quantités de pesticides en litres est de 0.07 litres. 
+Ainsi, il y a très peu de variabilité dans les données de notre échantillon entre les années.
+\par
 Tableau de corrélation :
 \FloatBarrier
 \begin{center}
-\begin{tabular}{|c|rrrrrrr}
+\begin{tabular}{c|rrrrrrr}
   \hline
   & annee & s & q & p & r & qk & ql \\ 
   \hline
@@ -430,17 +464,32 @@ Tableau de corrélation :
 \end{tabular}
 \end{center}
 \FloatBarrier
+Nous observons les corrélations entre les variables structurelles. 
+Ainsi, on observe que les années ont une influence négative sur le log des surfaces de vignes sans indication géographique. 
+On observe la même influence sur le log des quantités de vins produites. 
+Ainsi, les coefficients de corrélation de ces deux variables sont de -0.89 et de -0.51. 
+Ces deux variables sont fortement corrélés aux années. 
+Les autres variables ont une influence inverse. 
+Ainsi, on observe des corrélations positives entre les années et les prix, les revenus, les quantités de pesticides en kilos et les quantités de pesticides en euros. 
+La corrélation négative existante entre les surfaces et les quantités avec les années peut s’expliquer par la forte corrélation positive entre la superficie et la quantité (0.81). 
+Les autres variables sont corrélés négativement avec la surface. 
+La quantité de pesticides achetés est aussi corrélée positivement avec la surface (0.12). 
+Les quantités produites de vins sont corrélées positivement avec les prix des vins (0.30). 
+Les prix sont corrélés positivement avec les quantités de pesticides (0.28 quantité en kilo, 0.46 quantité en litre). 
+Le log du revenu disponible brut est corrélé négativement avec la quantité de pesticides en kilos. 
+A l’inverse, le revenu disponible est fortement et positivement corrélé avec la quantité de pesticides en prix (0.72). 
+Pour finir, les quantités de pesticides en kilos sont corrélées positivement avec les quantités de pesticides en litres. 
 \newpage
 \section*{Modèle économétrique.}
 Dans cette étude, nous nous intéressons à l’effet de la quantité de pesticides utilisé sur l’équilibre du marché des vins de table?
 Le modèle économique :
-Formalisant notre modèle théorique, nous posons, que la demande aggregé de vin a la forme suivante :
+Formalisant notre modèle théorique, nous posons, que la demande agrégé de vin a la forme suivante :
 \begin{equation}
     Qd_t = \alpha_d + \beta_d Pd_t + \gamma_d Z_t
 \end{equation}
 Avec $Z$ étant l'ensemble des variables ayant l'influence sur la demande du vin, dans le cas le plus simple nous n'utilisons que les revenus (c'est une des variables les plus utilisées dans des études empiriques sur le marché du vin).
 \par
-L'offre aggregé pour toute la France est donnée par l'équation suivante : 
+L'offre agrégé pour toute la France est donnée par l'équation suivante : 
 \begin{equation}
     Qo_t = \sum_{i = 1}^{N} q_{i,t}
 \end{equation}
@@ -455,7 +504,7 @@ Ou $i \in \{1, ..., N\}$ sont des régions, chacun ayant sa propre fonction de p
     q_{i,t} = a_i + b_i Po_t + c_i X_{i,t}
 \end{equation}
 Avec $X$ étant un vecteur des variables explicatives influençant la production (dans le cas le plus simple nous ne prenons en compte que les quantités des pesticides utilisées).
-Plus précisement :
+Plus précisément :
 \begin{itemize}
   \item $q_i$ : la quantité de vin en hectolitre dans chaque département
   \item $Po$ : prix moyen en hectolitre
@@ -474,10 +523,10 @@ Nous obtenons enfin un système de $N + 2$ équations :
     \vdots \\ 
     q_N & = a_N + b_N Po_{t} + c_N X_{N,t} \\
 \end{align*}
-A l'équilibre nous vons $Po_t = Pd_t = P_t$ et $Qo_t = Qd_t = Q_t$.
+A l'équilibre nous ayons $Po_t = Pd_t = P_t$ et $Qo_t = Qd_t = Q_t$.
 
 \section*{Modèle économétrique.}
-N'ayant les valeurs que pour l'équilibre, nous pouvons réecrire notre modèle comme :
+N'ayant les valeurs que pour l'équilibre, nous pouvons réécrire notre modèle comme :
 \begin{align*}
   Q_t & = \alpha_d + \beta_d P_t + \gamma_d Z_t + \epsilon_t \\
   Q_t & = \sum_{i = 1}^{N} q_{i,t} \\
@@ -497,7 +546,7 @@ D'où on obtient :
         \frac{-\gamma_d}{\beta_d - \sum_{i = 1}^{N} b_i} Z_t + 
         \frac{\sum_{i = 1}^{N} u_{i,t} - \epsilon_t}{\beta_d - \sum_{i = 1}^{N} b_i}
 \end{equation}
-Ce qu'on peut réecrire comme :
+Ce qu'on peut réécrire comme :
 \begin{equation}
   P_t = \pi_1 + 
       \pi_2 X_{i,t} +
@@ -511,43 +560,43 @@ Respectivement on peut dériver équation structurelle pour $Q$ :
         (\gamma_d + \beta_d \frac{-\gamma_d}{\beta_d - \sum_{i = 1}^{N} b_i}) Z_t + 
         (\epsilon_t + \beta_d \frac{\sum_{i = 1}^{N} u_{i,t} - \epsilon_t}{\beta_d - \sum_{i = 1}^{N} b_i})
 \end{multline}
-Ce qui se réecrit sous forme :
+Ce qui se réécrit sous forme :
 \begin{equation}
   Q_t = \theta_1 + 
       \theta_2 \sum_{i = 1}^{N} X_{i,t} +
       \theta_3 Z_t + 
       w_t
 \end{equation}
-Le reste est éstimé comme :
+Le reste est estimé comme :
 \begin{multline}
   q_{i,t} = (a_i + b_i \frac{\sum_{i = 1}^{N} a_i - \alpha_d}{\beta_d - \sum_{i = 1}^{N} b_i}) + 
       (c_i + b_i \frac{\sum_{i = 1}^{N} c_i}{\beta_d - \sum_{i = 1}^{N} b_i}) X_{i,t} + \\
       (b_i \frac{-\gamma_d}{\beta_d - \sum_{i = 1}^{N} b_i}) Z_t + 
       (u_{i,t} + b_i \frac{\sum_{i = 1}^{N} u_{i,t} - \epsilon_t}{\beta_d - \sum_{i = 1}^{N} b_i})
 \end{multline}
-En simplifiant on le réecrit : 
+En simplifiant on le réécrit : 
 \begin{equation}
   q_{i,t} = \psi_{i,1} + 
       \psi_{i,2} X_{i,t} +
       \psi_{i,3} Z_t + 
       e_{i,t}
 \end{equation}
-Ce qui avec $i$ le numéro de département, nous donne suffisament des differences entre les coefficients pour identifier les parametres des équations de départ. 
+Ce qui avec $i$ le numéro de département, nous donne suffisamment des différences entre les coefficients pour identifier les paramètres des équations de départ. 
 \par
-Avec les deux prémières équations structurelles on obtient les coefficients pour la prémière équation de départ, qui décrit la demande aggregé :
+Avec les deux premières équations structurelles on obtient les coefficients pour la première équation de départ, qui décrit la demande agrégé :
 \begin{align}
   \alpha_d & = \theta_1 - \frac{\pi_1 \theta_2}{\pi_2} \\
   \beta_d & = \frac{\theta_2}{\pi_2} \\
   \gamma_d & = \frac{\theta_2 \pi_3}{\pi_2} - \theta_3
 \end{align}
-Ainsi bien que pour celle, qui décrit l'offre aggregé :
+Ainsi bien que pour celle, qui décrit l'offre agrégé :
 \begin{align}
   \sum_{i = 1}^{N} a_i & = \theta_1 - \frac{\pi_1 \theta_3}{\pi_3} \\
   \sum_{i = 1}^{N} b_i & = \frac{\theta_3}{\pi_3} \\
   \sum_{i = 1}^{N} c_i & = \theta_2 - \frac{\theta_3 \pi_2}{\pi_3}
 \end{align}
-Les coefficients uniques pour les régions $a_i$, $b_i$ et $c_i$ sont a identifier sepparémént avec les estimateurs du reste des équations.
-On les obtient d'une maniere suivante :
+Les coefficients uniques pour les régions $a_i$, $b_i$ et $c_i$ sont a identifier séparément avec les estimateurs du reste des équations.
+On les obtient d'une manière suivante :
 \begin{align}
   a_i & = \psi_{i,1} - \frac{\psi_{i,3} \pi_1}{\pi_3} \\
   b_i & = \frac{\psi_{i,3}}{\pi_3} \\
@@ -597,10 +646,10 @@ F Statistic & 1.794 (df = 4; 1) \\
 \end{tabular} 
 \end{center}
 \FloatBarrier
-Les résultats déestimation obtenus sont non-significatifs.
-Nous pouvons supposerque ce fait est dû à la manque de puissance statistique et une taille d'échantillon insuffisante.
+Les résultats d'estimation obtenus sont non-significatifs.
+Nous pouvons supposer que ce fait est dû à la manque de puissance statistique et une taille d'échantillon insuffisante.
 \par
-Les effets controverces obtenus pour les quantités des pésticides implimentés en litres et en kilogrammes nous confirment la non-significativité du modèle.
+Les effets controverses obtenus pour les quantités des pesticides implémentés en litres et en kilogrammes nous confirment la non-significativité du modèle.
 \newpage
 Prix :
 \FloatBarrier
@@ -644,6 +693,6 @@ Identiquement aux résultats pour les quantités, pour les prix nous obtenons de
 Dans ce cas, même la statistique générale de Fisher nous indique que le modèle n'est pas correctement spécifié. 
 \par
 Il est fortement probable, qu'il faut repenser l'approche à la création des variables utilisées dans le modèle.
-Par example, il peut être sensible de créer un indice commun pour aggreger le montant des pésticides utilisés, ainsi que d'ajouter plus de la variablité pour les prix et le révenu entre les départements. 
+Par exemple, il peut être sensible de créer un indice commun pour agréger le montant des pesticides utilisés, ainsi que d'ajouter plus de la variabilité pour les prix et le revenu entre les départements. 
 
 \end{document}

@@ -1,9 +1,9 @@
 {
     "spellright.language": [
-        "en",
         "fr"
     ],
     "spellright.documentTypes": [
-        "plaintext"
+        "plaintext",
+        "latex"
     ]
 }
