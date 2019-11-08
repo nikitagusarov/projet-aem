@@ -594,3 +594,238 @@ require(xtable)
 pvpx %>% 
     summarise_each(var) %>%
     xtable(type = "latex") 
+
+###########
+# First try
+###########
+list = ls()
+rm(list)
+require(tidyverse)
+pvpd = read.csv("./Donnees_ref/final.csv")
+# Select data
+dn = pvpd %>%
+    filter(s_nig != 0 & 
+        (q_rouge + q_blanc) != 0 &
+        qk_prod != 0 & ql_prod != 0) %>%
+    group_by(ndep) %>%
+    count() %>% 
+    filter(n == 6) %>%
+    select(ndep)
+pvp = pvpd %>% 
+    filter(ndep %in% dn$ndep) 
+# Yearly data
+pvpy = pvp %>%
+# pvpy = pvpd %>%
+    group_by(annee) %>%
+    summarise(s = log(sum(s_nig)), 
+        q = log(sum(q_blanc) + sum(q_rouge)), 
+        p = log(mean(p_blanc + p_rouge)/2),
+        r = log(mean(revenu)),
+        qk = log(sum(qk_prod)),
+        ql = log(sum(ql_prod)))
+# Department data
+pvpi = pvp %>%
+# pvpi = pvpd %>% 
+    arrange(ndep) %>%
+    mutate(s = log(s_nig), 
+        qi = log(q_blanc + q_rouge), 
+        p = log((p_blanc + p_rouge)/2),
+        r = log(revenu),
+        qki = log(qk_prod),
+        qli = log(ql_prod))
+# Yearly models
+my = list()
+my[[1]] = lm(q ~ s + r + qk + ql, pvpy)
+my[[2]] = lm(p ~ s + r + qk + ql, pvpy)
+# Department models
+mi = list()
+for (i in seq(1, nrow(pvpi), nrow(pvpy))) {
+    x = pvpi[i:(i+nrow(pvpy)-1), ]
+    mi[[(i-1)/6 + 1]] = lm(qi ~ s + r + qki + qli, x)
+}
+# Dataframe of coeffs
+dfy = data.frame(s = NA, r = NA, qki = NA, qli = NA)
+for (i in 1:length(mi)) {
+    dfy = bind_rows(dfy, mi[[i]]$coeff)
+}
+dfy = dfy[-1, ]
+dfy$s[is.na(dfy$s)] = 0
+# Verification
+View(dfy)
+dfy %>% summarise_each(mean)
+dfy %>% summarise_each(var)
+
+############
+# Second try
+############
+list = ls()
+rm(list)
+require(tidyverse)
+pvpd = read.csv("./Donnees_ref/final.csv")
+# Select data
+dn = pvpd %>%
+    filter(s_nig != 0 & 
+        (q_rouge + q_blanc) != 0 &
+        (qk_prod + ql_prod) != 0) %>%
+    group_by(ndep) %>%
+    count() %>% 
+    filter(n == 6) %>%
+    select(ndep)
+pvp = pvpd %>% 
+    filter(ndep %in% dn$ndep) 
+# Yearly data
+pvpy = pvp %>%
+# pvpy = pvpd %>%
+    group_by(annee) %>%
+    summarise(s = log(sum(s_nig)), 
+        q = log(sum(q_blanc) + sum(q_rouge)), 
+        p = log(mean(p_blanc + p_rouge)/2),
+        r = log(mean(revenu)),
+        qk = log(sum(qk_prod) + sum(ql_prod)))
+# Department data
+pvpi = pvp %>%
+# pvpi = pvpd %>% 
+    arrange(ndep) %>%
+    mutate(s = log(s_nig), 
+        qi = log(q_blanc + q_rouge), 
+        p = log((p_blanc + p_rouge)/2),
+        r = log(revenu),
+        qki = log(qk_prod + ql_prod))
+# Yearly models
+my = list()
+my[[1]] = lm(p ~ s + r + qk, pvpy)
+my[[2]] = lm(q ~ s + r + qk, pvpy)
+# Department models
+mi = list()
+for (i in seq(1, nrow(pvpi), nrow(pvpy))) {
+    x = pvpi[i:(i+nrow(pvpy)-1), ]
+    mi[[(i-1)/6 + 1]] = lm(qi ~ s + r + qki, x)
+}
+# Dataframe of coeffs
+dfim = data.frame(s = NA, r = NA, qki = NA, dep = NA)
+dfip = data.frame(s = NA, r = NA, qki = NA, dep = NA)
+for (i in 1:length(mi)) {
+    xm = c(summary(mi[[i]])$coeff[, 1])
+    dfim = bind_rows(dfim, x)
+    xp = as.data.frame(t(summary(mi[[i]])$coeff[, 4]))
+    xp["dep"] = as.character(pvpi$dep[1 + (i-1)*6])
+    dfip = bind_rows(dfip, xp)
+}
+dfim = dfim[-1, ]
+dfip = dfip[-1, ]
+dfim$s[is.na(dfim$s)] = 0
+dfip$s[is.na(dfip$s)] = 0
+# Verification
+dfip %>% 
+    arrange(s + r + qki) %>% 
+    View() # only few significant coefficients
+# Summary
+dfip %>% summarise_each(mean)
+dfip %>% summarise_each(var)
+
+###############################
+# Third try with original coefs
+###############################
+list = ls()
+rm(list)
+require(tidyverse)
+pvpd = read.csv("./Donnees_ref/final.csv")
+# Select data
+dn = pvpd %>%
+    filter(s_nig != 0 & 
+        (q_rouge + q_blanc) != 0 &
+        (qk_prod + ql_prod) != 0) %>%
+    group_by(ndep) %>%
+    count() %>% 
+    filter(n == 6) %>%
+    select(ndep)
+pvp = pvpd %>% 
+    filter(ndep %in% dn$ndep) 
+# Yearly data
+pvpy = pvp %>%
+# pvpy = pvpd %>%
+    group_by(annee) %>%
+    summarise(s = log(sum(s_nig)), 
+        q = log(sum(q_blanc) + sum(q_rouge)), 
+        p = log(mean(p_blanc + p_rouge)/2),
+        r = log(mean(revenu)),
+        qk = log(sum(qk_prod) + sum(ql_prod)))
+# Department data
+pvpi = pvp %>%
+# pvpi = pvpd %>% 
+    arrange(ndep) %>%
+    mutate(s = log(s_nig), 
+        qi = log(q_blanc + q_rouge), 
+        p = log((p_blanc + p_rouge)/2),
+        r = log(revenu),
+        qki = log(qk_prod + ql_prod))
+# Yearly models
+my = list()
+my[[1]] = lm(p ~ qk + r, pvpy)
+my[[2]] = lm(q ~ qk + r, pvpy)
+# Department models
+mi = list()
+for (i in seq(1, nrow(pvpi), nrow(pvpy))) {
+    x = pvpi[i:(i+nrow(pvpy)-1), ]
+    mi[[(i-1)/6 + 1]] = lm(qi ~ qki + r, x)
+}
+# Dataframe of coeffs
+dfim = data.frame(qki = NA, r = NA, dep = NA)
+dfip = data.frame(qki = NA, r = NA, dep = NA)
+for (i in 1:length(mi)) {
+    xm = as.data.frame(t(summary(mi[[i]])$coeff[, 1]))
+    xm["dep"] = as.character(pvpi$dep[1 + (i-1)*6])
+    dfim = bind_rows(dfim, xm)
+    xp = as.data.frame(t(summary(mi[[i]])$coeff[, 4]))
+    xp["dep"] = as.character(pvpi$dep[1 + (i-1)*6])
+    dfip = bind_rows(dfip, xp)
+}
+dfim = dfim[-1, ]
+dfip = dfip[-1, ]
+dfim$s[is.na(dfim$s)] = 0
+dfip$s[is.na(dfip$s)] = 0
+# Verification
+dfip %>% 
+    arrange(qki + r) %>% 
+    View() # only few significant coefficients
+# Summary
+dfip %>% summarise_each(mean)
+dfip %>% summarise_each(var)
+# Coefficients for original model
+# Prix
+pi1 = my[[1]]$coeff[1]
+pi2 = my[[1]]$coeff[2]
+pi3 = my[[1]]$coeff[3]
+# Quantité
+ga1 = my[[2]]$coeff[1]
+ga2 = my[[2]]$coeff[2]
+ga3 = my[[2]]$coeff[3]
+# Estimation
+# Demande
+coefdem = data.frame(
+    alpha = ga1 - ga2*pi1/pi2,
+    beta = ga2/pi2,
+    gamma = ga2*pi3/pi2 - ga3)
+# Offre
+coefofr = data.frame(
+    sai = ga1 - pi1*ga3/pi3,
+    sbi = ga3/pi3,
+    sci = ga2 - ga3*pi2/pi3)
+# Offre par departement
+coefdep = data.frame(ai = NA, bi = NA, ci = NA)
+for (i in 1:nrow(dfim)) {
+    x = data.frame(
+        ai = dfip[i,4] - dfip[i,1]*pi1/pi3,
+        bi = dfip[i,2]/pi3,
+        ci = dfip[i,1] - dfip[i,2]*pi2/pi3
+    )
+    coefdep = bind_rows(coefdep, x)
+}
+coefdep = coefdep[-1, ]
+View(coefdep) # verification
+# Summary
+coefdep %>% summarise_each(mean)
+coefdep %>% summarise_each(sum)
+coefdep %>% summarise_each(var)
+coefofr
+# The results do not correspond
