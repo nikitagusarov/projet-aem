@@ -970,3 +970,4 @@ names(coefdep)
 pvps = left_join(pvpi, coefdep, by = "dep")
 cor(pvps[,c(18, 21)]) # There is dependency (faible) => the equations are not correct ????
 round(cor(pvps[,c(14:21)]), 4)
+plot(pvps[,c(18,21)])
