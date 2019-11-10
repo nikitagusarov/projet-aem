@@ -848,8 +848,8 @@ dn = pvpd %>%
         (qk_prod + ql_prod) != 0) %>%
     group_by(ndep) %>%
     count() %>% 
-    filter(n == 6) %>%
-    select(ndep)
+    filter(n == 6) # %>%
+    # select(ndep)
 pvp = pvpd %>% 
     filter(ndep %in% dn$ndep) 
 # Yearly data
@@ -953,17 +953,6 @@ coefofr = data.frame(
     sbi = ga3/pi3,
     sci = ga2 - ga3*pi2/pi3)
 # Offre par departement
-coefdep = data.frame(ai = NA, bi = NA, ci = NA)
-for (i in 1:nrow(dfim)) {
-    x = data.frame(
-        ai = dfim[i,4] - dfim[i,2]*pi1/pi3,
-        bi = dfim[i,2]/pi3,
-        ci = dfim[i,1] - dfim[i,2]*pi2/pi3
-    )
-    coefdep = bind_rows(coefdep, x)
-}
-coefdep = coefdep[-1, ]
-# Summary
 coefdep %>% summarise_each(mean)
 coefdep %>% summarise_each(sum)
 coefdep %>% summarise_each(var)
@@ -975,3 +964,9 @@ coefdem
 # x = coefdep %>% summarise_each(sum)
 # y = coefofr
 # print(x/y)
+# Link between ci and qki verification
+names(pvpi)
+names(coefdep)
+pvps = left_join(pvpi, coefdep, by = "dep")
+cor(pvps[,c(18, 21)]) # There is dependency (faible) => the equations are not correct ????
+round(cor(pvps[,c(14:21)]), 4)
