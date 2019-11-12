@@ -513,7 +513,7 @@ Plus précisément :
 \end{itemize}
 Nous pouvons réécrire l'équation de l'offre sous la forme :
 \begin{equation}
-    Qo_{i,t} = \sum_{i = 1}^{N} (a_i + b_i Po_{t} + c_i X_{i,t}) = \sum_{i = 1}^{N} a_i + \sum_{i = 1}^{N} b_i Po_{t} + \sum_{i = 1}^{N} c_i X_{i,t}
+    Qo_{i,t} = \sum_{i = 1}^{N} (a_i + b_i Po_{t} + c_i X_{i,t}) = \sum_{i = 1}^{N} a_i + \sum_{i = 1}^{N} b_i Po_{t} + \sum_{i = 1}^{N} (c_i X_{i,t})
 \end{equation}
 Nous obtenons enfin un système de $N + 2$ équations : 
 \begin{align*}
@@ -539,31 +539,45 @@ Ce qui nous donne :
     \alpha_d + \beta_d P_t + \gamma_d Z_t + \epsilon_t = 
         \sum_{i = 1}^{N} a_i + \sum_{i = 1}^{N} b_i P_t + \sum_{i = 1}^{N} c_i X_{i,t} + \sum_{i = 1}^{N} u_{i,t}
 \end{equation}
-D'où on obtient :
+Le problème apparaisse au niveau du terme $\sum_{i = 1}^{N} (c_i X_{i,t})$. Si $cor(c_i X_{i,t}) \neq 0$ on a autant des termes $c_i$ dans notre équation de départ que le nombre des départements étudié $N$. 
+C'est à nous obtiendrons une équation structurelle du type :
 \begin{equation}
     P_t = \frac{\sum_{i = 1}^{N} a_i - \alpha_d}{\beta_d - \sum_{i = 1}^{N} b_i} + 
-        \frac{\sum_{i = 1}^{N} c_i}{\beta_d - \sum_{i = 1}^{N} b_i} X_{i,t} +
+        \frac{\sum_{i = 1}^{N} c_i  X_{i,t}}{\beta_d - \sum_{i = 1}^{N} b_i} +
         \frac{-\gamma_d}{\beta_d - \sum_{i = 1}^{N} b_i} Z_t + 
         \frac{\sum_{i = 1}^{N} u_{i,t} - \epsilon_t}{\beta_d - \sum_{i = 1}^{N} b_i}
+\end{equation}
+Cela nous risque de poser des problèmes lors d'estimation et dérivation des coefficients des équation de départ.
+Quand même, si nous posons que $c_i$ n'est pas corrélé avec $X_{i,t}$ et $cor(c_i X_{i,t}) = 0$, nous pouvons supposer que :
+\begin{equation}
+    \sum_{i = 1}^{N} c_i  X_{i,t} = \frac{1}{N} \sum_{i = 1}^{N} c_i \frac{1}{N} \sum_{i = 1}^{N} X_{i,t}
+\end{equation}
+Ce qui revienne de l'idée que $E(XY) = E(X)E(Y)$ si $cor(X,Y) \neq 0$.
+Dans ce cas, l'équation structurelle s'écrit comme :
+\begin{equation}
+  P_t = \frac{\sum_{i = 1}^{N} a_i - \alpha_d}{\beta_d - \sum_{i = 1}^{N} b_i} + 
+      \frac{\sum_{i = 1}^{N} c_i}{\beta_d - \sum_{i = 1}^{N} b_i} \frac{1}{N} \sum_{i = 1}^{N} X_{i,t} +
+      \frac{-\gamma_d}{\beta_d - \sum_{i = 1}^{N} b_i} Z_t + 
+      \frac{\sum_{i = 1}^{N} u_{i,t} - \epsilon_t}{\beta_d - \sum_{i = 1}^{N} b_i}
 \end{equation}
 Ce qu'on peut réécrire comme :
 \begin{equation}
   P_t = \pi_1 + 
-      \pi_2 X_{i,t} +
+      \pi_2 \frac{1}{N} \sum_{i = 1}^{N} X_{i,t} +
       \pi_3 Z_t + 
       v_t
 \end{equation}
 Respectivement on peut dériver équation structurelle pour $Q$ :
 \begin{multline}
     Q_t = (\alpha_d + \beta_d \frac{\sum_{i = 1}^{N} a_i - \alpha_d}{\beta_d - \sum_{i = 1}^{N} b_i}) + 
-        (\beta_d \frac{\sum_{i = 1}^{N} c_i}{\beta_d - \sum_{i = 1}^{N} b_i}) \sum_{i = 1}^{N} X_{i,t} + \\
+        (\beta_d \frac{\sum_{i = 1}^{N} c_i}{\beta_d - \sum_{i = 1}^{N} b_i}) \frac{1}{N} \sum_{i = 1}^{N} X_{i,t} + \\
         (\gamma_d + \beta_d \frac{-\gamma_d}{\beta_d - \sum_{i = 1}^{N} b_i}) Z_t + 
         (\epsilon_t + \beta_d \frac{\sum_{i = 1}^{N} u_{i,t} - \epsilon_t}{\beta_d - \sum_{i = 1}^{N} b_i})
 \end{multline}
 Ce qui se réécrit sous forme :
 \begin{equation}
   Q_t = \theta_1 + 
-      \theta_2 \sum_{i = 1}^{N} X_{i,t} +
+      \theta_2 \frac{1}{N} \sum_{i = 1}^{N} X_{i,t} +
       \theta_3 Z_t + 
       w_t
 \end{equation}

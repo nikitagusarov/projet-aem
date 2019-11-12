@@ -835,6 +835,8 @@ View(coefdem)
 #########################
 # Fourth try with 2-3 MCO
 #########################
+# cov(c_i,X_i) = 0
+##################
 list = ls()
 rm(list)
 require(tidyverse)
@@ -852,6 +854,8 @@ dn = pvpd %>%
     # select(ndep)
 pvp = pvpd %>% 
     filter(ndep %in% dn$ndep) 
+# Number of departement rest
+n = nrow(dn)
 # Yearly data
 pvpy = pvp %>%
 # pvpy = pvpd %>%
@@ -860,7 +864,7 @@ pvpy = pvp %>%
         q = log(sum(q_blanc) + sum(q_rouge)), 
         p = log(mean(p_blanc + p_rouge)/2),
         r = log(mean(revenu)),
-        qk = log(sum(qk_prod) + sum(ql_prod)))
+        qk = log((sum(qk_prod) + sum(ql_prod))/n))
 # Correlation analysis
 # pairs(pvpy)
 # Department data
@@ -953,17 +957,28 @@ coefofr = data.frame(
     sbi = ga3/pi3,
     sci = ga2 - ga3*pi2/pi3)
 # Offre par departement
+coefdep = data.frame(ai = NA, bi = NA, ci = NA, dep = NA)
+for (i in 1:nrow(dfim)) {
+    x = data.frame(
+        ai = dfim[i,4] - dfim[i,2]*pi1/pi3,
+        bi = dfim[i,2]/pi3,
+        ci = dfim[i,1] - dfim[i,2]*pi2/pi3,
+        dep = as.character(pvpi$dep[1 + (i-1)*6]))
+    coefdep = bind_rows(coefdep, x)
+}
+coefdep = coefdep[-1, ] # clean
+# Summary
 coefdep %>% summarise_each(mean)
-coefdep %>% summarise_each(sum)
+coefdep[,1:3] %>% summarise_each(sum)
 coefdep %>% summarise_each(var)
 View(coefdep) # verification
 coefofr
 coefdem
 # The results do not correspond
 # Finding common coefficient for transition from aggregated to uni (Optional)
-# x = coefdep %>% summarise_each(sum)
-# y = coefofr
-# print(x/y)
+x = coefdep[,1:3] %>% summarise_each(sum)
+y = coefofr
+print(x/y)
 # Link between ci and qki verification
 names(pvpi)
 names(coefdep)
@@ -971,3 +986,264 @@ pvps = left_join(pvpi, coefdep, by = "dep")
 cor(pvps[,c(18, 21)]) # There is dependency (faible) => the equations are not correct ????
 round(cor(pvps[,c(14:21)]), 4)
 plot(pvps[,c(18,21)])
+
+###########################
+# Fifth try, adding surface 
+###########################
+# cov(c_i, X_i) = 0
+###################
+list = ls()
+rm(list)
+require(tidyverse)
+require(AER)
+require(MASS)
+pvpd = read.csv("./Donnees_ref/final.csv")
+# Select data
+dn = pvpd %>%
+    filter(s_nig != 0 & 
+        (q_rouge + q_blanc) != 0 &
+        (qk_prod + ql_prod) != 0) %>%
+    group_by(ndep) %>%
+    count() %>% 
+    filter(n == 6) # %>%
+    # select(ndep)
+pvp = pvpd %>% 
+    filter(ndep %in% dn$ndep) 
+# Number of departement rest
+n = nrow(dn)
+# Yearly data
+pvpy = pvp %>%
+# pvpy = pvpd %>%
+    group_by(annee) %>%
+    summarise(s = log(sum(s_nig)/n), 
+        q = log(sum(q_blanc) + sum(q_rouge)), 
+        p = log(mean(p_blanc + p_rouge)/2),
+        r = log(mean(revenu)),
+        qk = log((sum(qk_prod) + sum(ql_prod))/n))
+# Correlation analysis
+# pairs(pvpy)
+# Department data
+pvpi = pvp %>%
+# pvpi = pvpd %>% 
+    arrange(ndep) %>%
+    mutate(s = log(s_nig), 
+        qi = log(q_blanc + q_rouge), 
+        p = log((p_blanc + p_rouge)/2),
+        r = log(revenu),
+        qki = log(qk_prod + ql_prod))
+# Correlation analysis
+# pvpi %>% 
+#     filter(ndep == 32) %>% 
+#     pairs()
+# (Optional) Reduction to 5 years 
+# pvpy = pvpy %>% 
+#     filter(annee != 2012)
+# Testing
+lm(q ~ p, data = pvpy) %>% 
+    summary() # q not depending on p significatively
+lm(q ~ p + r, data = pvpy) %>% 
+    summary() # dependecy on 15% (there exists link for demand)
+rlm(q ~ p + r, data = pvpy) %>% 
+    summary() # robust estimator gives significative results
+lm(q ~ p + qk + s, data = pvpy) %>% 
+    summary() # non-dependency (no link for offer)
+rlm(q ~ p + qk + s, data = pvpy) %>% 
+    summary() # non-dependency even for a robust estimator
+# Yearly models
+modeldem = ivreg(q ~ p + r + s | . - p + qk, data = pvpy)
+summary(modeldem)
+modelofr = ivreg(q ~ p + qk + s | . - p + r, data = pvpy)
+summary(modelofr)
+# 2SLS yearly model
+summary(lm(q ~ p + r, pvpy))
+############################################
+# Robust estimation for structural equations
+# Yearly models
+my = list()
+my[[1]] = rlm(p ~ qk + r + s, pvpy)
+my[[2]] = rlm(q ~ qk + r + s, pvpy)
+# Department models
+mi = list()
+for (i in seq(1, nrow(pvpi), nrow(pvpy))) {
+    x = pvpi[i:(i+nrow(pvpy)-1), ]
+    mi[[(i-1)/6 + 1]] = rlm(qi ~ qki + r + s, x)
+}
+# Dataframe of coeffs
+dfim = data.frame(qki = NA, r = NA, s = NA, dep = NA)
+dfit = data.frame(qki = NA, r = NA, s = NA, dep = NA)
+for (i in 1:length(mi)) {
+    xm = as.data.frame(t(summary(mi[[i]])$coeff[, 1]))
+    xm["dep"] = as.character(pvpi$dep[1 + (i-1)*6])
+    dfim = bind_rows(dfim, xm)
+    xt = as.data.frame(t(summary(mi[[i]])$coeff[, 3]))
+    xt["dep"] = as.character(pvpi$dep[1 + (i-1)*6])
+    dfit = bind_rows(dfit, xt)
+}
+# Clearing
+dfim = dfim[-1, ]
+dfit = dfit[-1, ]
+dfim$s[is.na(dfim$s)] = 0
+dfit$s[is.na(dfit$s)] = 0
+# Verification
+dfit %>% 
+    arrange(qki + r + s) %>% 
+    View() # only few significant coefficients
+# Summary
+dfit %>% summarise_each(mean)
+dfit %>% summarise_each(var)
+# Coefficients for original model
+# Prix
+pi1 = my[[1]]$coeff[1]
+pi2 = my[[1]]$coeff[2]
+pi3 = my[[1]]$coeff[3]
+pi4 = my[[1]]$coeff[4]
+# Quantité
+ga1 = my[[2]]$coeff[1]
+ga2 = my[[2]]$coeff[2]
+ga3 = my[[2]]$coeff[3]
+ga4 = my[[2]]$coeff[4]
+# Estimation
+#################
+# To verify later
+#################
+# Demande
+coefdem = data.frame(
+    alpha = ga1 - ga2*pi1/pi2,
+    beta = ga2/pi2,
+    gamma = ga2*pi3/pi2 - ga3)
+# Offre
+coefofr = data.frame(
+    sai = ga1 - pi1*ga3/pi3,
+    sbi = ga3/pi3,
+    sc1i = ga2 - pi2*ga3/pi3,
+    sc2i = ga4 - pi4*ga3/pi3)
+# Offre par departement
+coefdep = data.frame(ai = NA, bi = NA, c1i = NA, c2i = NA, dep = NA)
+for (i in 1:nrow(dfim)) {
+    x = data.frame(
+        ai = dfim[i,5] - dfim[i,2]*pi1/pi3,
+        bi = dfim[i,2]/pi3,
+        c1i = dfim[i,1] - dfim[i,2]*pi2/pi3,
+        c2i = dfim[i,3] - dfim[i,2]*pi4/pi3,
+        dep = as.character(pvpi$dep[1 + (i-1)*6]))
+    coefdep = bind_rows(coefdep, x)
+}
+coefdep = coefdep[-1, ] # clean
+# Summary
+coefdep %>% summarise_each(mean)
+coefdep[,1:4] %>% summarise_each(sum)
+coefdep %>% summarise_each(var)
+View(coefdep) # verification
+coefofr
+coefdem
+# The results do not correspond
+# Finding common coefficient for transition from aggregated to uni (Optional)
+x = coefdep[,1:4] %>% summarise_each(sum)
+y = coefofr
+print(x/y)
+# Link between ci and qki verification
+names(pvpi)
+names(coefdep)
+pvps = left_join(pvpi, coefdep, by = "dep")
+cor(pvps[,c(18, 21)]) # There is dependency (faible) => the equations are not correct ????
+round(cor(pvps[,c(14:21)]), 4)
+plot(pvps[,c(18,21)])
+pairs(pvpi)
+
+
+
+###########################
+# Sixth try, adding surface 
+###########################
+# cov(c_i, X_i) != 0
+####################
+list = ls()
+rm(list)
+require(tidyverse)
+require(AER)
+require(MASS)
+pvpd = read.csv("./Donnees_ref/final.csv")
+# Select data
+dn = pvpd %>%
+    filter(s_nig != 0 & 
+        (q_rouge + q_blanc) != 0 &
+        (qk_prod + ql_prod) != 0) %>%
+    group_by(ndep) %>%
+    count() %>% 
+    filter(n == 6) # %>%
+    # select(ndep)
+pvp = pvpd %>% 
+    filter(ndep %in% dn$ndep) 
+# Number of departement rest
+n = nrow(dn)
+# Yearly data
+pvpy = pvp %>%
+# pvpy = pvpd %>%
+    group_by(annee) %>%
+    summarise(s = log(sum(s_nig)/n), 
+        q = log(sum(q_blanc) + sum(q_rouge)), 
+        p = log(mean(p_blanc + p_rouge)/2),
+        r = log(mean(revenu)),
+        qk = log((sum(qk_prod) + sum(ql_prod))/n))
+# Correlation analysis
+# pairs(pvpy)
+# Department data
+pvpi = pvp %>%
+# pvpi = pvpd %>% 
+    arrange(ndep) %>%
+    mutate(s = log(s_nig), 
+        qi = log(q_blanc + q_rouge), 
+        p = log((p_blanc + p_rouge)/2),
+        r = log(revenu),
+        qki = log(qk_prod + ql_prod),
+        annee = annee)
+# Regression par année
+require(stargazer)
+rlm(qi ~ p + s + qki, pvpi) %>% summary() # stargazer(text = "latex")
+# rlm(qi ~ p + s + qki, pvpi) %>% plot()
+require(Matrix)
+# Create blocks
+lst = list()
+for(i in 1:length(unique(pvpi$ndep))) {
+    lst[[i]] = pvpi %>% 
+        filter(ndep == unique(pvpi$ndep[i])) %>% 
+        arrange(annee) %>%
+        dplyr::select(s, qki) %>% as.matrix()
+}
+diag = bdiag(lst)
+# Partie fixe
+X = pvpi %>% 
+    arrange(ndep) %>%
+    dplyr::select(p, r) %>% as.matrix()
+# Variable dependante
+Y = pvpi %>% 
+    arrange(ndep, annee) %>%
+    dplyr::select(qi) %>% as.matrix()
+# Concatenation
+XX = as.data.frame(as.matrix(cbind(X, diag)))
+# X
+x = data.frame(matrix(ncol = ncol(XX), nrow = 0))
+names(x) = names(XX)
+for (i in 1:6) {
+    x[i,] = colSums(XX[seq(i, nrow(XX), by = 6),])
+}
+XXX = rbind(XX, x) %>% as.data.frame()
+# Y
+y = data.frame(matrix(ncol = ncol(Y), nrow = 0))
+names(y) = names(Y)
+for (i in 1:6) {
+    y[i,] = mean(Y[seq(i, nrow(Y), by = 6),])
+}
+y = y %>% as.data.frame()
+names(y) = names(Y) = "qi"
+YYY = rbind(Y, y) %>% data.frame()
+class(YYY)
+class(XXX)
+# Model
+dim(YYY)
+dim(XXX)
+Y = YYY %>% as.matrix()
+X = XXX %>% as.matrix()
+model = lm(YYY ~ XXX)
+mod = lm(Y ~ X[,])
+stargazer(mod)
