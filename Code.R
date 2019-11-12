@@ -1244,6 +1244,9 @@ dim(YYY)
 dim(XXX)
 Y = YYY %>% as.matrix()
 X = XXX %>% as.matrix()
-model = lm(YYY ~ XXX)
-mod = lm(Y ~ X[,])
+Y = cbind(Y, X[,1]) %>%
+    as.matrix()
+Z = X[,-1]
+modp = lm(Y[,2] ~ Z)
+modq = lm(Y[,1] ~ Z)
 stargazer(mod)

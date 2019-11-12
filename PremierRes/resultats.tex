@@ -254,7 +254,10 @@ F Statistic & 1,477.087$^{***}$ (df = 3; 410) \\
 \end{center}
 \FloatBarrier
 \newpage
-Les estimations pour le modèle sous supposition que $cor(c_i, X_i) \neq 0$ :
+\section*{Les estimations complexes}
+Les estimations pour le modèle sous supposition que $cor(c_i, X_i) \neq 0$ sont présenté dans le tableau si-dessous. 
+Les noms des départements ne figurent pas dans le tableau, mais nous allons les identifier dans les commentaires. 
+Dans ce tableau les coefficients décrivant un département sont grouppés (ex : V3 est s pour le département 1 et V4 est qk pour le même département).
 \begin{multicols}{2}
 \FloatBarrier
 \begin{center}
@@ -651,5 +654,41 @@ F Statistic & 54.908$^{***}$ (df = 140; 279) \\
 \end{tabular}
 \end{center}
 \FloatBarrier
+Notre échantillon est composé de 420 observations.
+Les noms des département ne sont pas directement mentionnés dans le tableau, mais nous pouvons les mentionner dans le commentaires.
+\par
+Nous pouvons émettre plusieurs constats :
+\begin{itemize}
+    \item En Ardèche, si la quantité de pesticides  augmente de 1\% la quantité produite de vins non IG augmente de 0,22\% (significatif au seuil de 5\%)
+    \item En Ariège, si la quantité de pesticides de vignes augmente de 1\% la quantité produite de vin non IG baisse de 0,255\% (significatif au seuil de 1\%)
+    \item En Aube, si la quantité de pesticides de vignes augmente de 1\% la quantité produite de vin non IG baisse de 0,248\% (significatif au seuil de 1\%)
+    \item En Aude, si la quantité de pesticides augmente de 1\% la quantité produite de vin non IG augmente de 0,316\%
+    \item En Aveyron, si la surface cultivée de vignes augmente de 1\%, la quantité produite de vin non IG augmente de 2,23\%
+    \item En Aveyron, si la quantité de pesticides utilisée augmente de 1\%, la quantité produite de vin non IG augmente de 0,34\%
+    \item En Charente-Maritime, si la quantité de pesticides utilisée augmente de 1\%, la quantité produite de vin non IG diminue de 0,24\%
+    \item En Cote d’or, si la surface cultivée de vignes augmente de 1\%, la quantité produite de vin non IG diminue de 0,99\%
+    \item Dans le Haut-Rhin, si la quantité de pesticides utilisée augmente de 1\%, la quantité produite de vin non IG diminue de 0,5\%
+    \item En Haute-Corse, si la quantité de pesticides utilisée augmente de 1\%, la quantité produite de vin non IG augmente de 0,27\%
+    \item En Gironde, si la quantité de pesticides utilisée augmente de 1\%, la quantité produite de vin non IG augmente de 0,21\%
+    \item En Indre-et-Loire, si la surface cultivée de vignes augmente de 1\%, la quantité produite de vin non IG diminue de 0.38\%
+    \item En Indre-et-Loire, si la quantité de pesticides augmente de 1\%, la quantité produite de vin non IG augmente de 0,21\%
+    \item En Isère, si la quantité de pesticides augmente de 1\%, la quantité produite de vin non IG augmente de 0,15\%
+    \item Dans les Landes, si la surface cultivée de augmente de 1\%, la quantité produite de vin non IG augmente de 0,48\%
+    \item Dans les Landes, si la quantité de pesticides augmente de 1\%, la quantité produite de vin non IG augmente de 0,35\%
+    \item En Loiret, si la quantité de pesticides augmente de 1\%, la quantité produite de vin non IG augmente de 0,28\%
+    \item En Haute-Garonne, si la surface cultivée de augmente de 1\%, la quantité produite de vin non IG augmente de 1,64\%
+    \item En Haute-Garonne, si la quantité de pesticides augmente de 1\%, la quantité produite de vin non IG diminue de 0,75\%
+    \item En Maine-et-Loire, si la surface cultivée de augmente de 1\%, la quantité produite de vin non IG diminue de 0,27\%
+    \item En Maine-et-Loire, si la quantité de pesticides augmente de 1\%, la quantité produite de vin non IG diminue de 0,15\%
+    \item En Marne, si la surface cultivée de augmente de 1\%, la quantité produite de vin non IG diminue de 0,43\%
+    \item En Haute-Loire, si la quantité de pesticides augmente de 1\%, la quantité produite de vin non IG diminue de 0,17\%
+    \item En Mayenne, si la quantité de pesticides augmente de 1\%, la quantité produite de vin non IG diminue de 0,43\%
+    \item En Nièvre, si la quantité de pesticides augmente de 1\%, la quantité produite de vin non IG augmente 0,172\%
+    \item En Haute-Saône, si la quantité de pesticides augmente de 1\%, la quantité produite de vin non IG augmente de 0,28\%
+    \item  Dans les Deux-Sèvres, si la quantité de pesticides augmente de 1\%, la quantité produite de vin non IG diminue de 1,06\%
+    \item Si tous les coefficients sont nuls alors le log de la quantité de vin produit sans indication géographique est de 8.35.
+\end{itemize}
+Le modèle estimé ici est globalement significatif.
+Les R2 sont très importants ce qui signale un problème.
 
 \end{document}
