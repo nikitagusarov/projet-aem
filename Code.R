@@ -192,12 +192,13 @@ vxp.c = na.omit(vxp)
 summary(vxp)
 unique(vxp$conditionnement)
 class(vxp$quantite_produit)
-# Problem !!!!!
-<<<<<<< HEAD
->>>>>>> b218823e9f4e9eb4d25e1e3b715561b5567e7f04
-=======
 
-# Plots
+
+
+
+#####################################
+# Plots and graphics for presentation
+#####################################
 png(filename="Graphiques/SurfaceVinBox.png", width = 600, height = 600)
 vin %>% 
     ggplot(aes(y = surface, color = as.factor(annee))) + 
@@ -227,9 +228,6 @@ vin %>%
     xlab("Surface des vignes") +
     ylab("Quantité de vin produit")
 dev.off()
-<<<<<<< HEAD
->>>>>>> 980b4e792e80f4cb0faf3075959e497082a626ea
-=======
 
 png(filename="Graphiques/QvinQpest.png", width = 600, height = 600)
 vxp %>% filter(quantite_produit < 1000000) %>% 
@@ -340,8 +338,10 @@ dev.off()
 dim(vin) # 869*8
 dim(pesticides) # 134025*10
 dim(vxp) # 114730*16
->>>>>>> c184c3b37128495fb06f51a1e862196ccc299a0e
 
+################
+# Arnaud section
+################
 #Construction de la base de donn�es sur les prix du vin
 #Donn�es de 2000 � 2016
 vin_blanc<-read.csv2("Donnees/cotation-vin-blanc.csv", sep=",", skip=3, header=T)
@@ -367,29 +367,31 @@ vin_rouge_blanc %>%
   select(X,X.1,Vin.AOP.1,Vin.IGP.1,Vin.sans.IG.avec.mention.de.c�pages.1,Vin.sans.IG.sans.mention.de.c�pages.1)->cotation_vin_blanc
 
 
+
+######################################
+# Data recreation with prix and revenu
+######################################
 list = ls()
 rm(list)
 vin = read.csv("./Donnees_ref/vin_final.csv")
 pesticides = read.csv("./Donnees_ref/pesticides_final.csv")
-
+# Description
 require(arsenal)
 t1 = tableby( ~ s_total + s_vin_simple + q_blanc + q_rouge + q_total, vin)
 summary(t1, text = "latex")
 t2 = tableby(conditionnement ~ quantite_produit + mean.dose, pesticides)
 summary(t2, text = "latex")
-
+# prix_revenu #
 require(openxlsx)
 prix = read.xlsx("./Donnees_ref/prix_vin_revenu.xlsx")
-summary(prix)
 prix2 = prix[,c(2,9,11,13)]
 write.csv(prix2, file = "./Donnees_ref/prix_revenu.csv")
-
+# PrixETvin #
 list = ls()
 rm(list)
 prix = read.csv("./Donnees_ref/prix_revenu.csv")
 vin = read.csv("./Donnees_ref/vin_final.csv")
 pesticides = read.csv("./Donnees_ref/pesticides_final.csv")
-
 require(tidyverse)
 names(vin)
 names(prix)[2] = "annee"
@@ -419,7 +421,6 @@ prixvin %>%
         mean(prix_vin_blanc_sans_IG),
         mean(prix_vin_rouge_sans_IG)) %>%
     View()
-
 pv1 = prixvin %>% 
     select(annee, ndep = number, 
         dep = departement.y,
@@ -430,7 +431,7 @@ pv1 = prixvin %>%
         p_rouge = prix_vin_rouge_sans_IG,
         revenu = revenu.déflaté)
 write.csv(pv1, file = "./Donnees_ref/prixETvin.csv")
-
+# pest #
 list = ls()
 rm(list)
 pesticides = read.csv("./Donnees_ref/pesticides_final.csv")
@@ -442,21 +443,19 @@ pest = pesticides %>%
         q_prod = quantite_produit,
         cond = conditionnement)
 write.csv(pest, file = "./Donnees_ref/pest.csv")
-
+# pvp1 #
 list = ls()
 rm(list)
 pest = read.csv("./Donnees_ref/pest.csv")
 pv = read.csv("./Donnees_ref/prixETvin.csv")
-
 pvp = left_join(pv, pest, by = c("annee", "ndep"))
 View(pvp)
 names(pvp)
 pvp1 = pvp[,-c(1,13)]
 write.csv(pvp1, file = "./Donnees_ref/pvp1.csv")
-
 pvp1 = pvp1 %>% na.omit()
 write.csv(pvp1, file = "./Donnees_ref/pvp1.csv")
-
+# prefinal #
 list = ls()
 rm(list)
 pvp = read.csv("./Donnees_ref/pvp1.csv")
@@ -474,7 +473,7 @@ pvpx = pvp %>%
         revenu = mean(revenu),
         qk_prod = sum(qk_prod), ql_prod = sum(ql_prod))
 write.csv(pvpx, file = "./Donnees_ref/prefinal.csv")    
-
+# final #
 list = ls()
 rm(list)
 pvp = read.csv("./Donnees_ref/prefinal.csv")
@@ -492,9 +491,14 @@ pvpy = filter(pvpx, annee >= 2012)
 names(pvpy)
 write.csv(pvpy[,-1], file = "./Donnees_ref/final.csv", row.names = FALSE)
 
+
+##############
+# StatsDesc P1
+##############
 list = ls()
 rm(list)
 pvp = read.csv("./Donnees_ref/final.csv")
+require(arsenal) 
 names(pvp)
 pvp[, -c(2:3)] %>%  
     cor() %>% View()
@@ -513,8 +517,6 @@ x =
 x[, -c(1:2)] %>%
     cor() %>% View()
     xtable(type = "latex")
-
-require(arsenal) 
 names(pvp)
 mycontrols = 
     tableby.control(test = FALSE, total = FALSE,
@@ -537,11 +539,18 @@ tn = tableby( ~ s_nig + s_total +
     control = mycontrols, digits = 2) %>%
     summary(text = "latex")
 
+
+
+###########################
+# Statistiques descriptives
+###########################
 list = ls()
 rm(list)
 require(tidyverse)
-pvp = read.csv("./Donnees_ref/final.csv")
 require(xtable)
+require(stargazer)
+pvp = read.csv("./Donnees_ref/final.csv")
+# Analyses
 ta = pvp %>% 
     group_by(annee) %>%
     summarise_each(mean) %>%
@@ -552,7 +561,6 @@ td = pvp %>%
         q_total, qk_prod, ql_prod) %>% 
     summarise_each(mean) %>%
     xtable(type = "latex")
-
 pvpx = pvp %>% 
     filter(annee > 2012) %>% 
     group_by(annee) %>%
@@ -562,7 +570,6 @@ pvpx = pvp %>%
         r = log(mean(revenu)),
         qk = log(sum(qk_prod)),
         ql = log(sum(ql_prod)))
-require(xtable)
 pvpx %>% 
     cor() %>%
     xtable(type = "latex") 
@@ -575,12 +582,9 @@ pvpx = pvp %>%
         qk = log(qk_prod + ql_prod),
         t = annee)
 model = lm(p ~ s + r + qk + ql, data = pvpx)
-require(stargazer)
 stargazer(model, type="latex")
-
 pvp %>% group_by(dep) %>% 
     summarise_each()
-
 pvpx = pvp %>% 
     #filter(annee > 2012) %>% 
     group_by(annee) %>%
@@ -590,10 +594,11 @@ pvpx = pvp %>%
         r = log(mean(revenu)),
         qk = log(sum(qk_prod)),
         ql = log(sum(ql_prod)))
-require(xtable)
 pvpx %>% 
     summarise_each(var) %>%
     xtable(type = "latex") 
+
+
 
 ###########
 # First try
@@ -654,6 +659,8 @@ dfy$s[is.na(dfy$s)] = 0
 View(dfy)
 dfy %>% summarise_each(mean)
 dfy %>% summarise_each(var)
+
+
 
 ############
 # Second try
@@ -722,6 +729,8 @@ dfip %>%
 # Summary
 dfip %>% summarise_each(mean)
 dfip %>% summarise_each(var)
+
+
 
 ###############################
 # Third try with original coefs
@@ -1151,7 +1160,6 @@ plot(pvps[,c(18,21)])
 pairs(pvpi)
 
 
-
 ###########################
 # Sixth try, adding surface 
 ###########################
@@ -1199,7 +1207,7 @@ pvpi = pvp %>%
         annee = annee)
 # Regression par année
 require(stargazer)
-rlm(qi ~ p + s + qki, pvpi) %>% summary() # stargazer(text = "latex")
+# rlm(qi ~ p + s + qki, pvpi) %>% summary() # stargazer(text = "latex")
 # rlm(qi ~ p + s + qki, pvpi) %>% plot()
 require(Matrix)
 # Create blocks
@@ -1208,13 +1216,16 @@ for(i in 1:length(unique(pvpi$ndep))) {
     lst[[i]] = pvpi %>% 
         filter(ndep == unique(pvpi$ndep[i])) %>% 
         arrange(annee) %>%
-        dplyr::select(s, qki) %>% as.matrix()
+        dplyr::select(s, qki) %>% 
+        mutate(Int = 1) %>%
+        as.matrix()
 }
 diag = bdiag(lst)
 # Partie fixe
 X = pvpi %>% 
     arrange(ndep) %>%
-    dplyr::select(p, r) %>% as.matrix()
+    dplyr::select(p, r) %>%
+    as.matrix()
 # Variable dependante
 Y = pvpi %>% 
     arrange(ndep, annee) %>%
@@ -1222,21 +1233,32 @@ Y = pvpi %>%
 # Concatenation
 XX = as.data.frame(as.matrix(cbind(X, diag)))
 # X
+# X aggregated offer
 x = data.frame(matrix(ncol = ncol(XX), nrow = 0))
 names(x) = names(XX)
 for (i in 1:6) {
     x[i,] = colSums(XX[seq(i, nrow(XX), by = 6),])
 }
-XXX = rbind(XX, x) %>% as.data.frame()
+# X aggregated demand
+xx = data.frame(matrix(ncol = ncol(XX), nrow = 0))
+names(xx) = names(XX)
+for (i in 1:6) {
+    xx[i,2:ncol(xx)] = colSums(XX[seq(i, nrow(XX), by = 6), 2:ncol(XX)])
+    xx[i,1:2] = XX[i, 1:2]
+}
+# X combination
+XXX = rbind(XX, x, xx) %>% as.data.frame()
+XXX[7:nrow(XXX), 2] = 0
 # Y
+# Y aggregated offer and demand part
 y = data.frame(matrix(ncol = ncol(Y), nrow = 0))
 names(y) = names(Y)
 for (i in 1:6) {
-    y[i,] = mean(Y[seq(i, nrow(Y), by = 6),])
+    y[i,] = colSums(Y[seq(i, nrow(Y), by = 6),])
 }
 y = y %>% as.data.frame()
 names(y) = names(Y) = "qi"
-YYY = rbind(Y, y) %>% data.frame()
+YYY = rbind(Y, y, y) %>% data.frame()
 class(YYY)
 class(XXX)
 # Model
@@ -1244,9 +1266,75 @@ dim(YYY)
 dim(XXX)
 Y = YYY %>% as.matrix()
 X = XXX %>% as.matrix()
-Y = cbind(Y, X[,1]) %>%
-    as.matrix()
-Z = X[,-1]
-modp = lm(Y[,2] ~ Z)
-modq = lm(Y[,1] ~ Z)
-stargazer(mod)
+# Y = cbind(Y, X[,1]) %>%
+#     as.matrix()
+# Z = X[,-1]
+# modp = lm(Y[,2] ~ Z)
+# modq = lm(Y[,1] ~ Z)
+# stargazer(mod)
+lm(Y ~ X) %>% summary()
+
+
+
+#############################
+# Eighth try, departement dem 
+#############################
+list = ls()
+rm(list)
+# Load packages
+require(tidyverse)
+require(AER)
+require(Matrix)
+require(MASS)
+require(stargazer)
+# Read data
+pvpd = read.csv("./Donnees_ref/final.csv")
+# Select data
+dn = pvpd %>%
+#     filter(s_nig != 0 & 
+#         (q_rouge + q_blanc) != 0 &
+#         (qk_prod + ql_prod) != 0) %>%
+    group_by(ndep) %>%
+    count() %>% 
+    filter(n == 6) # %>%
+    # select(ndep)
+pvp = pvpd %>% 
+    filter(ndep %in% dn$ndep) 
+# Number of departement rest
+n = nrow(dn)
+# Yearly data
+# pvpy = pvp %>%
+# pvpy = pvpd %>%
+#     group_by(annee) %>%
+#     summarise(s = log(sum(s_nig)/n), 
+#         q = log(sum(q_blanc) + sum(q_rouge)), 
+#         p = log(mean(p_blanc + p_rouge)/2),
+#         r = log(mean(revenu)),
+#         qk = log((sum(qk_prod) + sum(ql_prod))/n))
+# Correlation analysis
+# pvpd %>% dplyr::select(ndep, dep) %>% View() # The ndep and dep do not correspond
+# pairs(pvpy)
+# Department data
+pvpi = pvp %>%
+# pvpi = pvpd %>% 
+    arrange(ndep) %>%
+    mutate(s = log(s_nig + 0.001), 
+        qi = log(q_blanc + q_rouge + 0.001), 
+        p = log((p_blanc + p_rouge)/2),
+        r = log(revenu),
+        qki = log(qk_prod + ql_prod + 0.001),
+        t = as.integer(as.factor(annee)))
+# Regression par année
+# rlm(qi ~ p + s + qki, pvpi) %>% summary() # stargazer(text = "latex")
+# rlm(qi ~ p + s + qki, pvpi) %>% plot()
+mod1 = lm(qi ~ s + r + qki, pvpi)
+    summary(mod1)
+v1 = mod1$residuals
+mod2 = lm(p ~ s + r + qki, pvpi)
+    summary(mod2)
+v2 = mod2$residuals
+# Adding res to database
+pvpi = pvpi %>% 
+    mutate(v1 = v1, v2 = v2)
+# Correlation
+round(cor(pvpi[,14:ncol(pvpi)]),4)
