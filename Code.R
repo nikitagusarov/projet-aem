@@ -1338,3 +1338,121 @@ pvpi = pvpi %>%
     mutate(v1 = v1, v2 = v2)
 # Correlation
 round(cor(pvpi[,14:ncol(pvpi)]),4)
+
+
+##########################
+# Analyse de la bdd finale
+##########################
+require(tidyverse)
+require(NMF)
+# Loading data
+data = read.csv("./Donnees/Base-de-donnees-indice-prix.csv")
+# names(data)
+# Arrange
+dn = data %>%
+    filter(s_vin_simple != 0 & 
+        (q_rouge + q_blanc) != 0 &
+        (qk_prod + ql_prod) != 0 &
+        IP != 0) %>%
+    na.omit() %>%
+    group_by(ndep) %>%
+    count() %>% 
+    filter(n == 5) # %>%
+    # select(ndep)
+datax = data %>% 
+    filter(ndep %in% dn$ndep) 
+datai = datax %>%
+    arrange(ndep) %>%
+    mutate(si = log(s_vin_simple + 0.001), 
+        qi = log(q_blanc + q_rouge + 0.001), 
+        ipi = log(IP),
+        ri = log(revenu.déflaté),
+        q_ki = log(qk_prod + ql_prod + 0.001),
+        t = as.integer(as.factor(annee))) %>%
+    dplyr::select(ndep, qi, ipi, si, ri, ki = q_ki, t)
+# Analysis part
+# Q et P
+datai %>% 
+    ggplot(aes(qi, ipi, col = as.factor(ndep))) +
+    geom_point() + geom_smooth(method = "lm")
+    # La pente est unique, effets fixes departement
+datai %>% 
+    ggplot(aes(qi, ipi, col = as.factor(t))) +
+    geom_point() + geom_smooth(method = "lm")
+# Q et R
+datai %>% 
+    ggplot(aes(qi, ri, col = as.factor(ndep))) +
+    geom_point() + geom_smooth(method = "lm")
+    # L'effet est présque 0
+datai %>% 
+    ggplot(aes(qi, ri, col = as.factor(t))) +
+    geom_point() + geom_smooth(method = "lm")
+# Q et S
+datai %>% 
+    ggplot(aes(qi, si, col = as.factor(ndep))) +
+    geom_point() + geom_smooth(method = "lm")
+datai %>% 
+    ggplot(aes(qi, si, col = as.factor(t))) +
+    geom_point() + geom_smooth(method = "lm")
+    # La pente obtenue par année est presque identique à celle obtenu pour la moyenne de départements
+# Q et K
+datai %>% 
+    ggplot(aes(qi, ki, col = as.factor(ndep))) +
+    geom_point() + geom_smooth(method = "lm")
+datai %>% 
+    ggplot(aes(qi, ki, col = as.factor(t))) +
+    geom_point() + geom_smooth(method = "lm")
+# Correlation
+cor(datai[,2:ncol(datai)])
+# Reorganisation
+datai$ndep = as.factor(datai$ndep)
+datay = cbind(datai, model.matrix( ~ 0 + ndep, datai)) %>% 
+    select(-ndep #, 
+    #    -t, -si
+    )
+names(datay)
+# Model
+datayp = datay %>% 
+    select(-qi)
+datayq = datay %>% 
+    select(-ipi)
+# Modeles
+olsp = lm(ipi ~ 0 + ., datayp)
+olsq = lm(qi ~ 0 + ., datay)
+# summary(olsp)
+# Regressors names
+varX = datayp %>%
+    select(-ipi, -si, -ki) %>%
+    names() # exclusion of vars not in dem equation
+varY = datayq %>%
+    select(-qi, -ri, -t) %>%
+    names() # exclusion of vars not in offer eq
+var = datay %>%
+    select(-qi, -ipi) %>%
+    names() # full index vars except edogenous
+# Coeffs calculus
+P = summary(olsp)$coef[,1]
+S = summary(olsq)$coef[,1]
+B = P/S # VOID
+for (i in 1:length(P)) {
+    if (i %in% 5:length(P)) {
+        B[i] = P[i]/S[i]
+    } else {
+        B[i] = 
+    }
+}
+head(datayp[,"ipi"])
+
+ols = lm(qi ~ ipi + si + ri + q_ki, datai)
+summary(ols)
+ols1 = lm(qi ~ si + ri + q_ki, datai)
+ols2 = lm(ipi ~ si + ri + q_ki, datai)
+summary(ols1)
+summary(ols2)
+require(AER)
+olsd = lm(qi ~ ipi + ri, datai)
+olso = lm(qi ~ ipi + si + q_ki, datai)
+ivqd = ivreg(qi ~ ipi + ri | ipi + ri + si + q_ki, data = datai)
+summary(ivqd)
+ivqo = ivreg(qi ~ ipi + si + q_ki | ipi + ri, data = datai)
+summary(ivqo)
