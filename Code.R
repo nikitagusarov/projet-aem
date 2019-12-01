@@ -1344,7 +1344,7 @@ round(cor(pvpi[,14:ncol(pvpi)]),4)
 # Analyse de la bdd finale
 ##########################
 require(tidyverse)
-require(NMF)
+# require(NMF)
 # Loading data
 data = read.csv("./Donnees/Base-de-donnees-indice-prix.csv")
 # names(data)
@@ -1361,16 +1361,33 @@ dn = data %>%
     # select(ndep)
 datax = data %>% 
     filter(ndep %in% dn$ndep) 
+datay = datax %>% 
+    filter(annee == 2012) %>%
+    mutate(refqki = qk_prod + ql_prod) %>% 
+    select(ndep, refqki) 
+datax = left_join(datax, datay)
+datax = datax %>%
+    mutate(IQK = (qk_prod + ql_prod)/refqki)
 datai = datax %>%
     arrange(ndep) %>%
     mutate(si = log(s_vin_simple + 0.001), 
         qi = log(q_blanc + q_rouge + 0.001), 
         ipi = log(IP),
         ri = log(revenu.déflaté),
-        q_ki = log(qk_prod + ql_prod + 0.001),
+        iki = log(IQK),
         t = as.integer(as.factor(annee))) %>%
-    dplyr::select(ndep, qi, ipi, si, ri, ki = q_ki, t)
-# Analysis part
+    dplyr::select(ndep, qi, ipi, si, ri, iki, t)
+datam = datai %>%
+    group_by(ndep) %>%
+    mutate(mqi = mean(qi),
+        msi = mean(si),
+        mri = mean(ri)) %>%
+    mutate(si = si-msi,
+        qi = qi-mqi,
+        ri = ri-mri) %>%
+    dplyr::select(ndep, qi, ipi, si, ri, iki, t)
+datai = datam
+# Analysis part 
 # Q et P
 datai %>% 
     ggplot(aes(qi, ipi, col = as.factor(ndep))) +
@@ -1397,13 +1414,71 @@ datai %>%
     # La pente obtenue par année est presque identique à celle obtenu pour la moyenne de départements
 # Q et K
 datai %>% 
-    ggplot(aes(qi, ki, col = as.factor(ndep))) +
+    ggplot(aes(qi, iki, col = as.factor(ndep))) +
     geom_point() + geom_smooth(method = "lm")
 datai %>% 
-    ggplot(aes(qi, ki, col = as.factor(t))) +
+    ggplot(aes(qi, iki, col = as.factor(t))) +
+    geom_point() + geom_smooth(method = "lm")
+# Full data data plots
+datai %>% 
+    ggplot(aes(qi, ipi)) +
+    geom_point() + geom_smooth(method = "lm")
+datai %>% 
+    ggplot(aes(qi, ri)) +
+    geom_point() + geom_smooth(method = "lm")
+datai %>% 
+    ggplot(aes(qi, si)) +
+    geom_point() + geom_smooth(method = "lm")
+datai %>% 
+    ggplot(aes(qi, iki)) +
     geom_point() + geom_smooth(method = "lm")
 # Correlation
-cor(datai[,2:ncol(datai)])
+require(stargazer)
+require(xtable)
+xtable(cor(datai[,2:ncol(datai)]))
+# Stats desc
+xtable(summary(datai))
+require(arsenal)
+summary(tableby(~., data = datai), text ="latex")
+# Scructural
+ols1 = lm(qi ~ si + iki + ri, data = datai)
+stargazer(ols1)
+ols2 = lm(ipi ~ si + iki + ri, data = datai)
+stargazer(ols1, ols2)
+# IV
+require(AER)
+iv = ivreg(qi ~ ipi + si + iki | - ipi + ri + si + iki, data = datai)
+summary(iv)
+ivd = ivreg(qi ~ ipi + ri | - ipi + ri + si + iki, data = datai)
+summary(ivd)
+# Simultaneous
+require(systemfit)
+demand = qi ~ ipi + ri
+offre = qi ~ ipi + si + iki
+system = list(demand = demand, offre = offre)
+# OLS fit
+ols = systemfit(system, data = datai)
+summary(ols)
+# WLS
+wls = systemfit(system, data = datai, method = "WLS")
+summary(wls)
+# SUR
+sur = systemfit(system, data = datai, method = "SUR")
+summary(sur)
+# 2SLS
+inst = ~ ri + si + iki
+sls = systemfit(system, data = datai, inst = inst, method = "2SLS")
+summary(sls)
+# 3SLS
+sls3 = systemfit(system, 
+    data = datai, 
+    inst = inst, 
+    method = "3SLS")
+summary(sls3)
+
+
+
+
 # Reorganisation
 datai$ndep = as.factor(datai$ndep)
 datay = cbind(datai, model.matrix( ~ 0 + ndep, datai)) %>% 

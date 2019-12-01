@@ -3,7 +3,7 @@
         "fr"
     ],
     "spellright.documentTypes": [
-        "plaintext",
-        "latex"
+        "markdown",
+        "plaintext"
     ]
 }
