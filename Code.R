@@ -1476,6 +1476,165 @@ sls3 = systemfit(system,
     method = "3SLS")
 summary(sls3)
 
+#####################
+# Panle data approach
+#####################
+##########################
+# Analyse de la bdd finale
+##########################
+require(tidyverse)
+require(plm)
+require(Formula)
+# require(NMF)
+# Loading data
+data = read.csv("./Donnees/Base-de-donnees-indice-prix.csv")
+# names(data)
+# Arrange
+dn = data %>%
+    filter(s_vin_simple != 0 & 
+        (q_rouge + q_blanc) != 0 &
+        (qk_prod + ql_prod) != 0 &
+        IP != 0) %>%
+    na.omit() %>%
+    group_by(ndep) %>%
+    count() %>% 
+    filter(n == 5) # %>%
+    # select(ndep)
+datax = data %>% 
+    filter(ndep %in% dn$ndep) 
+datay = datax %>% 
+    filter(annee == 2012) %>%
+    mutate(refqki = qk_prod + ql_prod) %>% 
+    select(ndep, refqki) 
+datax = left_join(datax, datay)
+datax = datax %>%
+    mutate(IQK = (qk_prod + ql_prod)/refqki)
+datai = datax %>%
+    arrange(ndep) %>%
+    mutate(si = log(s_vin_simple + 0.001), 
+        qi = log(q_blanc + q_rouge + 0.001), 
+        ipi = log(IP),
+        ri = log(revenu.déflaté),
+        iki = log(IQK),
+        t = as.integer(as.factor(annee)),
+        year = annee) %>%
+    dplyr::select(year, ndep, qi, ipi, si, ri, iki, t)
+data = pdata.frame(datai, index = c("ndep", "year"),
+    drop.index = T)
+# Prewiev
+head(data)
+# Tests
+## tests the hypothesis that the same coefficients apply to each individual
+pooltest(qi ~ ipi, 
+    data = data, 
+    model = "within") # rejected
+pooltest(qi ~ ri, 
+    data = data, 
+    model = "within") # acepted
+pooltest(qi ~ si, 
+    data = data, 
+    model = "within") # acepted
+pooltest(qi ~ iki, 
+    data = data, 
+    model = "within") # acepted
+## Lagrange multiplier tests of individual or/and time effects based on the results of the pooling model
+plmtest(qi ~ ipi, 
+    data = data, 
+    effect = "twoways", 
+    type = "ghm") # rejected
+plmtest(qi ~ ipi, 
+    data = data, 
+    effect = "time", 
+    type = "bp") # rejected
+plmtest(qi ~ ipi, 
+    data = data, 
+    effect = "individual", 
+    type = "bp") # accepted
+## F-test model comparison
+modw = plm(qi ~ ipi, data = data, model = "within")
+modp = plm(qi ~ ipi, data = data,  model = "pooling")
+modb = plm(qi ~ ipi, data = data, model = "between")
+pFtest(modw, modb)
+## Hausman test which is based on the comparison of two sets of estimates
+# A faire ...
+# Looped testing
+Formulas = list(
+    ipi = qi ~ ipi,
+    iki = qi ~ iki,
+    si = qi ~ si,
+    ri = qi ~ ri)
+Effect.testing = function(Formulas, data) {
+    Dtest = data.frame(var = 0, indiv = 0, 
+        time = 0, twoways = 0, within = 0,
+        random = 0, between = 0)
+        for (i in 1:length(Formulas)) {
+            Dtest[i,1] = names(Formulas)[i]
+            Dtest[i,2] = plmtest(Formulas[[i]],
+                data = data,
+                effect = "individual",
+                type = "bp")$p.val
+            Dtest[i,3] = plmtest(Formulas[[i]],
+                data = data,
+                effect = "time",
+                type = "bp")$p.val
+            Dtest[i,4] = plmtest(Formulas[[i]],
+                data = data,
+                effect = "twoways",
+                type = "ghm")$p.val
+            Dtest[i,5] = pooltest(Formulas[[i]],
+                data = data,
+                model = "within")$p.val
+            Dtest[i,6] = pooltest(Formulas[[i]],
+                data = data,
+                model = "random")$p.val 
+            Dtest[i,7] = pooltest(Formulas[[i]],
+               data = data,
+               model = "between")$p.val
+        }
+    Dtest
+}
+Dtest = Effect.testing(Formulas, data = data)
+Dtest[,2:ncol(Dtest)] = round(Dtest[,2:ncol(Dtest)], 8)
+## indiv, time, twoways - alternative "significant effects"
+## within, random, between - alternative "unstability"
+Dtest
+Formulas2 = list(
+    dem = qi ~ ipi + ri,
+    off = qi ~ ipi + si + iki,
+    structqi = qi ~ si + ri + iki,
+    structipi = ipi ~ si + ri + iki)
+Dtest2 = Effect.testing(Formulas2, data = data)
+Dtest2[,2:ncol(Dtest2)] = round(Dtest2[,2:ncol(Dtest2)], 8)
+Dtest2[,-ncol(Dtest2)]
+# Models
+dem = plm(Formulas2[[1]], data = data,
+    model = "within", effect = "individual")
+summary(dem)
+summary(fixef(dem))
+off = plm(Formulas2[[2]], data = data,
+    model = "within", effect = "individual")
+summary(off)
+summary(fixef(off))
+structqi = plm(Formulas2[[3]], data = data,
+    model = "within", effect = "twoways")
+summary(structqi)
+summary(fixef(structqi))
+structipi = plm(Formulas2[[4]], data = data,
+    model = "within", effect = "twoways")
+summary(structipi)
+summary(fixef(structipi))
+# instruments
+Formulas3 = list(
+    dem = qi ~ ipi + ri | . - ipi + si + iki,
+    off = qi ~ ipi + si + iki | . - ipi + ri)
+demiv = plm(Formulas3[[1]], data = data,
+    model = "within", effect = "individual")
+summary(demiv)
+summary(fixef(demiv))
+offiv = plm(Formulas3[[2]], data = data,
+    model = "within", effect = "individual")
+summary(offiv)
+summary(fixef(offiv))
 
 
 
