@@ -1520,6 +1520,7 @@ xtsumX = function(data, varname, bunit, wunit) {
     return(list(ores = ores, bres = bres, wres = wres))
 }
 # STATA version
+require(rlang)
 xtsum = function(data, varname, unit) {
     # the variable to xtsum over
     varname = enquo(varname)
@@ -1554,12 +1555,30 @@ xtsum = function(data, varname, unit) {
         within.min = min(W.x, na.rm = TRUE), 
         within.max = max(W.x, na.rm = TRUE))
     # results
-    return(list(ores = ores, bres = bres, wres = wres))
+    return(list(var = varname, ores = ores, bres = bres, wres = wres))
+}
+# Print 
+print.xtsum = function(xtsums.list) {
+    # takes multiple xtsums as list
+    df = data.frame(Variable = NA, Mean = NA,
+        Overall = NA, Between = NA, Within = NA)
+    # Filling loop
+    for (i in 1:length(xtsums.list)) {
+        df[i,1] = as_name(xtsums.list[[i]]$var)
+        df[i,2] = xtsums.list[[i]]$ores$ovr.mean 
+        df[i,3] = xtsums.list[[i]]$ores$ovr.sd
+        df[i,4] = xtsums.list[[i]]$bres$between.sd
+        df[i,5] = xtsums.list[[i]]$wres$within.sd
+    }
+    # Rownames
+    rownames(df) = df[,1]
+    return(df = df[,-1])
 }
 ##########################
 # Analyse de la bdd finale
 ##########################
 require(tidyverse)
+require(rlang)
 require(plm)
 require(Formula)
 # require(NMF)
@@ -1675,6 +1694,7 @@ Dtest[,2:ncol(Dtest)] = round(Dtest[,2:ncol(Dtest)], 8)
 ## indiv, time, twoways - alternative "significant effects"
 ## within, random, between - alternative "unstability"
 Dtest
+model = plm(Formulas[[1]], data = datap, model = "within")
 Formulas2 = list(
     dem = qi ~ ipi + ri,
     off = qi ~ ipi + si + iki,

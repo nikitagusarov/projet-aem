@@ -37,7 +37,9 @@ knitr::opts_chunk$set(size = "tiny")
 require(tidyverse)
 require(plm)
 require(Formula)
-# require(NMF)
+require(gridExtra)
+require(stargazer)
+require(rlang)
 ```
 
 ```{r include = FALSE}
@@ -107,49 +109,7 @@ rm(omit)
 ###################
 # Support functions
 ###################
-require(tidyverse)
 # xtsum (overall, within and between variance) for panel data
-# bivariate version, non comparable variance
-xtsumX = function(data, varname, bunit, wunit) {
-    # the variable to xtsum
-    varname = enquo(varname)
-    # the identifier dimentions
-    loc.bunit = enquo(bunit)
-    loc.wunit = enquo(wunit)
-    # overall
-    ores = data %>% 
-        summarise(ovr.mean = mean(!! varname, na.rm = TRUE), 
-            ovr.sd = sd(!! varname, na.rm = TRUE), 
-            ovr.min = min(!! varname, na.rm = TRUE), 
-            ovr.max = max(!! varname, na.rm = TRUE), 
-            ovr.N = sum(as.numeric((!is.na(!! varname)))))
-    # between
-    bmeans = data %>% 
-        group_by(!! loc.bunit) %>% 
-        summarise(meanx = mean(!! varname, na.rm = TRUE), 
-            t.count = sum(as.numeric(!is.na(!! varname))))
-    bres = bmeans %>% 
-        ungroup() %>% 
-        summarise(between.sd = sd(meanx, na.rm = TRUE), 
-            between.min = min(meanx, na.rm = TRUE), 
-            between.max = max(meanx, na.rm = TRUE), 
-            units = sum(as.numeric(!is.na(t.count))), 
-            t.bar = mean(t.count, na.rm = TRUE))
-    # within
-    wmeans = data %>% 
-        group_by(!! loc.wunit) %>% 
-        summarise(meanx = mean(!! varname, na.rm = TRUE), 
-            t.count = sum(as.numeric(!is.na(!! varname))))
-    wres = wmeans %>% 
-        ungroup() %>% 
-        summarise(within.sd = sd(meanx, na.rm = TRUE), 
-            within.min = min(meanx, na.rm = TRUE), 
-            within.max = max(meanx, na.rm = TRUE), 
-            units = sum(as.numeric(!is.na(t.count))), 
-            t.bar = mean(t.count, na.rm = TRUE))
-    # results
-    return(list(ores = ores, bres = bres, wres = wres))
-}
 # STATA version
 xtsum = function(data, varname, unit) {
     # the variable to xtsum over
@@ -178,14 +138,81 @@ xtsum = function(data, varname, unit) {
     # within
     wdat = data %>% 
         group_by(!! loc.unit) %>% 
-        mutate(W.x = scale(!! varname, scale=FALSE))
+        mutate(W.x = scale(!! varname, scale = FALSE))
     wres = wdat %>% 
         ungroup() %>%  
         summarise(within.sd = sd(W.x, na.rm = TRUE), 
         within.min = min(W.x, na.rm = TRUE), 
         within.max = max(W.x, na.rm = TRUE))
     # results
-    return(list(ores = ores, bres = bres, wres = wres))
+    return(list(var = varname, ores = ores, bres = bres, wres = wres))
+}
+# Print results for a list of xtsums
+print.xtsum = function(xtsums.list) {
+    # takes multiple xtsums as list
+    df = data.frame(Variable = NA, Mean = NA,
+        Overall = NA, Between = NA, Within = NA)
+    # Filling loop
+    for (i in 1:length(xtsums.list)) {
+        df[i,1] = as_name(xtsums.list[[i]]$var)
+        df[i,2] = xtsums.list[[i]]$ores$ovr.mean 
+        df[i,3] = xtsums.list[[i]]$ores$ovr.sd
+        df[i,4] = xtsums.list[[i]]$bres$between.sd
+        df[i,5] = xtsums.list[[i]]$wres$within.sd
+    }
+    # Rownames
+    rownames(df) = df[,1]
+    # Results
+    return(df = df[,-1])
+}
+```
+
+```{r include = FALSE}
+##################
+# Set ggplot style
+##################
+pres_theme = theme(text = element_text(size = rel(0.5)),
+    legend.position = "none")
+```
+
+```{r include = FALSE}
+##################
+# Effects testing testing
+##################
+Effect.testing = function(Formulas, data) {
+    Dtest = data.frame(var = 0,
+        Random = 0, Fixed = 0, 
+        Individual = 0, Time = 0, Twoways = 0)
+        for (i in 1:length(Formulas)) {
+            Dtest[i,1] = names(Formulas)[i]
+            ## Chow test
+            # Identical coefs for random effects          
+            Dtest[i,2] = pooltest(Formulas[[i]],
+                data = data,
+                model = "random")$p.val 
+            # Identical coefs for fixed effects
+            Dtest[i,3] = pooltest(Formulas[[i]],
+                data = data,
+                model = "within")$p.val
+            ## Lagrange multiplier tests
+            # Individual effects
+            Dtest[i,4] = plmtest(Formulas[[i]],
+                data = data,
+                effect = "individual",
+                type = "bp")$p.val
+            # Time effects
+            Dtest[i,5] = plmtest(Formulas[[i]],
+                data = data,
+                effect = "time",
+                type = "bp")$p.val
+            # Two-ways effects (individual and time)
+            Dtest[i,6] = plmtest(Formulas[[i]],
+                data = data,
+                effect = "twoways",
+                type = "ghm")$p.val   
+        }
+    rownames(Dtest) = Dtest[,1]
+    return(Dtest = Dtest[,-1])
 }
 ```
 
@@ -225,8 +252,173 @@ xtsum = function(data, varname, unit) {
 
 # Les statistiques déscriptives
 - Between and within variance par variable 
-- Bivariate plots with support regressions (lokk for ggplot examples)
+- Bivariate plots with support regressions
 - Covariance analysis
+- Fixed vs Random effects 
+
+# Etude de la variance 
+```{r include = FALSE}
+lxtsums = list()
+# list
+lxtsums[[1]] = xtsum(datai, ipi, ndep)
+lxtsums[[2]] = xtsum(datai, iki, ndep)
+lxtsums[[3]] = xtsum(datai, si, ndep)
+lxtsums[[4]] = xtsum(datai, ri, ndep)
+lxtsums[[5]] = xtsum(datai, t, ndep)
+# results
+results = print.xtsum(lxtsums)
+rownames(results) = c("Index prix", "Index pesticides",
+    "Surface", "Revenus", "Temps")
+```
+```{r echo = FALSE, eval = FALSE}
+stargazer(results, 
+    title = "Variance study",
+    summary = FALSE)
+```
+\tiny
+\begin{table}[!htbp] \centering 
+  \caption{Variance study}
+\begin{tabular}{@{\extracolsep{5pt}} l|cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Mean & Overall & Between & Within \\ 
+\hline \\[-1.8ex] 
+Index prix & $0.175$ & $0.568$ & $0.368$ & $0.434$ \\ 
+Index pesticides & $0.170$ & $0.333$ & $0.239$ & $0.234$ \\ 
+Surface & $4.892$ & $1.986$ & $1.955$ & $0.410$ \\ 
+Revenus & $9.891$ & $0.061$ & $0.061$ & $0.011$ \\ 
+Temps & $3$ & $1.416$ & $0$ & $1.416$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+# Visualisatoin des interdependances
+```{r echo = FALSE}
+p1 = datai %>% 
+    ggplot(aes(qi, ipi, col = as.factor(ndep))) +
+    geom_point(size = 0.5) + 
+    geom_smooth(se = F, size = 0.25) +
+    # ggtitle("Q ~ IP") +
+    xlab("Quantité du vin") + ylab("Index du prix") +
+    pres_theme
+p2 = datai %>% 
+    ggplot(aes(qi, iki, col = as.factor(ndep))) +
+    geom_point(size = 0.5) + 
+    geom_smooth(se = F, size = 0.25) +
+    # ggtitle("Q ~ IK") +
+    xlab("Quantité du vin") + ylab("Index des pésticides") +
+    pres_theme
+grid.arrange(p1, p2, nrow = 1)
+# Probably it is better to do it by variable
+```
+
+# Visualisatoin des interdependances
+```{r echo = FALSE}
+p1 = datai %>% 
+    ggplot(aes(qi, si, col = as.factor(ndep))) +
+    geom_point(size = 0.5) + 
+    geom_smooth(se = F, size = 0.25) +
+    # ggtitle("Q ~ S") +
+    xlab("Quantité du vin") + ylab("Surface qultivé") +
+    pres_theme
+p2 = datai %>% 
+    ggplot(aes(qi, ri, col = as.factor(ndep))) +
+    geom_point(size = 0.5) + 
+    geom_smooth(se = F, size = 0.25) +
+    # ggtitle("Q ~ R") +
+    xlab("Quantité du vin") + ylab("Revenus") +
+    pres_theme
+grid.arrange(p1, p2, nrow = 1)
+```
+
+# Random and fixed effects testing
+- Poolability tests (tested versus pooled model) 
+```{r include = FALSE}
+Formulas = list(
+    ipi = qi ~ ipi,
+    iki = qi ~ iki,
+    si = qi ~ si,
+    ri = qi ~ ri)
+Dtest = Effect.testing(Formulas, data = datap)
+rownames(Dtest) = c("Index prix", "Index pesticides",
+    "Surface", "Revenus")
+```
+```{r include = FALSE}
+stargazer(Dtest[,c(1:2)], 
+    title = "Effects testing, p-values",
+    summary = FALSE)
+```
+\tiny
+\begin{table}[!htbp] \centering
+  \caption{Effects testing, p-values}
+\begin{tabular}{@{\extracolsep{5pt}} l|cc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Random & Fixed \\ 
+\hline \\[-1.8ex] 
+Index prix & $0.535$ & $0.533$ \\ 
+Index pesticides & $0.485$ & $0.451$ \\ 
+Surface & $0$ & $0.0001$ \\ 
+Revenus & $0.297$ & $0.247$ \\ 
+\hline \\[-1.8ex]
+\end{tabular} 
+\end{table} 
+
+# Type of fixed effect testing
+- Type of fixed effects testing
+```{r include = FALSE}
+stargazer(Dtest[,c(3:ncol(Dtest))], 
+    title = "Effects testing, p-values",
+    summary = FALSE)
+```
+\tiny
+\begin{table}[!htbp] \centering 
+  \caption{Effects testing, p-values}
+\begin{tabular}{@{\extracolsep{5pt}} l|ccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Individual & Time & Two-ways \\ 
+\hline \\[-1.8ex] 
+Index prix & $0$ & $0.169$ & $0$ \\ 
+Index pesticides & $0$ & $0.222$ & $0$ \\ 
+Surface & $0$ & $0.030$ & $0$ \\ 
+Revenus & $0$ & $0.248$ & $0$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+# Correlation
+```{r echo = FALSE}
+correlation = cor(datap)
+colnames(correlation) = c("Quantité du vin", "IP", 
+        "Surface", "Revenus", 
+        "Index pésticides", "Temps")
+rownames(correlation) = c("Quantité du vin", "IP", 
+        "Surface", "Revenus", 
+        "Index pésticides", "Temps")
+```
+```{r include = FALSE}
+stargazer(correlation, 
+    title = "Overall correlation",
+    summary = F)
+```
+\tiny
+\begin{table}[!htbp] \centering
+  \caption{Overall correlation}
+\begin{tabular}{@{\extracolsep{5pt}} l|cccccc}
+\\[-1.8ex]\hline
+\hline \\[-1.8ex]
+ & Quantité du vin & IP & Surface & Revenus & Index pésticides & Temps \\
+\hline \\[-1.8ex]
+Quantité du vin & $1$ & $0.154$ & $0.956$ & $-0.027$ & $-0.078$ & $-0.036$ \\      
+IP & $0.154$ & $1$ & $0.045$ & $-0.037$ & $-0.127$ & $0.043$ \\
+Surface & $0.956$ & $0.045$ & $1$ & $-0.057$ & $-0.060$ & $-0.064$ \\
+Revenus & $-0.027$ & $-0.037$ & $-0.057$ & $1$ & $-0.052$ & $0.119$ \\
+Index pésticides & $-0.078$ & $-0.127$ & $-0.060$ & $-0.052$ & $1$ & $0.291$ \\  
+Temps & $-0.036$ & $0.043$ & $-0.064$ & $0.119$ & $0.291$ & $1$ \\
+\hline \\[-1.8ex]
+\end{tabular}
+\end{table}
 
 # Modèlisation
 - Explication de la méthode utilisée
@@ -235,7 +427,7 @@ xtsum = function(data, varname, unit) {
 - Limites du modèle 
 
 # Résultats d'estimation
-- Les coefficients estimés avec la variance 
+- Les coefficients estimés avec leurs variance 
 - Etude des erreurs 
 - Vérification des hypothèses (5 hypothèses) :
     - La moyenne nulle des herreurs 
