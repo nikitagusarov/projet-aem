@@ -297,14 +297,14 @@ Temps & $3$ & $1.416$ & $0$ & $1.416$ \\
 p1 = datai %>% 
     ggplot(aes(qi, ipi, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
-    geom_smooth(se = F, size = 0.25) +
+    geom_smooth(method = "lm", se = F, size = 0.25) +
     # ggtitle("Q ~ IP") +
     xlab("Quantité du vin") + ylab("Index du prix") +
     pres_theme
 p2 = datai %>% 
     ggplot(aes(qi, iki, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
-    geom_smooth(se = F, size = 0.25) +
+    geom_smooth(method = "lm", se = F, size = 0.25) +
     # ggtitle("Q ~ IK") +
     xlab("Quantité du vin") + ylab("Index des pésticides") +
     pres_theme
@@ -317,14 +317,14 @@ grid.arrange(p1, p2, nrow = 1)
 p1 = datai %>% 
     ggplot(aes(qi, si, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
-    geom_smooth(se = F, size = 0.25) +
+    geom_smooth(method = "lm", se = F, size = 0.25) +
     # ggtitle("Q ~ S") +
     xlab("Quantité du vin") + ylab("Surface qultivé") +
     pres_theme
 p2 = datai %>% 
     ggplot(aes(qi, ri, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
-    geom_smooth(se = F, size = 0.25) +
+    geom_smooth(method = "lm", se = F, size = 0.25) +
     # ggtitle("Q ~ R") +
     xlab("Quantité du vin") + ylab("Revenus") +
     pres_theme
