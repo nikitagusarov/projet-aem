@@ -1,0 +1,256 @@
+---
+title: "Etude des effets des pésticides dans la production des vins de table"
+subtitle: "Analyse empirique des marchés"
+author: A. Blanc, N. Gusarov, S. Picon
+institute: Université Grenoble Alpes
+date: 11/12/2019
+header-includes:
+    - \usepackage{array}
+    - \usepackage{multicol}
+output: 
+    beamer_presentation:
+        theme: "Montpellier"
+        colortheme: "beaver"
+        # fonttheme: "structurebold"
+        toc: TRUE
+        # toc_depth: 2
+        df_print: "kable"
+        fig_width: 4
+        fig_height: 3
+        fig_caption: true
+fontsize: 11pt
+# geometry: margin = 0.5in
+---
+
+```{r include = FALSE}
+###################
+# Setting r options
+###################
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(size = "tiny")
+```
+
+```{r include = FALSE}
+##########
+# Packages
+##########
+require(tidyverse)
+require(plm)
+require(Formula)
+# require(NMF)
+```
+
+```{r include = FALSE}
+##############
+# Loading data
+##############
+# Data
+data = read.csv("../Donnees/Base-de-donnees-indice-prix.csv")
+# names(data)
+# Arrange
+dn = data %>%
+    filter(s_vin_simple != 0 & 
+        (q_rouge + q_blanc) != 0 &
+        (qk_prod + ql_prod) != 0 &
+        IP != 0) %>%
+    na.omit() %>%
+    group_by(ndep) %>%
+    count() %>% 
+    filter(n == 5) # %>%
+    # select(ndep)
+datax = data %>% 
+    filter(ndep %in% dn$ndep) 
+datay = datax %>% 
+    filter(annee == 2012) %>%
+    mutate(refqki = qk_prod + ql_prod) %>% 
+    select(ndep, refqki) 
+datax = left_join(datax, datay)
+datax = datax %>%
+    mutate(IQK = (qk_prod + ql_prod)/refqki)
+```
+
+```{r include = FALSE}
+##################
+# Transformed data
+##################
+datai = datax %>%
+    arrange(ndep) %>%
+    mutate(si = log(s_vin_simple + 0.001), 
+        qi = log(q_blanc + q_rouge + 0.001), 
+        ipi = log(IP),
+        ri = log(revenu.déflaté),
+        iki = log(IQK),
+        t = as.integer(as.factor(annee)),
+        year = annee) %>%
+    dplyr::select(year, ndep, qi, ipi, si, ri, iki, t)
+```
+
+```{r include = FALSE}
+############
+# Panel data
+############
+datap = pdata.frame(datai, index = c("ndep", "year"),
+    drop.index = T)
+```
+
+```{r include = FALSE}
+#################
+# Clear workplace
+#################
+list = ls()
+keep = c("datai", "datap")
+omit = setdiff(list, keep)
+rm(omit)
+```
+
+```{r include = FALSE}
+###################
+# Support functions
+###################
+require(tidyverse)
+# xtsum (overall, within and between variance) for panel data
+# bivariate version, non comparable variance
+xtsumX = function(data, varname, bunit, wunit) {
+    # the variable to xtsum
+    varname = enquo(varname)
+    # the identifier dimentions
+    loc.bunit = enquo(bunit)
+    loc.wunit = enquo(wunit)
+    # overall
+    ores = data %>% 
+        summarise(ovr.mean = mean(!! varname, na.rm = TRUE), 
+            ovr.sd = sd(!! varname, na.rm = TRUE), 
+            ovr.min = min(!! varname, na.rm = TRUE), 
+            ovr.max = max(!! varname, na.rm = TRUE), 
+            ovr.N = sum(as.numeric((!is.na(!! varname)))))
+    # between
+    bmeans = data %>% 
+        group_by(!! loc.bunit) %>% 
+        summarise(meanx = mean(!! varname, na.rm = TRUE), 
+            t.count = sum(as.numeric(!is.na(!! varname))))
+    bres = bmeans %>% 
+        ungroup() %>% 
+        summarise(between.sd = sd(meanx, na.rm = TRUE), 
+            between.min = min(meanx, na.rm = TRUE), 
+            between.max = max(meanx, na.rm = TRUE), 
+            units = sum(as.numeric(!is.na(t.count))), 
+            t.bar = mean(t.count, na.rm = TRUE))
+    # within
+    wmeans = data %>% 
+        group_by(!! loc.wunit) %>% 
+        summarise(meanx = mean(!! varname, na.rm = TRUE), 
+            t.count = sum(as.numeric(!is.na(!! varname))))
+    wres = wmeans %>% 
+        ungroup() %>% 
+        summarise(within.sd = sd(meanx, na.rm = TRUE), 
+            within.min = min(meanx, na.rm = TRUE), 
+            within.max = max(meanx, na.rm = TRUE), 
+            units = sum(as.numeric(!is.na(t.count))), 
+            t.bar = mean(t.count, na.rm = TRUE))
+    # results
+    return(list(ores = ores, bres = bres, wres = wres))
+}
+# STATA version
+xtsum = function(data, varname, unit) {
+    # the variable to xtsum over
+    varname = enquo(varname)
+    # the identifier dimention
+    loc.unit = enquo(unit)
+    # overall
+    ores = data %>% 
+        summarise(ovr.mean = mean(!! varname, na.rm = TRUE), 
+        ovr.sd = sd(!! varname, na.rm = TRUE), 
+        ovr.min = min(!! varname, na.rm = TRUE), 
+        ovr.max = max(!! varname, na.rm = TRUE), 
+        ovr.N = sum(as.numeric((!is.na(!! varname)))))
+    # between
+    bmeans = data %>% 
+        group_by(!! loc.unit) %>% 
+        summarise(meanx = mean(!! varname, na.rm = TRUE), 
+        t.count = sum(as.numeric(!is.na(!! varname))))
+    bres = bmeans %>% 
+        ungroup() %>% 
+        summarise(between.sd = sd(meanx, na.rm = TRUE), 
+        between.min = min(meanx, na.rm = TRUE), 
+        between.max = max(meanx, na.rm = TRUE), 
+        units = sum(as.numeric(!is.na(t.count))), 
+        t.bar = mean(t.count, na.rm = TRUE))
+    # within
+    wdat = data %>% 
+        group_by(!! loc.unit) %>% 
+        mutate(W.x = scale(!! varname, scale=FALSE))
+    wres = wdat %>% 
+        ungroup() %>%  
+        summarise(within.sd = sd(W.x, na.rm = TRUE), 
+        within.min = min(W.x, na.rm = TRUE), 
+        within.max = max(W.x, na.rm = TRUE))
+    # results
+    return(list(ores = ores, bres = bres, wres = wres))
+}
+```
+
+# Introduction
+
+# Plan de la présentation
+- Présentation de la problématique
+- Présentation des données
+- Modélisation
+- Les résultats
+
+# Le problème des pesticides
+- Présentation du problème des pésticides
+- Etat actuel
+- Comment combattre
+
+# Le marché du vin français
+- Le marché commun
+- Utilisation des pésticides
+- Heterogénéité
+- Pourquoi vins de table
+
+# Le Modèle théorique
+- Le rôle des pesticides dans la production du vin
+- Le rôle de la demande sur la production et l'offre en général
+- La formalisation et les équations
+
+# Les données
+- Dimentions :
+    - Départements
+    - Années
+
+- Les variables :
+    - Pésticides (quantités)
+    - Vins (quantités produits, prix)
+    - Variables de controle (revenus, surface cultivé)
+
+# Les statistiques déscriptives
+- Between and within variance par variable 
+- Bivariate plots with support regressions (lokk for ggplot examples)
+- Covariance analysis
+
+# Modèlisation
+- Explication de la méthode utilisée
+    - Panel data
+    - AIDS model 
+- Limites du modèle 
+
+# Résultats d'estimation
+- Les coefficients estimés avec la variance 
+- Etude des erreurs 
+- Vérification des hypothèses (5 hypothèses) :
+    - La moyenne nulle des herreurs 
+    - Homoscedacité 
+    - Autocorrélation 
+    - Spécification du modèle 
+    - ... (à voir)
+
+# Conclusions 
+- Le rôle des pésticides 
+- Le marché du vin 
+- Validité 
+- Limitations 
+- Ouverture 
+
+# Bibliographie 
+- Inclure seulement les articles importants
+- Faire des réferences et mentionner ces articles dans la partie théorique 

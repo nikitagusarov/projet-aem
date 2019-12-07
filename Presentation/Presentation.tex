@@ -1,0 +1,303 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[11pt,ignorenonframetext,]{beamer}
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% Prevent slide breaks in the middle of a paragraph:
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+\centering
+\begin{beamercolorbox}[sep=16pt,center]{part title}
+  \usebeamerfont{part title}\insertpart\par
+\end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+\centering
+\begin{beamercolorbox}[sep=12pt,center]{part title}
+  \usebeamerfont{section title}\insertsection\par
+\end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+\centering
+\begin{beamercolorbox}[sep=8pt,center]{part title}
+  \usebeamerfont{subsection title}\insertsubsection\par
+\end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+\usetheme[]{Montpellier}
+\usecolortheme{beaver}
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={Etude des effets des pésticides dans la production des vins de table},
+            pdfauthor={A. Blanc, N. Gusarov, S. Picon},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\newif\ifbibliography
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{array}
+\usepackage{multicol}
+
+\title{Etude des effets des pésticides dans la production des vins de table}
+\providecommand{\subtitle}[1]{}
+\subtitle{Analyse empirique des marchés}
+\author{A. Blanc, N. Gusarov, S. Picon}
+\providecommand{\institute}[1]{}
+\institute{Université Grenoble Alpes}
+\date{11/12/2019}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}
+\tableofcontents[hideallsubsections]
+\end{frame}
+\begin{frame}{Introduction}
+\protect\hypertarget{introduction}{}
+
+\end{frame}
+
+\begin{frame}{Plan de la présentation}
+\protect\hypertarget{plan-de-la-presentation}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Présentation de la problématique
+\item
+  Présentation des données
+\item
+  Modélisation
+\item
+  Les résultats
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Le problème des pesticides}
+\protect\hypertarget{le-probleme-des-pesticides}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Présentation du problème des pésticides
+\item
+  Etat actuel
+\item
+  Comment combattre
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Le marché du vin français}
+\protect\hypertarget{le-marche-du-vin-francais}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Le marché commun
+\item
+  Utilisation des pésticides
+\item
+  Heterogénéité
+\item
+  Pourquoi vins de table
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Le Modèle théorique}
+\protect\hypertarget{le-modele-theorique}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Le rôle des pesticides dans la production du vin
+\item
+  Le rôle de la demande sur la production et l'offre en général
+\item
+  La formalisation et les équations
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Les données}
+\protect\hypertarget{les-donnees}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Dimentions :
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Départements
+  \item
+    Années
+  \end{itemize}
+\item
+  Les variables :
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Pésticides (quantités)
+  \item
+    Vins (quantités produits, prix)
+  \item
+    Variables de controle (revenus, surface cultivé)
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Les statistiques déscriptives}
+\protect\hypertarget{les-statistiques-descriptives}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Between and within variance par variable
+\item
+  Bivariate plots with support regressions (lokk for ggplot examples)
+\item
+  Covariance analysis
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Modèlisation}
+\protect\hypertarget{modelisation}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Explication de la méthode utilisée
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Panel data
+  \item
+    AIDS model
+  \end{itemize}
+\item
+  Limites du modèle
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Résultats d'estimation}
+\protect\hypertarget{resultats-destimation}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Les coefficients estimés avec la variance
+\item
+  Etude des erreurs
+\item
+  Vérification des hypothèses (5 hypothèses) :
+
+  \begin{itemize}
+  \tightlist
+  \item
+    La moyenne nulle des herreurs
+  \item
+    Homoscedacité
+  \item
+    Autocorrélation
+  \item
+    Spécification du modèle
+  \item
+    \ldots{} (à voir)
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Conclusions}
+\protect\hypertarget{conclusions}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Le rôle des pésticides
+\item
+  Le marché du vin
+\item
+  Validité
+\item
+  Limitations
+\item
+  Ouverture
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Bibliographie}
+\protect\hypertarget{bibliographie}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Inclure seulement les articles importants
+\item
+  Faire des réferences et mentionner ces articles dans la partie
+  théorique
+\end{itemize}
+
+\end{frame}
+
+\end{document}

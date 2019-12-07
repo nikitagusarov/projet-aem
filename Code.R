@@ -1479,6 +1479,83 @@ summary(sls3)
 #####################
 # Panle data approach
 #####################
+xtsumX = function(data, varname, bunit, wunit) {
+    # the variable to xtsum
+    varname = enquo(varname)
+    # the identifier dimentions
+    loc.bunit = enquo(bunit)
+    loc.wunit = enquo(wunit)
+    # overall
+    ores = data %>% 
+        summarise(ovr.mean = mean(!! varname, na.rm = TRUE), 
+            ovr.sd = sd(!! varname, na.rm = TRUE), 
+            ovr.min = min(!! varname, na.rm = TRUE), 
+            ovr.max = max(!! varname, na.rm = TRUE), 
+            ovr.N = sum(as.numeric((!is.na(!! varname)))))
+    # between
+    bmeans = data %>% 
+        group_by(!! loc.bunit) %>% 
+        summarise(meanx = mean(!! varname, na.rm = TRUE), 
+            t.count = sum(as.numeric(!is.na(!! varname))))
+    bres = bmeans %>% 
+        ungroup() %>% 
+        summarise(between.sd = sd(meanx, na.rm = TRUE), 
+            between.min = min(meanx, na.rm = TRUE), 
+            between.max = max(meanx, na.rm = TRUE), 
+            units = sum(as.numeric(!is.na(t.count))), 
+            t.bar = mean(t.count, na.rm = TRUE))
+    # within
+    wmeans = data %>% 
+        group_by(!! loc.wunit) %>% 
+        summarise(meanx = mean(!! varname, na.rm = TRUE), 
+            t.count = sum(as.numeric(!is.na(!! varname))))
+    wres = wmeans %>% 
+        ungroup() %>% 
+        summarise(within.sd = sd(meanx, na.rm = TRUE), 
+            within.min = min(meanx, na.rm = TRUE), 
+            within.max = max(meanx, na.rm = TRUE), 
+            units = sum(as.numeric(!is.na(t.count))), 
+            t.bar = mean(t.count, na.rm = TRUE))
+    # results
+    return(list(ores = ores, bres = bres, wres = wres))
+}
+# STATA version
+xtsum = function(data, varname, unit) {
+    # the variable to xtsum over
+    varname = enquo(varname)
+    # the identifier dimention
+    loc.unit = enquo(unit)
+    # overall
+    ores = data %>% 
+        summarise(ovr.mean = mean(!! varname, na.rm = TRUE), 
+        ovr.sd = sd(!! varname, na.rm = TRUE), 
+        ovr.min = min(!! varname, na.rm = TRUE), 
+        ovr.max = max(!! varname, na.rm = TRUE), 
+        ovr.N = sum(as.numeric((!is.na(!! varname)))))
+    # between
+    bmeans = data %>% 
+        group_by(!! loc.unit) %>% 
+        summarise(meanx = mean(!! varname, na.rm = TRUE), 
+        t.count = sum(as.numeric(!is.na(!! varname))))
+    bres = bmeans %>% 
+        ungroup() %>% 
+        summarise(between.sd = sd(meanx, na.rm = TRUE), 
+        between.min = min(meanx, na.rm = TRUE), 
+        between.max = max(meanx, na.rm = TRUE), 
+        units = sum(as.numeric(!is.na(t.count))), 
+        t.bar = mean(t.count, na.rm = TRUE))
+    # within
+    wdat = data %>% 
+        group_by(!! loc.unit) %>% 
+        mutate(W.x = scale(!! varname, scale=FALSE))
+    wres = wdat %>% 
+        ungroup() %>%  
+        summarise(within.sd = sd(W.x, na.rm = TRUE), 
+        within.min = min(W.x, na.rm = TRUE), 
+        within.max = max(W.x, na.rm = TRUE))
+    # results
+    return(list(ores = ores, bres = bres, wres = wres))
+}
 ##########################
 # Analyse de la bdd finale
 ##########################
@@ -1520,7 +1597,7 @@ datai = datax %>%
         year = annee) %>%
     dplyr::select(year, ndep, qi, ipi, si, ri, iki, t)
 data = pdata.frame(datai, index = c("ndep", "year"),
-    drop.index = T)
+    drop.index = F)
 # Prewiev
 head(data)
 # Tests
