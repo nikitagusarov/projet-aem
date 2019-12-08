@@ -275,7 +275,7 @@ Temps & $3$ & $1.416$ & $0$ & $1.416$ \\
 
 \tiny
 \begin{table}[!htbp] \centering
-  \caption{Effects testing, p-values}
+  \caption{Chow pooling test, p-values}
 \begin{tabular}{@{\extracolsep{5pt}} l|cc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
@@ -302,7 +302,7 @@ Revenus & $0.297$ & $0.247$ \\
 
 \tiny
 \begin{table}[!htbp] \centering 
-  \caption{Effects testing, p-values}
+  \caption{Lagrange multiplier test, p-values}
 \begin{tabular}{@{\extracolsep{5pt}} l|ccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
@@ -401,12 +401,16 @@ Temps & $-0.199$ & $0.056$ & $-0.310$ & $0.652$ & $0.414$ & $1$ \\
     \begin{itemize}
     \tightlist
     \item
-      Interdependent equations
+      Interdependent equations (simultaneity bias)
     \item
-      3SLS estimator
+      3SLS estimator (that is identical to ILS estimator)
     \item
-      Use of enxogenous variables as instruments for endogenous price
-      index
+      It generates consistent estimates
+    \item
+      The distribution of the estimators are normally distributed only
+      in large samples
+    \item
+      The estimator is (asymptotically) efficient
     \end{itemize}
   \end{itemize}
 \item
@@ -439,7 +443,7 @@ Temps & $-0.199$ & $0.056$ & $-0.310$ & $0.652$ & $0.414$ & $1$ \\
   \begin{itemize}
   \tightlist
   \item
-    La moyenne nulle des herreurs
+    La moyenne nulle des erreurs
   \item
     Homoscedacité
   \item
@@ -460,72 +464,199 @@ Temps & $-0.199$ & $0.056$ & $-0.310$ & $0.652$ & $0.414$ & $1$ \\
 
 \begin{table}
 \begin{center}
-\begin{tabular}{l c c }
+\begin{tabular}{l c c c }
 \hline
- & OLS & SUR \\
+ & OLS & WLS & SUR \\
 \hline
-Demande: ipi        & $0.93^{***}$  & $0.93^{***}$  \\
-                    & $(0.01)$      & $(0.01)$      \\
-Demande: ri         & $-5.75^{***}$ & $-2.00^{***}$ \\
-                    & $(0.47)$      & $(0.33)$      \\
-Offre: ipi          & $0.90^{***}$  & $0.92^{***}$  \\
-                    & $(0.01)$      & $(0.01)$      \\
-Offre: si           & $0.08^{***}$  & $0.02^{*}$    \\
-                    & $(0.01)$      & $(0.01)$      \\
-Offre: iki          & $-0.17^{***}$ & $-0.05^{**}$  \\
-                    & $(0.02)$      & $(0.02)$      \\
+Demande: ipi        & $0.93^{***}$  & $0.93^{***}$  & $0.93^{***}$  \\
+                    & $(0.01)$      & $(0.01)$      & $(0.01)$      \\
+Demande: ri         & $-5.75^{***}$ & $-5.75^{***}$ & $-2.00^{***}$ \\
+                    & $(0.47)$      & $(0.47)$      & $(0.33)$      \\
+Offre: ipi          & $0.90^{***}$  & $0.90^{***}$  & $0.92^{***}$  \\
+                    & $(0.01)$      & $(0.01)$      & $(0.01)$      \\
+Offre: si           & $0.08^{***}$  & $0.08^{***}$  & $0.02^{*}$    \\
+                    & $(0.01)$      & $(0.01)$      & $(0.01)$      \\
+Offre: iki          & $-0.17^{***}$ & $-0.17^{***}$ & $-0.05^{**}$  \\
+                    & $(0.02)$      & $(0.02)$      & $(0.02)$      \\
 \hline
-Demande: R$^2$      & 0.95          & 0.94          \\
-Offre: R$^2$        & 0.94          & 0.93          \\
-Demande: Adj. R$^2$ & 0.95          & 0.94          \\
-Offre: Adj. R$^2$   & 0.94          & 0.93          \\
-Num. obs. (total)   & 690           & 690           \\
+Demande: R$^2$      & 0.95          & 0.95          & 0.94          \\
+Offre: R$^2$        & 0.94          & 0.94          & 0.93          \\
+Demande: Adj. R$^2$ & 0.95          & 0.95          & 0.94          \\
+Offre: Adj. R$^2$   & 0.94          & 0.94          & 0.93          \\
+Num. obs. (total)   & 690           & 690           & 690           \\
 \hline
-\multicolumn{3}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
 \caption{Statistical models}
-\label{table:coefficients}
+\label{table : ols, wls and sur}
 \end{center}
 \end{table}
 \tiny
 
 \end{frame}
 
-\begin{frame}{Les résultats 2SLS vs 3SLS}
-\protect\hypertarget{les-resultats-2sls-vs-3sls}{}
+\begin{frame}{Disturbances correlation study}
+\protect\hypertarget{disturbances-correlation-study}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Les résidus sont non correlés avec les variables explicatives
+\end{itemize}
+
+\tiny
+\begin{table}[!htbp] \centering 
+  \caption{Errors correlation}
+\begin{tabular}{@{\extracolsep{5pt}} cccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Vin & IP & Surface & Revenus & Pesticides & Demande & Offre \\ 
+\hline \\[-1.8ex] 
+Vin & $1$ & $0.961$ & $0.366$ & $-0.160$ & $-0.228$ & $0.232$ & $0.244$ \\ 
+IP & $0.961$ & $1$ & $0.289$ & $-0.009$ & $-0.127$ & $-0$ & $-0$ \\ 
+Surface & $0.366$ & $0.289$ & $1$ & $-0.166$ & $-0.191$ & $0.271$ & $-0$ \\ 
+Revenus & $-0.160$ & $-0.009$ & $-0.166$ & $1$ & $0.228$ & $0$ & $-0.480$ \\ 
+Pesticides & $-0.228$ & $-0.127$ & $-0.191$ & $0.228$ & $1$ & $-0.308$ & $-0$ \\ 
+Demande & $0.232$ & $-0$ & $0.271$ & $0$ & $-0.308$ & $1$ & $0.740$ \\ 
+Offre & $0.244$ & $-0$ & $-0$ & $-0.480$ & $-0$ & $0.740$ & $1$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\end{frame}
+
+\begin{frame}{Les résultats 2SLS, W2SLS et 3SLS}
+\protect\hypertarget{les-resultats-2sls-w2sls-et-3sls}{}
 
 \tiny
 
 \begin{table}
 \begin{center}
-\begin{tabular}{l c c }
+\begin{tabular}{l c c c }
 \hline
- & 2SLS & 3SLS \\
+ & 2SLS & W2SLS & 3SLS \\
 \hline
-Demande: ipi        & $1.19^{***}$  & $1.19^{***}$  \\
-                    & $(0.06)$      & $(0.06)$      \\
-Demande: ri         & $-5.67^{***}$ & $-5.67^{***}$ \\
-                    & $(0.71)$      & $(0.71)$      \\
-Offre: ipi          & $-1.22$       & $-0.71$       \\
-                    & $(1.97)$      & $(1.96)$      \\
-Offre: si           & $0.70$        & $0.46$        \\
-                    & $(0.59)$      & $(0.58)$      \\
-Offre: iki          & $-0.46$       & $-0.73^{*}$   \\
-                    & $(0.34)$      & $(0.32)$      \\
+Demande: ipi        & $1.19^{***}$  & $1.19^{***}$  & $1.19^{***}$  \\
+                    & $(0.06)$      & $(0.06)$      & $(0.06)$      \\
+Demande: ri         & $-5.67^{***}$ & $-5.67^{***}$ & $-5.67^{***}$ \\
+                    & $(0.71)$      & $(0.71)$      & $(0.71)$      \\
+Offre: ipi          & $-1.22$       & $-1.22$       & $-0.71$       \\
+                    & $(1.97)$      & $(1.97)$      & $(1.96)$      \\
+Offre: si           & $0.70$        & $0.70$        & $0.46$        \\
+                    & $(0.59)$      & $(0.59)$      & $(0.58)$      \\
+Offre: iki          & $-0.46$       & $-0.46$       & $-0.73^{*}$   \\
+                    & $(0.34)$      & $(0.34)$      & $(0.32)$      \\
 \hline
-Demande: R$^2$      & 0.88          & 0.88          \\
-Offre: R$^2$        & -3.37         & -1.60         \\
-Demande: Adj. R$^2$ & 0.88          & 0.88          \\
-Offre: Adj. R$^2$   & -3.40         & -1.62         \\
-Num. obs. (total)   & 690           & 690           \\
+Demande: R$^2$      & 0.88          & 0.88          & 0.88          \\
+Offre: R$^2$        & -3.37         & -3.37         & -1.60         \\
+Demande: Adj. R$^2$ & 0.88          & 0.88          & 0.88          \\
+Offre: Adj. R$^2$   & -3.40         & -3.40         & -1.62         \\
+Num. obs. (total)   & 690           & 690           & 690           \\
 \hline
-\multicolumn{3}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
 \caption{Statistical models}
-\label{table:coefficients}
+\label{table : 2sls, w2sls and 3sls}
 \end{center}
 \end{table}
 \tiny
+
+\end{frame}
+
+\begin{frame}{Model choice tests}
+\protect\hypertarget{model-choice-tests}{}
+
+\begin{itemize}
+\item
+  Hausman 3SLS consistency test :
+
+  Hausman specification test for consistency of the 3SLS estimation
+\end{itemize}
+
+data: dataWX Hausman = 5.5763, df = 5, p-value = 0.3497
+
+\begin{itemize}
+\tightlist
+\item
+  Likelihood test :
+\end{itemize}
+
+\tiny
+\begin{table}[!htbp] \centering 
+\begin{tabular}{@{\extracolsep{5pt}} cccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \#Df & LogLik & Df & Chisq & Pr(\textgreater Chisq) \\ 
+\hline \\[-1.8ex] 
+2SLS & $6$ & $152.708$ & $$ & $$ & $$ \\ 
+3SLS & $7$ & $-149.621$ & $1$ & $604.657$ & $0$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\end{frame}
+
+\begin{frame}{Residuals tests for 3SLS}
+\protect\hypertarget{residuals-tests-for-3sls}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Residuals normality test (Shapiro-Wilk)
+
+  \begin{itemize}
+  \item
+    Equation de la demande : {[}1{]} 2.882578e-05
+  \item
+    Equation de l'offre : {[}1{]} 2.976186e-07
+  \end{itemize}
+\item
+  Residuals heteroscedasticity test (Bartlett test)
+
+  \begin{itemize}
+  \item
+    Equation de la demande : {[}1{]} 0.9752152
+  \item
+    Equation de l'offre : {[}1{]} 0.00197632
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Residuals autocorrelation study}
+\protect\hypertarget{residuals-autocorrelation-study}{}
+
+\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-41-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Disturbances correlation study for 2SLS}
+\protect\hypertarget{disturbances-correlation-study-for-2sls}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Les résidus sont peux correlés avec les variables explicatives
+\end{itemize}
+
+\tiny
+\begin{table}[!htbp] \centering 
+  \caption{Errors correlation}
+\begin{tabular}{@{\extracolsep{5pt}} cccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Vin & IP & Surface & Revenus & Pesticides & Demande & Offre \\ 
+\hline \\[-1.8ex] 
+Vin & $1$ & $0.961$ & $0.366$ & $-0.160$ & $-0.228$ & $-0.561$ & $0.898$ \\
+IP & $0.961$ & $1$ & $0.289$ & $-0.009$ & $-0.127$ & $-0.746$ & $0.938$ \\
+Surface & $0.366$ & $0.289$ & $1$ & $-0.166$ & $-0.191$ & $-0.034$ & $0.032$ \\ 
+Revenus & $-0.160$ & $-0.009$ & $-0.166$ & $1$ & $0.228$ & $-0$ & $0$ \\
+Pesticides & $-0.228$ & $-0.127$ & $-0.191$ & $0.228$ & $1$ & $-0.113$ & $0.105$ \\ 
+Demande & $-0.561$ & $-0.746$ & $-0.034$ & $-0$ & $-0.113$ & $1$ & $-0.705$ \\ 
+Offre & $0.898$ & $0.938$ & $0.032$ & $0$ & $0.105$ & $-0.705$ & $1$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
 
 \end{frame}
 

@@ -347,12 +347,12 @@ rownames(Dtest) = c("Index prix", "Index pesticides",
 ```
 ```{r include = FALSE}
 stargazer(Dtest[,c(1:2)], 
-    title = "Effects testing, p-values",
+    title = "Chow pooling test, p-values",
     summary = FALSE)
 ```
 \tiny
 \begin{table}[!htbp] \centering
-  \caption{Effects testing, p-values}
+  \caption{Chow pooling test, p-values}
 \begin{tabular}{@{\extracolsep{5pt}} l|cc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
@@ -370,12 +370,12 @@ Revenus & $0.297$ & $0.247$ \\
 - Type of fixed effects testing
 ```{r include = FALSE}
 stargazer(Dtest[,c(3:ncol(Dtest))], 
-    title = "Effects testing, p-values",
+    title = "Lagrange multiplier test, p-values",
     summary = FALSE)
 ```
 \tiny
 \begin{table}[!htbp] \centering 
-  \caption{Effects testing, p-values}
+  \caption{Lagrange multiplier test, p-values}
 \begin{tabular}{@{\extracolsep{5pt}} l|ccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
@@ -513,9 +513,11 @@ grid.arrange(p1, p2, nrow = 1)
         - Fixed effects 
         - Obtained slopes are averages for all population 
     - AIDS model 
-        - Interdependent equations
-        - 3SLS estimator 
-        - Use of enxogenous variables as instruments for endogenous price index 
+        - Interdependent equations (simultaneity bias)
+        - 3SLS estimator (that is identical to ILS estimator)
+        - It generates consistent estimates
+        - The distribution of the estimators are normally distributed only in large samples 
+        - The estimator is (asymptotically) efficient
 - Limites du modèle 
     - Faible representation des effets hetérogenes entre les régions (nous estimons seulemnt les effets moyens)
     - Les interferences induites par l'heterogénéité 
@@ -577,7 +579,7 @@ rm(ikiDum) ; rm(riDum)
 - Les coefficients estimés avec leurs variance 
 - Etude des erreurs 
 - Vérification des hypothèses (5 hypothèses) :
-    - La moyenne nulle des herreurs 
+    - La moyenne nulle des erreurs 
     - Homoscedacité 
     - Autocorrélation 
     - Spécification du modèle 
@@ -585,27 +587,77 @@ rm(ikiDum) ; rm(riDum)
 
 # Les résultats OLS vs SUR
 ```{r include = FALSE}
+# Data transformation for systemfit
+dataWX = as.data.frame(dataW)
+```
+
+```{r include = FALSE}
 # equations
 eqdemand = qi ~ 0 + ipi + ri
 eqoffer = qi ~ 0 + ipi + si + iki 
 system = list(Demande = eqdemand, Offre = eqoffer)
 # OLS
 ols = systemfit(system, 
-    data = as.data.frame(dataW), 
+    data = dataWX, 
     method = "OLS")
+# WLS
+wls = systemfit(system, 
+    data = dataWX, 
+    method = "WLS")
 # SUR
 sur = systemfit(system, 
-    data = as.data.frame(dataW), 
+    data = dataWX, 
     method = "SUR")
 ```
 \tiny
 ```{r echo = FALSE, results = "asis"}
-texreg(list(ols, sur),
-    custom.model.names = c("OLS", "SUR"))
+texreg(list(ols, wls, sur),
+    custom.model.names = c("OLS", "WLS", "SUR"),
+    label = "table : ols, wls and sur")
 ```
 \tiny
 
-# Les résultats 2SLS vs 3SLS
+# Disturbances correlation study 
+- Les résidus sont non correlés avec les variables explicatives
+```{r include = FALSE}
+cordata = dataWX %>% 
+    mutate(u1 = ols$eq[[1]]$res,
+        u2 = ols$eq[[2]]$res)
+cormat = cor(cordata[,-c(6,7)])
+colnames(cormat) = c("Vin", "IP", 
+        "Surface", "Revenus", 
+        "Pesticides", 
+        "Demande", "Offre")
+rownames(cormat) = c("Vin", "IP", 
+        "Surface", "Revenus", 
+        "Pesticides", 
+        "Demande", "Offre")
+```
+```{r include = FALSE}
+stargazer(cormat, 
+    title = "Errors correlation",
+    summary = F)
+```
+\tiny
+\begin{table}[!htbp] \centering 
+  \caption{Errors correlation}
+\begin{tabular}{@{\extracolsep{5pt}} cccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Vin & IP & Surface & Revenus & Pesticides & Demande & Offre \\ 
+\hline \\[-1.8ex] 
+Vin & $1$ & $0.961$ & $0.366$ & $-0.160$ & $-0.228$ & $0.232$ & $0.244$ \\ 
+IP & $0.961$ & $1$ & $0.289$ & $-0.009$ & $-0.127$ & $-0$ & $-0$ \\ 
+Surface & $0.366$ & $0.289$ & $1$ & $-0.166$ & $-0.191$ & $0.271$ & $-0$ \\ 
+Revenus & $-0.160$ & $-0.009$ & $-0.166$ & $1$ & $0.228$ & $0$ & $-0.480$ \\ 
+Pesticides & $-0.228$ & $-0.127$ & $-0.191$ & $0.228$ & $1$ & $-0.308$ & $-0$ \\ 
+Demande & $0.232$ & $-0$ & $0.271$ & $0$ & $-0.308$ & $1$ & $0.740$ \\ 
+Offre & $0.244$ & $-0$ & $-0$ & $-0.480$ & $-0$ & $0.740$ & $1$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+# Les résultats 2SLS, W2SLS et 3SLS
 ```{r include = FALSE}
 # equations
 eqdemand = qi ~ 0 + ipi + ri
@@ -613,22 +665,130 @@ eqoffer = qi ~ 0 + ipi + si + iki
 inst = ~ ri + si + iki
 system = list(Demande = eqdemand, Offre = eqoffer)
 # 2SLS
+# 2SLS is an equivalent of ILS (indirect least squares)
 sls2 = systemfit(system, 
     inst = inst,
-    data = as.data.frame(dataW), 
+    data = dataWX, 
     method = "2SLS")
+# 2WSLS
+wsls2 = systemfit(system, 
+    inst = inst,
+    data = dataWX, 
+    method = "W2SLS")
 # 3SLS (errors correction)
 sls3 = systemfit(system, 
     inst = inst,
-    data = as.data.frame(dataW), 
+    data = dataWX, 
     method = "3SLS")
 ```
 \tiny
 ```{r echo = FALSE, results = "asis"}
-texreg(list(sls2, sls3),
-    custom.model.names = c("2SLS", "3SLS"))
+texreg(list(sls2, wsls2, sls3),
+    custom.model.names = c("2SLS", "W2SLS", "3SLS"),
+    label = "table : 2sls, w2sls and 3sls")
 ```
 \tiny
+
+# Model choice tests 
+- Hausman 3SLS consistency test :
+```{r echo = FALSE, results = "asis"}
+hausman.systemfit(sls2, sls3) # p = 1, 3SLS inconsistent
+# 2SLS estimator is consistent
+```
+```{r echo = FALSE, results = "asis"}
+# - Linear test :
+# What should be tested ???
+# linearHypothesis(sls2, 
+```
+- Likelihood test :
+```{r include = FALSE}
+lr = lrtest(sls2, sls3)
+stargazer(lr, summary = FALSE)
+```
+\tiny
+\begin{table}[!htbp] \centering 
+\begin{tabular}{@{\extracolsep{5pt}} cccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \#Df & LogLik & Df & Chisq & Pr(\textgreater Chisq) \\ 
+\hline \\[-1.8ex] 
+2SLS & $6$ & $152.708$ & $$ & $$ & $$ \\ 
+3SLS & $7$ & $-149.621$ & $1$ & $604.657$ & $0$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+# Residuals tests for 3SLS
+- Residuals normality test (Shapiro-Wilk)
+    - Equation de la demande :
+```{r echo = FALSE, results = "asis"}
+shapiro.test(sls3$eq[[1]]$res)$p.val
+```
+
+    - Equation de l'offre :
+```{r echo = FALSE, results = "asis"}
+shapiro.test(sls3$eq[[2]]$res)$p.val
+```
+
+```{r echo = FALSE, results = "asis"}
+resdata3 = dataWX %>% 
+    mutate(u1 = sls3$eq[[1]]$res,
+        u2 = sls3$eq[[2]]$res)
+```
+- Residuals heteroscedasticity test (Bartlett test)
+    - Equation de la demande :
+```{r echo = FALSE, results = "asis"}
+ols_test_bartlett(resdata3, u1, group_var = ndep)$pval
+```
+
+    - Equation de l'offre :
+```{r echo = FALSE, results = "asis"}
+ols_test_bartlett(resdata3, u2, group_var = ndep)$pval
+```
+
+# Residuals autocorrelation study
+```{r echo = FALSE}
+par(mfrow = c(1,2))
+acf(sls3$eq[[1]]$res, main = "Demand")
+acf(sls3$eq[[2]]$res, main = "Offre")
+```
+
+# Disturbances correlation study for 2SLS 
+- Les résidus sont peux correlés avec les variables explicatives
+```{r include = FALSE}
+cormat = cor(resdata3[,-c(6,7)])
+colnames(cormat) = c("Vin", "IP", 
+        "Surface", "Revenus", 
+        "Pesticides", 
+        "Demande", "Offre")
+rownames(cormat) = c("Vin", "IP", 
+        "Surface", "Revenus", 
+        "Pesticides", 
+        "Demande", "Offre")
+```
+```{r include = FALSE}
+stargazer(cormat, 
+    title = "Errors correlation",
+    summary = F)
+```
+\tiny
+\begin{table}[!htbp] \centering 
+  \caption{Errors correlation}
+\begin{tabular}{@{\extracolsep{5pt}} cccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Vin & IP & Surface & Revenus & Pesticides & Demande & Offre \\ 
+\hline \\[-1.8ex] 
+Vin & $1$ & $0.961$ & $0.366$ & $-0.160$ & $-0.228$ & $-0.561$ & $0.898$ \\
+IP & $0.961$ & $1$ & $0.289$ & $-0.009$ & $-0.127$ & $-0.746$ & $0.938$ \\
+Surface & $0.366$ & $0.289$ & $1$ & $-0.166$ & $-0.191$ & $-0.034$ & $0.032$ \\ 
+Revenus & $-0.160$ & $-0.009$ & $-0.166$ & $1$ & $0.228$ & $-0$ & $0$ \\
+Pesticides & $-0.228$ & $-0.127$ & $-0.191$ & $0.228$ & $1$ & $-0.113$ & $0.105$ \\ 
+Demande & $-0.561$ & $-0.746$ & $-0.034$ & $-0$ & $-0.113$ & $1$ & $-0.705$ \\ 
+Offre & $0.898$ & $0.938$ & $0.032$ & $0$ & $0.105$ & $-0.705$ & $1$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
 
 # Conclusions 
 - Le rôle des pésticides 
