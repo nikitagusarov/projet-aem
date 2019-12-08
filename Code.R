@@ -1733,7 +1733,65 @@ offiv = plm(Formulas3[[2]], data = data,
 summary(offiv)
 summary(fixef(offiv))
 
-
+# Testing INDIV_COEF
+modelq = lm(qi ~ 0 + . - t, dataWD)
+modelp = lm(ipi ~ 0 + . - t, dataWD)
+summary(modelq)
+summary(modelp)
+plot(modelq)
+plot(modelp)
+# Testing 2 MEAN_COEF
+modelq2 = lm(qi ~ 0 + . - ipi - t, dataW)
+modelp2 = lm(ipi ~ 0 + . - qi - t, dataW)
+summary(modelq2)
+summary(modelp2)
+# Testing 3 SYSTEMS
+eqdemand = qi ~ 0 + ipi + ri
+eqoffer = qi ~ 0 + ipi + si + iki 
+system = list(demand = eqdemand, supply = eqoffer)
+ols = systemfit(system, 
+    data = as.data.frame(dataW), 
+    method = "OLS")
+summary(ols)
+sur = systemfit(system, 
+    data = as.data.frame(dataW), 
+    method = "SUR")
+summary(sur)
+eqdemand2 = qi ~ 0 + ipi + ri
+eqoffer2 = qi ~ 0 + ipi + si + iki
+inst = ~ ri + si + iki
+system2 = list(demand = eqdemand2, supply = eqoffer2)
+sls = systemfit(system2, inst = inst,
+    data = as.data.frame(dataW), 
+    method = "3SLS")
+summary(sls)
+# Testing 4 INDEIV_SYSTEMS
+namesd = dataWD %>% 
+    select(starts_with("ri"), ipi) %>%
+    names()
+nameso = dataWD %>% 
+    select(starts_with("iki"), ipi, si) %>%
+    names()
+namesinst = dataWD %>% 
+    select(starts_with("iki"), 
+        starts_with("ri"), si) %>%
+    names()
+eqdemand = formula(paste("qi ~ ", 
+    paste(namesd, collapse = " + ")))
+eqoffer = formula(paste("qi ~ ", 
+    paste(nameso, collapse = " + "))) 
+inst = formula(paste(" ~ ", 
+    paste(namesinst, collapse = " + "))) 
+system = list(demand = eqdemand, supply = eqoffer)
+ols = systemfit(system, 
+    data = as.data.frame(dataWD), 
+    method = "OLS")
+summary(ols)
+sls = systemfit(system, inst = inst,
+    data = as.data.frame(dataWD), 
+    method = "2SLS")
+summary(sls)
+# Multiple covariates do not allow to capture effects
 
 # Reorganisation
 datai$ndep = as.factor(datai$ndep)

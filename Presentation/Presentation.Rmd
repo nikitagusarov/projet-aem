@@ -39,7 +39,9 @@ require(plm)
 require(Formula)
 require(gridExtra)
 require(stargazer)
+require(texreg)
 require(rlang)
+require(dummies)
 ```
 
 ```{r include = FALSE}
@@ -171,14 +173,14 @@ print.xtsum = function(xtsums.list) {
 ##################
 # Set ggplot style
 ##################
-pres_theme = theme(text = element_text(size = rel(0.5)),
+pres_theme = theme(text = element_text(size = rel(3)),
     legend.position = "none")
 ```
 
 ```{r include = FALSE}
-##################
-# Effects testing testing
-##################
+#################
+# Effects testing 
+#################
 Effect.testing = function(Formulas, data) {
     Dtest = data.frame(var = 0,
         Random = 0, Fixed = 0, 
@@ -186,11 +188,11 @@ Effect.testing = function(Formulas, data) {
         for (i in 1:length(Formulas)) {
             Dtest[i,1] = names(Formulas)[i]
             ## Chow test
-            # Identical coefs for random effects          
+            # Random coefs for random effects          
             Dtest[i,2] = pooltest(Formulas[[i]],
                 data = data,
                 model = "random")$p.val 
-            # Identical coefs for fixed effects
+            # Different coefs for fixed effects
             Dtest[i,3] = pooltest(Formulas[[i]],
                 data = data,
                 model = "within")$p.val
@@ -404,7 +406,7 @@ stargazer(correlation,
 ```
 \tiny
 \begin{table}[!htbp] \centering
-  \caption{Overall correlation}
+  \tiny\caption{Overall correlation}
 \begin{tabular}{@{\extracolsep{5pt}} l|cccccc}
 \\[-1.8ex]\hline
 \hline \\[-1.8ex]
@@ -420,11 +422,156 @@ Temps & $-0.036$ & $0.043$ & $-0.064$ & $0.119$ & $0.291$ & $1$ \\
 \end{tabular}
 \end{table}
 
+```{r include = FALSE}
+###################
+# Rework the matrix WITHIN_TRANSFORM
+###################
+rm(datax) ; rm(datay) ; rm(data) ; rm(dn)
+dataW = datap 
+dataW$qi = Within(datap$qi)
+dataW$ipi = Within(datap$ipi)
+dataW$iki = Within(datap$iki)
+dataW$si = Within(datap$si)
+dataW$ri = Within(datap$ri)
+dataW$ndep = index(datap)$ndep
+```
+```{r echo = FALSE}
+correlationW = cor(dataW)
+colnames(correlationW) = c("Quantité du vin", "IP", 
+        "Surface", "Revenus", 
+        "Index pésticides", "Temps")
+rownames(correlationW) = c("Quantité du vin", "IP", 
+        "Surface", "Revenus", 
+        "Index pésticides", "Temps")
+```
+```{r include = FALSE}
+stargazer(correlationW, 
+    title = "Within transformation correlation",
+    summary = F)
+```
+\tiny
+\begin{table}[!htbp] \centering 
+  \tiny\caption{Within transformation correlation}
+\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Quantité du vin & IP & Surface & Revenus & Index pésticides & Temps \\ 
+\hline \\[-1.8ex] 
+Quantité du vin & $1$ & $0.961$ & $0.366$ & $-0.160$ & $-0.228$ & $-0.199$ \\ 
+IP & $0.961$ & $1$ & $0.289$ & $-0.009$ & $-0.127$ & $0.056$ \\ 
+Surface & $0.366$ & $0.289$ & $1$ & $-0.166$ & $-0.191$ & $-0.310$ \\ 
+Revenus & $-0.160$ & $-0.009$ & $-0.166$ & $1$ & $0.228$ & $0.652$ \\ 
+Index pésticides & $-0.228$ & $-0.127$ & $-0.191$ & $0.228$ & $1$ & $0.414$ \\ 
+Temps & $-0.199$ & $0.056$ & $-0.310$ & $0.652$ & $0.414$ & $1$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+# Within transformation results
+```{r echo = FALSE}
+p1 = dataW %>% 
+    ggplot(aes(qi, ipi, col = as.factor(ndep))) +
+    geom_point(size = 0.5) + 
+    geom_smooth(method = "lm", se = F, size = 0.25) +
+    # ggtitle("Q ~ IP") +
+    xlab("Quantité du vin") + ylab("Index du prix") +
+    pres_theme
+p2 = dataW %>% 
+    ggplot(aes(qi, iki, col = as.factor(ndep))) +
+    geom_point(size = 0.5) + 
+    geom_smooth(method = "lm", se = F, size = 0.25) +
+    # ggtitle("Q ~ IK") +
+    xlab("Quantité du vin") + ylab("Index des pésticides") +
+    pres_theme
+grid.arrange(p1, p2, nrow = 1)
+# Probably it is better to do it by variable
+```
+
+# Within transformation results
+```{r echo = FALSE}
+p1 = dataW %>% 
+    ggplot(aes(qi, si, col = as.factor(ndep))) +
+    geom_point(size = 0.5) + 
+    geom_smooth(method = "lm", se = F, size = 0.25) +
+    # ggtitle("Q ~ S") +
+    xlab("Quantité du vin") + ylab("Surface qultivé") +
+    pres_theme
+p2 = dataW %>% 
+    ggplot(aes(qi, ri, col = as.factor(ndep))) +
+    geom_point(size = 0.5) + 
+    geom_smooth(method = "lm", se = F, size = 0.25) +
+    # ggtitle("Q ~ R") +
+    xlab("Quantité du vin") + ylab("Revenus") +
+    pres_theme
+grid.arrange(p1, p2, nrow = 1)
+```
+
 # Modèlisation
 - Explication de la méthode utilisée
     - Panel data
+        - Within transforation 
+        - Fixed effects 
+        - Obtained slopes are averages for all population 
     - AIDS model 
+        - Interdependent equations
+        - 3SLS estimator 
+        - Use of enxogenous variables as instruments for endogenous price index 
 - Limites du modèle 
+    - Faible representation des effets hetérogenes entre les régions (nous estimons seulemnt les effets moyens)
+    - Les interferences induites par l'heterogénéité 
+
+```{r include = FALSE, eval = FALSE}
+###################
+# Not evaluated !!!
+###################
+###################
+# Rework the matrix DUMMIES
+###################
+Dum = dummy(datai$ndep, sep = "_")
+# Index pésticides
+IKI = as.matrix(datai$iki)[, rep(1, each = length(unique(datai$ndep)))]
+ikiDum = as.data.frame(Dum*IKI) %>% 
+    setNames(paste0('iki_', names(.)))
+rm(IKI)
+# Revenus
+RI = as.matrix(datai$ri)[, rep(1, each = length(unique(datai$ndep)))]
+riDum = as.data.frame(Dum*RI) %>% 
+    setNames(paste0('ri_', names(.)))
+rm(RI)
+# Concatenate
+dataD = datai %>% 
+    select(-c(t, ri, iki)) %>% 
+    cbind(Dum) %>% 
+    cbind(ikiDum) %>% 
+    cbind(riDum)
+```
+
+```{r include = FALSE, eval = FALSE}
+###################
+# Not evaluated !!!
+###################
+###################
+# Rework the matrix WITHINxDUMMIES
+###################
+Dum = dummy(datai$ndep, sep = "_")
+# Index pésticides
+IKI = as.data.frame(dataW$iki, ncol = 1)[, rep(1, each = length(unique(datai$ndep)))]
+ikiDum = as.data.frame(Dum*IKI)
+ikiDum = ikiDum %>%
+    set_names(~str_replace_all(., "dataW\\$", ""))
+rm(IKI)
+# Revenus
+RI = as.data.frame(dataW$ri)[, rep(1, each = length(unique(datai$ndep)))]
+riDum = as.data.frame(Dum*RI) %>%
+    rename_all(list(~str_replace_all(., "dataW\\$", "")))
+rm(RI)
+# Concatenate
+dataWD = dataW %>% 
+    select(-c(t, ri, iki)) %>% 
+    cbind(ikiDum) %>% 
+    cbind(riDum)
+rm(ikiDum) ; rm(riDum)
+```
 
 # Résultats d'estimation
 - Les coefficients estimés avec leurs variance 
@@ -435,6 +582,18 @@ Temps & $-0.036$ & $0.043$ & $-0.064$ & $0.119$ & $0.291$ & $1$ \\
     - Autocorrélation 
     - Spécification du modèle 
     - ... (à voir)
+
+# Les résultats OLS
+```{r echo = FALSE}
+eqdemand = qi ~ 0 + ipi + ri
+eqoffer = qi ~ 0 + ipi + si + iki 
+system = list(demand = eqdemand, supply = eqoffer)
+ols = systemfit(system, 
+    data = as.data.frame(dataW), 
+    method = "OLS")
+stargazer(ols$eq[[1]])
+## results of the second equati)
+```
 
 # Conclusions 
 - Le rôle des pésticides 
