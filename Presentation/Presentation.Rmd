@@ -233,6 +233,14 @@ Effect.testing = function(Formulas, data) {
 
 # Le marché du vin français
 - Le marché commun
+2  grandes classes (Cembalo et al, 2014) :
+    - le vins de qualité inférieure : peu onéreux, qualité de base -> vins non IGP 
+    -les vins de qualité supérieure : onéreux, caractéristiques qualitatives complexe, bonne image et réputation -> vins IGP,AOC.
+
+- Cadre d'étude :
+    - Restreint aux vin non IGP (produits relativement homogènes : fourchette de prix étroite,  attributs intrinsèques simples, une complexité de qualité médiocre et donc une différenciation peu marquée.)
+    - Restreint au niveau national (non prise en compte des exportations et importations, non prise en compte des marchés extérieurs à la France car différence de taxe sur les produits consommés et perception des produits distinctes)
+    
 - Utilisation des pésticides
 - Heterogénéité
 - Pourquoi vins de table
@@ -243,14 +251,29 @@ Effect.testing = function(Formulas, data) {
 - La formalisation et les équations
 
 # Les données
-- Dimentions :
-    - Départements
-    - Années
+- Sources des données : 
+     -Les données de ventes de pesticides par département : Institut National de l'Environnement
+Industriel et des Risques (INERIS)
+     - Les données sur les prix du vin (France Agrimer)
+     - Les données sur la population (INSEE)
+     - Les données sur la production de vin (service statistique du ministère des Finances)
+     
+- Base de données finale
+Construction d'une base de données en panel
+Double Dimention :
+    -individuelle :  les départements français (en France Métropolitaine excepté la Corse)
+   - temporelle : les années (2012 à 2016)
+   
+Propriétés des données :
+- Toutes les variables varient par département et par année.
+- Le période temporelle comprise dans notre échantillon est de 2012 à 2016 :  nombre de périodes pauvres mais intérêt de disposer d'un panel cylindré
+- Sélection des régions productrices de vin et utilisatrices de pesticides : 69 départements.
+- Elimination des effets fixes en soustrayant les moyennes départementales des quantités produites de vin.
 
-- Les variables :
-    - Pésticides (quantités)
-    - Vins (quantités produits, prix)
-    - Variables de controle (revenus, surface cultivé)
+- Les variables utilisées pour notre modèle :
+    - Variable d'intérêt : quantités totales de pesticides vendues par département 
+    - Variables dépendantes : la quantité totale produite de vin rouge et blanc non IG par département (en hectolitres), le prix moyen des vins rouges-blancs par département (représenté à l'aide d'un indice des prix du vin par département construit à partir des prix moyen nationaux des vins blancs et rouges)
+    - Variables de controle : revenu médian par département, surface agricole destinée à la culture viticole (en hectares)
 
 # Les statistiques déscriptives
 - Between and within variance par variable 
