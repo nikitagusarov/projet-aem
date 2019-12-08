@@ -323,7 +323,7 @@ Revenus & $0$ & $0.248$ & $0$ \\
 
 \tiny
 \begin{table}[!htbp] \centering
-  \caption{Overall correlation}
+  \tiny\caption{Overall correlation}
 \begin{tabular}{@{\extracolsep{5pt}} l|cccccc}
 \\[-1.8ex]\hline
 \hline \\[-1.8ex]
@@ -339,6 +339,38 @@ Temps & $-0.036$ & $0.043$ & $-0.064$ & $0.119$ & $0.291$ & $1$ \\
 \end{tabular}
 \end{table}
 
+\tiny
+\begin{table}[!htbp] \centering 
+  \tiny\caption{Within transformation correlation}
+\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Quantité du vin & IP & Surface & Revenus & Index pésticides & Temps \\ 
+\hline \\[-1.8ex] 
+Quantité du vin & $1$ & $0.961$ & $0.366$ & $-0.160$ & $-0.228$ & $-0.199$ \\ 
+IP & $0.961$ & $1$ & $0.289$ & $-0.009$ & $-0.127$ & $0.056$ \\ 
+Surface & $0.366$ & $0.289$ & $1$ & $-0.166$ & $-0.191$ & $-0.310$ \\ 
+Revenus & $-0.160$ & $-0.009$ & $-0.166$ & $1$ & $0.228$ & $0.652$ \\ 
+Index pésticides & $-0.228$ & $-0.127$ & $-0.191$ & $0.228$ & $1$ & $0.414$ \\ 
+Temps & $-0.199$ & $0.056$ & $-0.310$ & $0.652$ & $0.414$ & $1$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\end{frame}
+
+\begin{frame}{Within transformation results}
+\protect\hypertarget{within-transformation-results}{}
+
+\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-22-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Within transformation results}
+\protect\hypertarget{within-transformation-results-1}{}
+
+\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-23-1.pdf}
+
 \end{frame}
 
 \begin{frame}{Modèlisation}
@@ -353,11 +385,41 @@ Temps & $-0.036$ & $0.043$ & $-0.064$ & $0.119$ & $0.291$ & $1$ \\
   \tightlist
   \item
     Panel data
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Within transforation
+    \item
+      Fixed effects
+    \item
+      Obtained slopes are averages for all population
+    \end{itemize}
   \item
     AIDS model
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Interdependent equations
+    \item
+      3SLS estimator
+    \item
+      Use of enxogenous variables as instruments for endogenous price
+      index
+    \end{itemize}
   \end{itemize}
 \item
   Limites du modèle
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Faible representation des effets hetérogenes entre les régions (nous
+    estimons seulemnt les effets moyens)
+  \item
+    Les interferences induites par l'heterogénéité
+  \end{itemize}
 \end{itemize}
 
 \end{frame}
@@ -388,6 +450,82 @@ Temps & $-0.036$ & $0.043$ & $-0.064$ & $0.119$ & $0.291$ & $1$ \\
     \ldots{} (à voir)
   \end{itemize}
 \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Les résultats OLS vs SUR}
+\protect\hypertarget{les-resultats-ols-vs-sur}{}
+
+\tiny
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c }
+\hline
+ & OLS & SUR \\
+\hline
+Demande: ipi        & $0.93^{***}$  & $0.93^{***}$  \\
+                    & $(0.01)$      & $(0.01)$      \\
+Demande: ri         & $-5.75^{***}$ & $-2.00^{***}$ \\
+                    & $(0.47)$      & $(0.33)$      \\
+Offre: ipi          & $0.90^{***}$  & $0.92^{***}$  \\
+                    & $(0.01)$      & $(0.01)$      \\
+Offre: si           & $0.08^{***}$  & $0.02^{*}$    \\
+                    & $(0.01)$      & $(0.01)$      \\
+Offre: iki          & $-0.17^{***}$ & $-0.05^{**}$  \\
+                    & $(0.02)$      & $(0.02)$      \\
+\hline
+Demande: R$^2$      & 0.95          & 0.94          \\
+Offre: R$^2$        & 0.94          & 0.93          \\
+Demande: Adj. R$^2$ & 0.95          & 0.94          \\
+Offre: Adj. R$^2$   & 0.94          & 0.93          \\
+Num. obs. (total)   & 690           & 690           \\
+\hline
+\multicolumn{3}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\caption{Statistical models}
+\label{table:coefficients}
+\end{center}
+\end{table}
+\tiny
+
+\end{frame}
+
+\begin{frame}{Les résultats 2SLS vs 3SLS}
+\protect\hypertarget{les-resultats-2sls-vs-3sls}{}
+
+\tiny
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c }
+\hline
+ & 2SLS & 3SLS \\
+\hline
+Demande: ipi        & $1.19^{***}$  & $1.19^{***}$  \\
+                    & $(0.06)$      & $(0.06)$      \\
+Demande: ri         & $-5.67^{***}$ & $-5.67^{***}$ \\
+                    & $(0.71)$      & $(0.71)$      \\
+Offre: ipi          & $-1.22$       & $-0.71$       \\
+                    & $(1.97)$      & $(1.96)$      \\
+Offre: si           & $0.70$        & $0.46$        \\
+                    & $(0.59)$      & $(0.58)$      \\
+Offre: iki          & $-0.46$       & $-0.73^{*}$   \\
+                    & $(0.34)$      & $(0.32)$      \\
+\hline
+Demande: R$^2$      & 0.88          & 0.88          \\
+Offre: R$^2$        & -3.37         & -1.60         \\
+Demande: Adj. R$^2$ & 0.88          & 0.88          \\
+Offre: Adj. R$^2$   & -3.40         & -1.62         \\
+Num. obs. (total)   & 690           & 690           \\
+\hline
+\multicolumn{3}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\caption{Statistical models}
+\label{table:coefficients}
+\end{center}
+\end{table}
+\tiny
 
 \end{frame}
 

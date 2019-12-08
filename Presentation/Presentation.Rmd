@@ -433,10 +433,10 @@ dataW$ipi = Within(datap$ipi)
 dataW$iki = Within(datap$iki)
 dataW$si = Within(datap$si)
 dataW$ri = Within(datap$ri)
-dataW$ndep = index(datap)$ndep
 ```
-```{r echo = FALSE}
+```{r include = FALSE}
 correlationW = cor(dataW)
+dataW$ndep = index(datap)$ndep
 colnames(correlationW) = c("Quantité du vin", "IP", 
         "Surface", "Revenus", 
         "Index pésticides", "Temps")
@@ -583,17 +583,52 @@ rm(ikiDum) ; rm(riDum)
     - Spécification du modèle 
     - ... (à voir)
 
-# Les résultats OLS
-```{r echo = FALSE}
+# Les résultats OLS vs SUR
+```{r include = FALSE}
+# equations
 eqdemand = qi ~ 0 + ipi + ri
 eqoffer = qi ~ 0 + ipi + si + iki 
-system = list(demand = eqdemand, supply = eqoffer)
+system = list(Demande = eqdemand, Offre = eqoffer)
+# OLS
 ols = systemfit(system, 
     data = as.data.frame(dataW), 
     method = "OLS")
-stargazer(ols$eq[[1]])
-## results of the second equati)
+# SUR
+sur = systemfit(system, 
+    data = as.data.frame(dataW), 
+    method = "SUR")
 ```
+\tiny
+```{r echo = FALSE, results = "asis"}
+texreg(list(ols, sur),
+    custom.model.names = c("OLS", "SUR"))
+```
+\tiny
+
+# Les résultats 2SLS vs 3SLS
+```{r include = FALSE}
+# equations
+eqdemand = qi ~ 0 + ipi + ri
+eqoffer = qi ~ 0 + ipi + si + iki 
+inst = ~ ri + si + iki
+system = list(Demande = eqdemand, Offre = eqoffer)
+# 2SLS
+sls2 = systemfit(system, 
+    inst = inst,
+    data = as.data.frame(dataW), 
+    method = "2SLS")
+# 3SLS (errors correction)
+sls3 = systemfit(system, 
+    inst = inst,
+    data = as.data.frame(dataW), 
+    method = "3SLS")
+```
+\tiny
+```{r echo = FALSE, results = "asis"}
+texreg(list(sls2, sls3),
+    custom.model.names = c("2SLS", "3SLS"))
+```
+\tiny
 
 # Conclusions 
 - Le rôle des pésticides 
