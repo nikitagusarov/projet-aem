@@ -1783,15 +1783,17 @@ eqoffer = formula(paste("qi ~ ",
 inst = formula(paste(" ~ ", 
     paste(namesinst, collapse = " + "))) 
 system = list(demand = eqdemand, supply = eqoffer)
-ols = systemfit(system, 
-    data = as.data.frame(dataWD), 
-    method = "OLS")
-summary(ols)
-sls = systemfit(system, inst = inst,
-    data = as.data.frame(dataWD), 
+dataWDX = as.data.frame(dataWD)
+sls2 = systemfit(system, inst = inst,
+    data = dataWDX, 
     method = "2SLS")
+summary(ols)
+sls3 = systemfit(system, inst = inst,
+    data = dataWDX, 
+    method = "3SLS")
 summary(sls)
 # Multiple covariates do not allow to capture effects
+ht = hausman.systemfit(sls2, sls3)
 
 # Reorganisation
 datai$ndep = as.factor(datai$ndep)

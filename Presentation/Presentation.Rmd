@@ -219,6 +219,11 @@ Effect.testing = function(Formulas, data) {
 ```
 
 # Introduction
+Dans cet étude, nous chercherons à étudier l'équilibre sur le marché du vin. 
+
+Nous chercherons à répondre à la question suivante :
+
+- Quel est l'effet de la demande de pesticide sur l'équilibre des vins simples ?
 
 # Plan de la présentation
 - Présentation de la problématique
@@ -231,49 +236,148 @@ Effect.testing = function(Formulas, data) {
 - Etat actuel
 - Comment combattre
 
+# Présentation du problème des pesticides
+- source de nombreux débats sur la santé et l'environnement
+- plusieurs mesures mises en places pour réduire leurs usages :
+    - interdiction des produits les plus toxiques ;
+    - instauration d'une taxe (Butault et al, 2011).
+
+- l'utilisation perdure:
+    - hausse des ventes de produits phytosanitaires
+    - Augmentation des doses utilisés : +12% en 2014-2016
+    - moyen de protection contre les aléas climatiques 
+    - préservation du rendement
+  
+# Etat actuel
+Aucune baisse de l'utilisation de pesticides. 
+
+- Nodu augmente de 23% entre 2008 et 2017
+- Le nombre de substances actives utilisées a augmenté de 15% entre 2011 et 2017.
+- Baisse des produits les plus dangereux de 6%, en 2017 (Moghaddam et al, 2019)
+- Les grandes cultures (blés, etc...) sont les premières utilisatrices de pesticides 67.4%
+- Les vignes sont les deuxièmes 14.4% (Butault et al, 2011)
+    
+# Comment baisser l'utilisation de pesticides
+- le changement de mode de culture:
+    - agriculture intensive -> agriculture biologique
+    - agriculture raisonnée -> adapté la quantité de produit utilisé à la culture et à la surface
+    - diminution des doses
+    - déserherber un rang sur 2 dans les vignes puis désherbage mécanique
+- la diversification des cultures (Moghaddam et al, 2019)
+
 # Le marché du vin français
 - Le marché commun
-2  grandes classes (Cembalo et al, 2014) :
-    - le vins de qualité inférieure : peu onéreux, qualité de base -> vins non IGP 
-    -les vins de qualité supérieure : onéreux, caractéristiques qualitatives complexe, bonne image et réputation -> vins IGP,AOC.
-
-- Cadre d'étude :
-    - Restreint aux vin non IGP (produits relativement homogènes : fourchette de prix étroite,  attributs intrinsèques simples, une complexité de qualité médiocre et donc une différenciation peu marquée.)
-    - Restreint au niveau national (non prise en compte des exportations et importations, non prise en compte des marchés extérieurs à la France car différence de taxe sur les produits consommés et perception des produits distinctes)
-    
-- Utilisation des pésticides
+- Utilisation des pésticides dans viticulture
 - Heterogénéité
 - Pourquoi vins de table
+- Le marché des vins de table français
+
+# Le marché commun
+Principal producteur de vin:
+
+- 10% surface de vigne mondiale
+- 20% terres agricoles française dédiées à la vigne
+- 3% de la surface agricole est consacré au vin
+- 16% de la production mondiale boisson alcoolisées la plus consommée en France
+- 88% des ventes de vins en France sont effectuées dans une grande surface (le Comité National des Interprofessions des Vins à appelation d'origine et à indication géographique, 2018)
+
+La consommation de vins (2011)(FranceAgrimer, 2011)
+
+- 55% de vins rouges 
+- 16% de vins blancs
+- 29% de vins rosés 
+
+La France est le premier exportateur de vin.
+  
+# Utilisation des pesticides dans viticulture
+La viticulture un type de culture gourmand en pesticides :
+
+- 14.4% des produits phytosanitaires utilisés en France.
+- 2è culture utilisatrice de pesticides en Frances
+- Les régions viticoles sont des régions ou les dépenses en phyto sont les plus importantes
+- Fortes disparités d'utilisation des pesticides entre les régions.(climat) (Butault et al, 2011)
+- Les bassins viticoles Français utilisent en majorité des fongicides et des bactéricides
+- La champagne est la région la plus utilisatrice de pesticide avec un IFT de 21.4 en 2013.
+- Les pyrennées orientales sont la région la moins utilisatrice de pesticide avec un IFT de 9.2 en 2013.(Pujol, J, 2017)
+  
+# Heterogénéité
+Il existe une forte hétérogénéité entre les différents labels mais aussi à l'intérieur de ces labels. 
+
+Les vins peuvent être divisés en 2 grandes classes suivant leurs prix(Cembalo et al., 2014) :
+
+- les vins de qualité moyenne
+    - ils ont un degré d'hétérogénéité important (Cembalo et al, 2014)
+
+- les vins de qualité supérieure
+    - limitation des quantités produites, 
+    - une origine contrôlé 
+    - une demande spécifique
+
+# Pourquoi vins de table
+Les vins de tables sont des vins sans indication géographiques
+
+- hétérogènéité importante, 
+- en moyenne prix bas.
+
+Il s'agit des vins les plus simples, refusant les contraintes associées aux labels.
+
+Nous traitons seulement des vins sans indication géographique.
+
+- La situation sur ce marché influence l'utilisation des pesticides
+- Les volumes de production sont plus significatifs dans le marché des vins sans indication géographique. 
+- Il existe une homogénéité presque parfaite dans les vins sans indication géographique (Cembalo et al, 2014).
+
+# Le marché des vins de tables Français :
+Représente 10% de la production (VIN & SOCIETE, 2018)
+
+- Hausse des transactions en 2011:
+    - Vins rouges : 29 %
+    - Vins rosés :13% 
+    - Vins blancs : 76%
+
+- Hausse des prix: 
+    - Vins rouges : 12%
+    - Vins rosés : 3%
+    - Vins blancs : 13%
+
+- La consommation des vins sans IG en 2011 :
+    - baisse des ventes en grande distribution de 14.6%
 
 # Le Modèle théorique
 - Le rôle des pesticides dans la production du vin
 - Le rôle de la demande sur la production et l'offre en général
 - La formalisation et les équations
 
+# Le rôle de la demande sur la production et l'offre en génèral
+- Nous supposons que sur le marché des vins simples la demande est unique pour toute la France.
+- La production de vin varie par département à cause de variations climatologiques
+- On observe l'équilibre sur le marché au niveau du pays. Ainsi, la quantité demandée = quantité offerte par l'ensemble des régions.
+- La demande de pesticides est inélastique au prix. Ainsi, la quantité de pesticides utilisée dépend seulement des intentions et des besoins des agriculteurs.
+
 # Les données
-- Sources des données : 
-     -Les données de ventes de pesticides par département : Institut National de l'Environnement
-Industriel et des Risques (INERIS)
-     - Les données sur les prix du vin (France Agrimer)
-     - Les données sur la population (INSEE)
-     - Les données sur la production de vin (service statistique du ministère des Finances)
+Sources des données : 
+
+- Les données de ventes de pesticides par département : Institut National de l'Environnement Industriel et des Risques (INERIS)
+- Les données sur les prix du vin (France Agrimer)
+- Les données sur la population (INSEE)
+- Les données sur la production de vin (service statistique du ministère des Finances)
      
-- Base de données finale
-Construction d'une base de données en panel
-Double Dimention :
-    -individuelle :  les départements français (en France Métropolitaine excepté la Corse)
-   - temporelle : les années (2012 à 2016)
+Base de données finale :
+
+- une base de données en panel double dimention
+- par départements français (en France Métropolitaine excepté la Corse)
+- les années (2012 à 2016)
    
-Propriétés des données :
+# Déscription des données :
 - Toutes les variables varient par département et par année.
-- Le période temporelle comprise dans notre échantillon est de 2012 à 2016 :  nombre de périodes pauvres mais intérêt de disposer d'un panel cylindré
+- Le période temporelle comprise dans notre échantillon est de 2012 à 2016 (nombre de périodes pauvres mais intérêt de disposer d'un panel cylindré)
 - Sélection des régions productrices de vin et utilisatrices de pesticides : 69 départements.
 - Elimination des effets fixes en soustrayant les moyennes départementales des quantités produites de vin.
 
-- Les variables utilisées pour notre modèle :
-    - Variable d'intérêt : quantités totales de pesticides vendues par département 
-    - Variables dépendantes : la quantité totale produite de vin rouge et blanc non IG par département (en hectolitres), le prix moyen des vins rouges-blancs par département (représenté à l'aide d'un indice des prix du vin par département construit à partir des prix moyen nationaux des vins blancs et rouges)
-    - Variables de controle : revenu médian par département, surface agricole destinée à la culture viticole (en hectares)
+# Les variables utilisées pour notre modèle :
+- Variable d'intérêt : quantités totales de pesticides vendues par département 
+- Variables dépendantes : la quantité totale produite de vin rouge et blanc non IG par département (en hectolitres), le prix moyen des vins rouges-blancs par département (représenté à l'aide d'un indice des prix du vin par département construit à partir des prix moyen nationaux des vins blancs et rouges)
+- Variables de controle : revenu médian par département, surface agricole destinée à la culture viticole (en hectares)
 
 # Les statistiques déscriptives
 - Between and within variance par variable 
@@ -645,16 +749,18 @@ texreg(list(ols, wls, sur),
 ```{r include = FALSE}
 cordata = dataWX %>% 
     mutate(u1 = ols$eq[[1]]$res,
-        u2 = ols$eq[[2]]$res)
-cormat = cor(cordata[,-c(6,7)])
-colnames(cormat) = c("Vin", "IP", 
-        "Surface", "Revenus", 
-        "Pesticides", 
-        "Demande", "Offre")
+        u2 = ols$eq[[2]]$res,
+        u3 = wls$eq[[1]]$res,
+        u4 = wls$eq[[2]]$res,
+        u5 = sur$eq[[1]]$res,
+        u6 = sur$eq[[2]]$res)
+cormat = cor(cordata[,-c(6,7)])[1:5, 6:11]
+colnames(cormat) = c("OLS D", "OLS O", 
+        "WLS D", "WLS O", 
+        "SUR D", "SUR O")
 rownames(cormat) = c("Vin", "IP", 
         "Surface", "Revenus", 
-        "Pesticides", 
-        "Demande", "Offre")
+        "Pesticides")
 ```
 ```{r include = FALSE}
 stargazer(cormat, 
@@ -663,22 +769,21 @@ stargazer(cormat,
 ```
 \tiny
 \begin{table}[!htbp] \centering 
-  \caption{Errors correlation}
-\begin{tabular}{@{\extracolsep{5pt}} cccccccc} 
+  \caption{Errors correlation} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
- & Vin & IP & Surface & Revenus & Pesticides & Demande & Offre \\ 
+ & OLS D & OLS O & WLS D & WLS O & SUR D & SUR O \\ 
 \hline \\[-1.8ex] 
-Vin & $1$ & $0.961$ & $0.366$ & $-0.160$ & $-0.228$ & $0.232$ & $0.244$ \\ 
-IP & $0.961$ & $1$ & $0.289$ & $-0.009$ & $-0.127$ & $-0$ & $-0$ \\ 
-Surface & $0.366$ & $0.289$ & $1$ & $-0.166$ & $-0.191$ & $0.271$ & $-0$ \\ 
-Revenus & $-0.160$ & $-0.009$ & $-0.166$ & $1$ & $0.228$ & $0$ & $-0.480$ \\ 
-Pesticides & $-0.228$ & $-0.127$ & $-0.191$ & $0.228$ & $1$ & $-0.308$ & $-0$ \\ 
-Demande & $0.232$ & $-0$ & $0.271$ & $0$ & $-0.308$ & $1$ & $0.740$ \\ 
-Offre & $0.244$ & $-0$ & $-0$ & $-0.480$ & $-0$ & $0.740$ & $1$ \\ 
+Vin & $0.232$ & $0.244$ & $0.232$ & $0.244$ & $0.273$ & $0.275$ \\ 
+IP & $-0$ & $-0$ & $0$ & $-0$ & $0$ & $0$ \\ 
+Surface & $0.271$ & $-0$ & $0.271$ & $0$ & $0.313$ & $0.236$ \\ 
+Revenus & $0$ & $-0.480$ & $-0$ & $-0.480$ & $-0.393$ & $-0.542$ \\ 
+Pesticides & $-0.308$ & $-0$ & $-0.308$ & $0$ & $-0.373$ & $-0.281$ \\
 \hline \\[-1.8ex] 
 \end{tabular} 
-\end{table}
+\end{table} 
 
 # Les résultats 2SLS, W2SLS et 3SLS
 ```{r include = FALSE}
@@ -725,7 +830,7 @@ hausman.systemfit(sls2, sls3) # p = 1, 3SLS inconsistent
 ```
 - Likelihood test :
 ```{r include = FALSE}
-lr = lrtest(sls2, sls3)
+lr = lrtest(sls2, wsls2, sls3)
 stargazer(lr, summary = FALSE)
 ```
 \tiny
@@ -735,59 +840,116 @@ stargazer(lr, summary = FALSE)
 \hline \\[-1.8ex] 
  & \#Df & LogLik & Df & Chisq & Pr(\textgreater Chisq) \\ 
 \hline \\[-1.8ex] 
-2SLS & $6$ & $152.708$ & $$ & $$ & $$ \\ 
-3SLS & $7$ & $-149.621$ & $1$ & $604.657$ & $0$ \\ 
+1 & $6$ & $-149.621$ & $$ & $$ & $$ \\ 
+2 & $7$ & $-149.621$ & $1$ & $0$ & $1.000$ \\ 
+3 & $8$ & $-65.614$ & $1$ & $168.013$ & $0$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table} 
 
-# Residuals tests for 3SLS
-- Residuals normality test (Shapiro-Wilk)
-    - Equation de la demande :
-```{r echo = FALSE, results = "asis"}
-shapiro.test(sls3$eq[[1]]$res)$p.val
+# Residuals tests
+- Residuals normality test
+```{r include = FALSE}
+ShapT = data.frame(nrow = 2, ncol = 6)
+ShapT[1,1] = shapiro.test(sls2$eq[[1]]$res)$p.val
+ShapT[2,1] = shapiro.test(sls2$eq[[2]]$res)$p.val
+ShapT[1,2] = shapiro.test(wsls2$eq[[1]]$res)$p.val
+ShapT[2,2] = shapiro.test(wsls2$eq[[2]]$res)$p.val
+ShapT[1,3] = shapiro.test(sls3$eq[[1]]$res)$p.val
+ShapT[2,3] = shapiro.test(sls3$eq[[2]]$res)$p.val
+colnames(ShapT) = c("2SLS", "W2SLS", "3SLS")
+rownames(ShapT) = c("Equation de demande", "Equation d'offre")
 ```
-
-    - Equation de l'offre :
-```{r echo = FALSE, results = "asis"}
-shapiro.test(sls3$eq[[2]]$res)$p.val
+```{r include = FALSE}
+stargazer(ShapT,
+    summary = FALSE,
+    title = "Shapiro-Wilk test")
 ```
+\tiny
+\begin{table}[!htbp] \centering 
+  \caption{Shapiro-Wilk test} 
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & 2SLS & W2SLS & 3SLS \\ 
+\hline \\[-1.8ex] 
+Equation de demande & $0.00003$ & $0.00003$ & $0.00003$ \\ 
+Equation d'offre & $0.00000$ & $0.00000$ & $0.00000$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
 
-```{r echo = FALSE, results = "asis"}
+\normalsize
+
+- Residuals heteroscedasticity test
+```{r include = FALSE}
 resdata3 = dataWX %>% 
-    mutate(u1 = sls3$eq[[1]]$res,
-        u2 = sls3$eq[[2]]$res)
+    mutate(u1 = sls2$eq[[1]]$res,
+        u2 = sls2$eq[[2]]$res,
+        u3 = wsls2$eq[[1]]$res,
+        u4 = wsls2$eq[[2]]$res,
+        u5 = sls3$eq[[1]]$res,
+        u6 = sls3$eq[[2]]$res)
 ```
-- Residuals heteroscedasticity test (Bartlett test)
-    - Equation de la demande :
 ```{r echo = FALSE, results = "asis"}
-ols_test_bartlett(resdata3, u1, group_var = ndep)$pval
+BartT = data.frame(ncol = 3, nrow = 2)
+BartT[1,1] = ols_test_bartlett(resdata3, u1, group_var = ndep)$pval
+BartT[2,1] = ols_test_bartlett(resdata3, u2, group_var = ndep)$pval
+BartT[1,2] = ols_test_bartlett(resdata3, u3, group_var = ndep)$pval
+BartT[2,2] = ols_test_bartlett(resdata3, u4, group_var = ndep)$pval
+BartT[1,3] = ols_test_bartlett(resdata3, u5, group_var = ndep)$pval
+BartT[2,3] = ols_test_bartlett(resdata3, u6, group_var = ndep)$pval
+colnames(BartT) = c("2SLS", "W2SLS", "3SLS")
+rownames(BartT) = c("Equation de demande", "Equation d'offre")
 ```
-
-    - Equation de l'offre :
-```{r echo = FALSE, results = "asis"}
-ols_test_bartlett(resdata3, u2, group_var = ndep)$pval
+```{r include = FALSE}
+stargazer(BartT,
+    summary = FALSE,
+    title = "Bartlett test")
 ```
+\tiny 
+\begin{table}[!htbp] \centering 
+  \caption{Bartlett test}
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & 2SLS & W2SLS & 3SLS \\ 
+\hline \\[-1.8ex] 
+Equation de demande & $0.975$ & $0.975$ & $0.975$ \\ 
+Equation d'offre & $0.0003$ & $0.0003$ & $0.002$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular}
+\end{table} 
 
-# Residuals autocorrelation study
+# Residuals PDF visualisation
 ```{r echo = FALSE}
 par(mfrow = c(1,2))
-acf(sls3$eq[[1]]$res, main = "Demand")
+plot(density(sls2$eq[[1]]$res), col = "blue", main = "Demande")
+lines(density(wsls2$eq[[1]]$res), col = "green")
+lines(density(sls3$eq[[1]]$res), col = "red")
+plot(density(sls3$eq[[2]]$res), col = "red", main = "Offre")
+lines(density(wsls2$eq[[2]]$res), col = "green")
+lines(density(sls2$eq[[2]]$res), col = "blue")
+```
+
+# Residuals autocorrelation study for 3SLS
+```{r echo = FALSE}
+par(mfrow = c(1,2))
+acf(sls3$eq[[1]]$res, main = "Demande")
 acf(sls3$eq[[2]]$res, main = "Offre")
 ```
 
-# Disturbances correlation study for 2SLS 
+# Disturbances correlation study 
 - Les résidus sont peux correlés avec les variables explicatives
 ```{r include = FALSE}
 cormat = cor(resdata3[,-c(6,7)])
-colnames(cormat) = c("Vin", "IP", 
-        "Surface", "Revenus", 
-        "Pesticides", 
-        "Demande", "Offre")
+cormat = cormat[1:5, 6:11]
+colnames(cormat) = c("2SLS D", "2SLS O", 
+        "W2SLS D", "W2SLS O", 
+        "3SLS D", "3SLS O")
 rownames(cormat) = c("Vin", "IP", 
         "Surface", "Revenus", 
-        "Pesticides", 
-        "Demande", "Offre")
+        "Pesticides")
 ```
 ```{r include = FALSE}
 stargazer(cormat, 
@@ -796,19 +958,17 @@ stargazer(cormat,
 ```
 \tiny
 \begin{table}[!htbp] \centering 
-  \caption{Errors correlation}
-\begin{tabular}{@{\extracolsep{5pt}} cccccccc} 
+  \caption{Errors correlation} 
+\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
- & Vin & IP & Surface & Revenus & Pesticides & Demande & Offre \\ 
+ & 2SLS D & 2SLS O & W2SLS D & W2SLS O & 3SLS D & 3SLS O \\ 
 \hline \\[-1.8ex] 
-Vin & $1$ & $0.961$ & $0.366$ & $-0.160$ & $-0.228$ & $-0.561$ & $0.898$ \\
-IP & $0.961$ & $1$ & $0.289$ & $-0.009$ & $-0.127$ & $-0.746$ & $0.938$ \\
-Surface & $0.366$ & $0.289$ & $1$ & $-0.166$ & $-0.191$ & $-0.034$ & $0.032$ \\ 
-Revenus & $-0.160$ & $-0.009$ & $-0.166$ & $1$ & $0.228$ & $-0$ & $0$ \\
-Pesticides & $-0.228$ & $-0.127$ & $-0.191$ & $0.228$ & $1$ & $-0.113$ & $0.105$ \\ 
-Demande & $-0.561$ & $-0.746$ & $-0.034$ & $-0$ & $-0.113$ & $1$ & $-0.705$ \\ 
-Offre & $0.898$ & $0.938$ & $0.032$ & $0$ & $0.105$ & $-0.705$ & $1$ \\ 
+Vin & $-0.561$ & $0.906$ & $-0.561$ & $0.906$ & $-0.561$ & $0.898$ \\ 
+IP & $-0.746$ & $0.948$ & $-0.746$ & $0.948$ & $-0.746$ & $0.938$ \\ 
+Surface & $-0.034$ & $0$ & $-0.034$ & $0$ & $-0.034$ & $0.032$ \\ 
+Revenus & $0$ & $0$ & $0$ & $0$ & $-0$ & $0$ \\ 
+Pesticides & $-0.113$ & $0$ & $-0.113$ & $0$ & $-0.113$ & $0.105$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table} 
@@ -821,5 +981,6 @@ Offre & $0.898$ & $0.938$ & $0.032$ & $0$ & $0.105$ & $-0.705$ & $1$ \\
 - Ouverture 
 
 # Bibliographie 
-- Inclure seulement les articles importants
-- Faire des réferences et mentionner ces articles dans la partie théorique 
+- Cembalo L., Caracciolo F., & Pomarici E. (2014). Drinking cheaply : the demand for basic wine in italy. *Australian Journal of Agricultural and Resource Economics*, 58(3). 374-391.
+- Butault J-P., Delame N., Jacquet F. & Zardet G. (2011). L'utilisation des pesticides en France: état des lieux et perspectives de réduction. *Notes et études socio-économiques*, 35. 7-26
+- Pujol J. (2017). Apports des produits phytosanitaires en viticulture et climat : une analyse à partir des enquêtes pratiques culturales. *Agreste Les Dossiers*. 39. 3-25
