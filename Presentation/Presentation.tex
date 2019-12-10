@@ -94,8 +94,24 @@
 \def\fps@figure{htbp}
 \makeatother
 
-\usepackage{array}
-\usepackage{multicol}
+\makeatletter
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{institute in head/foot}\insertshortinstitute
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+   %\insertframenumber{} / \inserttotalframenumber\hspace*{2ex} % old version
+    \insertframenumber{} \hspace*{2ex} % new version without total frames
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
 
 \title{Etude des effets des pésticides dans la production des vins de table}
 \providecommand{\subtitle}[1]{}
@@ -103,28 +119,23 @@
 \author{A. Blanc, N. Gusarov, S. Picon}
 \providecommand{\institute}[1]{}
 \institute{Université Grenoble Alpes}
-\date{11/12/2019}
+\date{19/12/2019}
 
 \begin{document}
 \frame{\titlepage}
 
-\begin{frame}
-\tableofcontents[hideallsubsections]
-\end{frame}
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
 \begin{frame}{Introduction}
-\protect\hypertarget{introduction}{}
+\protect\hypertarget{introduction-1}{}
 
-Dans cet étude, nous chercherons à étudier l'équilibre sur le marché du
-vin.
+\center
 
-Nous chercherons à répondre à la question suivante :
+\textbf{Quel est l'effet de l'utilisation des pesticides sur le marché des vins simples ?}
 
-\begin{itemize}
-\tightlist
-\item
-  Quel est l'effet de la demande de pesticide sur l'équilibre des vins
-  simples ?
-\end{itemize}
+Dans cette étude, nous chercherons à étudier l'équilibre sur le marché
+du vin.
 
 \end{frame}
 
@@ -135,18 +146,33 @@ Nous chercherons à répondre à la question suivante :
 \tightlist
 \item
   Présentation de la problématique
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Pesticides
+  \item
+    Marché du vin
+  \end{itemize}
 \item
-  Présentation des données
+  Le modèle théorique
+\item
+  Les données
 \item
   Modélisation
 \item
   Les résultats
+\item
+  Conclusion
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Le problème des pesticides}
-\protect\hypertarget{le-probleme-des-pesticides}{}
+\hypertarget{les-pesticides}{%
+\section{Les pesticides}\label{les-pesticides}}
+
+\begin{frame}{Les pesticides}
+\protect\hypertarget{les-pesticides-1}{}
 
 \begin{itemize}
 \tightlist
@@ -155,7 +181,7 @@ Nous chercherons à répondre à la question suivante :
 \item
   Etat actuel
 \item
-  Comment combattre
+  Comment baisser l'utilisation de pesticides
 \end{itemize}
 
 \end{frame}
@@ -166,30 +192,37 @@ Nous chercherons à répondre à la question suivante :
 \begin{itemize}
 \tightlist
 \item
-  source de nombreux débats sur la santé et l'environnement
+  Source de nombreux débats sur la santé et l'environnement.
 \item
-  plusieurs mesures mises en places pour réduire leurs usages :
+  Le rôle actuel :
 
   \begin{itemize}
   \tightlist
   \item
-    interdiction des produits les plus toxiques ;
+    Moyen de protection contre les aléas climatiques ;
   \item
-    instauration d'une taxe (Butault et al, 2011).
+    Outil pour la réservation du rendement.
   \end{itemize}
 \item
-  l'utilisation perdure:
+  Plusieurs mesures mises en places pour réduire leurs usages :
 
   \begin{itemize}
   \tightlist
   \item
-    hausse des ventes de produits phytosanitaires
+    des interdiction des produits les plus toxiques ;
   \item
-    Augmentation des doses utilisés : +12\% en 2014-2016
+    l'instauration d'une taxe, payée par les agriculteurs (Butault et
+    al, 2011).
+  \end{itemize}
+\item
+  Malgres les efforts l'utilisation perdure :
+
+  \begin{itemize}
+  \tightlist
   \item
-    moyen de protection contre les aléas climatiques
+    Hausse des ventes de produits phytosanitaires ;
   \item
-    préservation du rendement
+    Augmentation des doses utilisés (+12\% en 2014-2016) ;
   \end{itemize}
 \end{itemize}
 
@@ -198,23 +231,24 @@ Nous chercherons à répondre à la question suivante :
 \begin{frame}{Etat actuel}
 \protect\hypertarget{etat-actuel}{}
 
-Aucune baisse de l'utilisation de pesticides.
+Contrairement aux attentes des autorités aucune baisse de l'utilisation
+de pesticides :
 
 \begin{itemize}
 \tightlist
 \item
-  Nodu augmente de 23\% entre 2008 et 2017
+  Le nombre de doses unité augmente de 23\% entre 2008 et 2017 ;
 \item
   Le nombre de substances actives utilisées a augmenté de 15\% entre
-  2011 et 2017.
+  2011 et 2017 ;
 \item
-  Baisse des produits les plus dangereux de 6\%, en 2017 (Moghaddam et
-  al, 2019)
+  Une baisse des produits les plus dangereux de 6\%, en 2017 (Moghaddam
+  et al, 2019) ;
 \item
   Les grandes cultures (blés, etc\ldots{}) sont les premières
-  utilisatrices de pesticides 67.4\%
+  utilisatrices de pesticides 67.4\% ;
 \item
-  Les vignes sont les deuxièmes 14.4\% (Butault et al, 2011)
+  Les vignes sont les deuxièmes 14.4\% (Butault et al, 2011).
 \end{itemize}
 
 \end{frame}
@@ -222,176 +256,162 @@ Aucune baisse de l'utilisation de pesticides.
 \begin{frame}{Comment baisser l'utilisation de pesticides}
 \protect\hypertarget{comment-baisser-lutilisation-de-pesticides}{}
 
+Les méthodes contemporaines visant à baisser l'utilisation des
+pésticides sont :
+
 \begin{itemize}
 \tightlist
 \item
-  le changement de mode de culture:
+  Le changement de mode de culture :
 
   \begin{itemize}
   \tightlist
   \item
-    agriculture intensive -\textgreater{} agriculture biologique
+    agriculture biologique ;
   \item
-    agriculture raisonnée -\textgreater{} adapté la quantité de produit
-    utilisé à la culture et à la surface
-  \item
-    diminution des doses
-  \item
-    déserherber un rang sur 2 dans les vignes puis désherbage mécanique
+    agriculture raisonnée ;
   \end{itemize}
 \item
-  la diversification des cultures (Moghaddam et al, 2019)
+  La diversification des cultures, ce qui est impossible pour la vigne
+  (Moghaddam et al, 2019).
 \end{itemize}
 
 \end{frame}
 
+\hypertarget{le-marche-du-vin-francais}{%
+\section{Le marché du vin français}\label{le-marche-du-vin-francais}}
+
 \begin{frame}{Le marché du vin français}
-\protect\hypertarget{le-marche-du-vin-francais}{}
+\protect\hypertarget{le-marche-du-vin-francais-1}{}
 
 \begin{itemize}
 \tightlist
 \item
-  Le marché commun
+  Le vin français
 \item
-  Utilisation des pésticides dans viticulture
+  Utilisation des pésticides dans la viticulture
 \item
-  Heterogénéité
+  Le problème d'heterogénéité
 \item
-  Pourquoi vins de table
+  Les vins de table
 \item
   Le marché des vins de table français
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Le marché commun}
-\protect\hypertarget{le-marche-commun}{}
+\begin{frame}{Le vin français}
+\protect\hypertarget{le-vin-francais}{}
 
-Principal producteur de vin:
-
-\begin{itemize}
-\tightlist
-\item
-  10\% surface de vigne mondiale
-\item
-  20\% terres agricoles française dédiées à la vigne
-\item
-  3\% de la surface agricole est consacré au vin
-\item
-  16\% de la production mondiale boisson alcoolisées la plus consommée
-  en France
-\item
-  88\% des ventes de vins en France sont effectuées dans une grande
-  surface (le Comité National des Interprofessions des Vins à appelation
-  d'origine et à indication géographique, 2018)
-\end{itemize}
-
-La consommation de vins (2011)(FranceAgrimer, 2011)
+France est un producteur de vin important :
 
 \begin{itemize}
 \tightlist
 \item
-  55\% de vins rouges
+  10\% surface de vigne mondiale ;
 \item
-  16\% de vins blancs
+  3\% de la surface agricole française est dediée au vin ;
 \item
-  29\% de vins rosés
+  16\% de la production mondiale ;
+\item
+  Le vin est la boisson alcoolisée la plus consommée en France ;
+\item
+  88\% des ventes de vins en France sont effectuées dans des grandes
+  surfaces (CNIV, 2018).
 \end{itemize}
 
-La France est le premier exportateur de vin.
+La consommation de vins en France, tous types (FranceAgrimer, 2011) :
+
+\begin{itemize}
+\tightlist
+\item
+  55\% de vins rouges ;
+\item
+  16\% de vins blancs ;
+\item
+  29\% de vins rosés.
+\end{itemize}
 
 \end{frame}
 
-\begin{frame}{Utilisation des pesticides dans viticulture}
-\protect\hypertarget{utilisation-des-pesticides-dans-viticulture}{}
+\begin{frame}{Utilisation des pesticides dans la viticulture}
+\protect\hypertarget{utilisation-des-pesticides-dans-la-viticulture}{}
 
 La viticulture un type de culture gourmand en pesticides :
 
 \begin{itemize}
 \tightlist
 \item
-  14.4\% des produits phytosanitaires utilisés en France.
+  14.4\% des produits phytosanitaires utilisés en France ;
 \item
-  2è culture utilisatrice de pesticides en Frances
+  2-ème culture utilisatrice de pesticides en France ;
 \item
-  Les régions viticoles sont des régions ou les dépenses en phyto sont
-  les plus importantes
-\item
-  Fortes disparités d'utilisation des pesticides entre les
-  régions.(climat) (Butault et al, 2011)
+  Fortes disparités d'utilisation des pesticides entre les régions
+  (Butault et al, 2011) ;
 \item
   Les bassins viticoles Français utilisent en majorité des fongicides et
-  des bactéricides
+  des bactéricides sur la vigne ;
 \item
   La champagne est la région la plus utilisatrice de pesticide avec un
-  IFT de 21.4 en 2013.
-\item
-  Les pyrennées orientales sont la région la moins utilisatrice de
-  pesticide avec un IFT de 9.2 en 2013.(Pujol, J, 2017)
+  IFT de 21.4 en 2013 ;
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Heterogénéité}
-\protect\hypertarget{heterogeneite}{}
+\begin{frame}{Le problème d'heterogénéité}
+\protect\hypertarget{le-probleme-dheterogeneite}{}
 
 Il existe une forte hétérogénéité entre les différents labels mais aussi
 à l'intérieur de ces labels.
 
-Les vins peuvent être divisés en 2 grandes classes suivant leurs
-prix(Cembalo et al., 2014) :
+Les vins peuvent être divisés en 2 grandes classes suivant leurs prix
+(Cembalo et al., 2014) :
 
 \begin{itemize}
 \tightlist
 \item
-  les vins de qualité moyenne
+  Les vins de qualité supérieure
 
   \begin{itemize}
   \tightlist
   \item
-    ils ont un degré d'hétérogénéité important (Cembalo et al, 2014)
-  \end{itemize}
-\item
-  les vins de qualité supérieure
-
-  \begin{itemize}
-  \tightlist
+    limitation des quantités produites
   \item
-    limitation des quantités produites,
-  \item
-    une origine contrôlé
+    l'origine contrôlé
   \item
     une demande spécifique
+  \end{itemize}
+\item
+  Les vins de qualité faible
+
+  \begin{itemize}
+  \tightlist
+  \item
+    hétérogènéité moins importante (Cembalo et al., 2014)
   \end{itemize}
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Pourquoi vins de table}
-\protect\hypertarget{pourquoi-vins-de-table}{}
+\begin{frame}{Les vins de table}
+\protect\hypertarget{les-vins-de-table}{}
 
-Les vins de tables sont des vins sans indication géographiques
+Les vins de tables sont des vins sans indication géographiques :
 
 \begin{itemize}
 \tightlist
 \item
-  hétérogènéité importante,
+  hétérogènéité plus faible que pour les autre types ;
 \item
-  en moyenne prix bas.
+  prix bas.
 \end{itemize}
 
-Il s'agit des vins les plus simples, refusant les contraintes associées
-aux labels.
-
-Nous traitons seulement des vins sans indication géographique.
+Nous traitons seulement des vins sans indication géographique :
 
 \begin{itemize}
 \tightlist
 \item
-  La situation sur ce marché influence l'utilisation des pesticides
-\item
-  Les volumes de production sont plus significatifs dans le marché des
-  vins sans indication géographique.
+  La situation sur ce marché influence l'utilisation des pesticides ;
 \item
   Il existe une homogénéité presque parfaite dans les vins sans
   indication géographique (Cembalo et al, 2014).
@@ -399,7 +419,7 @@ Nous traitons seulement des vins sans indication géographique.
 
 \end{frame}
 
-\begin{frame}{Le marché des vins de tables Français :}
+\begin{frame}{Le marché des vins de tables Français}
 \protect\hypertarget{le-marche-des-vins-de-tables-francais}{}
 
 Représente 10\% de la production (VIN \& SOCIETE, 2018)
@@ -407,19 +427,19 @@ Représente 10\% de la production (VIN \& SOCIETE, 2018)
 \begin{itemize}
 \tightlist
 \item
-  Hausse des transactions en 2011:
+  Hausse des transactions en 2011 :
 
   \begin{itemize}
   \tightlist
   \item
     Vins rouges : 29 \%
   \item
-    Vins rosés :13\%
+    Vins rosés : 13\%
   \item
     Vins blancs : 76\%
   \end{itemize}
 \item
-  Hausse des prix:
+  Hausse des prix en 2011 :
 
   \begin{itemize}
   \tightlist
@@ -430,20 +450,15 @@ Représente 10\% de la production (VIN \& SOCIETE, 2018)
   \item
     Vins blancs : 13\%
   \end{itemize}
-\item
-  La consommation des vins sans IG en 2011 :
-
-  \begin{itemize}
-  \tightlist
-  \item
-    baisse des ventes en grande distribution de 14.6\%
-  \end{itemize}
 \end{itemize}
 
 \end{frame}
 
+\hypertarget{le-modele-theorique}{%
+\section{Le Modèle théorique}\label{le-modele-theorique}}
+
 \begin{frame}{Le Modèle théorique}
-\protect\hypertarget{le-modele-theorique}{}
+\protect\hypertarget{le-modele-theorique-1}{}
 
 \begin{itemize}
 \tightlist
@@ -480,35 +495,44 @@ génèral}
 
 \end{frame}
 
-\begin{frame}{Les données}
-\protect\hypertarget{les-donnees}{}
+\hypertarget{les-donnees}{%
+\section{Les données}\label{les-donnees}}
 
-Sources des données :
+\begin{frame}{Les données}
+\protect\hypertarget{les-donnees-1}{}
 
 \begin{itemize}
 \tightlist
 \item
-  Les données de ventes de pesticides par département : Institut
-  National de l'Environnement Industriel et des Risques (INERIS)
+  Souces des données
 \item
-  Les données sur les prix du vin (France Agrimer)
+  Déscription des données
+\item
+  Les variables choisi
+\item
+  Les variables utilisées pour notre modèle
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Sources des données :}
+\protect\hypertarget{sources-des-donnees}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Les données de ventes de pesticides par département (INERIS)
+\item
+  Les données sur les prix du vin (FranceAgrimer)
 \item
   Les données sur la population (INSEE)
 \item
-  Les données sur la production de vin (service statistique du ministère
-  des Finances)
-\end{itemize}
-
-Base de données finale :
-
-\begin{itemize}
-\tightlist
+  Les données sur la production de vin (SSM Finances Publiques)
 \item
-  une base de données en panel double dimention
+  Variation par département français (pour les régions produisant le
+  vin)
 \item
-  par départements français (en France Métropolitaine excepté la Corse)
-\item
-  les années (2012 à 2016)
+  Variation par année (2012 à 2016)
 \end{itemize}
 
 \end{frame}
@@ -522,53 +546,83 @@ Base de données finale :
   Toutes les variables varient par département et par année.
 \item
   Le période temporelle comprise dans notre échantillon est de 2012 à
-  2016 (nombre de périodes pauvres mais intérêt de disposer d'un panel
-  cylindré)
+  2016.
 \item
   Sélection des régions productrices de vin et utilisatrices de
-  pesticides : 69 départements.
+  pesticides (69 départements).
 \item
-  Elimination des effets fixes en soustrayant les moyennes
-  départementales des quantités produites de vin.
+  Utilisation de l'echelle logarithmique afin de contracter la variance.
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Les variables utilisées pour notre modèle :}
+\begin{frame}{Les variables utilisées pour notre modèle}
 \protect\hypertarget{les-variables-utilisees-pour-notre-modele}{}
 
 \begin{itemize}
 \tightlist
 \item
-  Variable d'intérêt : quantités totales de pesticides vendues par
-  département
+  Variables endogènes :
+
+  \begin{itemize}
+  \tightlist
+  \item
+    la quantité totale produite de vin rouge et blanc non IG par
+    département (en hectolitres, en log),
+  \item
+    le prix moyen des vins rouges-blancs (idice, en log).
+  \end{itemize}
 \item
-  Variables dépendantes : la quantité totale produite de vin rouge et
-  blanc non IG par département (en hectolitres), le prix moyen des vins
-  rouges-blancs par département (représenté à l'aide d'un indice des
-  prix du vin par département construit à partir des prix moyen
-  nationaux des vins blancs et rouges)
-\item
-  Variables de controle : revenu médian par département, surface
-  agricole destinée à la culture viticole (en hectares)
+  Variables exogènes :
+
+  \begin{itemize}
+  \tightlist
+  \item
+    le revenu médian par département (en euros par personne par année,
+    en log),
+  \item
+    la surface agricole destinée aux vins de table (en hectares, en
+    log),
+  \item
+    la quantité des pesticides utilisés sur la vigne (indice, en log).
+  \end{itemize}
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Les statistiques déscriptives}
-\protect\hypertarget{les-statistiques-descriptives}{}
+\hypertarget{letude-statistique}{%
+\section{L'étude statistique}\label{letude-statistique}}
+
+\begin{frame}{L'étude statistique}
+\protect\hypertarget{letude-statistique-1}{}
 
 \begin{itemize}
 \tightlist
 \item
-  Between and within variance par variable
+  L'étude bivarié
 \item
-  Bivariate plots with support regressions
+  L'étude de la variance
 \item
-  Covariance analysis
+  L'étude des types d'effets
 \item
-  Fixed vs Random effects
+  L'analyse de la correlation
+\item
+  La transformation \textbf{within}
 \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Visualisatoin des interdependances}
+\protect\hypertarget{visualisatoin-des-interdependances}{}
+
+\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-17-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Visualisatoin des interdependances}
+\protect\hypertarget{visualisatoin-des-interdependances-1}{}
+
+\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-18-1.pdf}
 
 \end{frame}
 
@@ -592,34 +646,11 @@ Temps & $3$ & $1.416$ & $0$ & $1.416$ \\
 \end{tabular} 
 \end{table}
 
-\end{frame}
-
-\begin{frame}{Visualisatoin des interdependances}
-\protect\hypertarget{visualisatoin-des-interdependances}{}
-
-\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-12-1.pdf}
-
-\end{frame}
-
-\begin{frame}{Visualisatoin des interdependances}
-\protect\hypertarget{visualisatoin-des-interdependances-1}{}
-
-\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-13-1.pdf}
-
-\end{frame}
-
-\begin{frame}{Random and fixed effects testing}
-\protect\hypertarget{random-and-fixed-effects-testing}{}
-
-\begin{itemize}
-\tightlist
-\item
-  Poolability tests (tested versus pooled model)
-\end{itemize}
+\normalsize
 
 \tiny
 \begin{table}[!htbp] \centering
-  \caption{Chow pooling test, p-values}
+  \caption{Chow pooling test}
 \begin{tabular}{@{\extracolsep{5pt}} l|cc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
@@ -635,14 +666,8 @@ Revenus & $0.297$ & $0.247$ \\
 
 \end{frame}
 
-\begin{frame}{Type of fixed effect testing}
-\protect\hypertarget{type-of-fixed-effect-testing}{}
-
-\begin{itemize}
-\tightlist
-\item
-  Type of fixed effects testing
-\end{itemize}
+\begin{frame}{L'étude des types d'effets}
+\protect\hypertarget{letude-des-types-deffets}{}
 
 \tiny
 \begin{table}[!htbp] \centering 
@@ -662,12 +687,12 @@ Revenus & $0$ & $0.248$ & $0$ \\
 
 \end{frame}
 
-\begin{frame}{Correlation}
-\protect\hypertarget{correlation}{}
+\begin{frame}{L'analyse de la correlation}
+\protect\hypertarget{lanalyse-de-la-correlation}{}
 
 \tiny
 \begin{table}[!htbp] \centering
-  \tiny\caption{Overall correlation}
+  \caption{Overall correlation}
 \begin{tabular}{@{\extracolsep{5pt}} l|cccccc}
 \\[-1.8ex]\hline
 \hline \\[-1.8ex]
@@ -685,7 +710,7 @@ Temps & $-0.036$ & $0.043$ & $-0.064$ & $0.119$ & $0.291$ & $1$ \\
 
 \tiny
 \begin{table}[!htbp] \centering 
-  \tiny\caption{Within transformation correlation}
+  \caption{Within transformation correlation}
 \begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
@@ -703,22 +728,46 @@ Temps & $-0.199$ & $0.056$ & $-0.310$ & $0.652$ & $0.414$ & $1$ \\
 
 \end{frame}
 
-\begin{frame}{Within transformation results}
-\protect\hypertarget{within-transformation-results}{}
+\begin{frame}{La transformation \textbf{within}}
+\protect\hypertarget{la-transformation-within}{}
 
-\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-22-1.pdf}
+\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-29-1.pdf}
+
+\end{frame}
+
+\begin{frame}{La transformation \textbf{within}}
+\protect\hypertarget{la-transformation-within-1}{}
+
+\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-30-1.pdf}
 
 \end{frame}
 
-\begin{frame}{Within transformation results}
-\protect\hypertarget{within-transformation-results-1}{}
-
-\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-23-1.pdf}
-
-\end{frame}
+\hypertarget{modelisation}{%
+\section{Modèlisation}\label{modelisation}}
 
 \begin{frame}{Modèlisation}
-\protect\hypertarget{modelisation}{}
+\protect\hypertarget{modelisation-1}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Presentation de la méthode
+\item
+  Les estimations
+
+  \begin{itemize}
+  \tightlist
+  \item
+    OLS, WLS et SUR
+  \item
+    2SLS, W2SLS, 3SLS et i3SLS
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Presentation de la méthode}
+\protect\hypertarget{presentation-de-la-methode}{}
 
 \begin{itemize}
 \tightlist
@@ -772,37 +821,43 @@ Temps & $-0.199$ & $0.056$ & $-0.310$ & $0.652$ & $0.414$ & $1$ \\
 
 \end{frame}
 
-\begin{frame}{Résultats d'estimation}
-\protect\hypertarget{resultats-destimation}{}
+\begin{frame}{Résultats des estimation}
+\protect\hypertarget{resultats-des-estimation}{}
 
 \begin{itemize}
 \tightlist
 \item
   Les coefficients estimés avec leurs variance
 \item
-  Etude des erreurs
+  L'efficience et comparaison des estimateurs
 \item
-  Vérification des hypothèses (5 hypothèses) :
+  Etude des erreurs
 
   \begin{itemize}
   \tightlist
   \item
-    La moyenne nulle des erreurs
+    La distribution des erreurs
+
+    \begin{itemize}
+    \tightlist
+    \item
+      La normalité
+    \item
+      Centrage sur 0
+    \item
+      Independance des variables explicatives
+    \end{itemize}
   \item
-    Homoscedacité
+    L'autocorrelation des résidus
   \item
-    Autocorrélation
-  \item
-    Spécification du modèle
-  \item
-    \ldots{} (à voir)
+    L'hétéroskedacité
   \end{itemize}
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Les résultats OLS vs SUR}
-\protect\hypertarget{les-resultats-ols-vs-sur}{}
+\begin{frame}{Les résultats OLS, WLS et SUR}
+\protect\hypertarget{les-resultats-ols-wls-et-sur}{}
 
 \tiny
 
@@ -839,19 +894,12 @@ Num. obs. (total)   & 690           & 690           & 690           \\
 
 \end{frame}
 
-\begin{frame}{Disturbances correlation study}
-\protect\hypertarget{disturbances-correlation-study}{}
-
-\begin{itemize}
-\tightlist
-\item
-  Les résidus sont non correlés avec les variables explicatives
-\end{itemize}
+\begin{frame}{Independance des résidus}
+\protect\hypertarget{independance-des-residus}{}
 
 \tiny
 \begin{table}[!htbp] \centering 
-  \caption{Errors correlation} 
-  \label{} 
+  \caption{Correlation des résidus} 
 \begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
@@ -868,94 +916,157 @@ Pesticides & $-0.308$ & $-0$ & $-0.308$ & $0$ & $-0.373$ & $-0.281$ \\
 
 \end{frame}
 
-\begin{frame}{Les résultats 2SLS, W2SLS et 3SLS}
-\protect\hypertarget{les-resultats-2sls-w2sls-et-3sls}{}
-
-\tiny
-
-\begin{table}
-\begin{center}
-\begin{tabular}{l c c c }
-\hline
- & 2SLS & W2SLS & 3SLS \\
-\hline
-Demande: ipi        & $1.19^{***}$  & $1.19^{***}$  & $1.19^{***}$  \\
-                    & $(0.06)$      & $(0.06)$      & $(0.06)$      \\
-Demande: ri         & $-5.67^{***}$ & $-5.67^{***}$ & $-5.67^{***}$ \\
-                    & $(0.71)$      & $(0.71)$      & $(0.71)$      \\
-Offre: ipi          & $-1.22$       & $-1.22$       & $-0.71$       \\
-                    & $(1.97)$      & $(1.97)$      & $(1.96)$      \\
-Offre: si           & $0.70$        & $0.70$        & $0.46$        \\
-                    & $(0.59)$      & $(0.59)$      & $(0.58)$      \\
-Offre: iki          & $-0.46$       & $-0.46$       & $-0.73^{*}$   \\
-                    & $(0.34)$      & $(0.34)$      & $(0.32)$      \\
-\hline
-Demande: R$^2$      & 0.88          & 0.88          & 0.88          \\
-Offre: R$^2$        & -3.37         & -3.37         & -1.60         \\
-Demande: Adj. R$^2$ & 0.88          & 0.88          & 0.88          \\
-Offre: Adj. R$^2$   & -3.40         & -3.40         & -1.62         \\
-Num. obs. (total)   & 690           & 690           & 690           \\
-\hline
-\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
-\end{tabular}
-\caption{Statistical models}
-\label{table : 2sls, w2sls and 3sls}
-\end{center}
-\end{table}
-\tiny
-
-\end{frame}
-
-\begin{frame}{Model choice tests}
-\protect\hypertarget{model-choice-tests}{}
-
-\begin{itemize}
-\item
-  Hausman 3SLS consistency test :
-
-  Hausman specification test for consistency of the 3SLS estimation
-\end{itemize}
-
-data: dataWX Hausman = 5.5763, df = 5, p-value = 0.3497
-
-\begin{itemize}
-\tightlist
-\item
-  Likelihood test :
-\end{itemize}
+\begin{frame}{L'autocorrelation et l'hétéroskedacité}
+\protect\hypertarget{lautocorrelation-et-lheteroskedacite}{}
 
 \tiny
 \begin{table}[!htbp] \centering 
-\begin{tabular}{@{\extracolsep{5pt}} cccccc} 
+  \caption{Durbin-Watson test statistics}
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline
+\hline \\[-1.8ex] 
+ & OLS & WLS & SUR \\ 
+\hline \\[-1.8ex] 
+Equation de demande & $1.129$ & $1.129$ & $1.583$ \\ 
+Equation d'offre & $1.062$ & $1.062$ & $1.549$ \\ 
+\hline \\[-1.8ex]
+\end{tabular} 
+\end{table}
+
+\tiny 
+\begin{table}[!htbp] \centering 
+  \caption{Bartlett heteroscedasticity test} 
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
- & \#Df & LogLik & Df & Chisq & Pr(\textgreater Chisq) \\ 
+ & OLS & WLS & SUR \\ 
 \hline \\[-1.8ex] 
-1 & $6$ & $-149.621$ & $$ & $$ & $$ \\ 
-2 & $7$ & $-149.621$ & $1$ & $0$ & $1.000$ \\ 
-3 & $8$ & $-65.614$ & $1$ & $168.013$ & $0$ \\ 
+Equation de demande & $0.828$ & $0.828$ & $1$ \\ 
+Equation d'offre & $0.999$ & $0.999$ & $1$ \\ 
+\hline \\[-1.8ex]
+\end{tabular} 
+\end{table}
+
+\end{frame}
+
+\begin{frame}{Le comportement des résidus}
+\protect\hypertarget{le-comportement-des-residus}{}
+
+\tiny
+\begin{table}[!htbp] \centering 
+  \caption{Shapiro-Wilk normality test}
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & OLS & WLS & SUR \\ 
+\hline \\[-1.8ex] 
+Equation de demande & $0$ & $0$ & $0$ \\ 
+Equation d'offre & $0.0003$ & $0.0003$ & $0$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
 
 \end{frame}
 
-\begin{frame}{Residuals tests}
-\protect\hypertarget{residuals-tests}{}
+\begin{frame}{Les PDF des résidus}
+\protect\hypertarget{les-pdf-des-residus}{}
 
-\begin{itemize}
-\tightlist
-\item
-  Residuals normality test
-\end{itemize}
+\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-46-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Les résidus contre la variable prédite}
+\protect\hypertarget{les-residus-contre-la-variable-predite}{}
+
+\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-47-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Les résultats 2SLS, W2SLS, 3SLS et i3SLS}
+\protect\hypertarget{les-resultats-2sls-w2sls-3sls-et-i3sls}{}
+
+\tiny
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c c c }
+\hline
+ & 2SLS & W2SLS & 3SLS & i3SLS \\
+\hline
+Demande: ipi        & $1.19^{***}$  & $1.19^{***}$  & $1.19^{***}$  & $1.19^{***}$  \\
+                    & $(0.06)$      & $(0.06)$      & $(0.06)$      & $(0.06)$      \\
+Demande: ri         & $-5.67^{***}$ & $-5.67^{***}$ & $-5.67^{***}$ & $-5.67^{***}$ \\
+                    & $(0.71)$      & $(0.71)$      & $(0.71)$      & $(0.71)$      \\
+Offre: ipi          & $-1.22$       & $-1.22$       & $-0.71$       & $-0.81$       \\
+                    & $(1.97)$      & $(1.97)$      & $(1.96)$      & $(1.60)$      \\
+Offre: si           & $0.70$        & $0.70$        & $0.46$        & $0.51$        \\
+                    & $(0.59)$      & $(0.59)$      & $(0.58)$      & $(0.47)$      \\
+Offre: iki          & $-0.46$       & $-0.46$       & $-0.73^{*}$   & $-0.68^{*}$   \\
+                    & $(0.34)$      & $(0.34)$      & $(0.32)$      & $(0.26)$      \\
+\hline
+Demande: R$^2$      & 0.88          & 0.88          & 0.88          & 0.88          \\
+Offre: R$^2$        & -3.37         & -3.37         & -1.60         & -1.90         \\
+Demande: Adj. R$^2$ & 0.88          & 0.88          & 0.88          & 0.88          \\
+Offre: Adj. R$^2$   & -3.40         & -3.40         & -1.62         & -1.92         \\
+Num. obs. (total)   & 690           & 690           & 690           & 690           \\
+\hline
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\caption{Statistical models}
+\label{table : 2sls, w2sls, 3sls and fiml}
+\end{center}
+\end{table}
+\tiny
+
+\end{frame}
+
+\begin{frame}{Comparaison des modèles}
+\protect\hypertarget{comparaison-des-modeles}{}
+
+\tiny
+
+\begin{table}[!htbp] \centering 
+  \caption{Hausman 3SLS consistency test} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Test & Resultats \\ 
+\hline \\[-1.8ex] 
+1 & 2SLS contre 3SLS & $0.350$ \\ 
+2 & 2SLS contre i3SLS & $0.735$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+\tiny
 
 \tiny
 \begin{table}[!htbp] \centering 
-  \caption{Shapiro-Wilk test} 
+  \caption{Likelihood test} 
+\begin{tabular}{@{\extracolsep{5pt}} cccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \#Df & LogLik & Df & Chisq & Pr(\textgreater Chisq) \\ 
+\hline \\[-1.8ex] 
+1 & $6$ & $-149.621$ & $-$ & $-$ & $-$ \\ 
+2 & $8$ & $-65.614$ & $2$ & $168.013$ & $0$ \\ 
+3 & $8$ & $-82.702$ & $0$ & $34.176$ & $0$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\end{frame}
+
+\begin{frame}{Le comportement des résidus}
+\protect\hypertarget{le-comportement-des-residus-1}{}
+
+\tiny
+\begin{table}[!htbp] \centering 
+  \caption{Shapiro-Wilk normality test}
 \begin{tabular}{@{\extracolsep{5pt}} cccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
- & 2SLS & W2SLS & 3SLS \\ 
+ & 2SLS & 3SLS & i3SLS \\ 
 \hline \\[-1.8ex] 
 Equation de demande & $0.00003$ & $0.00003$ & $0.00003$ \\ 
 Equation d'offre & $0.00000$ & $0.00000$ & $0.00000$ \\ 
@@ -963,87 +1074,158 @@ Equation d'offre & $0.00000$ & $0.00000$ & $0.00000$ \\
 \end{tabular} 
 \end{table}
 
-\normalsize
-
-\begin{itemize}
-\tightlist
-\item
-  Residuals heteroscedasticity test
-\end{itemize}
-
 \tiny 
 \begin{table}[!htbp] \centering 
-  \caption{Bartlett test}
+  \caption{Bartlett heteroscedasticity test} 
 \begin{tabular}{@{\extracolsep{5pt}} cccc} 
 \\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & 2SLS & W2SLS & 3SLS \\ 
+\hline \\[-1.8ex]
+ & 2SLS & 3SLS & i3SLS \\ 
 \hline \\[-1.8ex] 
 Equation de demande & $0.975$ & $0.975$ & $0.975$ \\ 
-Equation d'offre & $0.0003$ & $0.0003$ & $0.002$ \\ 
-\hline \\[-1.8ex] 
-\end{tabular}
-\end{table}
-
-\end{frame}
-
-\begin{frame}{Residuals PDF visualisation}
-\protect\hypertarget{residuals-pdf-visualisation}{}
-
-\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-41-1.pdf}
-
-\end{frame}
-
-\begin{frame}{Residuals autocorrelation study for 3SLS}
-\protect\hypertarget{residuals-autocorrelation-study-for-3sls}{}
-
-\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-42-1.pdf}
-
-\end{frame}
-
-\begin{frame}{Disturbances correlation study}
-\protect\hypertarget{disturbances-correlation-study-1}{}
-
-\begin{itemize}
-\tightlist
-\item
-  Les résidus sont peux correlés avec les variables explicatives
-\end{itemize}
-
-\tiny
-\begin{table}[!htbp] \centering 
-  \caption{Errors correlation} 
-\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & 2SLS D & 2SLS O & W2SLS D & W2SLS O & 3SLS D & 3SLS O \\ 
-\hline \\[-1.8ex] 
-Vin & $-0.561$ & $0.906$ & $-0.561$ & $0.906$ & $-0.561$ & $0.898$ \\ 
-IP & $-0.746$ & $0.948$ & $-0.746$ & $0.948$ & $-0.746$ & $0.938$ \\ 
-Surface & $-0.034$ & $0$ & $-0.034$ & $0$ & $-0.034$ & $0.032$ \\ 
-Revenus & $0$ & $0$ & $0$ & $0$ & $-0$ & $0$ \\ 
-Pesticides & $-0.113$ & $0$ & $-0.113$ & $0$ & $-0.113$ & $0.105$ \\ 
-\hline \\[-1.8ex] 
+Equation d'offre & $0.0003$ & $0.002$ & $0.001$ \\ 
+\hline \\[-1.8ex]
 \end{tabular} 
 \end{table}
 
 \end{frame}
 
+\begin{frame}{Les PDF des résidus}
+\protect\hypertarget{les-pdf-des-residus-1}{}
+
+\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-59-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Les résidus contre la variable prédite}
+\protect\hypertarget{les-residus-contre-la-variable-predite-1}{}
+
+\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-60-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Les résidus et les prédictions pour i3SLS}
+\protect\hypertarget{les-residus-et-les-predictions-pour-i3sls}{}
+
+\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-61-1.pdf}
+
+\end{frame}
+
+\begin{frame}{L'autocorrelation}
+\protect\hypertarget{lautocorrelation}{}
+
+\tiny
+\begin{table}[!htbp] \centering 
+  \caption{Durbin-Watson test statistics}
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & 2SLS & 3SLS & i3SLS \\ 
+\hline \\[-1.8ex] 
+Equation de demande & $0.842$ & $0.842$ & $0.842$ \\ 
+Equation d'offre & $0.643$ & $0.643$ & $0.643$ \\ 
+\hline \\[-1.8ex]
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+\begin{frame}{L'autocorrelation sur 2 dimentions pour i3SLS}
+\protect\hypertarget{lautocorrelation-sur-2-dimentions-pour-i3sls}{}
+
+\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-64-1.pdf}
+
+\end{frame}
+
+\begin{frame}{L'independance des résidus}
+\protect\hypertarget{lindependance-des-residus}{}
+
+\tiny
+\begin{table}[!htbp] \centering
+  \caption{Correlation des residus}
+\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & 2SLS D & 2SLS O & 3SLS D & 3SLS O & i3SLS D & i3SLS O \\ 
+\hline \\[-1.8ex]
+Vin & $-0.561$ & $0.906$ & $-0.561$ & $0.898$ & $-0.561$ & $0.901$ \\ 
+IP & $-0.746$ & $0.948$ & $-0.746$ & $0.938$ & $-0.746$ & $0.941$ \\ 
+Surface & $-0.034$ & $0$ & $-0.034$ & $0.032$ & $-0.034$ & $0.024$ \\ 
+Revenus & $0$ & $0$ & $-0$ & $0$ & $0$ & $-0$ \\ 
+Pesticides & $-0.113$ & $0$ & $-0.113$ & $0.105$ & $-0.113$ & $0.080$ \\ 
+\hline \\[-1.8ex]
+\end{tabular} 
+\end{table}
+
+\end{frame}
+
+\hypertarget{conclusions}{%
+\section{Conclusions}\label{conclusions}}
+
 \begin{frame}{Conclusions}
-\protect\hypertarget{conclusions}{}
+\protect\hypertarget{conclusions-1}{}
 
 \begin{itemize}
 \tightlist
 \item
-  Le rôle des pésticides
-\item
   Le marché du vin
 \item
+  Le rôle des pésticides\\
+\item
   Validité
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Le marché du vin}
+\protect\hypertarget{le-marche-du-vin}{}
+
+\begin{itemize}
+\tightlist
 \item
-  Limitations
+  Un comportement inattendus
+
+  \begin{itemize}
+  \item
+    Les effets de substitution contre les produits de la haute gamme
+  \item
+    Les effets négatives du revenu
+  \item
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Le rôle des pésticides}
+\protect\hypertarget{le-role-des-pesticides}{}
+
+\begin{itemize}
+\tightlist
 \item
-  Ouverture
+  Confirmation des résultats des études précedentes
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Utilisés pour réduire les pertes
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Validité}
+\protect\hypertarget{validite}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Faible validité du modèle économétrique
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Variables ommises
+  \end{itemize}
 \end{itemize}
 
 \end{frame}
@@ -1054,16 +1236,17 @@ Pesticides & $-0.113$ & $0$ & $-0.113$ & $0$ & $-0.113$ & $0.105$ \\
 \begin{itemize}
 \tightlist
 \item
-  Cembalo L., Caracciolo F., \& Pomarici E. (2014). Drinking cheaply :
-  the demand for basic wine in italy. \emph{Australian Journal of
+  Cembalo L., Caracciolo F., \& Pomarici E. (2014). ``Drinking cheaply :
+  the demand for basic wine in italy.'' \emph{Australian Journal of
   Agricultural and Resource Economics}, 58(3). 374-391.
 \item
-  Butault J-P., Delame N., Jacquet F. \& Zardet G. (2011). L'utilisation
-  des pesticides en France: état des lieux et perspectives de réduction.
-  \emph{Notes et études socio-économiques}, 35. 7-26
+  Butault J-P., Delame N., Jacquet F. \& Zardet G. (2011).
+  ``L'utilisation des pesticides en France: état des lieux et
+  perspectives de réduction.'' \emph{Notes et études socio-économiques},
+  35. 7-26
 \item
-  Pujol J. (2017). Apports des produits phytosanitaires en viticulture
-  et climat : une analyse à partir des enquêtes pratiques culturales.
+  Pujol J. (2017). ``Apports des produits phytosanitaires en viticulture
+  et climat : une analyse à partir des enquêtes pratiques culturales.''
   \emph{Agreste Les Dossiers}. 39. 3-25
 \end{itemize}
 

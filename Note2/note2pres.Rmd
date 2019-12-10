@@ -6,28 +6,31 @@ author: A. Blanc, N. Gusarov, S. Picon
 shortauthor : A.Blanc, N.Gusarov, S.Picon
 institute: Université Grenoble Alpes
 shortinstitute: UGA
-date: 19/12/2019
+date: 19/12/2019 
 header-includes:
     - \usepackage{array}
     - \usepackage{multicol}
+    - \usepackage{graphicx}
+    - \usepackage{placeins}
 output: 
-    beamer_presentation:
-        theme: "Montpellier"
-        colortheme: "beaver"
+    pdf_document:
         # template: Template.tex
-        slide_level: 2
+        # slide_level: 2
         # fonttheme: "structurebold"
-        toc: FALSE
+        toc: false
+        number_sections: true
         # toc_depth: 1
         df_print: "kable"
-        fig_width: 4
-        fig_height: 2.8
+        fig_width: 7
+        fig_height: 3.5
         fig_caption: yes
-        includes:
-            in_header: Header.tex
+        # includes:
+        #     in_header: Header.tex
 fontsize: 11pt
 # geometry: margin = 0.5in
 ---
+
+\FloatBarrier
 
 ```{r include = FALSE}
 ###################
@@ -40,6 +43,8 @@ knitr::opts_chunk$set(fig_caption = " ")
 knitr::opts_chunk$set(dpi = 600)
 ```
 
+\FloatBarrier
+
 ```{r include = FALSE, eval = FALSE}
 # Extract R code from Rmd
 require(knitr)
@@ -47,6 +52,8 @@ purl("./Presentation/Presentation.Rmd",
     output = "./Presentation/CodePresentation.R", 
     documentation = 0)
 ```
+
+\FloatBarrier
 
 ```{r include = FALSE}
 ##########
@@ -64,6 +71,8 @@ require(stargazer)
 require(systemfit)
 require(olsrr)
 ```
+
+\FloatBarrier
 
 ```{r include = FALSE}
 ##############
@@ -94,6 +103,8 @@ datax = datax %>%
     mutate(IQK = (qk_prod + ql_prod)/refqki)
 ```
 
+\FloatBarrier
+
 ```{r include = FALSE}
 ##################
 # Transformed data
@@ -110,6 +121,8 @@ datai = datax %>%
     dplyr::select(year, ndep, qi, ipi, si, ri, iki, t)
 ```
 
+\FloatBarrier
+
 ```{r include = FALSE}
 ############
 # Panel data
@@ -117,6 +130,8 @@ datai = datax %>%
 datap = pdata.frame(datai, index = c("ndep", "year"),
     drop.index = T)
 ```
+
+\FloatBarrier
 
 ```{r include = FALSE}
 #################
@@ -127,6 +142,8 @@ keep = c("datai", "datap")
 omit = setdiff(list, keep)
 rm(omit)
 ```
+
+\FloatBarrier
 
 ```{r include = FALSE}
 ###################
@@ -190,6 +207,8 @@ print.xtsum = function(xtsums.list) {
 }
 ```
 
+\FloatBarrier
+
 ```{r include = FALSE}
 ##################
 # Set ggplot style
@@ -197,6 +216,8 @@ print.xtsum = function(xtsums.list) {
 pres_theme = theme(text = element_text(size = rel(3)),
     legend.position = "none")
 ```
+
+\FloatBarrier
 
 ```{r include = FALSE}
 #################
@@ -240,40 +261,19 @@ Effect.testing = function(Formulas, data) {
 ```
 
 # Introduction
-```{r eval = FALSE, include = FALSE}
-####################################################
-################### Introduction ###################
-####################################################
-```
+\FloatBarrier
 
-## Introduction
-\center
 \textbf{Quel est l'effet de l'utilisation des pesticides sur le marché des vins simples ?}
 
 Dans cette étude, nous chercherons à étudier l'équilibre sur le marché du vin. 
 
-## Plan de la présentation
-- Présentation de la problématique
-    - Pesticides 
-    - Marché du vin 
-
-- Le modèle théorique 
-- Les données
-- Modélisation
-- Les résultats
-- Conclusion 
-
 # Les pesticides
-```{r eval = FALSE, include = FALSE}
-####################################################
-###################  Pesticides  ###################
-####################################################
-```
 
-## Les pesticides
 - Présentation du problème des pésticides
 - Etat actuel
 - Comment baisser l'utilisation de pesticides
+
+\FloatBarrier
 
 ## Présentation du problème des pesticides
 - Source de nombreux débats sur la santé et l'environnement.
@@ -289,6 +289,8 @@ Dans cette étude, nous chercherons à étudier l'équilibre sur le marché du v
     - Hausse des ventes de produits phytosanitaires ;
     - Augmentation des doses utilisés (+12% en 2014-2016) ;
   
+  \FloatBarrier
+
 ## Etat actuel
 Contrairement aux attentes des autorités aucune baisse de l'utilisation de pesticides :
 
@@ -298,6 +300,8 @@ Contrairement aux attentes des autorités aucune baisse de l'utilisation de pest
 - Les grandes cultures (blés, etc...) sont les premières utilisatrices de pesticides 67.4% ;
 - Les vignes sont les deuxièmes 14.4% (Butault et al, 2011).
     
+    \FloatBarrier
+
 ## Comment baisser l'utilisation de pesticides
 Les méthodes contemporaines visant à baisser l'utilisation des pésticides sont :
 
@@ -307,126 +311,216 @@ Les méthodes contemporaines visant à baisser l'utilisation des pésticides son
 - La diversification des cultures, ce qui est impossible pour la vigne (Moghaddam et al, 2019).
 
 # Le marché du vin français
+\FloatBarrier
+
 ```{r eval = FALSE, include = FALSE}
 #####################################################
 ###################  Viticulture  ###################
 #####################################################
 ```
 
-## Le marché du vin français
-- Le vin français 
-- Utilisation des pésticides dans la viticulture
-- Le problème d'heterogénéité
-- Les vins de table
-- Le marché des vins de table français
+La France est l’un des principaux producteurs et vendeurs de vin dans le monde. En effet, la France représente 10\% de la surface de vigne dans le monde. 
+La surface de vigne française se répartit dans 65 des 95 départements de la métropole. 
+En France, il y a plus de 750000 hectares de vignes qui sont exploitées en 2018. 
+Ainsi, en France, une exploitation agricole sur cinq est une exploitation viticole. Cela représente 85000 exploitations. 
+La production de vins en France, représentait 4,6 milliard de litres. 
+Cela représentait plus de 17\% de la production totale de vin. 
+En volume de production la France se place donc en deuxième position derrière  le volume de production de l’Italie. 
+3\% de la surface agricole est consacrée à la production de vin. 
+Néanmoins, le vin représente 15\% de la production agricole en valeur. 
+Du côté du consommateur, la France est le deuxième pays consommateur de vin derrière les Etats Unis. 
+En effet, la consommation de vin en France représentait plus de 3,5 milliards de bouteille, en 2018. 
+Néanmoins, on remarque une baisse de la consommation Française depuis une trentaine d’année.
 
-## Le vin français 
-France est un producteur de vin important :
-
-- 10% surface de vigne mondiale ;
-- 3% de la surface agricole française est dediée au vin ;
-- 16% de la production mondiale ;
-- Le vin est la boisson alcoolisée la plus consommée en France ;
-- 88% des ventes de vins en France sont effectuées dans des grandes surfaces (CNIV, 2018).
-
-La consommation de vins en France, tous types (FranceAgrimer, 2011) :
-
-- 55% de vins rouges ;
-- 16% de vins blancs ;
-- 29% de vins rosés.
-  
-## Utilisation des pesticides dans la viticulture
-La viticulture un type de culture gourmand en pesticides :
-
-- 14.4% des produits phytosanitaires utilisés en France ;
-- 2-ème culture utilisatrice de pesticides en France ;
-- Fortes disparités d'utilisation des pesticides entre les régions (Butault et al, 2011) ;
-- Les bassins viticoles Français utilisent en majorité des fongicides et des bactéricides sur la vigne ;
-- La champagne est la région la plus utilisatrice de pesticide avec un IFT de 21.4 en 2013 ;
-  
 ## Le problème d'heterogénéité
+
 Il existe une forte hétérogénéité entre les différents labels mais aussi à l'intérieur de ces labels. 
 
-Les vins peuvent être divisés en 2 grandes classes suivant leurs prix (Cembalo et al., 2014) :
+Dans le commerce du vin, il est courant de diviser les vins en deux grandes classes en fonction de leurs prix (Cembalo et al., 2014) : 
+\begin{itemize}
+    \item les vins de qualité inférieure, les moins chers avec les caractéristiques de qualité de base ;
+    \item les vins de qualité supérieure plus chers, dotés de caractéristiques qualitatives complexes et d'une image de grande valeur.
+\end{itemize} 
+\par
+De plus, pour les vins français, selon Steiner (2014), le système européen de classification des "\textit{vins de qualité produits dans certaines régions}" (VQPRD) contient à la fois des vins AOC et des "\textit{vins de haute qualité provenant d'un vignoble régional agréé}" (VDQS). 
+Les vins de cépage appartiennent à la catégorie des vins autres que VQPRD, qui comprend les \textbf{vins de table} et les \textbf{vins de pays}.
+\par
+En tenant compte des spécificités du marhcé du vin français, nous utilisons la méthodologie du ministère d'agriculture et divisons le marché en deux parties :
+\begin{itemize}
+    \item La gamme haute (les vins IGP, vendus dans des magasins spécifiques) ;
+    \item La gamme basse (les vins non IGP, vendus en grands surfaces).
+\end{itemize}
+\par
+La première partie est soumise à des règlements spécifiques : limitations des quantités produites, origine contrôlé, un caractère de la demande spécifique. 
+La deuxième, c'est-à-dire le marché des vins moins chers, est aussi complexe. Les produits classés dans cette catégorie sont susceptibles d'avoir un certain degré d'hétérogénéité, comme cela a été montré par Cembalo et al. (2014).
+\par
 
-- Les vins de qualité supérieure
-    - limitation des quantités produites
-    - l'origine contrôlé 
-    - une demande spécifique
-
-- Les vins de qualité faible
-    - hétérogènéité moins importante (Cembalo et al., 2014)
+\FloatBarrier
 
 ## Les vins de table
-Les vins de tables sont des vins sans indication géographiques :
 
-- hétérogènéité plus faible que pour les autre types ;
-- prix bas.
+Ces vins sans indication géographique (sans IG) ont vu leurs transactions augmenter en volume pour toutes les couleurs. 
+Ainsi, on remarque que pour les vins rouges les transactions ont augmenté de 10\%, pour les rosées la hausse représentait 52\%, pour les vins blancs les volumes de transactions ont presque été doublé. 
+Néanmoins on remarque une baisse des cours des vins sans indication géographique. 
+En effet, on remarque que les prix moyens pour les vins rouges et rosées sans indication géographique baisse de 3\%. 
+Le prix moyen des vins blancs baisse quand à eux de 12\%, pour la campagne 2019/2020. 
+Sur les deux mois de campagne, les échanges de Vin sans indication géographique est de 142 milliers d’hectolitres. 
+Cela correspond à une hausse de 39\% par rapport à la campagne précédente. 
+Les ventes représentent 92 milliers d’hectolitres. 
+La tendance sur le marché des vins sans indication géographique s’explique par une forte hausse des vins blancs. 
+En effet, ceux-ci connaissent une hausse de près de 28 milliers d’hectolitres, soit une hausse de 232\% vis-à-vis de la campagne de 2018-2019. Les vins rosés connaissent également une hausse. 
+Néanmoins, celle-ci reste modeste puisque les ventes augmentaient de 61\% par rapport à la campagne 2018/2019. 
+Néanmoins, les ventes de vins rouges ont légèrement baissé. 
+Le cours des Vins sans indication géographique baisse par rapport à la campagne précédente. 
+\par
+Lors de la campagne 2018/2019, les ventes de vins en grande distribution sont en baisse. 
+Cela peut s’expliquer par une hausse des prix moyens. 
+Les ventes de vins représentent 8,7 millions d’hectolitres et un chiffre d’affaires de 4,1 milliards d’euros avec un prix moyen de 4,73 euro/litre. 
+La baisse de la consommation de vins rouges s’aggrave avec une baisse de 8\% par rapport à la campagne de 2017/2018. 
+Les vins blancs connaissent aussi une faible baisse de 1,2\% en volume par rapport à la consommation de la campagne précédente. 
+Pour finir, les ventes de vins rosés ont baissé lors de la campagne 2018/2019. 
+En effet, on enregistre une baisse de 3,9\% en volume par rapport à la campagne 2017/2018. 
+La consommation de vin sans indication géographique est de 6\% en volume contre 3\% en valeur. 
+Les ventes de vins sans indications géographiques sont en légère hausse dans la campagne 2018/2019 par rapport à la campagne 2017/2018. 
+\par
+Dans notre étude, nous traitons uniquement les vins simples (non IGP). 
+La situation sur ce marché est sensée influencer l'utilisation des pesticides, car les volumes de productions sont plus significatives que pour le marché des vins IGP.
+\par 
+Suivant le raisonnement des chercheurs Cembalo et al. (2014), dans une catégorie de vin avec une fourchette de prix étroite, il existe une homogénéité presque parfaite due à des vins ayant des attributs intrinsèques simples, une complexité de qualité médiocre et donc une différenciation peu marquée.
+\par 
+Cela nous permet d'analyser le marché par département est non par des marques/produits.
 
-Nous traitons seulement des vins sans indication géographique :
+## Utilisation des pesticides dans la viticulture
 
-- La situation sur ce marché influence l'utilisation des pesticides ;
-- Il existe une homogénéité presque parfaite dans les vins sans indication géographique (Cembalo et al, 2014).
+Les phytosanitaires sont très utilisés dans les cultures comme la viticulture. 
+Il s’agit donc d’un intrant important pour la production de vin. Ainsi, la viticulture utilisait 15\% de produit phytosanitaire. 
+La pression sanitaire varie selon les productions. 
+Elle est forte en viticulture. 
+De la même façon, la pression phytosanitaire varie selon les régions. 
+Ainsi, pour la vigne l’IFT varie de 7 en Provence à 22 en Champagne.
 
-## Le marché des vins de tables Français
-Représente 10% de la production (VIN & SOCIETE, 2018)
-
-- Hausse des transactions en 2011 :
-    - Vins rouges : 29 %
-    - Vins rosés : 13% 
-    - Vins blancs : 76%
-
-- Hausse des prix en 2011 : 
-    - Vins rouges : 12%
-    - Vins rosés : 3%
-    - Vins blancs : 13%
+  \FloatBarrier
 
 # Le Modèle théorique
+\FloatBarrier
+
 ```{r eval = FALSE, include = FALSE}
 #####################################################
 ###################  Théorie mod  ###################
 #####################################################
 ```
 
-## Le Modèle théorique
-- Le rôle des pesticides dans la production du vin
-- Le rôle de la demande sur la production et l'offre en général
-- La formalisation et les équations
+## Les hypothèses théoriques 
 
-## Le rôle de la demande sur la production et l'offre en génèral
-- Nous supposons que sur le marché des vins simples la demande est unique pour toute la France.
-- La production de vin varie par département à cause de variations climatologiques
-- On observe l'équilibre sur le marché au niveau du pays. Ainsi, la quantité demandée = quantité offerte par l'ensemble des régions.
-- La demande de pesticides est inélastique au prix. Ainsi, la quantité de pesticides utilisée dépend seulement des intentions et des besoins des agriculteurs.
+\FloatBarrier
+
+Comme proposé dans la littérature, notre étude sur les vins non coûteux (non IGP) est effectué au niveau du pays Cembalo et al. (2014) pour deux raisons :
+\begin{itemize}
+    \item Les prix de vente moyens des marchés sont diffèrent en raison des droits de douane à l'importation et des taxes à la consommation différents % (Anderson et Nelgen 2011);
+    \item La perception des produits de consommation varie d'un pays à l'autre % (Makela et al. 2006).
+\end{itemize}
+\par
+La plupart des bouteilles achetées sont achetées dans la grande distribution. 
+Néanmoins, dans un souci de simplicité nous estimerons que les consommateurs achètent leurs bouteilles directement auprès du viticulteur. 
+Donc nous supprimerons tous les intermédiaires entre le producteur et le marché final.
+\par
+Quand aux exportations et les importations, n'ayant pas la possibilité contrôler le montant des vins non IGP exportés/importés, nous laissons ces effets au terme d'erreur. 
+Nous ignorons les interactions internationales completement. 
+\par
+Pour conclure, nos suppositions au niveau du marché des vins sont les suivantes :
+\begin{itemize}
+    \item La demande pour les vins simples est unique pour toute la France. On n'observe pas les quantités consommés par départements, mais pour tout le pays, avec un prix unique. 
+    \item La production du vin varie par département, suite à des différences climatologiques.
+    \item On n'observe que l'équilibre sur le marché au niveau du pays (la quantité demandé est égale à la quantité offerte par l'ensemble des régions).
+\end{itemize}
+\par
+En ce qui concerne les pesticides, nous supposons que :
+\begin{itemize}
+    \item La demande des pesticides est inélastique au prix, ce qui nous permet d'exclure la partie de l'offre des pesticides du notre analyse. La quantité de pesticides utilisée demande seulement des intentions et des besoins des agriculteurs. 
+\end{itemize}
+
+## Formalisation 
+
+En formalisant notre modèle théorique, nous posons, que la demande de vin a la forme suivante :
+\begin{equation}
+    Q_d = \alpha_d + \beta_d P_d + \gamma_d Z 
+\end{equation}
+Avec $Z$ étant l'ensemble des variables ayant une influence sur la demande du vin, dans le cas le plus simple nous n'utilisons que les revenus (c'est une des variables les plus utilisées dans des études empiriques sur le marché du vin).
+\par
+L'offre totale pour toute la France est donnée par l'équation suivante : 
+\begin{equation}
+    Q_o = \sum_{i = 1}^{N} q_i
+\end{equation}
+Ou $i \in \{1, ..., N\}$ sont des départements, chacun ayant sa propre fonction de production et d'offre unique : 
+\begin{equation}
+    q_i = a_i + b_i P_o + c_i X
+\end{equation}
+Avec $X$ étant un vecteur des variables explicatives influençant la production (dans le cas le plus simple nous ne prenons en compte que les quantités des pesticides utilisées).
+Nous pouvons réécrire l'équation de l'offre sous la forme :
+\begin{equation}
+    Q_o = \sum_{i = 1}^{N} (a_i + b_i P_o + c_i X) = \sum_{i = 1}^{N} a_i + \sum_{i = 1}^{N} b_i P_o + \sum_{i = 1}^{N} c_i X
+\end{equation}
+Nous obtenons enfin un système de $N + 2$ équations : 
+\begin{align*}
+    Q_d & = \alpha_d + \beta_d P_d + \gamma_d Z \\
+    Q_o & = \sum_{i = 1}^{N} q_i \\
+    q_{1,t} & = a_1 + b_1 P_o + c_1 X \\ 
+    \vdots \\ 
+    q_{N,t} & = a_N + b_N P_o + c_N X \\
+\end{align*}
+Quand même, parce que nous pouvons supposer une presence des contraintes au niveau des données, nous devrions prévoir des modifications possibles pour notre modèle.
+Les contraintes principales sont au niveau du manque des données au niveau des années, c'est-à-dire que nous risquons d'avoir une trés faibles variation intra-annuelle des prix et de revenus pour pouvoir identifier les coefficient associés par un passage à l'équation structurelle.
+\par
+Une de ces modification possibles est l'introduction d'une contrainte supplementaire au niveau de la demande sur le vin de table.
+Afin de pouvoir identifier les effets de toutes les variables par un système AIDS, nous pouvons supposer, que tout le vin produit dans un département est consommé dans le même department.
+C'est une hypothèse forte, qui nous éloigne de la réalité, parce que de cette façon nous ignorons plusieurs effets pervers, tels que :
+\begin{itemize}
+  \item La structure du marché interne de la France ;
+  \item La mobilité de la production entre les differents départements ;
+  \item L'export du vin ;
+  \item La consommation des vins importés.
+\end{itemize}
+\par
+Nous pouvons tout de méme ignorer ces effets, car nous visons à estimer les effets moyens pour tous les départements. 
+De cette façon lors d'aggregation des effets au niveau national nous allons mitiger les biais possibles.
+\par
+Alors,nous pouvons réécrire notre système d'equations sous la forme suivante :
+\begin{align*}
+  qd_1 & = \alpha_{1} + \beta P_{1,d} + \gamma_{1} Z_{1} \\
+  \vdots \\ 
+  qd_N & = \alpha_{N} + \beta P_{N,d} + \gamma_{N} Z_{N} \\
+  qo_1 & = a_1 + b P_{1,o} + c_1 X_{1} \\ 
+  \vdots \\ 
+  qo_N & = a_N + b P_{N,o} + c_N X_{N} \\
+\end{align*}
+Il faut specifier, que nous supposons les effets de prix sont identiques pour tous les département en moyenne, tandis que nous laissons quand même les effets des autres variables dépéndantes (ex : le revenu et les pésticides) de varier par département.
 
 # Les données
+\FloatBarrier
+
 ```{r eval = FALSE, include = FALSE}
 #####################################################
 ###################  Données mob  ###################
 #####################################################
 ```
 
-## Les données
-- Souces des données 
-- Déscription des données 
-- Les variables choisi
-- Les variables utilisées pour notre modèle
+\FloatBarrier
 
 ## Sources des données : 
-- Les données de ventes de pesticides par département (INERIS)
-- Les données sur les prix du vin (FranceAgrimer)
-- Les données sur la population (INSEE)
-- Les données sur la production de vin (SSM Finances Publiques)
-- Variation par département français (pour les régions produisant le vin)
-- Variation par année (2012 à 2016)
-   
-## Déscription des données :
-- Toutes les variables varient par département et par année.
-- Le période temporelle comprise dans notre échantillon est de 2012 à 2016.
-- Sélection des régions productrices de vin et utilisatrices de pesticides (69 départements).
-- Utilisation de l'echelle logarithmique afin de contracter la variance.
+
+Nous avons utilisé les bases des données suivantes pour notre analyse :
+\begin{itemize}
+    \item Les données de ventes de pesticides par département  (INERIS)
+    \item Les données sur les prix du vin (France Agrimer)
+    \item Les données sur la population (INSEE)
+    \item Les données sur la production de vin (SSM Finances Publiques)
+\end{itemize}
+\par
 
 ## Les variables utilisées pour notre modèle
+
+Dans notre étude nous faisons face à un problème avec deux variables endogènes et trois variables exogènes.
+
 - Variables endogènes : 
     - la quantité totale produite de vin rouge et blanc non IG par département (en hectolitres, en log), 
     - le prix moyen des vins rouges-blancs (idice, en log).
@@ -435,21 +529,189 @@ Représente 10% de la production (VIN & SOCIETE, 2018)
     - la surface agricole destinée aux vins de table (en hectares, en log),
     - la quantité des pesticides utilisés sur la vigne (indice, en log).
 
+Au niveau des pesticides, on va s’intéresser plus particulièrement aux quantités de produits vendus par département entre 2009 et 2017 utilisés principalement sur les cultures viticoles. 
+Il faut faire preuve de vigilance sur le conditionnement des produits qui n’est pas exprimé dans la même unité au sein de cette base : en litres ou en kilos.
+Dans notre étude nous allons étudier l'impact de la masse totale des pésticides utilisés.
+Pour pouvoir le faire, nous créons un indice qui permet de prendre en compte les évolutions des differents types des produits à la fois.
+Nous créons un indice simple :
+\begin{equation*}
+  P = \frac{\sum_j p_{j, t} q_{j, t}}{\sum_j p_{j, 0} q_{j, 0}}
+\end{equation*}
+Avec $j$ désignant le produit $j$, et $p$ étant un coefficient de pondération (dans le cas le plus simple $p = 1$).
+\par
+En ce qui concerne les données sur le prix du vin, on s’intéresse principalement au prix moyen des vins rouge- rosés et blancs sans IG (Indication Géographique) sur la période 2009-2017. 
+Ces prix sont déflatés par l’indice des prix à la consommation (base 100 en 2014). 
+On ne considère ici que le prix moyen déflaté au niveau national.
+Dans le deuxième modèle nous avons besoin de créer artificiellement un estimateur qui va varier par département.
+Dans ce but nous créons l'indice de prix du vin de table départementale, calculé de façon suivante :
+\begin{equation*}
+  P = \frac{p_{rouge, t} q_{rouge, t} + p_{blanc, t} q_{blanc, t}}{p_{rouge, 0} q_{rouge, 0} + p_{blanc, 0} q_{blanc, 0}}
+\end{equation*}
+Avec $t$ étant l'anée au temps $t$.
+\par
+Au niveau des données sur la population, la variable qui nous intéresse ici est relative au niveau de revenu, exprimée au niveau départemental (laquelle, si besoin nous pourrions facilement aggréger au niceau national). 
+Plus précisément, on va utiliser le revenu médian par département.
+Il est aussi déflatée de l’indice des prix à la consommation (base 100 en 2014).
+\par
+Enfin, nous avons exploité les variables suivantes au niveau de la production de vin : la surface totale de culture viticole en hectares, la surface utilisé pour les vins non IG, la quantité produite de vins rouges-rosés et blancs sans IG en hectolitres, pour chaque département et sur la période 2009-2017.
+Afin d'obtenir un estimateur de la quantité de vin totale on prend la somme totale des tous types du vin sans IG.
+
+\FloatBarrier
+
+## Dictionnaire des variables 
+
+\FloatBarrier
+\begin{table}[!htbp]
+  \centering
+\caption{Ditionnaire des varibales}
+\begin{tabular}{c|l}
+  \hline
+  Variable & Description \\
+  \hline
+année & année \\
+ndep & numéro de département \\
+si & superficie de vigne sans indication géographique en hectare en log \\
+qi & quantité de vins produits en hectolitre en log \\
+ipi & indice des prix du vin sans IG déflatés en log  \\
+ri & revenu disponible brut des ménages français déflatés en log \\
+iki & indice de quantité de pesticides achetés en log \\
+t & la tendance temporelle \\
+\hline
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+Les propriétés de ces données sont suivantes :
+\begin{itemize}
+  \item Toutes les variables varient par département et par année.
+  \item Le période temporelle comprise dans notre échantillon est de 2012 à 2016.
+  \item Nous ne considérons que les régions produisant du vin. 
+  \item Nous éliminons les effets fixes pour en substrayant les moyennes départamentales.
+  \item Données en panel "cylindrées".
+  \item Nombre des individus large (69 départements, qui produisent le vin et utilisent des pésticides) et le nombre des périodes pauvre (5 périodes).
+\end{itemize}
+
+\FloatBarrier
+
 # L'étude statistique
+\FloatBarrier
+
 ```{r eval = FALSE, include = FALSE}
 #####################################################
 ###################  Statistique  ###################
 #####################################################
 ```
 
-## L'étude statistique 
-- L'étude bivarié
-- L'étude de la variance 
-- L'étude des types d'effets
-- L'analyse de la correlation
-- La transformation **within**
+Dans cette partie de travail nous allons explorer les données collectées. 
+\par 
+De l'étude de la variance pour les données en panel avec des statistiques générales, nous passerons vers l'étude des interdependances des variables. 
+Pui, nous allons finir avec étude des donnée alternées par une transformation **Within**.
+
+## Etude de la variance 
+\FloatBarrier
+
+```{r include = FALSE}
+lxtsums = list()
+# list
+lxtsums[[1]] = xtsum(datai, ipi, ndep)
+lxtsums[[2]] = xtsum(datai, iki, ndep)
+lxtsums[[3]] = xtsum(datai, si, ndep)
+lxtsums[[4]] = xtsum(datai, ri, ndep)
+lxtsums[[5]] = xtsum(datai, t, ndep)
+# results
+results = print.xtsum(lxtsums)
+rownames(results) = c("Index prix", "Index pesticides",
+    "Surface", "Revenus", "Temps")
+```
+
+Le tableau suivant regrouppe les statistiques déscriptives essentielles : 
+
+- Moyennes 
+- Variance sur l'échantillon complet 
+- Variance *between* 
+- Variance *within*
+
+Il est facile a rémarquer que la variance *between* est plus significative que la variance *within*. 
+Cela nous amêne à l'idée qu'il faut utiliser un modèle qui permettra estimer et corriger ces inégalités entre les individus, car nous sommes plus interessés par des effets individuels moyens (les effets moyens pour tous les individus).
+
+\FloatBarrier
+
+```{r echo = FALSE, eval = FALSE}
+stargazer(results, 
+    title = "Variance study",
+    summary = FALSE)
+```
+
+\begin{table}[!htbp] \centering 
+  \caption{Variance study}
+\begin{tabular}{@{\extracolsep{5pt}} l|cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Mean & Overall & Between & Within \\ 
+\hline \\[-1.8ex] 
+Index prix & $0.175$ & $0.568$ & $0.368$ & $0.434$ \\ 
+Index pesticides & $0.170$ & $0.333$ & $0.239$ & $0.234$ \\ 
+Surface & $4.892$ & $1.986$ & $1.955$ & $0.410$ \\ 
+Revenus & $9.891$ & $0.061$ & $0.061$ & $0.011$ \\ 
+Temps & $3$ & $1.416$ & $0$ & $1.416$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\normalsize 
+
+\FloatBarrier
+
+```{r include = FALSE}
+Formulas = list(
+    ipi = qi ~ ipi,
+    iki = qi ~ iki,
+    si = qi ~ si,
+    ri = qi ~ ri)
+Dtest = Effect.testing(Formulas, data = datap)
+rownames(Dtest) = c("Index prix", "Index pesticides",
+    "Surface", "Revenus")
+```
+
+De plus, il est interessant d'observer les résultats obtenus pour le test de Chow comparant le modèle complet (*pooled model*) contre les modèles au effet fixes et randomes. 
+\par 
+Sauf le cas de la surface nous ne pouvons pas rejeter l'hypothese nulle, specifiant que les individus ont des effets identiques pour toute la population. 
+
+\FloatBarrier
+
+```{r include = FALSE}
+stargazer(Dtest[,c(1:2)], 
+    title = "Chow pooling test",
+    summary = FALSE)
+```
+
+\begin{table}[!htbp] \centering
+  \caption{Chow pooling test}
+\begin{tabular}{@{\extracolsep{5pt}} l|cc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Random & Fixed \\ 
+\hline \\[-1.8ex] 
+Index prix & $0.535$ & $0.533$ \\ 
+Index pesticides & $0.485$ & $0.451$ \\ 
+Surface & $0$ & $0.0001$ \\ 
+Revenus & $0.297$ & $0.247$ \\ 
+\hline \\[-1.8ex]
+\end{tabular} 
+\end{table} 
+
+\FloatBarrier
+
+\FloatBarrier
 
 ## Visualisatoin des interdependances
+
+Maintenant passons à l'étude des graphiques bivariés pour notre variable dependante principale (la quantité du vin) et les regresseurs. 
+
+\FloatBarrier
+
+
 ```{r echo = FALSE}
 p1 = datai %>% 
     ggplot(aes(qi, ipi, col = as.factor(ndep))) +
@@ -469,7 +731,9 @@ grid.arrange(p1, p2, nrow = 1)
 # Probably it is better to do it by variable
 ```
 
-## Visualisatoin des interdependances
+\FloatBarrier
+
+
 ```{r echo = FALSE}
 p1 = datai %>% 
     ggplot(aes(qi, si, col = as.factor(ndep))) +
@@ -488,82 +752,25 @@ p2 = datai %>%
 grid.arrange(p1, p2, nrow = 1)
 ```
 
-## Etude de la variance 
-```{r include = FALSE}
-lxtsums = list()
-# list
-lxtsums[[1]] = xtsum(datai, ipi, ndep)
-lxtsums[[2]] = xtsum(datai, iki, ndep)
-lxtsums[[3]] = xtsum(datai, si, ndep)
-lxtsums[[4]] = xtsum(datai, ri, ndep)
-lxtsums[[5]] = xtsum(datai, t, ndep)
-# results
-results = print.xtsum(lxtsums)
-rownames(results) = c("Index prix", "Index pesticides",
-    "Surface", "Revenus", "Temps")
-```
-```{r echo = FALSE, eval = FALSE}
-stargazer(results, 
-    title = "Variance study",
-    summary = FALSE)
-```
-\tiny
-\begin{table}[!htbp] \centering 
-  \caption{Variance study}
-\begin{tabular}{@{\extracolsep{5pt}} l|cccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & Mean & Overall & Between & Within \\ 
-\hline \\[-1.8ex] 
-Index prix & $0.175$ & $0.568$ & $0.368$ & $0.434$ \\ 
-Index pesticides & $0.170$ & $0.333$ & $0.239$ & $0.234$ \\ 
-Surface & $4.892$ & $1.986$ & $1.955$ & $0.410$ \\ 
-Revenus & $9.891$ & $0.061$ & $0.061$ & $0.011$ \\ 
-Temps & $3$ & $1.416$ & $0$ & $1.416$ \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table}
 
-\normalsize 
-
-```{r include = FALSE}
-Formulas = list(
-    ipi = qi ~ ipi,
-    iki = qi ~ iki,
-    si = qi ~ si,
-    ri = qi ~ ri)
-Dtest = Effect.testing(Formulas, data = datap)
-rownames(Dtest) = c("Index prix", "Index pesticides",
-    "Surface", "Revenus")
-```
-```{r include = FALSE}
-stargazer(Dtest[,c(1:2)], 
-    title = "Chow pooling test",
-    summary = FALSE)
-```
-\tiny
-\begin{table}[!htbp] \centering
-  \caption{Chow pooling test}
-\begin{tabular}{@{\extracolsep{5pt}} l|cc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & Random & Fixed \\ 
-\hline \\[-1.8ex] 
-Index prix & $0.535$ & $0.533$ \\ 
-Index pesticides & $0.485$ & $0.451$ \\ 
-Surface & $0$ & $0.0001$ \\ 
-Revenus & $0.297$ & $0.247$ \\ 
-\hline \\[-1.8ex]
-\end{tabular} 
-\end{table} 
+\FloatBarrier
 
 ## L'étude des types d'effets  
+
+Nous avons déjà vu, qu'il est fortement probable que nous faisons face à un modèle aux effets fixes individuelles. 
+Il faut quand même le justifier.
+Pour faire cela, nous allons effectuer le test de multiplicateur de Lagrange sur la nature des effets fixes. 
+Selon les résultats il est évidente que nous avons des effets fixes au niveau individuel pour toutes les variables. 
+Pour la variable de surface nous avons des effets à la fois individuels et temporels. 
+
+\FloatBarrier
+
 ```{r include = FALSE}
 stargazer(Dtest[,c(3:ncol(Dtest))], 
     title = "Lagrange multiplier test, p-values",
     summary = FALSE)
 ```
-\tiny
+
 \begin{table}[!htbp] \centering 
   \caption{Lagrange multiplier test, p-values}
 \begin{tabular}{@{\extracolsep{5pt}} l|ccc} 
@@ -579,7 +786,15 @@ Revenus & $0$ & $0.248$ & $0$ \\
 \end{tabular} 
 \end{table} 
 
+\FloatBarrier
+
 ## L'analyse de la correlation
+
+Maintenat nous allons comparer deux tableau de correlation. 
+Le premier tableau combrend les résultats pour les données telles-quelles, le deuxieme par contre integre les résultats pour les données sous la trasformation *within*.
+
+\FloatBarrier
+
 ```{r echo = FALSE}
 correlation = cor(datap)
 colnames(correlation) = c("Quantité du vin", "IP", 
@@ -589,12 +804,14 @@ rownames(correlation) = c("Quantité du vin", "IP",
         "Surface", "Revenus", 
         "Index pésticides", "Temps")
 ```
+\FloatBarrier
+
 ```{r include = FALSE}
 stargazer(correlation, 
     title = "Overall correlation",
     summary = F)
 ```
-\tiny
+
 \begin{table}[!htbp] \centering
   \caption{Overall correlation}
 \begin{tabular}{@{\extracolsep{5pt}} l|cccccc}
@@ -612,6 +829,8 @@ Temps & $-0.036$ & $0.043$ & $-0.064$ & $0.119$ & $0.291$ & $1$ \\
 \end{tabular}
 \end{table}
 
+\FloatBarrier
+
 ```{r include = FALSE}
 ###################
 # Rework the matrix WITHIN_TRANSFORM
@@ -624,6 +843,10 @@ dataW$iki = Within(datap$iki)
 dataW$si = Within(datap$si)
 dataW$ri = Within(datap$ri)
 ```
+\FloatBarrier
+
+Les rélations entre les variables mieux ressortent pour les données transformées.
+
 ```{r include = FALSE}
 correlationW = cor(dataW)
 dataW$ndep = index(datap)$ndep
@@ -634,12 +857,14 @@ rownames(correlationW) = c("Quantité du vin", "IP",
         "Surface", "Revenus", 
         "Index pésticides", "Temps")
 ```
+\FloatBarrier
+
 ```{r include = FALSE}
 stargazer(correlationW, 
     title = "Within transformation correlation",
     summary = F)
 ```
-\tiny
+
 \begin{table}[!htbp] \centering 
   \caption{Within transformation correlation}
 \begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
@@ -657,7 +882,15 @@ Temps & $-0.199$ & $0.056$ & $-0.310$ & $0.652$ & $0.414$ & $1$ \\
 \end{tabular} 
 \end{table} 
 
+\FloatBarrier
+
 ## La transformation **within**
+
+Avant de términer cette partie d'étude statistique de notre échantillon il faut encore présenter les rélation bivariées pour les données transformées (sous la transformation *within*).
+
+\FloatBarrier
+
+
 ```{r echo = FALSE}
 p1 = dataW %>% 
     ggplot(aes(qi, ipi, col = as.factor(ndep))) +
@@ -679,7 +912,9 @@ grid.arrange(p1, p2, nrow = 1)
 # Probably it is better to do it by variable
 ```
 
-## La transformation **within**
+\FloatBarrier
+
+
 ```{r echo = FALSE}
 p1 = dataW %>% 
     ggplot(aes(qi, si, col = as.factor(ndep))) +
@@ -700,12 +935,18 @@ p2 = dataW %>%
 grid.arrange(p1, p2, nrow = 1)
 ```
 
+\FloatBarrier
+
 # Modèlisation
+\FloatBarrier
+
 ```{r eval = FALSE, include = FALSE}
 #####################################################
 ###################  Modèlisation  ##################
 #####################################################
 ```
+
+\FloatBarrier
 
 ## Modèlisation
 - Presentation de la méthode 
@@ -713,21 +954,63 @@ grid.arrange(p1, p2, nrow = 1)
     - OLS, WLS et SUR 
     - 2SLS, W2SLS, 3SLS et i3SLS 
 
+\FloatBarrier
+
 ## Presentation de la méthode
-- Explication de la méthode utilisée
-    - Panel data
-        - Within transforation 
-        - Fixed effects 
-        - Obtained slopes are averages for all population 
-    - AIDS model 
-        - Interdependent equations (simultaneity bias)
-        - 3SLS estimator (that is identical to ILS estimator)
-        - It generates consistent estimates
-        - The distribution of the estimators are normally distributed only in large samples 
-        - The estimator is (asymptotically) efficient
-- Limites du modèle 
-    - Faible representation des effets hetérogenes entre les régions (nous estimons seulemnt les effets moyens)
-    - Les interferences induites par l'heterogénéité 
+
+L'AIDS et les autres modèles de demande cités dans la littérature ont de nombreuses lacunes qui les rendent impropres pour l'estimation du marché du vin, selon Cembalo et al. (2014). 
+Quand même, dans notre étude nous allons utiliser ce modèle là, sous des suppositions restrictives. 
+\par
+Dans cette étude, nous nous intéressons à l’effet de la quantité de pesticides utilisé sur l’équilibre du marché des vins de table.
+
+## Modèle économétrique 
+
+Par ce modèle nous visons à estimer les effets moyenns pour tous les départements. 
+De cette façon lors d'aggregation des effets au niveau national nous allons mitiger les biais possibles, liés à la misspecification du modèle.
+\par
+Nous pouvons réécrire notre système d'equations sous la forme suivante :
+\begin{align*}
+  qd_{1,t} & = \alpha_{1} + \beta Pd_{1,t} + \gamma_{1} Z_{1,t} + \epsilon_{1,t}  \\
+  \vdots \\ 
+  qd_{N,t} & = \alpha_{N} + \beta Pd_{N,t} + \gamma_{N} Z_{N,t} + \epsilon_{1,t}  \\
+  qo_{1,t} & = a_1 + b Po_{1,t} + c_1 X_{1,t} + u_{1,t} \\ 
+  \vdots \\ 
+  qo_{N,t} & = a_N + b Po_{N,t} + c_N X_{N,t} + u_{N,t} \\
+\end{align*}
+Nous posons que l'offre et la demande sont egaux au niveau de département. 
+L'offre de département vise à satisfaire la demande interne du même département. 
+En termes d'aggregation ex-post des effets estimés, nous sommes sensé de tomber sur l'équilibre au niveau du marché national. 
+C'est-à-dire :
+\begin{align*}
+  qd_{1,t} & = qo_{1,t} \\
+  \vdots \\ 
+  qd_{N,t} & = qo_{N,t} \\
+\end{align*}
+Au pint d'équilibre nous avons également l'égalité des prix :
+\begin{equation*}
+  Po_{1,t} = Pd_{1,t}
+\end{equation*}
+De cette façon nous obtenons un système des systèmes des équations :
+\begin{align*}
+  q_{1,t} & = \alpha_{1} + \beta P_{1,t} + \gamma_{1} Z_{1,t} + \epsilon_{1,t}  \\
+  \vdots \\ 
+  q_{N,t} & = \alpha_{N} + \beta P_{N,t} + \gamma_{N} Z_{N,t} + \epsilon_{1,t}  \\
+  q_{1,t} & = a_1 + b P_{1,t} + c_1 X_{1,t} + u_{1,t} \\ 
+  \vdots \\ 
+  q_{N,t} & = a_N + b P_{N,t} + c_N X_{N,t} + u_{N,t} \\
+\end{align*}
+En simplifiant l'écriture nous pouvons la representer sous la forme suivante :
+\begin{align*}
+  q_{i,t} & = \alpha_{i} + \beta P_{i,t} + \gamma_{i} Z_{i,t} + \epsilon_{i,t} \\
+  q_{i,t} & = a_i + b P_{i,t} + c_i X_{i,t} + u_{i,t}
+\end{align*}
+D'ici nous avons à notre disposition deux outils d'identification des effets étudiés :
+\begin{itemize}
+  \item Résolution du sytème par le passage aux équation structurelles.
+  \item Doubles moindre carrés, lesquels on peut utiliser car on s'interesse principalement aux rôle de pésticides dans la production du vin ;
+\end{itemize}
+
+\FloatBarrier
 
 ```{r include = FALSE, eval = FALSE}
 ###################
@@ -754,6 +1037,8 @@ dataD = datai %>%
     cbind(ikiDum) %>% 
     cbind(riDum)
 ```
+
+\FloatBarrier
 
 ```{r include = FALSE, eval = FALSE}
 ###################
@@ -782,7 +1067,30 @@ dataWD = dataW %>%
 rm(ikiDum) ; rm(riDum)
 ```
 
-## Résultats des estimation
+\FloatBarrier
+
+## La sratégie d"identification 
+
+Nous attendons à ce que l'éstimateur de 3SLS, qui permet de capter tous les effets de correlations entre les équation en presence de plusieures variables exogènes nous permettra d'obtenir des estimations fiables. 
+
+- Traitement des systèmes des équations liées (simultaneity bias)
+- L'estimateur de 3SLS donne des résultats similaires à l'éstimateur de ILS
+- L'estimateur est consistent
+- La distribuitions pour les estimateurs suit une loi normale suelement dans des grands échantillons
+- L'estimateur est efficient (asymptotiquement)
+
+Quand même dès le debut nous envisageons des problèmes possibles avec les résultats obtenus :
+    
+- Faible representation des effets hetérogenes entre les régions (nous estimons seulemnt les effets moyens)
+- Les interferences induites par l'heterogénéité 
+
+# Résultats 
+
+Dans cette séction nous allons presenter les prémiers résultats économétriques.
+Lors de ces prémiéres éstimations nous supposons que les effets sont identiques pour tous les département (on fait la correction pour les effets fixes au niveau départemental quand même).
+\par 
+Nous allons presenter en particulier :
+
 - Les coefficients estimés avec leurs variance 
 - L'efficience et comparaison des estimateurs 
 - Etude des erreurs 
@@ -793,6 +1101,19 @@ rm(ikiDum) ; rm(riDum)
 
     - L'autocorrelation des résidus 
     - L'hétéroskedacité  
+
+Nous estimons un enseble des differents modèles afin de pouvoir choisir la méthode la plus raisonnable. 
+Les modèles suivantes sont traitées séparement :
+
+- Modèles simples :
+    - OLS, WLS (ou nous concentrons notre attention sur l'équation d'offre du vin)
+    - SUR (ce qui n'est pas justifié, mais on l'inclus quand même)
+
+- Modèlesdes équations simultanées avec des variables endogènes :
+    - 2SLS, W2SLS 
+    - 3SLS et 3SLS itérés (le dérnier modèle étant similaire à FIML)
+
+\FloatBarrier
 
 ```{r include = FALSE, eval = FALSE}
 # - Vérification des hypothèses (5 hypothèses) :
@@ -805,11 +1126,17 @@ rm(ikiDum) ; rm(riDum)
 # Hence 3SLS is efficient and FIML is consistent even if residuals are not normal.
 ```
 
+\FloatBarrier
+
 ## Les résultats OLS, WLS et SUR
+\FloatBarrier
+
 ```{r include = FALSE}
 # Data transformation for systemfit
 dataWX = as.data.frame(dataW)
 ```
+
+\FloatBarrier
 
 ```{r include = FALSE}
 # equations
@@ -829,15 +1156,21 @@ sur = systemfit(system,
     data = dataWX, 
     method = "SUR")
 ```
-\tiny
+
+\FloatBarrier
+
 ```{r echo = FALSE, results = "asis"}
 texreg(list(ols, wls, sur),
     custom.model.names = c("OLS", "WLS", "SUR"),
     label = "table : ols, wls and sur")
 ```
-\tiny
+
+
+\FloatBarrier
 
 ## Independance des résidus   
+\FloatBarrier
+
 ```{r include = FALSE}
 cordata = dataWX %>% 
     mutate(u1 = ols$eq[[1]]$res,
@@ -854,13 +1187,15 @@ rownames(cormat) = c("Vin", "IP",
         "Surface", "Revenus", 
         "Pesticides")
 ```
+\FloatBarrier
+
 ```{r include = FALSE}
 stargazer(cormat, 
     title = "Correlation des résidus",
     summary = F)
 # cordata %>% ggplot(aes(x = u6, y = f6)) + geom_point() + geom_smooth()
 ```
-\tiny
+
 \begin{table}[!htbp] \centering 
   \caption{Correlation des résidus} 
 \begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
@@ -877,7 +1212,11 @@ Pesticides & $-0.308$ & $-0$ & $-0.308$ & $0$ & $-0.373$ & $-0.281$ \\
 \end{tabular} 
 \end{table} 
 
+\FloatBarrier
+
 ## L'autocorrelation et l'hétéroskedacité
+\FloatBarrier
+
 ```{r include = FALSE}
 # Panel Durbin-Watson test
 cordataDW = cordata %>% 
@@ -902,13 +1241,14 @@ pDW[2,3] = cordataDW[1,6]/cordataDW[1,12]
 colnames(pDW) = c("OLS", "WLS", "SUR")
 rownames(pDW) = c("Equation de demande", "Equation d'offre")
 ```
+\FloatBarrier
+
 ```{r include = FALSE}
 stargazer(pDW, 
     title = "Durbin-Watson test statistics",
     summary = F)
 ```
 
-\tiny
 \begin{table}[!htbp] \centering 
   \caption{Durbin-Watson test statistics}
 \begin{tabular}{@{\extracolsep{5pt}} cccc} 
@@ -921,6 +1261,8 @@ Equation d'offre & $1.062$ & $1.062$ & $1.549$ \\
 \hline \\[-1.8ex]
 \end{tabular} 
 \end{table} 
+
+\FloatBarrier
 
 ```{r echo = FALSE, results = "asis"}
 BartT = data.frame(ncol = 3, nrow = 2)
@@ -939,12 +1281,14 @@ BartT[2,3] = ols_test_bartlett(cordata, u6,
 colnames(BartT) = c("OLS", "WLS", "SUR")
 rownames(BartT) = c("Equation de demande", "Equation d'offre")
 ```
+\FloatBarrier
+
 ```{r include = FALSE}
 stargazer(BartT,
     summary = FALSE,
     title = "Bartlett heteroscedasticity test")
 ```
-\tiny 
+ 
 \begin{table}[!htbp] \centering 
   \caption{Bartlett heteroscedasticity test} 
 \begin{tabular}{@{\extracolsep{5pt}} cccc} 
@@ -958,7 +1302,11 @@ Equation d'offre & $0.999$ & $0.999$ & $1$ \\
 \end{tabular} 
 \end{table}
 
+\FloatBarrier
+
 ## Le comportement des résidus 
+\FloatBarrier
+
 ```{r include = FALSE}
 ShapT = data.frame(nrow = 2, ncol = 6)
 ShapT[1,1] = shapiro.test(ols$eq[[1]]$res)$p.val
@@ -970,12 +1318,14 @@ ShapT[2,3] = shapiro.test(sur$eq[[2]]$res)$p.val
 colnames(ShapT) = c("OLS", "WLS", "SUR")
 rownames(ShapT) = c("Equation de demande", "Equation d'offre")
 ```
+\FloatBarrier
+
 ```{r include = FALSE}
 stargazer(ShapT,
     summary = FALSE,
     title = "Shapiro-Wilk normality test")
 ```
-\tiny
+
 \begin{table}[!htbp] \centering 
   \caption{Shapiro-Wilk normality test}
 \begin{tabular}{@{\extracolsep{5pt}} cccc} 
@@ -989,7 +1339,12 @@ Equation d'offre & $0.0003$ & $0.0003$ & $0$ \\
 \end{tabular} 
 \end{table} 
 
+\FloatBarrier
+
 ## Les PDF des résidus 
+\FloatBarrier
+
+
 ```{r echo = FALSE}
 par(mfrow = c(1,2), cex = 0.5)
 plot(density(ols$eq[[1]]$res), col = "blue", 
@@ -1005,7 +1360,13 @@ legend(x = "topright", legend = c("OLS", "WLS", "SUR"),
     cex = 1, lwd = 3)
 ```
 
+
+\FloatBarrier
+
 ## Les résidus contre la variable prédite 
+\FloatBarrier
+
+
 ```{r echo = FALSE}
 par(mfrow = c(1,2), cex = 0.5)
 plot(y = ols$eq[[1]]$res, x = ols$eq[[1]]$fit,
@@ -1029,7 +1390,12 @@ legend(x = "topright", legend = c("OLS", "WLS", "SUR"),
     cex = 1, lwd = 3)
 ```
 
+
+\FloatBarrier
+
 ## Les résultats 2SLS, W2SLS, 3SLS et i3SLS
+\FloatBarrier
+
 ```{r include = FALSE}
 # equations
 eqdemand = qi ~ 0 + ipi + ri
@@ -1058,15 +1424,20 @@ fiml = systemfit(system,
     data = dataWX, 
     method = "3SLS", maxit = 1000)
 ```
-\tiny
+
+
 ```{r echo = FALSE, results = "asis"}
 texreg(list(sls2, wsls2, sls3, fiml),
     custom.model.names = c("2SLS", "W2SLS", "3SLS", "i3SLS"),
     label = "table : 2sls, w2sls, 3sls and fiml")
 ```
-\tiny
+
+
+\FloatBarrier
 
 ## Comparaison des modèles  
+\FloatBarrier
+
 ```{r include = FALSE}
 h1 = hausman.systemfit(sls2, sls3) # p = 1, 3SLS inconsistent
 # 2SLS estimator is consistent
@@ -1074,26 +1445,32 @@ h2 = hausman.systemfit(sls2, fiml)
 res = data.frame(Test = c("2SLS contre 3SLS", "2SLS contre i3SLS"),
     Resultats = c(h1$p.val, h2$p.val))
 ```
-\tiny
+
+\FloatBarrier
+
 ```{r echo = FALSE, results = "asis"}
 stargazer(res, 
     title = "Hausman 3SLS consistency test",
     summary = F, 
     header = F)
 ```
-\tiny 
+ 
+
+\FloatBarrier
 
 ```{r include = FALSE}
 # - Linear test :
 # What should be tested ???
 # linearHypothesis(sls2, 
 ```
+\FloatBarrier
+
 ```{r include = FALSE}
 lr = lrtest(sls2, sls3, fiml)
 stargazer(lr, title = "Likelihood test",
     summary = FALSE)
 ```
-\tiny
+
 \begin{table}[!htbp] \centering 
   \caption{Likelihood test} 
 \begin{tabular}{@{\extracolsep{5pt}} cccccc} 
@@ -1108,7 +1485,11 @@ stargazer(lr, title = "Likelihood test",
 \end{tabular} 
 \end{table} 
 
+\FloatBarrier
+
 ## Le comportement des résidus 
+\FloatBarrier
+
 ```{r include = FALSE}
 ShapT = data.frame(nrow = 2, ncol = 6)
 ShapT[1,1] = shapiro.test(sls2$eq[[1]]$res)$p.val
@@ -1120,12 +1501,14 @@ ShapT[2,3] = shapiro.test(fiml$eq[[2]]$res)$p.val
 colnames(ShapT) = c("2SLS", "3SLS", "i3SLS")
 rownames(ShapT) = c("Equation de demande", "Equation d'offre")
 ```
+\FloatBarrier
+
 ```{r include = FALSE}
 stargazer(ShapT,
     summary = FALSE,
     title = "Shapiro-Wilk normality test")
 ```
-\tiny
+
 \begin{table}[!htbp] \centering 
   \caption{Shapiro-Wilk normality test}
 \begin{tabular}{@{\extracolsep{5pt}} cccc} 
@@ -1139,6 +1522,8 @@ Equation d'offre & $0.00000$ & $0.00000$ & $0.00000$ \\
 \end{tabular} 
 \end{table} 
 
+\FloatBarrier
+
 ```{r include = FALSE}
 resdata3 = dataWX %>% 
     mutate(u1 = sls2$eq[[1]]$res,
@@ -1148,6 +1533,8 @@ resdata3 = dataWX %>%
         u5 = fiml$eq[[1]]$res,
         u6 = fiml$eq[[2]]$res)
 ```
+\FloatBarrier
+
 ```{r include = FALSE}
 BartT = data.frame(ncol = 3, nrow = 2)
 BartT[1,1] = ols_test_bartlett(resdata3, u1, group_var = ndep)$pval
@@ -1159,12 +1546,14 @@ BartT[2,3] = ols_test_bartlett(resdata3, u6, group_var = ndep)$pval
 colnames(BartT) = c("2SLS", "3SLS", "i3SLS")
 rownames(BartT) = c("Equation de demande", "Equation d'offre")
 ```
+\FloatBarrier
+
 ```{r include = FALSE}
 stargazer(BartT,
     summary = FALSE,
     title = "Bartlett heteroscedasticity test")
 ```
-\tiny 
+ 
 \begin{table}[!htbp] \centering 
   \caption{Bartlett heteroscedasticity test} 
 \begin{tabular}{@{\extracolsep{5pt}} cccc} 
@@ -1178,7 +1567,12 @@ Equation d'offre & $0.0003$ & $0.002$ & $0.001$ \\
 \end{tabular} 
 \end{table} 
 
+\FloatBarrier
+
 ## Les PDF des résidus 
+\FloatBarrier
+
+
 ```{r echo = FALSE}
 par(mfrow = c(1,2), cex = 0.5)
 plot(density(sls2$eq[[1]]$res), col = "blue", 
@@ -1194,7 +1588,13 @@ legend(x = "topright", legend = c("2SLS", "i3SLS", "3SLS"),
     cex = 1, lwd = 3)
 ```
 
+
+\FloatBarrier
+
 ## Les résidus contre la variable prédite  
+\FloatBarrier
+
+
 ```{r echo = FALSE}
 par(mfrow = c(1,2), cex = 0.5)
 plot(y = sls2$eq[[1]]$res, x = sls2$eq[[1]]$fit,
@@ -1219,7 +1619,13 @@ legend(x = "topright", legend = c("2SLS", "i3SLS", "3SLS"),
     cex = 1, lwd = 3)
 ```
 
+
+\FloatBarrier
+
 ## Les résidus et les prédictions pour i3SLS  
+\FloatBarrier
+
+
 ```{r echo = FALSE}
 par(mfrow = c(1,2), cex = 0.5)
 plot(y = fiml$eq[[1]]$res, x = as.numeric(resdata3$qi),
@@ -1235,7 +1641,7 @@ legend(x = "bottomleft", legend = c("Résidus", "Fitted", "Real"),
     cex = 1, lwd = 3)
 plot(y = fiml$eq[[2]]$fit, x = as.numeric(resdata3$qi), 
     col = "blue", pch = 17, 
-    main = "Demande", 
+    main = "Offre", 
     ylab = "Fitted - résidus", xlab = "Real")
 points(y = fiml$eq[[2]]$res, x = resdata3$qi,
     col = "red", pch = 14)
@@ -1243,7 +1649,11 @@ lines(y = fiml$eq[[2]]$fit + fiml$eq[[2]]$res, x = resdata3$qi,
     col = "black")
 ```
 
+\FloatBarrier
+
 ## L'autocorrelation 
+\FloatBarrier
+
 ```{r include = FALSE}
 # Panel Durbin-Watson test
 # Create dataframe
@@ -1271,12 +1681,14 @@ pDW[2,3] = resdataDW[1,6]/resdataDW[1,12]
 colnames(pDW) = c("2SLS", "3SLS", "i3SLS")
 rownames(pDW) = c("Equation de demande", "Equation d'offre")
 ```
+\FloatBarrier
+
 ```{r include = FALSE}
 stargazer(pDW, 
     title = "Durbin-Watson test statistics",
     summary = F)
 ```
-\tiny
+
 \begin{table}[!htbp] \centering 
   \caption{Durbin-Watson test statistics}
 \begin{tabular}{@{\extracolsep{5pt}} cccc} 
@@ -1290,14 +1702,23 @@ Equation d'offre & $0.643$ & $0.643$ & $0.643$ \\
 \end{tabular}
 \end{table} 
 
+\FloatBarrier
+
 ## L'autocorrelation sur 2 dimentions pour i3SLS
+\FloatBarrier
+
+
 ```{r echo = FALSE}
 par(mfrow = c(1,2), cex = 0.5)
 acf(fiml$eq[[1]]$res, main = "Demande")
 acf(fiml$eq[[2]]$res, main = "Offre")
 ```
 
+\FloatBarrier
+
 ## L'independance des résidus  
+\FloatBarrier
+
 ```{r include = FALSE}
 cormat = cor(resdata3[,-c(6,7)])
 cormat = cormat[1:5, 6:11]
@@ -1308,12 +1729,14 @@ rownames(cormat) = c("Vin", "IP",
         "Surface", "Revenus", 
         "Pesticides")
 ```
+\FloatBarrier
+
 ```{r include = FALSE}
 stargazer(cormat, 
     title = "Correlation des résidus",
     summary = F)
 ```
-\tiny
+
 \begin{table}[!htbp] \centering
   \caption{Correlation des residus}
 \begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
@@ -1330,7 +1753,17 @@ Pesticides & $-0.113$ & $0$ & $-0.113$ & $0.105$ & $-0.113$ & $0.080$ \\
 \end{tabular} 
 \end{table} 
 
-```{r eval = FALSE, include = FALSE}
+\FloatBarrier
+
+# CLustering et la séparation des groupes 
+
+Nous avons vus dans le comportement des résidus une nature non-aléatoire grouppé. 
+Cela nous amène à l'idée de construire k-clusters pour modèliser les rélations par grouppe.
+\par 
+Nous supposons que les départements ayant des valeurs moyennes interannuelles proches (transformation Between) ont le comportement identique.
+La clusterisation est effectué sur les données Between pour les départements.
+
+```{r include = FALSE}
 # Clustering 
 # Between dataframe
 dataB = datap 
@@ -1352,70 +1785,257 @@ for (i in 2:15) {
     wss[i] = sum(kmeans(dataB, centers = i)$withinss)
 }
 ```
+\par
+Nous povons supposer que le nombre des clusters optimal est entre 3 et 5.
+Prenant en compte les graphiques des résidus vus lros d'analse des modèles nous allons supposer qu'il n'y a que 3 clusters principaux.
 
-```{r eval = FALSE, include = FALSE}
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
 plot(1:15, wss, type = "l", 
-    xlab = "Number of Clusters",
-    ylab = "Within groups sum of squares",
+    xlab = "Nomber de clusters",
+    ylab = "WSS",
     main = "Le choix des clusters") # 3, 4, 5
-points(1:15, wss)
+points(1:15, wss, col = "red")
 ```
 
-```{r eval = FALSE, include = FALSE}
+\FloatBarrier
+
+Les groupes sont définies par des caractéristiques suivantes :
+
+\FloatBarrier
+
+```{r include = FALSE}
 # Grouping
 fit = kmeans(dataB[,-1], 3)
 # require(FactoMineR)
 nclef = data.frame(ndep = dataB$ndep, clust = fit$cluster)
 dataWY = left_join(dataW, nclef, by = "ndep")
+```
+```{r echo = FALSE, results = "asis"}
+clusters = cbind(fit$centers, fit$size)
+names(clusters) = c("Groupe", "Quantité", "IP", 
+    "Surface", "Revenus", "Index pesticides", "n ")
+stargazer(clusters, 
+    title = "Les centres des clusters",
+    summary = F, 
+    header = F)
+```
+
+\FloatBarrier
+
+```{r include = FALSE}
+dataWY = dataWY %>% 
+    mutate(ipi1 = ipi*as.numeric(clust == 1),
+        ipi2 = ipi*as.numeric(clust == 2),
+        ipi3 = ipi*as.numeric(clust == 3),
+        ri1 = ri*as.numeric(clust == 1),
+        ri2 = ri*as.numeric(clust == 2),
+        ri3 = ri*as.numeric(clust == 3),
+        si1 = si*as.numeric(clust == 1),
+        si2 = si*as.numeric(clust == 2),
+        si3 = si*as.numeric(clust == 3),
+        iki1 = iki*as.numeric(clust == 1),
+        iki2 = iki*as.numeric(clust == 2),
+        iki3 = iki*as.numeric(clust == 3))
 # Equations
-eqdemandx = qi ~ 0  + 
-    I(ipi*as.numeric(clust == 1)) +  
-    I(ipi*as.numeric(clust == 2)) + 
-    I(ipi*as.numeric(clust == 3)) + 
-    I(ri*as.numeric(clust == 1)) +  
-    I(ri*as.numeric(clust == 2)) + 
-    I(ri*as.numeric(clust == 3))
-eqofferx = qi ~ 0 + 
-    I(ipi*as.numeric(clust == 1)) +
-    I(ipi*as.numeric(clust == 2)) + 
-    I(ipi*as.numeric(clust == 3)) + 
-    I(si*as.numeric(clust == 1)) + 
-    I(si*as.numeric(clust == 2)) + 
-    I(si*as.numeric(clust == 3)) + 
-    I(iki*as.numeric(clust == 1)) + 
-    I(iki*as.numeric(clust == 2)) + 
-    I(iki*as.numeric(clust == 3))
-instx = ~ I(ri*as.numeric(clust == 1)) +  
-    I(ri*as.numeric(clust == 2)) + 
-    I(ri*as.numeric(clust == 3)) + 
-    I(si*as.numeric(clust == 1)) + 
-    I(si*as.numeric(clust == 2)) + 
-    I(si*as.numeric(clust == 3)) + 
-    I(iki*as.numeric(clust == 1)) + 
-    I(iki*as.numeric(clust == 2)) + 
-    I(iki*as.numeric(clust == 3))
+eqdemandx = qi ~ 0 + ipi +
+    ri1 + ri2 + ri3 
+eqofferx = qi ~ 0 + ipi + 
+    si1 + si2 + si3 +
+    iki1 + iki2 + iki3
+instx = ~ ri1 + ri2 + ri3 + 
+    si1 + si2 + si3 +
+    iki1 + iki2 + iki3
 systemx = list(Demande = eqdemandx, Offre = eqofferx)
 ```
+Nous evaluons le système en introduisant les variables de grouppe (dummy variables) sous l'hypothèse des résidus joints.
 
-```{r eval = FALSE, include = FALSE}
+\FloatBarrier
+
+```{r include = FALSE}
+# OLS
+olsx = systemfit(systemx, 
+    data = dataWY, 
+    method = "OLS")
 # 2SLS
 sls2x = systemfit(systemx, 
-    inst = inst,
+    inst = instx,
     data = dataWY, 
     method = "2SLS")
+# 3SLS
+sls3x = systemfit(systemx, 
+    inst = instx,
+    data = dataWY, 
+    method = "3SLS")
 ```
 
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
+texreg(list(olsx, sls2x, sls3x),
+    custom.model.names = c("OLS", "2SLS", "3SLS"),
+    label = "table : ols, 2sls et 3sls")
+```
+
+\FloatBarrier
+
+Etudions la validité du modèle 3SLS : 
+
+```{r include = FALSE}
+resdata3x = dataWY %>% 
+    mutate(u1 = olsx$eq[[1]]$res,
+        u2 = olsx$eq[[2]]$res,
+        u3 = sls2x$eq[[1]]$res,
+        u4 = sls2x$eq[[2]]$res,
+        u5 = sls3x$eq[[1]]$res,
+        u6 = sls3x$eq[[2]]$res)
+```
+
+\FloatBarrier
+
+```{r include = FALSE}
+h1 = hausman.systemfit(sls2x, sls3x) # p = 1, 3SLS inconsistent
+# 2SLS estimator is consistent
+res = data.frame(Test = c("2SLS contre 3SLS"),
+    Resultats = c(h1$p.val))
+```
+
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
+stargazer(res, 
+    title = "Hausman 3SLS consistency test",
+    summary = F, 
+    header = F)
+```
+
+La normalité des résidus :
+
+```{r include = FALSE}
+ShapT = data.frame(nrow = 2, ncol = 6)
+ShapT[1,1] = shapiro.test(olsx$eq[[1]]$res)$p.val
+ShapT[2,1] = shapiro.test(olsx$eq[[2]]$res)$p.val
+ShapT[1,2] = shapiro.test(sls2x$eq[[1]]$res)$p.val
+ShapT[2,2] = shapiro.test(sls2x$eq[[2]]$res)$p.val
+ShapT[1,3] = shapiro.test(sls3x$eq[[1]]$res)$p.val
+ShapT[2,3] = shapiro.test(sls3x$eq[[2]]$res)$p.val
+colnames(ShapT) = c("OLS", "2SLS", "3SLS")
+rownames(ShapT) = c("Equation de demande", "Equation d'offre")
+```
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
+stargazer(ShapT,
+    summary = FALSE,
+    title = "Shapiro-Wilk normality test",
+    header = F)
+```
+
+\FloatBarrier
+
+L'heteroscedacité :
+
+\FloatBarrier
+
+```{r include = FALSE}
+BartT = data.frame(ncol = 3, nrow = 2)
+BartT[1,1] = ols_test_bartlett(resdata3x, u1, 
+    group_var = ndep)$pval
+BartT[2,1] = ols_test_bartlett(resdata3x, u2, 
+    group_var = ndep)$pval
+BartT[1,2] = ols_test_bartlett(resdata3x, u3, 
+    group_var = ndep)$pval
+BartT[2,2] = ols_test_bartlett(resdata3x, u4, 
+    group_var = ndep)$pval
+BartT[1,3] = ols_test_bartlett(resdata3x, u5, 
+    group_var = ndep)$pval
+BartT[2,3] = ols_test_bartlett(resdata3x, u6, 
+    group_var = ndep)$pval
+colnames(BartT) = c("OLS", "2SLS", "3SLS")
+rownames(BartT) = c("Equation de demande", "Equation d'offre")
+```
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
+stargazer(BartT,
+    summary = FALSE,
+    title = "Bartlett heteroscedasticity test",
+    header = F)
+```
+
+\FloatBarrier
+
+Les PDF des résidus :
+
+\FloatBarrier
+
+```{r echo = FALSE}
+par(mfrow = c(1,2), cex = 0.5)
+plot(density(olsx$eq[[1]]$res), col = "blue", 
+    main = "Demande", xlab = "Residuals")
+lines(density(sls2x$eq[[1]]$res), col = "green")
+lines(density(sls3x$eq[[1]]$res), col = "red")
+plot(density(sls3x$eq[[2]]$res), col = "red", 
+    main = "Offre", xlab = "Residuals")
+lines(density(sls2x$eq[[2]]$res), col = "green")
+lines(density(olsx$eq[[2]]$res), col = "blue")
+legend(x = "topright", legend = c("OLS", "2SLS", "3SLS"),
+    col = c("blue", "green", "red"), xpd = NA,
+    cex = 1, lwd = 3)
+```
+
+\FloatBarrier
+
+Les résidus contre les variables prédites : 
+
+\FloatBarrier
+
+```{r echo = FALSE}
+par(mfrow = c(1,2), cex = 0.5)
+plot(y = sls3x$eq[[1]]$res, x = sls3x$eq[[1]]$fit,
+    col = "red", 
+    main = "Demande", 
+    ylab = "Residuals", xlab = "Fitted")
+points(y = sls2x$eq[[1]]$res, x = sls2x$eq[[1]]$fit,
+    col = "green", pch = 17)
+points(y = olsx$eq[[1]]$res, x = olsx$eq[[1]]$fit,
+    col = "blue", pch = 14)
+plot(y = sls3x$eq[[2]]$res, x = sls3x$eq[[2]]$fit,
+    col = "red", 
+    main = "Offre", 
+    ylab = "Residuals", xlab = "Fitted")
+points(y = sls2x$eq[[2]]$res, x = sls2x$eq[[2]]$fit,
+    col = "green", pch = 17)
+points(y = olsx$eq[[2]]$res, x = olsx$eq[[2]]$fit,
+    col = "blue", pch = 14)
+par(xpd = NA)
+legend(x = "topright", legend = c("OLS", "2SLS", "3SLS"),
+    col = c("blue", "green", "red"), xpd = NA,
+    cex = 1, lwd = 3)
+```
+
+Conclusion : les problèmes restent non résolus.
+
+\FloatBarrier
+
 # Conclusions 
+\FloatBarrier
+
 ```{r eval = FALSE, include = FALSE}
 #####################################################
 ###################  Modèlisation  ##################
 #####################################################
 ```
 
+\FloatBarrier
+
 ## Conclusions 
 - Le marché du vin
 - Le rôle des pésticides  
 - Validité 
+
+\FloatBarrier
 
 ## Le marché du vin
 - Un comportement inattendus 
@@ -1423,13 +2043,19 @@ sls2x = systemfit(systemx,
     - Les effets négatives du revenu 
     - 
 
+\FloatBarrier
+
 ## Le rôle des pésticides
 - Confirmation des résultats des études précedentes 
     - Utilisés pour réduire les pertes 
 
+\FloatBarrier
+
 ## Validité 
 - Faible validité du modèle économétrique 
     - Variables ommises 
+
+\FloatBarrier
 
 ## Bibliographie 
 - Cembalo L., Caracciolo F., & Pomarici E. (2014). "Drinking cheaply : the demand for basic wine in italy." *Australian Journal of Agricultural and Resource Economics*, 58(3). 374-391.

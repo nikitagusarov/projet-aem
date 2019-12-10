@@ -1794,6 +1794,120 @@ sls3 = systemfit(system, inst = inst,
 summary(sls)
 # Multiple covariates do not allow to capture effects
 ht = hausman.systemfit(sls2, sls3)
+# Clustering 
+dataB = datap 
+dataB$qi = Between(datap$qi)
+dataB$ipi = Between(datap$ipi)
+dataB$iki = Between(datap$iki)
+dataB$si = Between(datap$si)
+dataB$ri = Between(datap$ri)
+dataB$ndep = index(datap)$ndep
+names(dataB)
+dataB = dataB %>% 
+    select(-t)
+dataB = dataB %>% 
+    group_by(ndep) %>% 
+    summarise_all(mean)
+# Analysis for clustering
+wss = (nrow(dataB)-1)*sum(apply(dataB,2,var))
+for (i in 2:15) {
+    wss[i] = sum(kmeans(dataB, centers = i)$withinss)
+}
+plot(1:15, wss, type="b", 
+    xlab="Number of Clusters",
+    ylab="Within groups sum of squares") # 3, 4, 5
+# Grouping
+fit = kmeans(dataB[,-1], 3)
+# require(FactoMineR)
+nclef = data.frame(ndep = dataB$ndep, clust = fit$cluster)
+dataWY = left_join(dataW, nclef, by = "ndep")
+names(dataWY)
+
+
+##########################
+##########################
+# CLustered data analysis
+# equations
+eqdemand = qi ~ 0 + ipi + ri
+eqoffer = qi ~ 0 + ipi + si + iki 
+system = list(Demande = eqdemand, Offre = eqoffer)
+g1 = dataWY %>% filter(clust == 1)
+g2 = dataWY %>% filter(clust == 2)
+g3 = dataWY %>% filter(clust == 3)
+# G1
+# OLS
+ols1 = systemfit(system, 
+    data = g1, 
+    method = "OLS")
+# OLS
+ols2 = systemfit(system, 
+    data = g2, 
+    method = "OLS")
+# OLS
+ols3 = systemfit(system, 
+    data = g3, 
+    method = "OLS")
+texreg(list(ols1, ols2, ols3))
+resdata = g3 %>% 
+    mutate(u5 = ols3$eq[[1]]$res,
+        u6 = ols3$eq[[2]]$res)
+cor(resdata[,c(1:5,9:10)])
+resdata %>% 
+    ggplot(aes(x = u6, y = qi)) + 
+    geom_point() + geom_smooth()
+# Pooled
+eqdemandx = qi ~ 0  + 
+    I(ipi*as.numeric(clust == 1)) +  
+    I(ipi*as.numeric(clust == 2)) + 
+    I(ipi*as.numeric(clust == 3)) + 
+    I(ri*as.numeric(clust == 1)) +  
+    I(ri*as.numeric(clust == 2)) + 
+    I(ri*as.numeric(clust == 3))
+eqofferx = qi ~ 0 + 
+    I(ipi*as.numeric(clust == 1)) +
+    I(ipi*as.numeric(clust == 2)) + 
+    I(ipi*as.numeric(clust == 3)) + 
+    I(si*as.numeric(clust == 1)) + 
+    I(si*as.numeric(clust == 2)) + 
+    I(si*as.numeric(clust == 3)) + 
+    I(iki*as.numeric(clust == 1)) + 
+    I(iki*as.numeric(clust == 2)) + 
+    I(iki*as.numeric(clust == 3))
+instx = ~ I(ri*as.numeric(clust == 1)) +  
+    I(ri*as.numeric(clust == 2)) + 
+    I(ri*as.numeric(clust == 3)) + 
+    I(si*as.numeric(clust == 1)) + 
+    I(si*as.numeric(clust == 2)) + 
+    I(si*as.numeric(clust == 3)) + 
+    I(iki*as.numeric(clust == 1)) + 
+    I(iki*as.numeric(clust == 2)) + 
+    I(iki*as.numeric(clust == 3))
+systemx = list(Demande = eqdemandx, Offre = eqofferx)
+olsx = systemfit(systemx, 
+    data = dataWY, 
+    method = "OLS")
+summary(olsx)
+plot(olsx$eq[[1]]$res, olsx$eq[[1]]$fit)
+plot(olsx$eq[[2]]$res, olsx$eq[[2]]$fit)
+
+plot(ols$eq[[1]]$res, ols$eq[[1]]$fit)
+plot(ols$eq[[2]]$res, ols$eq[[2]]$fit)
+# 2SLS
+sls2x = systemfit(systemx, 
+    inst = inst,
+    data = dataWY, 
+    method = "2SLS")
+summary(sls2x)
+plot(sls2x$eq[[1]]$res, sls2x$eq[[1]]$fit)
+plot(sls2x$eq[[2]]$res, sls2x$eq[[2]]$fit)
+# 3SLS 
+sls3x = systemfit(systemx, 
+    inst = inst,
+    data = dataWY, 
+    method = "3SLS")
+summary(sls3x)
+plot(sls3x$eq[[1]]$res, sls3x$eq[[1]]$fit)
+plot(sls3x$eq[[2]]$res, sls3x$eq[[2]]$fit)
 
 # Reorganisation
 datai$ndep = as.factor(datai$ndep)
