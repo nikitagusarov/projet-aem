@@ -60,16 +60,17 @@ purl("./Presentation/Presentation.Rmd",
 # Packages
 ##########
 require(tidyverse)
-require(plm)
+require(plm) # Panel data
 require(Formula)
 require(gridExtra)
 require(stargazer)
 require(texreg)
 require(rlang)
 require(dummies)
-require(stargazer)
-require(systemfit)
-require(olsrr)
+require(systemfit) # System equations
+require(olsrr) # Stat tests
+require(raster)
+require(dplyr)
 ```
 
 \FloatBarrier
@@ -91,13 +92,13 @@ dn = data %>%
     group_by(ndep) %>%
     count() %>% 
     filter(n == 5) # %>%
-    # select(ndep)
+    # dplyr::select(ndep)
 datax = data %>% 
     filter(ndep %in% dn$ndep) 
 datay = datax %>% 
     filter(annee == 2012) %>%
     mutate(refqki = qk_prod + ql_prod) %>% 
-    select(ndep, refqki) 
+    dplyr::select(ndep, refqki) 
 datax = left_join(datax, datay)
 datax = datax %>%
     mutate(IQK = (qk_prod + ql_prod)/refqki)
@@ -608,6 +609,55 @@ Dans cette partie de travail nous allons explorer les données collectées.
 De l'étude de la variance pour les données en panel avec des statistiques générales, nous passerons vers l'étude des interdependances des variables. 
 Pui, nous allons finir avec étude des donnée alternées par une transformation **Within**.
 
+## Visualisation au niveau de la France 
+
+```{r include = FALSE}
+# Creation de la base des données 
+SpData = datai %>% 
+    group_by(ndep) %>%
+    summarise_all(mean) %>%
+    dplyr::select(ndep, qi, ipi, iki, ri, si)
+# Formes
+formes = getData(name = "GADM", country = "FRA", level = 2)
+plot(formes, main = "Carte de la France, départements")
+# Index 
+ind = match(as.numeric(formes$CC_2), SpData$ndep)
+# Data transfer
+qisp = SpData[ind, "qi"]
+ipisp = SpData[ind, "ipi"]
+ikisp = SpData[ind, "iki"]
+sisp = SpData[ind, "si"]
+risp = SpData[ind, "ri"]
+# Writting 
+formes$qi = qisp
+formes$ipi = ipisp 
+formes$iki = ikisp 
+formes$ri = risp 
+formes$si = sisp 
+```
+
+```{r echo = FALSE, results = "asis"}
+# Plot 
+p1 = spplot(formes, "qi", 
+    col.regions = colorRampPalette(c('grey96', 'red'))(30),  
+    main = list(label = "Quantité du vin produite par région", cex = 0.8))
+p2 = spplot(formes, "iki", 
+    col.regions = colorRampPalette(c('grey96', 'green4'))(30),  
+    main = list(label = "Index pesticides par région", cex = 0.8))
+grid.arrange(p1, p2, nrow = 1)
+```
+
+```{r echo = FALSE, results = "asis"}
+# Plot
+p1 = spplot(formes, "ipi", 
+    col.regions = colorRampPalette(c('grey96', 'blue'))(30),  
+    main = list(label = "Index prix du vin par région", cex = 0.8))
+p2 = spplot(formes, "ri", 
+    col.regions = colorRampPalette(c('grey96', 'orange'))(30),  
+    main = list(label = "Revenus par région", cex = 0.8))
+grid.arrange(p1, p2, nrow = 1)
+```
+
 ## Etude de la variance 
 \FloatBarrier
 
@@ -1032,7 +1082,7 @@ riDum = as.data.frame(Dum*RI) %>%
 rm(RI)
 # Concatenate
 dataD = datai %>% 
-    select(-c(t, ri, iki)) %>% 
+    dplyr::select(-c(t, ri, iki)) %>% 
     cbind(Dum) %>% 
     cbind(ikiDum) %>% 
     cbind(riDum)
@@ -1061,7 +1111,7 @@ riDum = as.data.frame(Dum*RI) %>%
 rm(RI)
 # Concatenate
 dataWD = dataW %>% 
-    select(-c(t, ri, iki)) %>% 
+    dplyr::select(-c(t, ri, iki)) %>% 
     cbind(ikiDum) %>% 
     cbind(riDum)
 rm(ikiDum) ; rm(riDum)
@@ -1069,7 +1119,7 @@ rm(ikiDum) ; rm(riDum)
 
 \FloatBarrier
 
-## La sratégie d"identification 
+## La sratégie d'identification 
 
 Nous attendons à ce que l'éstimateur de 3SLS, qui permet de capter tous les effets de correlations entre les équation en presence de plusieures variables exogènes nous permettra d'obtenir des estimations fiables. 
 
@@ -1228,7 +1278,7 @@ cordataDW = cordata %>%
         u5_diff = u5 - dplyr::lag(u5),
         u6_diff = u6 - dplyr::lag(u6)) %>%
     ungroup() %>%
-    select(contains("u")) %>%
+    dplyr::select(contains("u")) %>%
     mutate_all(function(x) replace_na(x, 0)) %>%
     summarise_all(function(x) sum(x^2))
 pDW = data.frame(ncol = 3, nrow = 2)
@@ -1349,14 +1399,14 @@ Equation d'offre & $0.0003$ & $0.0003$ & $0$ \\
 par(mfrow = c(1,2), cex = 0.5)
 plot(density(ols$eq[[1]]$res), col = "blue", 
     main = "Demande", xlab = "Residuals")
-lines(density(wls$eq[[1]]$res), col = "green")
+lines(density(wls$eq[[1]]$res), col = "green4")
 lines(density(sur$eq[[1]]$res), col = "red")
 plot(density(sur$eq[[2]]$res), col = "red", 
     main = "Offre", xlab = "Residuals")
-lines(density(wls$eq[[2]]$res), col = "green")
+lines(density(wls$eq[[2]]$res), col = "green4")
 lines(density(ols$eq[[2]]$res), col = "blue")
 legend(x = "topright", legend = c("OLS", "WLS", "SUR"),
-    col = c("blue", "green", "red"), xpd = NA,
+    col = c("blue", "green4", "red"), xpd = NA,
     cex = 1, lwd = 3)
 ```
 
@@ -1374,7 +1424,7 @@ plot(y = ols$eq[[1]]$res, x = ols$eq[[1]]$fit,
     main = "Demande", 
     ylab = "Residuals", xlab = "Fitted")
 points(y = wls$eq[[1]]$res, x = wls$eq[[1]]$fit,
-    col = "green", pch = 17)
+    col = "green4", pch = 17)
 points(y = sur$eq[[1]]$res, x = sur$eq[[1]]$fit,
     col = "red", pch = 14)
 plot(x = ols$eq[[2]]$res, y = ols$eq[[2]]$fit,
@@ -1382,11 +1432,11 @@ plot(x = ols$eq[[2]]$res, y = ols$eq[[2]]$fit,
     main = "Offre", 
     ylab = "Residuals", xlab = "Fitted")
 points(y = wls$eq[[2]]$res, x = wls$eq[[2]]$fit,
-    col = "green", pch = 17)
+    col = "green4", pch = 17)
 points(y = sur$eq[[2]]$res, x = sur$eq[[2]]$fit,
     col = "red", pch = 14)
 legend(x = "topright", legend = c("OLS", "WLS", "SUR"),
-    col = c("blue", "green", "red"), xpd = NA,
+    col = c("blue", "green4", "red"), xpd = NA,
     cex = 1, lwd = 3)
 ```
 
@@ -1577,14 +1627,14 @@ Equation d'offre & $0.0003$ & $0.002$ & $0.001$ \\
 par(mfrow = c(1,2), cex = 0.5)
 plot(density(sls2$eq[[1]]$res), col = "blue", 
     main = "Demande", xlab = "Residuals")
-lines(density(fiml$eq[[1]]$res), col = "green")
+lines(density(fiml$eq[[1]]$res), col = "green4")
 lines(density(sls3$eq[[1]]$res), col = "red")
 plot(density(sls3$eq[[2]]$res), col = "red", 
     main = "Offre", xlab = "Residuals")
-lines(density(fiml$eq[[2]]$res), col = "green")
+lines(density(fiml$eq[[2]]$res), col = "green4")
 lines(density(sls2$eq[[2]]$res), col = "blue")
 legend(x = "topright", legend = c("2SLS", "i3SLS", "3SLS"),
-    col = c("blue", "green", "red"), xpd = NA,
+    col = c("blue", "green4", "red"), xpd = NA,
     cex = 1, lwd = 3)
 ```
 
@@ -1602,7 +1652,7 @@ plot(y = sls2$eq[[1]]$res, x = sls2$eq[[1]]$fit,
     main = "Demande", 
     ylab = "Residuals", xlab = "Fitted")
 points(y = fiml$eq[[1]]$res, x = fiml$eq[[1]]$fit,
-    col = "green", pch = 17)
+    col = "green4", pch = 17)
 points(y = sls3$eq[[1]]$res, x = sls3$eq[[1]]$fit,
     col = "red", pch = 14)
 plot(y = sls2$eq[[2]]$res, x = sls2$eq[[2]]$fit,
@@ -1610,12 +1660,12 @@ plot(y = sls2$eq[[2]]$res, x = sls2$eq[[2]]$fit,
     main = "Offre", 
     ylab = "Residuals", xlab = "Fitted")
 points(y = fiml$eq[[2]]$res, x = fiml$eq[[2]]$fit,
-    col = "green", pch = 17)
+    col = "green4", pch = 17)
 points(y = sls3$eq[[2]]$res, x = sls3$eq[[2]]$fit,
     col = "red", pch = 14)
 par(xpd = NA)
 legend(x = "topright", legend = c("2SLS", "i3SLS", "3SLS"),
-    col = c("blue", "green", "red"), xpd = NA,
+    col = c("blue", "green4", "red"), xpd = NA,
     cex = 1, lwd = 3)
 ```
 
@@ -1666,7 +1716,7 @@ resdataDW = resdata3 %>%
         u5_diff = u5 - dplyr::lag(u5),
         u6_diff = u6 - dplyr::lag(u6)) %>%
     ungroup() %>%
-    select(contains("u")) %>%
+    dplyr::select(contains("u")) %>%
     mutate_all(function(x) replace_na(x, 0)) %>%
     summarise_all(function(x) sum(x^2))
 # Calculate test statistics
@@ -1755,7 +1805,7 @@ Pesticides & $-0.113$ & $0$ & $-0.113$ & $0.105$ & $-0.113$ & $0.080$ \\
 
 \FloatBarrier
 
-# CLustering et la séparation des groupes 
+# Clustering et la séparation des groupes (Between transformation approach)
 
 Nous avons vus dans le comportement des résidus une nature non-aléatoire grouppé. 
 Cela nous amène à l'idée de construire k-clusters pour modèliser les rélations par grouppe.
@@ -1775,14 +1825,14 @@ dataB$ri = Between(datap$ri)
 dataB$ndep = index(datap)$ndep
 # Between correction
 dataB = dataB %>% 
-    select(-t)
+    dplyr::select(-t)
 dataB = dataB %>% 
     group_by(ndep) %>% 
     summarise_all(mean)
 # Analysis for clustering
-wss = (nrow(dataB)-1)*sum(apply(dataB,2,var))
+wss = (nrow(dataB[,-1])-1)*sum(apply(dataB[,-1], 2, var))
 for (i in 2:15) {
-    wss[i] = sum(kmeans(dataB, centers = i)$withinss)
+    wss[i] = sum(kmeans(iter.max = 100, dataB[,-1], centers = i)$withinss)
 }
 ```
 \par
@@ -1807,7 +1857,7 @@ Les groupes sont définies par des caractéristiques suivantes :
 
 ```{r include = FALSE}
 # Grouping
-fit = kmeans(dataB[,-1], 3)
+fit = kmeans(iter.max = 100, dataB[,-1], 3)
 # require(FactoMineR)
 nclef = data.frame(ndep = dataB$ndep, clust = fit$cluster)
 dataWY = left_join(dataW, nclef, by = "ndep")
@@ -1821,6 +1871,10 @@ stargazer(clusters,
     summary = F, 
     header = F)
 ```
+
+\FloatBarrier
+
+## Modèlisation 
 
 \FloatBarrier
 
@@ -1879,6 +1933,8 @@ texreg(list(olsx, sls2x, sls3x),
 ```
 
 \FloatBarrier
+
+## Tests
 
 Etudions la validité du modèle 3SLS : 
 
@@ -1974,14 +2030,14 @@ Les PDF des résidus :
 par(mfrow = c(1,2), cex = 0.5)
 plot(density(olsx$eq[[1]]$res), col = "blue", 
     main = "Demande", xlab = "Residuals")
-lines(density(sls2x$eq[[1]]$res), col = "green")
+lines(density(sls2x$eq[[1]]$res), col = "green4")
 lines(density(sls3x$eq[[1]]$res), col = "red")
 plot(density(sls3x$eq[[2]]$res), col = "red", 
     main = "Offre", xlab = "Residuals")
-lines(density(sls2x$eq[[2]]$res), col = "green")
+lines(density(sls2x$eq[[2]]$res), col = "green4")
 lines(density(olsx$eq[[2]]$res), col = "blue")
 legend(x = "topright", legend = c("OLS", "2SLS", "3SLS"),
-    col = c("blue", "green", "red"), xpd = NA,
+    col = c("blue", "green4", "red"), xpd = NA,
     cex = 1, lwd = 3)
 ```
 
@@ -1998,7 +2054,7 @@ plot(y = sls3x$eq[[1]]$res, x = sls3x$eq[[1]]$fit,
     main = "Demande", 
     ylab = "Residuals", xlab = "Fitted")
 points(y = sls2x$eq[[1]]$res, x = sls2x$eq[[1]]$fit,
-    col = "green", pch = 17)
+    col = "green4", pch = 17)
 points(y = olsx$eq[[1]]$res, x = olsx$eq[[1]]$fit,
     col = "blue", pch = 14)
 plot(y = sls3x$eq[[2]]$res, x = sls3x$eq[[2]]$fit,
@@ -2006,12 +2062,485 @@ plot(y = sls3x$eq[[2]]$res, x = sls3x$eq[[2]]$fit,
     main = "Offre", 
     ylab = "Residuals", xlab = "Fitted")
 points(y = sls2x$eq[[2]]$res, x = sls2x$eq[[2]]$fit,
-    col = "green", pch = 17)
+    col = "green4", pch = 17)
 points(y = olsx$eq[[2]]$res, x = olsx$eq[[2]]$fit,
     col = "blue", pch = 14)
 par(xpd = NA)
 legend(x = "topright", legend = c("OLS", "2SLS", "3SLS"),
-    col = c("blue", "green", "red"), xpd = NA,
+    col = c("blue", "green4", "red"), xpd = NA,
+    cex = 1, lwd = 3)
+```
+
+Conclusion : les problèmes restent non résolus.
+
+\FloatBarrier
+
+# Clustering et la séparation des groupes (WIDE data approach)
+
+Nous avons vus dans le comportement des résidus une nature non-aléatoire grouppé. 
+Cela nous amène à l'idée de construire k-clusters pour modèliser les rélations par grouppe.
+\par 
+D'abord on compare le comportement des cluster pour les données à l'information complete et les données Within.
+
+## Transformation Within 
+
+Comme nous pouvons voir dans les résultats le nombre des cluster optimaux est trop large pour les séparer dans l'analyse :
+
+```{r include = FALSE}
+# Clustering 
+# Data creation
+dataClust = dataW 
+dataClust_t1 = dataClust %>% 
+    filter(t == 1) %>% 
+    dplyr::select(-t)
+dataClust_t2 = dataClust %>% 
+    filter(t == 2) %>% 
+    dplyr::select(-t)
+dataClust_t3 = dataClust %>% 
+    filter(t == 3) %>% 
+    dplyr::select(-t)
+dataClust_t4 = dataClust %>% 
+    filter(t == 4) %>% 
+    dplyr::select(-t)
+dataClust_t5 = dataClust %>% 
+    filter(t == 5) %>% 
+    dplyr::select(-t)
+```
+
+```{r include = FALSE}
+# Joining data
+dataC = inner_join(dataClust_t1, dataClust_t2, 
+    by = "ndep", suffix = c("", ".t2")) 
+dataC = inner_join(dataC, dataClust_t3, 
+    by = "ndep", suffix = c("", ".t3")) 
+dataC = inner_join(dataC, dataClust_t4, 
+    by = "ndep", suffix = c("", ".t4")) 
+dataC = inner_join(dataC, dataClust_t5, 
+    by = "ndep", suffix = c("", ".t5")) 
+```
+
+```{r include = FALSE}
+# Analysis for clustering
+wss = (nrow(dataC[,-6])-1)*sum(apply(dataC[,-6], 2, var))
+for (i in 2:15) {
+    wss[i] = sum(kmeans(iter.max = 100, dataC[,-6], centers = i)$withinss)
+}
+```
+\par
+Nous povons supposer que le nombre des clusters optimal est entre 6 et 15.
+
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
+plot(1:15, wss, type = "l", 
+    xlab = "Nomber de clusters",
+    ylab = "WSS",
+    main = "Le choix des clusters") # 3, 4, 5
+points(1:15, wss, col = "red")
+```
+
+\FloatBarrier
+
+Les groupes sont définies par des caractéristiques suivantes :
+
+\FloatBarrier
+
+```{r include = FALSE}
+# Grouping
+fit = kmeans(iter.max = 100, dataC[,-6], 6)
+# require(FactoMineR)
+nclef2 = data.frame(ndep = as.factor(dataC$ndep), clust = fit$cluster)
+dataWZ = left_join(dataW, nclef2, by = "ndep")
+clusters = cbind(fit$centers, fit$size, k <- c(1:6)) %>%
+    as.data.frame()
+```
+```{r echo = FALSE, results = "asis"}
+names(clusters)[(ncol(clusters)-1):ncol(clusters)] = c("n", "k")
+c1 = clusters %>%
+    dplyr::select(qi, ipi, si, ri, iki, n, k) %>%
+    mutate(t = 1)
+c2 = clusters %>%
+    dplyr::select(ends_with("t2"), n, k) %>%
+    mutate(t = 2)
+names(c2)[1:5] = c("qi", "ipi", "si", "ri", "iki")
+c3 = clusters %>%
+    dplyr::select(ends_with("t3"), n, k) %>%
+    mutate(t = 3)
+names(c3)[1:5] = c("qi", "ipi", "si", "ri", "iki")
+c4 = clusters %>%
+    dplyr::select(ends_with("t4"), n, k) %>%
+    mutate(t = 4)
+names(c4)[1:5] = c("qi", "ipi", "si", "ri", "iki")
+c5 = clusters %>%
+    dplyr::select(ends_with("t5"), n, k) %>%
+    mutate(t = 5)
+names(c5)[1:5] = c("qi", "ipi", "si", "ri", "iki")
+centers = rbind(c1, c2, c3, c4, c5) %>% 
+    group_by(k) %>% 
+    arrange(t, .by_group = T)
+```
+
+Representation graphique :
+
+```{r echo = FALSE, results = "asis"}
+# Plot 
+p1 = centers %>% ggplot(aes(y = qi, x = t, col = as.factor(k))) + 
+    geom_path() + geom_point() +
+    xlab("Temps") + ylab("Quantité") +
+    ggtitle("Q~T") +
+    pres_theme
+p2 = centers %>% ggplot(aes(y = ipi, x = t, col = as.factor(k))) + 
+    geom_path() + geom_point() +
+    xlab("Temps") + ylab("IP") +
+    ggtitle("IP~T") +
+    pres_theme
+p3 = centers %>% ggplot(aes(y = iki, x = t, col = as.factor(k))) + 
+    geom_path() + geom_point() +
+    xlab("Temps") + ylab("Index pesticides") +
+    ggtitle("IK~T") +
+    pres_theme
+p4 = centers %>% ggplot(aes(y = ri, x = t, col = as.factor(k))) + 
+    geom_path() + geom_point() +
+    xlab("Temps") + ylab("Revenus") +
+    ggtitle("R~T") +
+    pres_theme
+# Arrange
+grid.arrange(p1, p2, p3, p4, nrow = 2, ncol = 2)
+```
+
+## Information complete
+Dans le cas d'information complete on a :
+
+```{r include = FALSE}
+# Clustering 
+# Data creation
+dataClust = datai 
+dataClust_t1 = dataClust %>% 
+    filter(t == 1) %>% 
+    dplyr::select(-t, -year)
+dataClust_t2 = dataClust %>% 
+    filter(t == 2) %>% 
+    dplyr::select(-t, -year)
+dataClust_t3 = dataClust %>% 
+    filter(t == 3) %>% 
+    dplyr::select(-t, -year)
+dataClust_t4 = dataClust %>% 
+    filter(t == 4) %>% 
+    dplyr::select(-t, -year)
+dataClust_t5 = dataClust %>% 
+    filter(t == 5) %>% 
+    dplyr::select(-t, -year)
+```
+
+```{r include = FALSE}
+# Joining data
+dataC = inner_join(dataClust_t1, dataClust_t2, 
+    by = "ndep", suffix = c("", ".t2")) 
+dataC = inner_join(dataC, dataClust_t3, 
+    by = "ndep", suffix = c("", ".t3")) 
+dataC = inner_join(dataC, dataClust_t4, 
+    by = "ndep", suffix = c("", ".t4")) 
+dataC = inner_join(dataC, dataClust_t5, 
+    by = "ndep", suffix = c("", ".t5")) 
+```
+
+```{r include = FALSE}
+# Analysis for clustering
+wss = (nrow(dataC[,-1])-1)*sum(apply(dataC[,-1], 2, var))
+for (i in 2:15) {
+    wss[i] = sum(kmeans(iter.max = 100, dataC[,-1], centers = i)$withinss)
+}
+```
+
+\par
+Nous povons supposer que le nombre des clusters optimal est entre 3 et 5.
+Prenant en compte les graphiques des résidus vus lros d'analse des modèles nous allons supposer qu'il n'y a que 3 clusters principaux.
+
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
+plot(1:15, wss, type = "l", 
+    xlab = "Nomber de clusters",
+    ylab = "WSS",
+    main = "Le choix des clusters") # 3, 4, 5
+points(1:15, wss, col = "red")
+```
+
+\FloatBarrier
+
+Les groupes sont définies par des caractéristiques suivantes :
+
+\FloatBarrier
+
+```{r include = FALSE}
+# Grouping
+fit = kmeans(iter.max = 100, dataC[,-1], 3)
+# require(FactoMineR)
+nclef2 = data.frame(ndep = as.factor(dataC$ndep), clust = fit$cluster)
+dataWZ = left_join(dataW, nclef2, by = "ndep")
+clusters = cbind(fit$centers, fit$size, k <- c(1:3)) %>%
+    as.data.frame()
+```
+
+```{r echo = FALSE, results = "asis"}
+names(clusters)[(ncol(clusters)-1):ncol(clusters)] = c("n", "k")
+c1 = clusters %>%
+    dplyr::select(qi, ipi, si, ri, iki, n, k) %>%
+    mutate(t = 1)
+c2 = clusters %>%
+    dplyr::select(ends_with("t2"), n, k) %>%
+    mutate(t = 2)
+names(c2)[1:5] = c("qi", "ipi", "si", "ri", "iki")
+c3 = clusters %>%
+    dplyr::select(ends_with("t3"), n, k) %>%
+    mutate(t = 3)
+names(c3)[1:5] = c("qi", "ipi", "si", "ri", "iki")
+c4 = clusters %>%
+    dplyr::select(ends_with("t4"), n, k) %>%
+    mutate(t = 4)
+names(c4)[1:5] = c("qi", "ipi", "si", "ri", "iki")
+c5 = clusters %>%
+    dplyr::select(ends_with("t5"), n, k) %>%
+    mutate(t = 5)
+names(c5)[1:5] = c("qi", "ipi", "si", "ri", "iki")
+centers = rbind(c1, c2, c3, c4, c5) %>% 
+    group_by(k) %>% 
+    arrange(t, .by_group = T)
+# Print 
+# names(centers) = c("Groupe", "Quantité", "IP", 
+#     "Surface", "Revenus", "Index pesticides", "n")
+stargazer(round(centers,6), 
+    title = "Les centres des clusters",
+    summary = F, 
+    header = F)
+```
+
+Representation graphique :
+
+```{r echo = FALSE, results = "asis"}
+# Plot 
+p1 = centers %>% ggplot(aes(y = qi, x = t, col = as.factor(k))) + 
+    geom_path() + geom_point() +
+    xlab("Temps") + ylab("Quantité") +
+    ggtitle("Q~T") +
+    pres_theme
+p2 = centers %>% ggplot(aes(y = ipi, x = t, col = as.factor(k))) + 
+    geom_path() + geom_point() +
+    xlab("Temps") + ylab("IP") +
+    ggtitle("IP~T") +
+    pres_theme
+p3 = centers %>% ggplot(aes(y = iki, x = t, col = as.factor(k))) + 
+    geom_path() + geom_point() +
+    xlab("Temps") + ylab("Index pesticides") +
+    ggtitle("IK~T") +
+    pres_theme
+p4 = centers %>% ggplot(aes(y = ri, x = t, col = as.factor(k))) + 
+    geom_path() + geom_point() +
+    xlab("Temps") + ylab("Revenus") +
+    ggtitle("R~T") +
+    pres_theme
+# Arrange
+grid.arrange(p1, p2, p3, p4, nrow = 2, ncol = 2)
+```
+
+\FloatBarrier
+
+## Modèlisation 
+
+\FloatBarrier
+
+```{r include = FALSE}
+dataWZ = dataWZ %>% 
+    mutate(ipi1 = ipi*as.numeric(clust == 1),
+        ipi2 = ipi*as.numeric(clust == 2),
+        ipi3 = ipi*as.numeric(clust == 3),
+        ri1 = ri*as.numeric(clust == 1),
+        ri2 = ri*as.numeric(clust == 2),
+        ri3 = ri*as.numeric(clust == 3),
+        si1 = si*as.numeric(clust == 1),
+        si2 = si*as.numeric(clust == 2),
+        si3 = si*as.numeric(clust == 3),
+        iki1 = iki*as.numeric(clust == 1),
+        iki2 = iki*as.numeric(clust == 2),
+        iki3 = iki*as.numeric(clust == 3))
+# Equations
+eqdemandz = qi ~ 0 + ipi +
+    ri1 + ri2 + ri3 
+eqofferz = qi ~ 0 + ipi + 
+    si1 + si2 + si3 +
+    iki1 + iki2 + iki3
+instz = ~ ri1 + ri2 + ri3 + 
+    si1 + si2 + si3 +
+    iki1 + iki2 + iki3
+systemz = list(Demande = eqdemandz, Offre = eqofferz)
+```
+Nous evaluons le système en introduisant les variables de grouppe (dummy variables) sous l'hypothèse des résidus joints.
+
+\FloatBarrier
+
+```{r include = FALSE}
+# OLS
+olsx = systemfit(systemz, 
+    data = dataWZ, 
+    method = "OLS")
+# 2SLS
+sls2x = systemfit(systemz, 
+    inst = instz,
+    data = dataWZ, 
+    method = "2SLS")
+# 3SLS
+sls3x = systemfit(systemz, 
+    inst = instz,
+    data = dataWZ, 
+    method = "3SLS")
+```
+
+\FloatBarrier
+
+## Tests 
+
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
+texreg(list(olsx, sls2x, sls3x),
+    custom.model.names = c("OLS", "2SLS", "3SLS"),
+    label = "table : ols, 2sls et 3sls, full information clusters")
+```
+
+\FloatBarrier
+
+Etudions la validité du modèle 3SLS : 
+
+```{r include = FALSE}
+resdata3x = dataWZ %>% 
+    mutate(u1 = olsx$eq[[1]]$res,
+        u2 = olsx$eq[[2]]$res,
+        u3 = sls2x$eq[[1]]$res,
+        u4 = sls2x$eq[[2]]$res,
+        u5 = sls3x$eq[[1]]$res,
+        u6 = sls3x$eq[[2]]$res)
+```
+
+\FloatBarrier
+
+```{r include = FALSE}
+h1 = hausman.systemfit(sls2x, sls3x) # p = 1, 3SLS inconsistent
+# 2SLS estimator is consistent
+res = data.frame(Test = c("2SLS contre 3SLS"),
+    Resultats = c(h1$p.val))
+```
+
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
+stargazer(res, 
+    title = "Hausman 3SLS consistency test",
+    summary = F, 
+    header = F)
+```
+
+La normalité des résidus :
+
+```{r include = FALSE}
+ShapT = data.frame(nrow = 2, ncol = 6)
+ShapT[1,1] = shapiro.test(olsx$eq[[1]]$res)$p.val
+ShapT[2,1] = shapiro.test(olsx$eq[[2]]$res)$p.val
+ShapT[1,2] = shapiro.test(sls2x$eq[[1]]$res)$p.val
+ShapT[2,2] = shapiro.test(sls2x$eq[[2]]$res)$p.val
+ShapT[1,3] = shapiro.test(sls3x$eq[[1]]$res)$p.val
+ShapT[2,3] = shapiro.test(sls3x$eq[[2]]$res)$p.val
+colnames(ShapT) = c("OLS", "2SLS", "3SLS")
+rownames(ShapT) = c("Equation de demande", "Equation d'offre")
+```
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
+stargazer(ShapT,
+    summary = FALSE,
+    title = "Shapiro-Wilk normality test",
+    header = F)
+```
+
+\FloatBarrier
+
+L'heteroscedacité :
+
+\FloatBarrier
+
+```{r include = FALSE}
+BartT = data.frame(ncol = 3, nrow = 2)
+BartT[1,1] = ols_test_bartlett(resdata3x, u1, 
+    group_var = ndep)$pval
+BartT[2,1] = ols_test_bartlett(resdata3x, u2, 
+    group_var = ndep)$pval
+BartT[1,2] = ols_test_bartlett(resdata3x, u3, 
+    group_var = ndep)$pval
+BartT[2,2] = ols_test_bartlett(resdata3x, u4, 
+    group_var = ndep)$pval
+BartT[1,3] = ols_test_bartlett(resdata3x, u5, 
+    group_var = ndep)$pval
+BartT[2,3] = ols_test_bartlett(resdata3x, u6, 
+    group_var = ndep)$pval
+colnames(BartT) = c("OLS", "2SLS", "3SLS")
+rownames(BartT) = c("Equation de demande", "Equation d'offre")
+```
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
+stargazer(BartT,
+    summary = FALSE,
+    title = "Bartlett heteroscedasticity test",
+    header = F)
+```
+
+\FloatBarrier
+
+Les PDF des résidus :
+
+\FloatBarrier
+
+```{r echo = FALSE}
+par(mfrow = c(1,2), cex = 0.5)
+plot(density(olsx$eq[[1]]$res), col = "blue", 
+    main = "Demande", xlab = "Residuals")
+lines(density(sls2x$eq[[1]]$res), col = "green4")
+lines(density(sls3x$eq[[1]]$res), col = "red")
+plot(density(sls3x$eq[[2]]$res), col = "red", 
+    main = "Offre", xlab = "Residuals")
+lines(density(sls2x$eq[[2]]$res), col = "green4")
+lines(density(olsx$eq[[2]]$res), col = "blue")
+legend(x = "topright", legend = c("OLS", "2SLS", "3SLS"),
+    col = c("blue", "green4", "red"), xpd = NA,
+    cex = 1, lwd = 3)
+```
+
+\FloatBarrier
+
+Les résidus contre les variables prédites : 
+
+\FloatBarrier
+
+```{r echo = FALSE}
+par(mfrow = c(1,2), cex = 0.5)
+plot(y = sls3x$eq[[1]]$res, x = sls3x$eq[[1]]$fit,
+    col = "red", 
+    main = "Demande", 
+    ylab = "Residuals", xlab = "Fitted")
+points(y = sls2x$eq[[1]]$res, x = sls2x$eq[[1]]$fit,
+    col = "green4", pch = 17)
+points(y = olsx$eq[[1]]$res, x = olsx$eq[[1]]$fit,
+    col = "blue", pch = 14)
+plot(y = sls3x$eq[[2]]$res, x = sls3x$eq[[2]]$fit,
+    col = "red", 
+    main = "Offre", 
+    ylab = "Residuals", xlab = "Fitted")
+points(y = sls2x$eq[[2]]$res, x = sls2x$eq[[2]]$fit,
+    col = "green4", pch = 17)
+points(y = olsx$eq[[2]]$res, x = olsx$eq[[2]]$fit,
+    col = "blue", pch = 14)
+par(xpd = NA)
+legend(x = "topright", legend = c("OLS", "2SLS", "3SLS"),
+    col = c("blue", "green4", "red"), xpd = NA,
     cex = 1, lwd = 3)
 ```
 

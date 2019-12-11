@@ -662,6 +662,14 @@ statistiques générales, nous passerons vers l'étude des interdependances
 des variables. Pui, nous allons finir avec étude des donnée alternées
 par une transformation \textbf{Within}.
 
+\hypertarget{visualisation-au-niveau-de-la-france}{%
+\subsection{Visualisation au niveau de la
+France}\label{visualisation-au-niveau-de-la-france}}
+
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-17-1.pdf}
+
 \hypertarget{etude-de-la-variance}{%
 \subsection{Etude de la variance}\label{etude-de-la-variance}}
 
@@ -750,11 +758,11 @@ dependante principale (la quantité du vin) et les regresseurs.
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-19-1.pdf}
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-22-1.pdf}
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-20-1.pdf}
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-23-1.pdf}
 
 \FloatBarrier
 
@@ -856,11 +864,11 @@ transformées (sous la transformation \emph{within}).
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-27-1.pdf}
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-30-1.pdf}
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-28-1.pdf}
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-31-1.pdf}
 
 \FloatBarrier
 
@@ -963,7 +971,7 @@ d'identification des effets étudiés :
 
 \hypertarget{la-srategie-didentification}{%
 \subsection{La sratégie
-d"identification}\label{la-srategie-didentification}}
+d'identification}\label{la-srategie-didentification}}
 
 Nous attendons à ce que l'éstimateur de 3SLS, qui permet de capter tous
 les effets de correlations entre les équation en presence de plusieures
@@ -1207,7 +1215,7 @@ Equation d'offre & $0.0003$ & $0.0003$ & $0$ \\
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-44-1.pdf}
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-47-1.pdf}
 
 \FloatBarrier
 
@@ -1217,7 +1225,7 @@ prédite}\label{les-residus-contre-la-variable-predite}}
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-45-1.pdf}
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-48-1.pdf}
 
 \FloatBarrier
 
@@ -1347,7 +1355,7 @@ Equation d'offre & $0.0003$ & $0.002$ & $0.001$ \\
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-57-1.pdf}
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-60-1.pdf}
 
 \FloatBarrier
 
@@ -1357,7 +1365,7 @@ prédite}\label{les-residus-contre-la-variable-predite-1}}
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-58-1.pdf}
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-61-1.pdf}
 
 \FloatBarrier
 
@@ -1367,7 +1375,7 @@ i3SLS}\label{les-residus-et-les-predictions-pour-i3sls}}
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-59-1.pdf}
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-62-1.pdf}
 
 \FloatBarrier
 
@@ -1399,7 +1407,7 @@ i3SLS}\label{lautocorrelation-sur-2-dimentions-pour-i3sls}}
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-62-1.pdf}
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-65-1.pdf}
 
 \FloatBarrier
 
@@ -1429,9 +1437,9 @@ Pesticides & $-0.113$ & $0$ & $-0.113$ & $0.105$ & $-0.113$ & $0.080$ \\
 
 \FloatBarrier
 
-\hypertarget{clustering-et-la-separation-des-groupes}{%
-\section{CLustering et la séparation des
-groupes}\label{clustering-et-la-separation-des-groupes}}
+\hypertarget{clustering-et-la-separation-des-groupes-between-transformation-approach}{%
+\section{Clustering et la séparation des groupes (Between transformation
+approach)}\label{clustering-et-la-separation-des-groupes-between-transformation-approach}}
 
 Nous avons vus dans le comportement des résidus une nature non-aléatoire
 grouppé. Cela nous amène à l'idée de construire k-clusters pour
@@ -1452,7 +1460,7 @@ modèles nous allons supposer qu'il n'y a que 3 clusters principaux.
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-66-1.pdf}
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-69-1.pdf}
 
 \FloatBarrier
 
@@ -1469,11 +1477,16 @@ Les groupes sont définies par des caractéristiques suivantes :
  & qi & ipi & si & ri & iki & .1 \\ 
 \hline \\[-1.8ex] 
 1 & $10.609$ & $0.227$ & $6.705$ & $9.880$ & $0.176$ & $27$ \\ 
-2 & $4.340$ & $0.227$ & $1.098$ & $9.870$ & $0.202$ & $8$ \\ 
-3 & $7.468$ & $0.120$ & $4.345$ & $9.905$ & $0.158$ & $34$ \\ 
+2 & $7.468$ & $0.120$ & $4.345$ & $9.905$ & $0.158$ & $34$ \\ 
+3 & $4.340$ & $0.227$ & $1.098$ & $9.870$ & $0.202$ & $8$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
+
+\FloatBarrier
+
+\hypertarget{modelisation-2}{%
+\subsection{Modèlisation}\label{modelisation-2}}
 
 \FloatBarrier
 
@@ -1494,24 +1507,24 @@ Demande: ipi        & $0.93^{***}$  & $1.15^{***}$  & $1.14^{***}$  \\
                     & $(0.01)$      & $(0.05)$      & $(0.05)$      \\
 Demande: ri1        & $-5.11^{***}$ & $-5.87^{***}$ & $-5.40^{***}$ \\
                     & $(0.81)$      & $(1.14)$      & $(1.12)$      \\
-Demande: ri2        & $-6.40^{***}$ & $-3.13$       & $-4.24^{*}$   \\
-                    & $(1.35)$      & $(1.98)$      & $(1.77)$      \\
-Demande: ri3        & $-6.02^{***}$ & $-6.17^{***}$ & $-6.88^{***}$ \\
+Demande: ri2        & $-6.02^{***}$ & $-6.17^{***}$ & $-6.88^{***}$ \\
                     & $(0.65)$      & $(0.91)$      & $(0.82)$      \\
+Demande: ri3        & $-6.40^{***}$ & $-3.13$       & $-4.24^{*}$   \\
+                    & $(1.35)$      & $(1.98)$      & $(1.77)$      \\
 Offre: ipi          & $0.88^{***}$  & $0.27$        & $0.34$        \\
                     & $(0.01)$      & $(0.26)$      & $(0.25)$      \\
 Offre: si1          & $0.30^{***}$  & $0.78^{**}$   & $0.73^{**}$   \\
                     & $(0.05)$      & $(0.24)$      & $(0.24)$      \\
-Offre: si2          & $0.17^{***}$  & $0.58^{**}$   & $0.47^{*}$    \\
-                    & $(0.04)$      & $(0.20)$      & $(0.19)$      \\
-Offre: si3          & $0.05^{**}$   & $0.15^{*}$    & $0.15^{**}$   \\
+Offre: si2          & $0.05^{**}$   & $0.15^{*}$    & $0.15^{**}$   \\
                     & $(0.02)$      & $(0.06)$      & $(0.06)$      \\
+Offre: si3          & $0.17^{***}$  & $0.58^{**}$   & $0.47^{*}$    \\
+                    & $(0.04)$      & $(0.20)$      & $(0.19)$      \\
 Offre: iki1         & $-0.08^{*}$   & $0.05$        & $-0.08$       \\
                     & $(0.04)$      & $(0.12)$      & $(0.10)$      \\
-Offre: iki2         & $-0.14^{*}$   & $-0.19$       & $-0.28$       \\
-                    & $(0.06)$      & $(0.17)$      & $(0.14)$      \\
-Offre: iki3         & $-0.23^{***}$ & $-0.46^{***}$ & $-0.47^{***}$ \\
+Offre: iki2         & $-0.23^{***}$ & $-0.46^{***}$ & $-0.47^{***}$ \\
                     & $(0.03)$      & $(0.13)$      & $(0.13)$      \\
+Offre: iki3         & $-0.14^{*}$   & $-0.19$       & $-0.28$       \\
+                    & $(0.06)$      & $(0.17)$      & $(0.14)$      \\
 \hline
 Demande: R$^2$      & 0.95          & 0.90          & 0.90          \\
 Offre: R$^2$        & 0.95          & 0.60          & 0.67          \\
@@ -1523,6 +1536,241 @@ Num. obs. (total)   & 690           & 690           & 690           \\
 \end{tabular}
 \caption{Statistical models}
 \label{table : ols, 2sls et 3sls}
+\end{center}
+\end{table}
+
+\FloatBarrier
+
+\hypertarget{tests}{%
+\subsection{Tests}\label{tests}}
+
+Etudions la validité du modèle 3SLS :
+
+\FloatBarrier
+
+\FloatBarrier
+
+\begin{table}[!htbp] \centering 
+  \caption{Hausman 3SLS consistency test} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Test & Resultats \\ 
+\hline \\[-1.8ex] 
+1 & 2SLS contre 3SLS & $0$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+La normalité des résidus :
+
+\FloatBarrier
+
+\begin{table}[!htbp] \centering 
+  \caption{Shapiro-Wilk normality test} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & OLS & 2SLS & 3SLS \\ 
+\hline \\[-1.8ex] 
+Equation de demande & $0$ & $0.00001$ & $0.00001$ \\ 
+Equation d'offre & $0.001$ & $0$ & $0$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\FloatBarrier
+
+L'heteroscedacité :
+
+\FloatBarrier
+
+\FloatBarrier
+
+\begin{table}[!htbp] \centering 
+  \caption{Bartlett heteroscedasticity test} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & OLS & 2SLS & 3SLS \\ 
+\hline \\[-1.8ex] 
+Equation de demande & $0.971$ & $0.967$ & $0.967$ \\ 
+Equation d'offre & $0.983$ & $0.00000$ & $0.00000$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\FloatBarrier
+
+Les PDF des résidus :
+
+\FloatBarrier
+
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-82-1.pdf}
+
+\FloatBarrier
+
+Les résidus contre les variables prédites :
+
+\FloatBarrier
+
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-83-1.pdf}
+
+Conclusion : les problèmes restent non résolus.
+
+\FloatBarrier
+
+\hypertarget{clustering-et-la-separation-des-groupes-wide-data-approach}{%
+\section{Clustering et la séparation des groupes (WIDE data
+approach)}\label{clustering-et-la-separation-des-groupes-wide-data-approach}}
+
+Nous avons vus dans le comportement des résidus une nature non-aléatoire
+grouppé. Cela nous amène à l'idée de construire k-clusters pour
+modèliser les rélations par grouppe.
+
+\par
+
+D'abord on compare le comportement des cluster pour les données à
+l'information complete et les données Within.
+
+\hypertarget{transformation-within}{%
+\subsection{Transformation Within}\label{transformation-within}}
+
+Comme nous pouvons voir dans les résultats le nombre des cluster
+optimaux est trop large pour les séparer dans l'analyse :
+
+\par
+
+Nous povons supposer que le nombre des clusters optimal est entre 6 et
+15.
+
+\FloatBarrier
+
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-87-1.pdf}
+
+\FloatBarrier
+
+Les groupes sont définies par des caractéristiques suivantes :
+
+\FloatBarrier
+
+Representation graphique :
+
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-90-1.pdf}
+
+\hypertarget{information-complete}{%
+\subsection{Information complete}\label{information-complete}}
+
+Dans le cas d'information complete on a :
+
+\par
+
+Nous povons supposer que le nombre des clusters optimal est entre 3 et
+5. Prenant en compte les graphiques des résidus vus lros d'analse des
+modèles nous allons supposer qu'il n'y a que 3 clusters principaux.
+
+\FloatBarrier
+
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-94-1.pdf}
+
+\FloatBarrier
+
+Les groupes sont définies par des caractéristiques suivantes :
+
+\FloatBarrier
+
+\begin{table}[!htbp] \centering 
+  \caption{Les centres des clusters} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & qi & ipi & si & ri & iki & n & k & t \\ 
+\hline \\[-1.8ex] 
+1 & 7.553257 & 0 & 4.488036 & 9.893028 & 0 & 34 & 1 & 1 \\ 
+2 & 7.575424 & 0.17404 & 4.484384 & 9.905796 & 0.099504 & 34 & 1 & 2 \\ 
+3 & 7.660652 & 0.360315 & 4.36943 & 9.899357 & 0.189307 & 34 & 1 & 3 \\ 
+4 & 7.49569 & 0.268716 & 4.251661 & 9.909171 & 0.13918 & 34 & 1 & 4 \\ 
+5 & 7.05703 & -0.201396 & 4.131789 & 9.919252 & 0.363576 & 34 & 1 & 5 \\ 
+6 & 4.33582 & 0 & 1.273345 & 9.857962 & 0 & 8 & 2 & 1 \\ 
+7 & 4.626859 & 0.46067 & 1.495971 & 9.871478 & 0.147058 & 8 & 2 & 2 \\ 
+8 & 4.691687 & 0.632668 & 1.128702 & 9.864151 & 0.463505 & 8 & 2 & 3 \\ 
+9 & 4.520241 & 0.543998 & 0.973427 & 9.872479 & 0.030991 & 8 & 2 & 4 \\ 
+10 & 3.524724 & -0.500849 & 0.618404 & 9.883133 & 0.367172 & 8 & 2 & 5 \\ 
+11 & 10.587809 & 0 & 6.813493 & 9.870584 & 0 & 27 & 3 & 1 \\ 
+12 & 10.421027 & -0.010641 & 6.741382 & 9.882586 & 0.172628 & 27 & 3 & 2 \\ 
+13 & 10.745673 & 0.40721 & 6.758133 & 9.871696 & 0.27804 & 27 & 3 & 3 \\ 
+14 & 10.645407 & 0.387573 & 6.613693 & 9.882634 & 0.087569 & 27 & 3 & 4 \\ 
+15 & 10.646404 & 0.351423 & 6.596787 & 9.893449 & 0.34322 & 27 & 3 & 5 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+Representation graphique :
+
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-97-1.pdf}
+
+\FloatBarrier
+
+\hypertarget{modelisation-3}{%
+\subsection{Modèlisation}\label{modelisation-3}}
+
+\FloatBarrier
+
+Nous evaluons le système en introduisant les variables de grouppe (dummy
+variables) sous l'hypothèse des résidus joints.
+
+\FloatBarrier
+
+\FloatBarrier
+
+\hypertarget{tests-1}{%
+\subsection{Tests}\label{tests-1}}
+
+\FloatBarrier
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c c }
+\hline
+ & OLS & 2SLS & 3SLS \\
+\hline
+Demande: ipi        & $0.93^{***}$  & $1.15^{***}$  & $1.14^{***}$  \\
+                    & $(0.01)$      & $(0.05)$      & $(0.05)$      \\
+Demande: ri1        & $-6.02^{***}$ & $-6.17^{***}$ & $-6.88^{***}$ \\
+                    & $(0.65)$      & $(0.91)$      & $(0.82)$      \\
+Demande: ri2        & $-6.40^{***}$ & $-3.13$       & $-4.24^{*}$   \\
+                    & $(1.35)$      & $(1.98)$      & $(1.77)$      \\
+Demande: ri3        & $-5.11^{***}$ & $-5.87^{***}$ & $-5.40^{***}$ \\
+                    & $(0.81)$      & $(1.14)$      & $(1.12)$      \\
+Offre: ipi          & $0.88^{***}$  & $0.27$        & $0.34$        \\
+                    & $(0.01)$      & $(0.26)$      & $(0.25)$      \\
+Offre: si1          & $0.05^{**}$   & $0.15^{*}$    & $0.15^{**}$   \\
+                    & $(0.02)$      & $(0.06)$      & $(0.06)$      \\
+Offre: si2          & $0.17^{***}$  & $0.58^{**}$   & $0.47^{*}$    \\
+                    & $(0.04)$      & $(0.20)$      & $(0.19)$      \\
+Offre: si3          & $0.30^{***}$  & $0.78^{**}$   & $0.73^{**}$   \\
+                    & $(0.05)$      & $(0.24)$      & $(0.24)$      \\
+Offre: iki1         & $-0.23^{***}$ & $-0.46^{***}$ & $-0.47^{***}$ \\
+                    & $(0.03)$      & $(0.13)$      & $(0.13)$      \\
+Offre: iki2         & $-0.14^{*}$   & $-0.19$       & $-0.28$       \\
+                    & $(0.06)$      & $(0.17)$      & $(0.14)$      \\
+Offre: iki3         & $-0.08^{*}$   & $0.05$        & $-0.08$       \\
+                    & $(0.04)$      & $(0.12)$      & $(0.10)$      \\
+\hline
+Demande: R$^2$      & 0.95          & 0.90          & 0.90          \\
+Offre: R$^2$        & 0.95          & 0.60          & 0.67          \\
+Demande: Adj. R$^2$ & 0.95          & 0.89          & 0.90          \\
+Offre: Adj. R$^2$   & 0.94          & 0.59          & 0.67          \\
+Num. obs. (total)   & 690           & 690           & 690           \\
+\hline
+\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\caption{Statistical models}
+\label{table : ols, 2sls et 3sls, full information clusters}
 \end{center}
 \end{table}
 
@@ -1593,7 +1841,7 @@ Les PDF des résidus :
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-79-1.pdf}
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-108-1.pdf}
 
 \FloatBarrier
 
@@ -1601,7 +1849,7 @@ Les résidus contre les variables prédites :
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-80-1.pdf}
+\includegraphics{note2pres_files/figure-latex/unnamed-chunk-109-1.pdf}
 
 Conclusion : les problèmes restent non résolus.
 
