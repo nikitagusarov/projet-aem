@@ -46,11 +46,13 @@ knitr::opts_chunk$set(dpi = 600)
 \FloatBarrier
 
 ```{r include = FALSE, eval = FALSE}
+#########################
 # Extract R code from Rmd
-require(knitr)
-purl("./Presentation/Presentation.Rmd", 
-    output = "./Presentation/CodePresentation.R", 
-    documentation = 0)
+#########################
+# require(knitr)
+# purl("./Presentation/Presentation.Rmd", 
+#     output = "./Presentation/CodePresentation.R", 
+#     documentation = 0)
 ```
 
 \FloatBarrier
