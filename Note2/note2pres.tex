@@ -29,6 +29,7 @@
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
+\usepackage{longtable,booktabs}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -93,30 +94,8 @@
 \begin{document}
 \maketitle
 
-\FloatBarrier
-
-\FloatBarrier
-
-\FloatBarrier
-
-\FloatBarrier
-
-\FloatBarrier
-
-\FloatBarrier
-
-\FloatBarrier
-
-\FloatBarrier
-
-\FloatBarrier
-
-\FloatBarrier
-
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
-
-\FloatBarrier
 
 \textbf{Quel est l'effet de l'utilisation des pesticides sur le marché des vins simples ?}
 
@@ -135,8 +114,6 @@ du vin.
 \item
   Comment baisser l'utilisation de pesticides
 \end{itemize}
-
-\FloatBarrier
 
 \hypertarget{presentation-du-probleme-des-pesticides}{%
 \subsection{Présentation du problème des
@@ -177,8 +154,6 @@ pesticides}\label{presentation-du-probleme-des-pesticides}}
   \item
     Augmentation des doses utilisés (+12\% en 2014-2016) ;
   \end{itemize}
-
-  \FloatBarrier
 \end{itemize}
 
 \hypertarget{etat-actuel}{%
@@ -188,6 +163,7 @@ Contrairement aux attentes des autorités aucune baisse de l'utilisation
 de pesticides :
 
 \begin{itemize}
+\tightlist
 \item
   Le nombre de doses unité augmente de 23\% entre 2008 et 2017 ;
 \item
@@ -201,8 +177,6 @@ de pesticides :
   utilisatrices de pesticides 67.4\% ;
 \item
   Les vignes sont les deuxièmes 14.4\% (Butault et al, 2011).
-
-  \FloatBarrier
 \end{itemize}
 
 \hypertarget{comment-baisser-lutilisation-de-pesticides}{%
@@ -231,8 +205,6 @@ pésticides sont :
 
 \hypertarget{le-marche-du-vin-francais}{%
 \section{Le marché du vin français}\label{le-marche-du-vin-francais}}
-
-\FloatBarrier
 
 La France est l'un des principaux producteurs et vendeurs de vin dans le
 monde. En effet, la France représente 10\% de la surface de vigne dans
@@ -297,8 +269,6 @@ catégorie sont susceptibles d'avoir un certain degré d'hétérogénéité,
 comme cela a été montré par Cembalo et al.~(2014).
 
 \par
-
-\FloatBarrier
 
 \hypertarget{les-vins-de-table}{%
 \subsection{Les vins de table}\label{les-vins-de-table}}
@@ -374,17 +344,11 @@ viticulture. De la même façon, la pression phytosanitaire varie selon
 les régions. Ainsi, pour la vigne l'IFT varie de 7 en Provence à 22 en
 Champagne.
 
-\FloatBarrier
-
 \hypertarget{le-modele-theorique}{%
 \section{Le Modèle théorique}\label{le-modele-theorique}}
 
-\FloatBarrier
-
 \hypertarget{les-hypotheses-theoriques}{%
 \subsection{Les hypothèses théoriques}\label{les-hypotheses-theoriques}}
-
-\FloatBarrier
 
 Comme proposé dans la littérature, notre étude sur les vins non coûteux
 (non IGP) est effectué au niveau du pays Cembalo et al.~(2014) pour deux
@@ -508,10 +472,6 @@ revenu et les pésticides) de varier par département.
 \hypertarget{les-donnees}{%
 \section{Les données}\label{les-donnees}}
 
-\FloatBarrier
-
-\FloatBarrier
-
 \hypertarget{sources-des-donnees}{%
 \subsection{Sources des données :}\label{sources-des-donnees}}
 
@@ -606,13 +566,12 @@ rouges-rosés et blancs sans IG en hectolitres, pour chaque département
 et sur la période 2009-2017. Afin d'obtenir un estimateur de la quantité
 de vin totale on prend la somme totale des tous types du vin sans IG.
 
-\FloatBarrier
-
 \hypertarget{dictionnaire-des-variables}{%
 \subsection{Dictionnaire des
 variables}\label{dictionnaire-des-variables}}
 
 \FloatBarrier
+
 \begin{table}[!htbp]
   \centering
 \caption{Ditionnaire des varibales}
@@ -645,12 +604,8 @@ Les propriétés de ces données sont suivantes :
   \item Nombre des individus large (69 départements, qui produisent le vin et utilisent des pésticides) et le nombre des périodes pauvre (5 périodes).
 \end{itemize}
 
-\FloatBarrier
-
 \hypertarget{letude-statistique}{%
 \section{L'étude statistique}\label{letude-statistique}}
-
-\FloatBarrier
 
 Dans cette partie de travail nous allons explorer les données
 collectées.
@@ -666,14 +621,12 @@ par une transformation \textbf{Within}.
 \subsection{Visualisation au niveau de la
 France}\label{visualisation-au-niveau-de-la-france}}
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-16-1.pdf}
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-16-1} \end{center}
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-17-1.pdf}
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-17-1} \end{center}
 
 \hypertarget{etude-de-la-variance}{%
 \subsection{Etude de la variance}\label{etude-de-la-variance}}
-
-\FloatBarrier
 
 Le tableau suivant regrouppe les statistiques déscriptives essentielles
 :
@@ -699,8 +652,9 @@ effets individuels moyens (les effets moyens pour tous les individus).
 \FloatBarrier
 
 \begin{table}[!htbp] \centering 
-  \caption{Variance study}
-\begin{tabular}{@{\extracolsep{5pt}} l|cccc} 
+  \caption{Etude de la variance} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
  & Mean & Overall & Between & Within \\ 
@@ -713,8 +667,6 @@ Temps & $3$ & $1.416$ & $0$ & $1.416$ \\
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
-
-\normalsize
 
 \FloatBarrier
 
@@ -730,9 +682,10 @@ population.
 
 \FloatBarrier
 
-\begin{table}[!htbp] \centering
-  \caption{Chow pooling test}
-\begin{tabular}{@{\extracolsep{5pt}} l|cc} 
+\begin{table}[!htbp] \centering 
+  \caption{Les p-valeurs de pooling-test de Chow} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
  & Random & Fixed \\ 
@@ -741,11 +694,9 @@ Index prix & $0.535$ & $0.533$ \\
 Index pesticides & $0.485$ & $0.451$ \\ 
 Surface & $0$ & $0.0001$ \\ 
 Revenus & $0.297$ & $0.247$ \\ 
-\hline \\[-1.8ex]
+\hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
-
-\FloatBarrier
 
 \FloatBarrier
 
@@ -758,11 +709,27 @@ dependante principale (la quantité du vin) et les regresseurs.
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-22-1.pdf}
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-22-1} 
+
+}
+
+\caption{L'étude bivarié, partie 1}\label{fig:unnamed-chunk-22}
+\end{figure}
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-23-1.pdf}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-23-1} 
+
+}
+
+\caption{L'étude bivarié, partie 2}\label{fig:unnamed-chunk-23}
+\end{figure}
 
 \FloatBarrier
 
@@ -780,11 +747,12 @@ avons des effets à la fois individuels et temporels.
 \FloatBarrier
 
 \begin{table}[!htbp] \centering 
-  \caption{Lagrange multiplier test, p-values}
-\begin{tabular}{@{\extracolsep{5pt}} l|ccc} 
+  \caption{p-valeurs de Lagrange multiplier test} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
- & Individual & Time & Two-ways \\ 
+ & Individual & Time & Twoways \\ 
 \hline \\[-1.8ex] 
 Index prix & $0$ & $0.169$ & $0$ \\ 
 Index pesticides & $0$ & $0.222$ & $0$ \\ 
@@ -807,26 +775,26 @@ trasformation \emph{within}.
 
 \FloatBarrier
 
-\FloatBarrier
-
-\begin{table}[!htbp] \centering
-  \caption{Overall correlation}
-\begin{tabular}{@{\extracolsep{5pt}} l|cccccc}
-\\[-1.8ex]\hline
-\hline \\[-1.8ex]
- & Quantité du vin & IP & Surface & Revenus & Index pésticides & Temps \\
-\hline \\[-1.8ex]
-Quantité du vin & $1$ & $0.154$ & $0.956$ & $-0.027$ & $-0.078$ & $-0.036$ \\      
-IP & $0.154$ & $1$ & $0.045$ & $-0.037$ & $-0.127$ & $0.043$ \\
-Surface & $0.956$ & $0.045$ & $1$ & $-0.057$ & $-0.060$ & $-0.064$ \\
-Revenus & $-0.027$ & $-0.037$ & $-0.057$ & $1$ & $-0.052$ & $0.119$ \\
-Index pésticides & $-0.078$ & $-0.127$ & $-0.060$ & $-0.052$ & $1$ & $0.291$ \\  
-Temps & $-0.036$ & $0.043$ & $-0.064$ & $0.119$ & $0.291$ & $1$ \\
-\hline \\[-1.8ex]
-\end{tabular}
-\end{table}
-
-\FloatBarrier
+\begin{longtable}[]{@{}lrrrrrr@{}}
+\toprule
+& Quantité du vin & IP & Surface & Revenus & Index pésticides &
+Temps\tabularnewline
+\midrule
+\endhead
+Quantité du vin & 1.0000000 & 0.1538882 & 0.9558586 & -0.0265558 &
+-0.0783682 & -0.0359595\tabularnewline
+IP & 0.1538882 & 1.0000000 & 0.0451726 & -0.0373917 & -0.1267030 &
+0.0430476\tabularnewline
+Surface & 0.9558586 & 0.0451726 & 1.0000000 & -0.0567015 & -0.0604548 &
+-0.0640070\tabularnewline
+Revenus & -0.0265558 & -0.0373917 & -0.0567015 & 1.0000000 & -0.0515319
+& 0.1188471\tabularnewline
+Index pésticides & -0.0783682 & -0.1267030 & -0.0604548 & -0.0515319 &
+1.0000000 & 0.2908564\tabularnewline
+Temps & -0.0359595 & 0.0430476 & -0.0640070 & 0.1188471 & 0.2908564 &
+1.0000000\tabularnewline
+\bottomrule
+\end{longtable}
 
 \FloatBarrier
 
@@ -835,22 +803,26 @@ transformées.
 
 \FloatBarrier
 
-\begin{table}[!htbp] \centering 
-  \caption{Within transformation correlation}
-\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & Quantité du vin & IP & Surface & Revenus & Index pésticides & Temps \\ 
-\hline \\[-1.8ex] 
-Quantité du vin & $1$ & $0.961$ & $0.366$ & $-0.160$ & $-0.228$ & $-0.199$ \\ 
-IP & $0.961$ & $1$ & $0.289$ & $-0.009$ & $-0.127$ & $0.056$ \\ 
-Surface & $0.366$ & $0.289$ & $1$ & $-0.166$ & $-0.191$ & $-0.310$ \\ 
-Revenus & $-0.160$ & $-0.009$ & $-0.166$ & $1$ & $0.228$ & $0.652$ \\ 
-Index pésticides & $-0.228$ & $-0.127$ & $-0.191$ & $0.228$ & $1$ & $0.414$ \\ 
-Temps & $-0.199$ & $0.056$ & $-0.310$ & $0.652$ & $0.414$ & $1$ \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table}
+\begin{longtable}[]{@{}lrrrrrr@{}}
+\toprule
+& Quantité du vin & IP & Surface & Revenus & Index pésticides &
+Temps\tabularnewline
+\midrule
+\endhead
+Quantité du vin & 1.0000000 & 0.9608421 & 0.3655017 & -0.1601237 &
+-0.2275316 & -0.1994410\tabularnewline
+IP & 0.9608421 & 1.0000000 & 0.2892935 & -0.0085803 & -0.1265659 &
+0.0562534\tabularnewline
+Surface & 0.3655017 & 0.2892935 & 1.0000000 & -0.1656929 & -0.1908549 &
+-0.3103175\tabularnewline
+Revenus & -0.1601237 & -0.0085803 & -0.1656929 & 1.0000000 & 0.2280372 &
+0.6521815\tabularnewline
+Index pésticides & -0.2275316 & -0.1265659 & -0.1908549 & 0.2280372 &
+1.0000000 & 0.4139250\tabularnewline
+Temps & -0.1994410 & 0.0562534 & -0.3103175 & 0.6521815 & 0.4139250 &
+1.0000000\tabularnewline
+\bottomrule
+\end{longtable}
 
 \FloatBarrier
 
@@ -864,23 +836,30 @@ transformées (sous la transformation \emph{within}).
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-30-1.pdf}
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-30-1} 
+
+}
+
+\caption{Rélations bivariés dans le cas de transformation within, partie 1}\label{fig:unnamed-chunk-30}
+\end{figure}
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-31-1.pdf}
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-31-1} 
+
+}
+
+\caption{Rélations bivariés dans le cas de transformation within, partie 2}\label{fig:unnamed-chunk-31}
+\end{figure}
 
 \FloatBarrier
 
 \hypertarget{modelisation}{%
 \section{Modèlisation}\label{modelisation}}
-
-\FloatBarrier
-
-\FloatBarrier
-
-\hypertarget{modelisation-1}{%
-\subsection{Modèlisation}\label{modelisation-1}}
 
 \begin{itemize}
 \tightlist
@@ -897,8 +876,6 @@ transformées (sous la transformation \emph{within}).
     2SLS, W2SLS, 3SLS et i3SLS
   \end{itemize}
 \end{itemize}
-
-\FloatBarrier
 
 \hypertarget{presentation-de-la-methode}{%
 \subsection{Presentation de la
@@ -962,12 +939,6 @@ d'identification des effets étudiés :
   \item Résolution du sytème par le passage aux équation structurelles.
   \item Doubles moindre carrés, lesquels on peut utiliser car on s'interesse principalement aux rôle de pésticides dans la production du vin ;
 \end{itemize}
-
-\FloatBarrier
-
-\FloatBarrier
-
-\FloatBarrier
 
 \hypertarget{la-srategie-didentification}{%
 \subsection{La sratégie
@@ -1076,21 +1047,13 @@ séparement :
   \end{itemize}
 \end{itemize}
 
-\FloatBarrier
-
-\FloatBarrier
-
 \hypertarget{les-resultats-ols-wls-et-sur}{%
 \subsection{Les résultats OLS, WLS et
 SUR}\label{les-resultats-ols-wls-et-sur}}
 
 \FloatBarrier
 
-\FloatBarrier
-
-\FloatBarrier
-
-\begin{table}
+\begin{table}[!htbp]
 \begin{center}
 \begin{tabular}{l c c c }
 \hline
@@ -1127,23 +1090,23 @@ Num. obs. (total)   & 690           & 690           & 690           \\
 
 \FloatBarrier
 
-\FloatBarrier
-
-\begin{table}[!htbp] \centering 
-  \caption{Correlation des résidus} 
-\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & OLS D & OLS O & WLS D & WLS O & SUR D & SUR O \\ 
-\hline \\[-1.8ex] 
-Vin & $0.232$ & $0.244$ & $0.232$ & $0.244$ & $0.273$ & $0.275$ \\ 
-IP & $-0$ & $-0$ & $0$ & $-0$ & $0$ & $0$ \\ 
-Surface & $0.271$ & $-0$ & $0.271$ & $0$ & $0.313$ & $0.236$ \\ 
-Revenus & $0$ & $-0.480$ & $-0$ & $-0.480$ & $-0.393$ & $-0.542$ \\ 
-Pesticides & $-0.308$ & $-0$ & $-0.308$ & $0$ & $-0.373$ & $-0.281$ \\
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table}
+\begin{longtable}[]{@{}lrrrrrr@{}}
+\toprule
+& OLS D & OLS O & WLS D & WLS O & SUR D & SUR O\tabularnewline
+\midrule
+\endhead
+Vin & 0.2317615 & 0.2444187 & 0.2317615 & 0.2444187 & 0.2728127 &
+0.2746202\tabularnewline
+IP & 0.0000000 & 0.0000000 & 0.0000000 & 0.0000000 & 0.0000000 &
+0.0000000\tabularnewline
+Surface & 0.2707361 & 0.0000000 & 0.2707361 & 0.0000000 & 0.3131039 &
+0.2364897\tabularnewline
+Revenus & 0.0000000 & -0.4799169 & 0.0000000 & -0.4799169 & -0.3931430 &
+-0.5421354\tabularnewline
+Pesticides & -0.3082912 & 0.0000000 & -0.3082912 & 0.0000000 &
+-0.3726957 & -0.2814999\tabularnewline
+\bottomrule
+\end{longtable}
 
 \FloatBarrier
 
@@ -1153,37 +1116,23 @@ l'hétéroskedacité}\label{lautocorrelation-et-lheteroskedacite}}
 
 \FloatBarrier
 
-\FloatBarrier
-
 \begin{table}[!htbp] \centering 
-  \caption{Durbin-Watson test statistics}
-\begin{tabular}{@{\extracolsep{5pt}} cccc} 
-\\[-1.8ex]\hline
-\hline \\[-1.8ex] 
- & OLS & WLS & SUR \\ 
-\hline \\[-1.8ex] 
-Equation de demande & $1.129$ & $1.129$ & $1.583$ \\ 
-Equation d'offre & $1.062$ & $1.062$ & $1.549$ \\ 
-\hline \\[-1.8ex]
-\end{tabular} 
-\end{table}
-
-\FloatBarrier
-
-\FloatBarrier
-
-\begin{table}[!htbp] \centering 
-  \caption{Bartlett heteroscedasticity test} 
+  \caption{Les statistiques test de Durbin-Watson} 
+  \label{} 
 \begin{tabular}{@{\extracolsep{5pt}} cccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
  & OLS & WLS & SUR \\ 
 \hline \\[-1.8ex] 
-Equation de demande & $0.828$ & $0.828$ & $1$ \\ 
-Equation d'offre & $0.999$ & $0.999$ & $1$ \\ 
-\hline \\[-1.8ex]
+Equation de demande & $1.112$ & $1.112$ & $1.569$ \\ 
+Equation d'offre & $1.062$ & $1.062$ & $1.552$ \\ 
+\hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
+
+\FloatBarrier
+
+\FloatBarrier
 
 \FloatBarrier
 
@@ -1195,19 +1144,6 @@ résidus}\label{le-comportement-des-residus}}
 
 \FloatBarrier
 
-\begin{table}[!htbp] \centering 
-  \caption{Shapiro-Wilk normality test}
-\begin{tabular}{@{\extracolsep{5pt}} cccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & OLS & WLS & SUR \\ 
-\hline \\[-1.8ex] 
-Equation de demande & $0$ & $0$ & $0$ \\ 
-Equation d'offre & $0.0003$ & $0.0003$ & $0$ \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table}
-
 \FloatBarrier
 
 \hypertarget{les-pdf-des-residus}{%
@@ -1215,7 +1151,14 @@ Equation d'offre & $0.0003$ & $0.0003$ & $0$ \\
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-47-1.pdf}
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-47-1} 
+
+}
+
+\caption{Les PDF des résidus}\label{fig:unnamed-chunk-47}
+\end{figure}
 
 \FloatBarrier
 
@@ -1225,7 +1168,14 @@ prédite}\label{les-residus-contre-la-variable-predite}}
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-48-1.pdf}
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-48-1} 
+
+}
+
+\caption{Les résidus contre la variable prédite}\label{fig:unnamed-chunk-48}
+\end{figure}
 
 \FloatBarrier
 
@@ -1235,7 +1185,9 @@ i3SLS}\label{les-resultats-2sls-w2sls-3sls-et-i3sls}}
 
 \FloatBarrier
 
-\begin{table}
+\FloatBarrier
+
+\begin{table}[!htbp]
 \begin{center}
 \begin{tabular}{l c c c c }
 \hline
@@ -1292,20 +1244,6 @@ Num. obs. (total)   & 690           & 690           & 690           & 690       
 
 \FloatBarrier
 
-\begin{table}[!htbp] \centering 
-  \caption{Likelihood test} 
-\begin{tabular}{@{\extracolsep{5pt}} cccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & \#Df & LogLik & Df & Chisq & Pr(\textgreater Chisq) \\ 
-\hline \\[-1.8ex] 
-1 & $6$ & $-149.621$ & $-$ & $-$ & $-$ \\ 
-2 & $8$ & $-65.614$ & $2$ & $168.013$ & $0$ \\ 
-3 & $8$ & $-82.702$ & $0$ & $34.176$ & $0$ \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table}
-
 \FloatBarrier
 
 \hypertarget{le-comportement-des-residus-1}{%
@@ -1317,7 +1255,8 @@ résidus}\label{le-comportement-des-residus-1}}
 \FloatBarrier
 
 \begin{table}[!htbp] \centering 
-  \caption{Shapiro-Wilk normality test}
+  \caption{Shapiro-Wilk test de normalité} 
+  \label{} 
 \begin{tabular}{@{\extracolsep{5pt}} cccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
@@ -1335,16 +1274,21 @@ Equation d'offre & $0.00000$ & $0.00000$ & $0.00000$ \\
 
 \FloatBarrier
 
+\% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard
+University. E-mail: hlavac at fas.harvard.edu \% Date and time: lun.,
+déc. 16, 2019 - 13:26:38
+
 \begin{table}[!htbp] \centering 
-  \caption{Bartlett heteroscedasticity test} 
+  \caption{Test de Bartlett sur l'heterockedacité} 
+  \label{} 
 \begin{tabular}{@{\extracolsep{5pt}} cccc} 
 \\[-1.8ex]\hline 
-\hline \\[-1.8ex]
+\hline \\[-1.8ex] 
  & 2SLS & 3SLS & i3SLS \\ 
 \hline \\[-1.8ex] 
 Equation de demande & $0.975$ & $0.975$ & $0.975$ \\ 
 Equation d'offre & $0.0003$ & $0.002$ & $0.001$ \\ 
-\hline \\[-1.8ex]
+\hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
 
@@ -1355,7 +1299,14 @@ Equation d'offre & $0.0003$ & $0.002$ & $0.001$ \\
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-60-1.pdf}
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-60-1} 
+
+}
+
+\caption{Les PDF des résidus}\label{fig:unnamed-chunk-60}
+\end{figure}
 
 \FloatBarrier
 
@@ -1365,7 +1316,14 @@ prédite}\label{les-residus-contre-la-variable-predite-1}}
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-61-1.pdf}
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-61-1} 
+
+}
+
+\caption{Les résidus contre la variable prédite}\label{fig:unnamed-chunk-61}
+\end{figure}
 
 \FloatBarrier
 
@@ -1375,7 +1333,14 @@ i3SLS}\label{les-residus-et-les-predictions-pour-i3sls}}
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-62-1.pdf}
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-62-1} 
+
+}
+
+\caption{Les résidus et les prédictions}\label{fig:unnamed-chunk-62}
+\end{figure}
 
 \FloatBarrier
 
@@ -1386,19 +1351,6 @@ i3SLS}\label{les-residus-et-les-predictions-pour-i3sls}}
 
 \FloatBarrier
 
-\begin{table}[!htbp] \centering 
-  \caption{Durbin-Watson test statistics}
-\begin{tabular}{@{\extracolsep{5pt}} cccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & 2SLS & 3SLS & i3SLS \\ 
-\hline \\[-1.8ex] 
-Equation de demande & $0.842$ & $0.842$ & $0.842$ \\ 
-Equation d'offre & $0.643$ & $0.643$ & $0.643$ \\ 
-\hline \\[-1.8ex]
-\end{tabular}
-\end{table}
-
 \FloatBarrier
 
 \hypertarget{lautocorrelation-sur-2-dimentions-pour-i3sls}{%
@@ -1407,7 +1359,14 @@ i3SLS}\label{lautocorrelation-sur-2-dimentions-pour-i3sls}}
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-65-1.pdf}
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-65-1} 
+
+}
+
+\caption{L'autocorrelation pour le modèle  i3SLS}\label{fig:unnamed-chunk-65}
+\end{figure}
 
 \FloatBarrier
 
@@ -1418,22 +1377,6 @@ résidus}\label{lindependance-des-residus}}
 \FloatBarrier
 
 \FloatBarrier
-
-\begin{table}[!htbp] \centering
-  \caption{Correlation des residus}
-\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & 2SLS D & 2SLS O & 3SLS D & 3SLS O & i3SLS D & i3SLS O \\ 
-\hline \\[-1.8ex]
-Vin & $-0.561$ & $0.906$ & $-0.561$ & $0.898$ & $-0.561$ & $0.901$ \\ 
-IP & $-0.746$ & $0.948$ & $-0.746$ & $0.938$ & $-0.746$ & $0.941$ \\ 
-Surface & $-0.034$ & $0$ & $-0.034$ & $0.032$ & $-0.034$ & $0.024$ \\ 
-Revenus & $0$ & $0$ & $-0$ & $0$ & $0$ & $-0$ \\ 
-Pesticides & $-0.113$ & $0$ & $-0.113$ & $0.105$ & $-0.113$ & $0.080$ \\ 
-\hline \\[-1.8ex]
-\end{tabular} 
-\end{table}
 
 \FloatBarrier
 
@@ -1460,7 +1403,14 @@ modèles nous allons supposer qu'il n'y a que 3 clusters principaux.
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-69-1.pdf}
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-69-1} 
+
+}
+
+\caption{Le choix des clusters}\label{fig:unnamed-chunk-69}
+\end{figure}
 
 \FloatBarrier
 
@@ -1476,17 +1426,17 @@ Les groupes sont définies par des caractéristiques suivantes :
 \hline \\[-1.8ex] 
  & qi & ipi & si & ri & iki & .1 \\ 
 \hline \\[-1.8ex] 
-1 & $10.609$ & $0.227$ & $6.705$ & $9.880$ & $0.176$ & $27$ \\ 
-2 & $7.468$ & $0.120$ & $4.345$ & $9.905$ & $0.158$ & $34$ \\ 
-3 & $4.340$ & $0.227$ & $1.098$ & $9.870$ & $0.202$ & $8$ \\ 
+1 & $5.349$ & $0.190$ & $2.311$ & $9.880$ & $0.216$ & $17$ \\ 
+2 & $8.207$ & $0.154$ & $4.879$ & $9.914$ & $0.136$ & $31$ \\ 
+3 & $10.940$ & $0.192$ & $7.000$ & $9.867$ & $0.184$ & $21$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
 
 \FloatBarrier
 
-\hypertarget{modelisation-2}{%
-\subsection{Modèlisation}\label{modelisation-2}}
+\hypertarget{modelisation-1}{%
+\subsection{Modèlisation}\label{modelisation-1}}
 
 \FloatBarrier
 
@@ -1497,39 +1447,39 @@ variables) sous l'hypothèse des résidus joints.
 
 \FloatBarrier
 
-\begin{table}
+\begin{table}[!htbp]
 \begin{center}
 \begin{tabular}{l c c c }
 \hline
  & OLS & 2SLS & 3SLS \\
 \hline
-Demande: ipi        & $0.93^{***}$  & $1.15^{***}$  & $1.14^{***}$  \\
+Demande: ipi        & $0.93^{***}$  & $1.14^{***}$  & $1.13^{***}$  \\
                     & $(0.01)$      & $(0.05)$      & $(0.05)$      \\
-Demande: ri1        & $-5.11^{***}$ & $-5.87^{***}$ & $-5.40^{***}$ \\
-                    & $(0.81)$      & $(1.14)$      & $(1.12)$      \\
-Demande: ri2        & $-6.02^{***}$ & $-6.17^{***}$ & $-6.88^{***}$ \\
-                    & $(0.65)$      & $(0.91)$      & $(0.82)$      \\
-Demande: ri3        & $-6.40^{***}$ & $-3.13$       & $-4.24^{*}$   \\
-                    & $(1.35)$      & $(1.98)$      & $(1.77)$      \\
-Offre: ipi          & $0.88^{***}$  & $0.27$        & $0.34$        \\
-                    & $(0.01)$      & $(0.26)$      & $(0.25)$      \\
-Offre: si1          & $0.30^{***}$  & $0.78^{**}$   & $0.73^{**}$   \\
-                    & $(0.05)$      & $(0.24)$      & $(0.24)$      \\
-Offre: si2          & $0.05^{**}$   & $0.15^{*}$    & $0.15^{**}$   \\
+Demande: ri1        & $-5.42^{***}$ & $-4.20^{**}$  & $-5.64^{***}$ \\
+                    & $(0.94)$      & $(1.30)$      & $(1.21)$      \\
+Demande: ri2        & $-6.58^{***}$ & $-7.21^{***}$ & $-7.69^{***}$ \\
+                    & $(0.68)$      & $(0.93)$      & $(0.91)$      \\
+Demande: ri3        & $-4.54^{***}$ & $-4.30^{***}$ & $-4.21^{***}$ \\
+                    & $(0.92)$      & $(1.25)$      & $(1.19)$      \\
+Offre: ipi          & $0.89^{***}$  & $0.41^{*}$    & $0.41^{*}$    \\
+                    & $(0.01)$      & $(0.20)$      & $(0.20)$      \\
+Offre: si1          & $0.05^{**}$   & $0.19^{**}$   & $0.18^{*}$    \\
+                    & $(0.02)$      & $(0.07)$      & $(0.07)$      \\
+Offre: si2          & $0.09^{***}$  & $0.20^{**}$   & $0.21^{**}$   \\
                     & $(0.02)$      & $(0.06)$      & $(0.06)$      \\
-Offre: si3          & $0.17^{***}$  & $0.58^{**}$   & $0.47^{*}$    \\
-                    & $(0.04)$      & $(0.20)$      & $(0.19)$      \\
-Offre: iki1         & $-0.08^{*}$   & $0.05$        & $-0.08$       \\
-                    & $(0.04)$      & $(0.12)$      & $(0.10)$      \\
-Offre: iki2         & $-0.23^{***}$ & $-0.46^{***}$ & $-0.47^{***}$ \\
-                    & $(0.03)$      & $(0.13)$      & $(0.13)$      \\
-Offre: iki3         & $-0.14^{*}$   & $-0.19$       & $-0.28$       \\
-                    & $(0.06)$      & $(0.17)$      & $(0.14)$      \\
+Offre: si3          & $0.30^{***}$  & $0.74^{**}$   & $0.72^{**}$   \\
+                    & $(0.06)$      & $(0.23)$      & $(0.22)$      \\
+Offre: iki1         & $-0.22^{***}$ & $-0.26^{*}$   & $-0.36^{***}$ \\
+                    & $(0.05)$      & $(0.11)$      & $(0.10)$      \\
+Offre: iki2         & $-0.18^{***}$ & $-0.34^{**}$  & $-0.34^{***}$ \\
+                    & $(0.04)$      & $(0.10)$      & $(0.10)$      \\
+Offre: iki3         & $-0.09^{*}$   & $0.03$        & $-0.06$       \\
+                    & $(0.04)$      & $(0.11)$      & $(0.10)$      \\
 \hline
 Demande: R$^2$      & 0.95          & 0.90          & 0.90          \\
-Offre: R$^2$        & 0.95          & 0.60          & 0.67          \\
-Demande: Adj. R$^2$ & 0.95          & 0.89          & 0.90          \\
-Offre: Adj. R$^2$   & 0.94          & 0.59          & 0.67          \\
+Offre: R$^2$        & 0.94          & 0.72          & 0.73          \\
+Demande: Adj. R$^2$ & 0.95          & 0.90          & 0.90          \\
+Offre: Adj. R$^2$   & 0.94          & 0.72          & 0.72          \\
 Num. obs. (total)   & 690           & 690           & 690           \\
 \hline
 \multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
@@ -1597,8 +1547,8 @@ L'heteroscedacité :
 \hline \\[-1.8ex] 
  & OLS & 2SLS & 3SLS \\ 
 \hline \\[-1.8ex] 
-Equation de demande & $0.971$ & $0.967$ & $0.967$ \\ 
-Equation d'offre & $0.983$ & $0.00000$ & $0.00000$ \\ 
+Equation de demande & $0.977$ & $0.987$ & $0.974$ \\ 
+Equation d'offre & $0.989$ & $0.00000$ & $0.00000$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
@@ -1609,7 +1559,7 @@ Les PDF des résidus :
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-82-1.pdf}
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-82-1} \end{center}
 
 \FloatBarrier
 
@@ -1617,7 +1567,7 @@ Les résidus contre les variables prédites :
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-83-1.pdf}
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-83-1} \end{center}
 
 Conclusion : les problèmes restent non résolus.
 
@@ -1649,7 +1599,7 @@ Nous povons supposer que le nombre des clusters optimal est entre 6 et
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-87-1.pdf}
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-87-1} \end{center}
 
 \FloatBarrier
 
@@ -1659,7 +1609,7 @@ Les groupes sont définies par des caractéristiques suivantes :
 
 Representation graphique :
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-90-1.pdf}
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-90-1} \end{center}
 
 \hypertarget{information-complete}{%
 \subsection{Information complete}\label{information-complete}}
@@ -1674,7 +1624,7 @@ modèles nous allons supposer qu'il n'y a que 3 clusters principaux.
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-94-1.pdf}
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-94-1} \end{center}
 
 \FloatBarrier
 
@@ -1690,33 +1640,33 @@ Les groupes sont définies par des caractéristiques suivantes :
 \hline \\[-1.8ex] 
  & qi & ipi & si & ri & iki & n & k & t \\ 
 \hline \\[-1.8ex] 
-1 & 7.553257 & 0 & 4.488036 & 9.893028 & 0 & 34 & 1 & 1 \\ 
-2 & 7.575424 & 0.17404 & 4.484384 & 9.905796 & 0.099504 & 34 & 1 & 2 \\ 
-3 & 7.660652 & 0.360315 & 4.36943 & 9.899357 & 0.189307 & 34 & 1 & 3 \\ 
-4 & 7.49569 & 0.268716 & 4.251661 & 9.909171 & 0.13918 & 34 & 1 & 4 \\ 
-5 & 7.05703 & -0.201396 & 4.131789 & 9.919252 & 0.363576 & 34 & 1 & 5 \\ 
-6 & 4.33582 & 0 & 1.273345 & 9.857962 & 0 & 8 & 2 & 1 \\ 
-7 & 4.626859 & 0.46067 & 1.495971 & 9.871478 & 0.147058 & 8 & 2 & 2 \\ 
-8 & 4.691687 & 0.632668 & 1.128702 & 9.864151 & 0.463505 & 8 & 2 & 3 \\ 
-9 & 4.520241 & 0.543998 & 0.973427 & 9.872479 & 0.030991 & 8 & 2 & 4 \\ 
-10 & 3.524724 & -0.500849 & 0.618404 & 9.883133 & 0.367172 & 8 & 2 & 5 \\ 
-11 & 10.587809 & 0 & 6.813493 & 9.870584 & 0 & 27 & 3 & 1 \\ 
-12 & 10.421027 & -0.010641 & 6.741382 & 9.882586 & 0.172628 & 27 & 3 & 2 \\ 
-13 & 10.745673 & 0.40721 & 6.758133 & 9.871696 & 0.27804 & 27 & 3 & 3 \\ 
-14 & 10.645407 & 0.387573 & 6.613693 & 9.882634 & 0.087569 & 27 & 3 & 4 \\ 
-15 & 10.646404 & 0.351423 & 6.596787 & 9.893449 & 0.34322 & 27 & 3 & 5 \\ 
+1 & 10.905002 & 0 & 7.048328 & 9.860348 & 0 & 22 & 1 & 1 \\ 
+2 & 10.691657 & -0.056005 & 6.945538 & 9.872895 & 0.149462 & 22 & 1 & 2 \\ 
+3 & 10.990015 & 0.338205 & 6.984754 & 9.859395 & 0.302499 & 22 & 1 & 3 \\ 
+4 & 10.952753 & 0.380444 & 6.855669 & 9.87067 & 0.100718 & 22 & 1 & 4 \\ 
+5 & 10.906341 & 0.294342 & 6.830466 & 9.881679 & 0.36276 & 22 & 1 & 5 \\ 
+6 & 8.204277 & 0 & 4.987838 & 9.900816 & 0 & 30 & 2 & 1 \\ 
+7 & 8.175461 & 0.122615 & 5.007068 & 9.913384 & 0.10792 & 30 & 2 & 2 \\ 
+8 & 8.360791 & 0.406721 & 4.908536 & 9.909318 & 0.153133 & 30 & 2 & 3 \\ 
+9 & 8.161618 & 0.281943 & 4.746188 & 9.919147 & 0.087094 & 30 & 2 & 4 \\ 
+10 & 7.864193 & -0.044913 & 4.637459 & 9.929119 & 0.326554 & 30 & 2 & 5 \\ 
+11 & 5.37234 & 0 & 2.473289 & 9.869431 & 0 & 17 & 3 & 1 \\ 
+12 & 5.61569 & 0.404064 & 2.55531 & 9.881971 & 0.158519 & 17 & 3 & 2 \\ 
+13 & 5.619106 & 0.509682 & 2.302302 & 9.872995 & 0.376623 & 17 & 3 & 3 \\ 
+14 & 5.448956 & 0.419102 & 2.217837 & 9.881977 & 0.147986 & 17 & 3 & 4 \\ 
+15 & 4.689674 & -0.381999 & 2.008663 & 9.892485 & 0.399327 & 17 & 3 & 5 \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
 
 Representation graphique :
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-97-1.pdf}
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-97-1} \end{center}
 
 \FloatBarrier
 
-\hypertarget{modelisation-3}{%
-\subsection{Modèlisation}\label{modelisation-3}}
+\hypertarget{modelisation-2}{%
+\subsection{Modèlisation}\label{modelisation-2}}
 
 \FloatBarrier
 
@@ -1732,39 +1682,39 @@ variables) sous l'hypothèse des résidus joints.
 
 \FloatBarrier
 
-\begin{table}
+\begin{table}[!htbp]
 \begin{center}
 \begin{tabular}{l c c c }
 \hline
  & OLS & 2SLS & 3SLS \\
 \hline
-Demande: ipi        & $0.93^{***}$  & $1.15^{***}$  & $1.14^{***}$  \\
+Demande: ipi        & $0.93^{***}$  & $1.14^{***}$  & $1.14^{***}$  \\
                     & $(0.01)$      & $(0.05)$      & $(0.05)$      \\
-Demande: ri1        & $-6.02^{***}$ & $-6.17^{***}$ & $-6.88^{***}$ \\
-                    & $(0.65)$      & $(0.91)$      & $(0.82)$      \\
-Demande: ri2        & $-6.40^{***}$ & $-3.13$       & $-4.24^{*}$   \\
-                    & $(1.35)$      & $(1.98)$      & $(1.77)$      \\
-Demande: ri3        & $-5.11^{***}$ & $-5.87^{***}$ & $-5.40^{***}$ \\
-                    & $(0.81)$      & $(1.14)$      & $(1.12)$      \\
-Offre: ipi          & $0.88^{***}$  & $0.27$        & $0.34$        \\
-                    & $(0.01)$      & $(0.26)$      & $(0.25)$      \\
-Offre: si1          & $0.05^{**}$   & $0.15^{*}$    & $0.15^{**}$   \\
+Demande: ri1        & $-4.63^{***}$ & $-4.64^{***}$ & $-4.49^{***}$ \\
+                    & $(0.91)$      & $(1.24)$      & $(1.19)$      \\
+Demande: ri2        & $-6.56^{***}$ & $-7.07^{***}$ & $-7.66^{***}$ \\
+                    & $(0.69)$      & $(0.94)$      & $(0.91)$      \\
+Demande: ri3        & $-5.43^{***}$ & $-4.18^{**}$  & $-5.65^{***}$ \\
+                    & $(0.94)$      & $(1.31)$      & $(1.22)$      \\
+Offre: ipi          & $0.89^{***}$  & $0.42^{*}$    & $0.43^{*}$    \\
+                    & $(0.01)$      & $(0.20)$      & $(0.20)$      \\
+Offre: si1          & $0.30^{***}$  & $0.74^{**}$   & $0.72^{**}$   \\
+                    & $(0.06)$      & $(0.23)$      & $(0.22)$      \\
+Offre: si2          & $0.09^{***}$  & $0.19^{**}$   & $0.19^{**}$   \\
                     & $(0.02)$      & $(0.06)$      & $(0.06)$      \\
-Offre: si2          & $0.17^{***}$  & $0.58^{**}$   & $0.47^{*}$    \\
-                    & $(0.04)$      & $(0.20)$      & $(0.19)$      \\
-Offre: si3          & $0.30^{***}$  & $0.78^{**}$   & $0.73^{**}$   \\
-                    & $(0.05)$      & $(0.24)$      & $(0.24)$      \\
-Offre: iki1         & $-0.23^{***}$ & $-0.46^{***}$ & $-0.47^{***}$ \\
-                    & $(0.03)$      & $(0.13)$      & $(0.13)$      \\
-Offre: iki2         & $-0.14^{*}$   & $-0.19$       & $-0.28$       \\
-                    & $(0.06)$      & $(0.17)$      & $(0.14)$      \\
-Offre: iki3         & $-0.08^{*}$   & $0.05$        & $-0.08$       \\
-                    & $(0.04)$      & $(0.12)$      & $(0.10)$      \\
+Offre: si3          & $0.05^{**}$   & $0.19^{**}$   & $0.17^{*}$    \\
+                    & $(0.02)$      & $(0.07)$      & $(0.07)$      \\
+Offre: iki1         & $-0.09^{*}$   & $0.02$        & $-0.07$       \\
+                    & $(0.04)$      & $(0.11)$      & $(0.10)$      \\
+Offre: iki2         & $-0.18^{***}$ & $-0.33^{**}$  & $-0.33^{**}$  \\
+                    & $(0.04)$      & $(0.10)$      & $(0.10)$      \\
+Offre: iki3         & $-0.22^{***}$ & $-0.26^{*}$   & $-0.35^{***}$ \\
+                    & $(0.05)$      & $(0.11)$      & $(0.10)$      \\
 \hline
 Demande: R$^2$      & 0.95          & 0.90          & 0.90          \\
-Offre: R$^2$        & 0.95          & 0.60          & 0.67          \\
-Demande: Adj. R$^2$ & 0.95          & 0.89          & 0.90          \\
-Offre: Adj. R$^2$   & 0.94          & 0.59          & 0.67          \\
+Offre: R$^2$        & 0.94          & 0.73          & 0.74          \\
+Demande: Adj. R$^2$ & 0.95          & 0.90          & 0.90          \\
+Offre: Adj. R$^2$   & 0.94          & 0.73          & 0.74          \\
 Num. obs. (total)   & 690           & 690           & 690           \\
 \hline
 \multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
@@ -1790,7 +1740,7 @@ Etudions la validité du modèle 3SLS :
 \hline \\[-1.8ex] 
  & Test & Resultats \\ 
 \hline \\[-1.8ex] 
-1 & 2SLS contre 3SLS & $0$ \\ 
+1 & 2SLS contre 3SLS & $0.0003$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
@@ -1829,8 +1779,8 @@ L'heteroscedacité :
 \hline \\[-1.8ex] 
  & OLS & 2SLS & 3SLS \\ 
 \hline \\[-1.8ex] 
-Equation de demande & $0.971$ & $0.967$ & $0.967$ \\ 
-Equation d'offre & $0.983$ & $0.00000$ & $0.00000$ \\ 
+Equation de demande & $0.975$ & $0.985$ & $0.969$ \\ 
+Equation d'offre & $0.989$ & $0.00000$ & $0.00000$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
@@ -1841,7 +1791,7 @@ Les PDF des résidus :
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-108-1.pdf}
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-108-1} \end{center}
 
 \FloatBarrier
 
@@ -1849,7 +1799,7 @@ Les résidus contre les variables prédites :
 
 \FloatBarrier
 
-\includegraphics{note2pres_files/figure-latex/unnamed-chunk-109-1.pdf}
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-109-1} \end{center}
 
 Conclusion : les problèmes restent non résolus.
 
@@ -1930,9 +1880,6 @@ Conclusion : les problèmes restent non résolus.
 
 \FloatBarrier
 
-\hypertarget{bibliographie}{%
-\subsection{Bibliographie}\label{bibliographie}}
-
 \begin{itemize}
 \tightlist
 \item
@@ -1949,6 +1896,19 @@ Conclusion : les problèmes restent non résolus.
   et climat : une analyse à partir des enquêtes pratiques culturales.''
   \emph{Agreste Les Dossiers}. 39. 3-25
 \end{itemize}
+
+Cembalo, Caracciolo, and Pomarici (2014)
+
+\hypertarget{references}{%
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\leavevmode\hypertarget{ref-cembalo2014}{}%
+Cembalo, Luigi, Francesco Caracciolo, and Eugenio Pomarici. 2014.
+``Drinking Cheaply: The Demand for Basic Wine in Italy.''
+\emph{Australian Journal of Agricultural and Resource Economics} 58 (3):
+374--91.
 
 
 \end{document}

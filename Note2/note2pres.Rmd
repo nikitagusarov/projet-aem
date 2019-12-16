@@ -21,16 +21,15 @@ output:
         number_sections: true
         # toc_depth: 1
         df_print: "kable"
-        fig_width: 7
-        fig_height: 3.5
+        fig_width: 6
+        fig_height: 3
         fig_caption: yes
         # includes:
         #     in_header: Header.tex
 fontsize: 11pt
+bibliography: biblio.bib
 # geometry: margin = 0.5in
 ---
-
-\FloatBarrier
 
 ```{r include = FALSE}
 ###################
@@ -38,12 +37,11 @@ fontsize: 11pt
 ###################
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(size = "tiny")
-knitr::opts_chunk$set(fig_caption = " ")
 # knitr::opts_chunk$set(dev = "pdf")
 knitr::opts_chunk$set(dpi = 600)
+knitr::opts_chunk$set(fig.align = "center") 
+knitr::opts_chunk$set(fig.pos = "!htbp")
 ```
-
-\FloatBarrier
 
 ```{r include = FALSE, eval = FALSE}
 #########################
@@ -55,27 +53,29 @@ knitr::opts_chunk$set(dpi = 600)
 #     documentation = 0)
 ```
 
-\FloatBarrier
-
 ```{r include = FALSE}
 ##########
 # Packages
 ##########
-require(tidyverse)
-require(plm) # Panel data
-require(Formula)
-require(gridExtra)
+# Results printing
 require(stargazer)
 require(texreg)
-require(rlang)
-require(dummies)
+require(xtable)
+# Statistics
 require(systemfit) # System equations
 require(olsrr) # Stat tests
+require(plm) # Panel data
+require(Formula)
+# Plots 
+require(gridExtra)
+# Maps
 require(raster)
+# General packages
+require(tidyverse)
+require(rlang)
+require(dummies)
 require(dplyr)
 ```
-
-\FloatBarrier
 
 ```{r include = FALSE}
 ##############
@@ -106,8 +106,6 @@ datax = datax %>%
     mutate(IQK = (qk_prod + ql_prod)/refqki)
 ```
 
-\FloatBarrier
-
 ```{r include = FALSE}
 ##################
 # Transformed data
@@ -124,8 +122,6 @@ datai = datax %>%
     dplyr::select(year, ndep, qi, ipi, si, ri, iki, t)
 ```
 
-\FloatBarrier
-
 ```{r include = FALSE}
 ############
 # Panel data
@@ -134,26 +130,14 @@ datap = pdata.frame(datai, index = c("ndep", "year"),
     drop.index = T)
 ```
 
-\FloatBarrier
-
-```{r include = FALSE}
-#################
-# Clear workplace
-#################
-list = ls()
-keep = c("datai", "datap")
-omit = setdiff(list, keep)
-rm(omit)
-```
-
-\FloatBarrier
-
 ```{r include = FALSE}
 ###################
 # Support functions
 ###################
-# xtsum (overall, within and between variance) for panel data
 # STATA version
+#######
+# xtsum (overall, within and between variance) for panel data
+#######
 xtsum = function(data, varname, unit) {
     # the variable to xtsum over
     varname = enquo(varname)
@@ -190,7 +174,9 @@ xtsum = function(data, varname, unit) {
     # results
     return(list(var = varname, ores = ores, bres = bres, wres = wres))
 }
+####################################
 # Print results for a list of xtsums
+####################################
 print.xtsum = function(xtsums.list) {
     # takes multiple xtsums as list
     df = data.frame(Variable = NA, Mean = NA,
@@ -208,21 +194,6 @@ print.xtsum = function(xtsums.list) {
     # Results
     return(df = df[,-1])
 }
-```
-
-\FloatBarrier
-
-```{r include = FALSE}
-##################
-# Set ggplot style
-##################
-pres_theme = theme(text = element_text(size = rel(3)),
-    legend.position = "none")
-```
-
-\FloatBarrier
-
-```{r include = FALSE}
 #################
 # Effects testing 
 #################
@@ -263,22 +234,40 @@ Effect.testing = function(Formulas, data) {
 }
 ```
 
-# Introduction
-\FloatBarrier
+```{r include = FALSE}
+##################
+# Set ggplot style
+##################
+pres_theme = theme(text = element_text(size = rel(3)),
+    legend.position = "none")
+```
 
-\textbf{Quel est l'effet de l'utilisation des pesticides sur le marché des vins simples ?}
+# Introduction
+
+```{r eval = FALSE, include = FALSE}
+####################################################
+################### Introduction ###################
+####################################################
+```
+
+Quel est l'effet de l'utilisation des pesticides sur le marché des vins simples ?
 
 Dans cette étude, nous chercherons à étudier l'équilibre sur le marché du vin. 
 
-# Les pesticides
+# 1. Les pesticides
+
+```{r eval = FALSE, include = FALSE}
+####################################################
+###################  Pesticides  ###################
+####################################################
+```
 
 - Présentation du problème des pésticides
 - Etat actuel
 - Comment baisser l'utilisation de pesticides
 
-\FloatBarrier
-
 ## Présentation du problème des pesticides
+
 - Source de nombreux débats sur la santé et l'environnement.
 - Le rôle actuel :
     - Moyen de protection contre les aléas climatiques ;
@@ -291,10 +280,9 @@ Dans cette étude, nous chercherons à étudier l'équilibre sur le marché du v
 - Malgres les efforts l'utilisation perdure :
     - Hausse des ventes de produits phytosanitaires ;
     - Augmentation des doses utilisés (+12% en 2014-2016) ;
-  
-  \FloatBarrier
 
 ## Etat actuel
+
 Contrairement aux attentes des autorités aucune baisse de l'utilisation de pesticides :
 
 - Le nombre de doses unité augmente de 23% entre 2008 et 2017 ;
@@ -302,10 +290,9 @@ Contrairement aux attentes des autorités aucune baisse de l'utilisation de pest
 - Une baisse des produits les plus dangereux de 6%, en 2017 (Moghaddam et al, 2019) ;
 - Les grandes cultures (blés, etc...) sont les premières utilisatrices de pesticides 67.4% ;
 - Les vignes sont les deuxièmes 14.4% (Butault et al, 2011).
-    
-    \FloatBarrier
 
 ## Comment baisser l'utilisation de pesticides
+
 Les méthodes contemporaines visant à baisser l'utilisation des pésticides sont :
 
 - Le changement de mode de culture :
@@ -313,8 +300,7 @@ Les méthodes contemporaines visant à baisser l'utilisation des pésticides son
     - agriculture raisonnée ;
 - La diversification des cultures, ce qui est impossible pour la vigne (Moghaddam et al, 2019).
 
-# Le marché du vin français
-\FloatBarrier
+# 2. Le marché du vin français
 
 ```{r eval = FALSE, include = FALSE}
 #####################################################
@@ -339,7 +325,7 @@ Néanmoins, on remarque une baisse de la consommation Française depuis une tren
 
 Il existe une forte hétérogénéité entre les différents labels mais aussi à l'intérieur de ces labels. 
 
-Dans le commerce du vin, il est courant de diviser les vins en deux grandes classes en fonction de leurs prix (Cembalo et al., 2014) : 
+Dans le commerce du vin, il est courant de diviser les vins en deux grandes classes en fonction de leurs prix [@cembalo2014] : 
 \begin{itemize}
     \item les vins de qualité inférieure, les moins chers avec les caractéristiques de qualité de base ;
     \item les vins de qualité supérieure plus chers, dotés de caractéristiques qualitatives complexes et d'une image de grande valeur.
@@ -355,10 +341,8 @@ En tenant compte des spécificités du marhcé du vin français, nous utilisons 
 \end{itemize}
 \par
 La première partie est soumise à des règlements spécifiques : limitations des quantités produites, origine contrôlé, un caractère de la demande spécifique. 
-La deuxième, c'est-à-dire le marché des vins moins chers, est aussi complexe. Les produits classés dans cette catégorie sont susceptibles d'avoir un certain degré d'hétérogénéité, comme cela a été montré par Cembalo et al. (2014).
+La deuxième, c'est-à-dire le marché des vins moins chers, est aussi complexe. Les produits classés dans cette catégorie sont susceptibles d'avoir un certain degré d'hétérogénéité, comme cela a été montré par @cembalo2014.
 \par
-
-\FloatBarrier
 
 ## Les vins de table
 
@@ -389,7 +373,7 @@ Les ventes de vins sans indications géographiques sont en légère hausse dans 
 Dans notre étude, nous traitons uniquement les vins simples (non IGP). 
 La situation sur ce marché est sensée influencer l'utilisation des pesticides, car les volumes de productions sont plus significatives que pour le marché des vins IGP.
 \par 
-Suivant le raisonnement des chercheurs Cembalo et al. (2014), dans une catégorie de vin avec une fourchette de prix étroite, il existe une homogénéité presque parfaite due à des vins ayant des attributs intrinsèques simples, une complexité de qualité médiocre et donc une différenciation peu marquée.
+Suivant le raisonnement des chercheurs @cembalo2014, dans une catégorie de vin avec une fourchette de prix étroite, il existe une homogénéité presque parfaite due à des vins ayant des attributs intrinsèques simples, une complexité de qualité médiocre et donc une différenciation peu marquée.
 \par 
 Cela nous permet d'analyser le marché par département est non par des marques/produits.
 
@@ -402,10 +386,7 @@ Elle est forte en viticulture.
 De la même façon, la pression phytosanitaire varie selon les régions. 
 Ainsi, pour la vigne l’IFT varie de 7 en Provence à 22 en Champagne.
 
-  \FloatBarrier
-
-# Le Modèle théorique
-\FloatBarrier
+# 3. Le Modèle théorique
 
 ```{r eval = FALSE, include = FALSE}
 #####################################################
@@ -413,9 +394,7 @@ Ainsi, pour la vigne l’IFT varie de 7 en Provence à 22 en Champagne.
 #####################################################
 ```
 
-## Les hypothèses théoriques 
-
-\FloatBarrier
+## Les hypothèses théoriques
 
 Comme proposé dans la littérature, notre étude sur les vins non coûteux (non IGP) est effectué au niveau du pays Cembalo et al. (2014) pour deux raisons :
 \begin{itemize}
@@ -498,16 +477,13 @@ Alors,nous pouvons réécrire notre système d'equations sous la forme suivante 
 \end{align*}
 Il faut specifier, que nous supposons les effets de prix sont identiques pour tous les département en moyenne, tandis que nous laissons quand même les effets des autres variables dépéndantes (ex : le revenu et les pésticides) de varier par département.
 
-# Les données
-\FloatBarrier
+# 4. Les données
 
 ```{r eval = FALSE, include = FALSE}
 #####################################################
 ###################  Données mob  ###################
 #####################################################
 ```
-
-\FloatBarrier
 
 ## Sources des données : 
 
@@ -559,11 +535,10 @@ Il est aussi déflatée de l’indice des prix à la consommation (base 100 en 2
 Enfin, nous avons exploité les variables suivantes au niveau de la production de vin : la surface totale de culture viticole en hectares, la surface utilisé pour les vins non IG, la quantité produite de vins rouges-rosés et blancs sans IG en hectolitres, pour chaque département et sur la période 2009-2017.
 Afin d'obtenir un estimateur de la quantité de vin totale on prend la somme totale des tous types du vin sans IG.
 
-\FloatBarrier
-
 ## Dictionnaire des variables 
 
 \FloatBarrier
+
 \begin{table}[!htbp]
   \centering
 \caption{Ditionnaire des varibales}
@@ -595,10 +570,7 @@ Les propriétés de ces données sont suivantes :
   \item Nombre des individus large (69 départements, qui produisent le vin et utilisent des pésticides) et le nombre des périodes pauvre (5 périodes).
 \end{itemize}
 
-\FloatBarrier
-
-# L'étude statistique
-\FloatBarrier
+# 5. L'étude statistique
 
 ```{r eval = FALSE, include = FALSE}
 #####################################################
@@ -638,6 +610,8 @@ formes$ri = risp
 formes$si = sisp 
 ```
 
+\FloatBarrier
+
 ```{r echo = FALSE, results = "asis"}
 # Plot 
 p1 = spplot(formes, "qi", 
@@ -648,6 +622,10 @@ p2 = spplot(formes, "iki",
     main = list(label = "Index pesticides par région", cex = 0.8))
 grid.arrange(p1, p2, nrow = 1)
 ```
+
+\FloatBarrier
+
+\FloatBarrier
 
 ```{r echo = FALSE, results = "asis"}
 # Plot
@@ -660,8 +638,9 @@ p2 = spplot(formes, "ri",
 grid.arrange(p1, p2, nrow = 1)
 ```
 
-## Etude de la variance 
 \FloatBarrier
+
+## Etude de la variance 
 
 ```{r include = FALSE}
 lxtsums = list()
@@ -689,29 +668,12 @@ Cela nous amêne à l'idée qu'il faut utiliser un modèle qui permettra estimer
 
 \FloatBarrier
 
-```{r echo = FALSE, eval = FALSE}
-stargazer(results, 
-    title = "Variance study",
+```{r echo = FALSE, results = "asis"}
+stargazer(results,  
+    header = FALSE,
+    title = "Etude de la variance",
     summary = FALSE)
 ```
-
-\begin{table}[!htbp] \centering 
-  \caption{Variance study}
-\begin{tabular}{@{\extracolsep{5pt}} l|cccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & Mean & Overall & Between & Within \\ 
-\hline \\[-1.8ex] 
-Index prix & $0.175$ & $0.568$ & $0.368$ & $0.434$ \\ 
-Index pesticides & $0.170$ & $0.333$ & $0.239$ & $0.234$ \\ 
-Surface & $4.892$ & $1.986$ & $1.955$ & $0.410$ \\ 
-Revenus & $9.891$ & $0.061$ & $0.061$ & $0.011$ \\ 
-Temps & $3$ & $1.416$ & $0$ & $1.416$ \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table}
-
-\normalsize 
 
 \FloatBarrier
 
@@ -732,28 +694,12 @@ Sauf le cas de la surface nous ne pouvons pas rejeter l'hypothese nulle, specifi
 
 \FloatBarrier
 
-```{r include = FALSE}
-stargazer(Dtest[,c(1:2)], 
-    title = "Chow pooling test",
+```{r echo = FALSE, results = "asis"}
+stargazer(Dtest[,c(1:2)],  
+    header = FALSE,
+    title = "Les p-valeurs de pooling-test de Chow",
     summary = FALSE)
 ```
-
-\begin{table}[!htbp] \centering
-  \caption{Chow pooling test}
-\begin{tabular}{@{\extracolsep{5pt}} l|cc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & Random & Fixed \\ 
-\hline \\[-1.8ex] 
-Index prix & $0.535$ & $0.533$ \\ 
-Index pesticides & $0.485$ & $0.451$ \\ 
-Surface & $0$ & $0.0001$ \\ 
-Revenus & $0.297$ & $0.247$ \\ 
-\hline \\[-1.8ex]
-\end{tabular} 
-\end{table} 
-
-\FloatBarrier
 
 \FloatBarrier
 
@@ -763,8 +709,7 @@ Maintenant passons à l'étude des graphiques bivariés pour notre variable depe
 
 \FloatBarrier
 
-
-```{r echo = FALSE}
+```{r echo = FALSE, fig.cap = "L'étude bivarié, partie 1"}
 p1 = datai %>% 
     ggplot(aes(qi, ipi, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
@@ -785,8 +730,9 @@ grid.arrange(p1, p2, nrow = 1)
 
 \FloatBarrier
 
+\FloatBarrier
 
-```{r echo = FALSE}
+```{r echo = FALSE, fig.cap = "L'étude bivarié, partie 2"}
 p1 = datai %>% 
     ggplot(aes(qi, si, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
@@ -804,7 +750,6 @@ p2 = datai %>%
 grid.arrange(p1, p2, nrow = 1)
 ```
 
-
 \FloatBarrier
 
 ## L'étude des types d'effets  
@@ -817,26 +762,12 @@ Pour la variable de surface nous avons des effets à la fois individuels et temp
 
 \FloatBarrier
 
-```{r include = FALSE}
+```{r echo = FALSE, results = "asis"}
 stargazer(Dtest[,c(3:ncol(Dtest))], 
-    title = "Lagrange multiplier test, p-values",
+    header = FALSE,
+    title = "p-valeurs de Lagrange multiplier test",
     summary = FALSE)
 ```
-
-\begin{table}[!htbp] \centering 
-  \caption{Lagrange multiplier test, p-values}
-\begin{tabular}{@{\extracolsep{5pt}} l|ccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & Individual & Time & Two-ways \\ 
-\hline \\[-1.8ex] 
-Index prix & $0$ & $0.169$ & $0$ \\ 
-Index pesticides & $0$ & $0.222$ & $0$ \\ 
-Surface & $0$ & $0.030$ & $0$ \\ 
-Revenus & $0$ & $0.248$ & $0$ \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table} 
 
 \FloatBarrier
 
@@ -845,9 +776,7 @@ Revenus & $0$ & $0.248$ & $0$ \\
 Maintenat nous allons comparer deux tableau de correlation. 
 Le premier tableau combrend les résultats pour les données telles-quelles, le deuxieme par contre integre les résultats pour les données sous la trasformation *within*.
 
-\FloatBarrier
-
-```{r echo = FALSE}
+```{r include = FALSE}
 correlation = cor(datap)
 colnames(correlation) = c("Quantité du vin", "IP", 
         "Surface", "Revenus", 
@@ -856,30 +785,14 @@ rownames(correlation) = c("Quantité du vin", "IP",
         "Surface", "Revenus", 
         "Index pésticides", "Temps")
 ```
+
 \FloatBarrier
 
-```{r include = FALSE}
-stargazer(correlation, 
-    title = "Overall correlation",
-    summary = F)
+```{r echo = FALSE, results = "asis"}
+xtable(correlation, 
+    caption = "La correlation complete",
+    align = "l|rrrrrr")
 ```
-
-\begin{table}[!htbp] \centering
-  \caption{Overall correlation}
-\begin{tabular}{@{\extracolsep{5pt}} l|cccccc}
-\\[-1.8ex]\hline
-\hline \\[-1.8ex]
- & Quantité du vin & IP & Surface & Revenus & Index pésticides & Temps \\
-\hline \\[-1.8ex]
-Quantité du vin & $1$ & $0.154$ & $0.956$ & $-0.027$ & $-0.078$ & $-0.036$ \\      
-IP & $0.154$ & $1$ & $0.045$ & $-0.037$ & $-0.127$ & $0.043$ \\
-Surface & $0.956$ & $0.045$ & $1$ & $-0.057$ & $-0.060$ & $-0.064$ \\
-Revenus & $-0.027$ & $-0.037$ & $-0.057$ & $1$ & $-0.052$ & $0.119$ \\
-Index pésticides & $-0.078$ & $-0.127$ & $-0.060$ & $-0.052$ & $1$ & $0.291$ \\  
-Temps & $-0.036$ & $0.043$ & $-0.064$ & $0.119$ & $0.291$ & $1$ \\
-\hline \\[-1.8ex]
-\end{tabular}
-\end{table}
 
 \FloatBarrier
 
@@ -895,7 +808,6 @@ dataW$iki = Within(datap$iki)
 dataW$si = Within(datap$si)
 dataW$ri = Within(datap$ri)
 ```
-\FloatBarrier
 
 Les rélations entre les variables mieux ressortent pour les données transformées.
 
@@ -909,30 +821,14 @@ rownames(correlationW) = c("Quantité du vin", "IP",
         "Surface", "Revenus", 
         "Index pésticides", "Temps")
 ```
+
 \FloatBarrier
 
-```{r include = FALSE}
-stargazer(correlationW, 
-    title = "Within transformation correlation",
-    summary = F)
+```{r echo = FALSE, results = "asis"}
+xtable(correlationW, 
+    caption = "La correlation within",
+    align = "l|rrrrrr")
 ```
-
-\begin{table}[!htbp] \centering 
-  \caption{Within transformation correlation}
-\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & Quantité du vin & IP & Surface & Revenus & Index pésticides & Temps \\ 
-\hline \\[-1.8ex] 
-Quantité du vin & $1$ & $0.961$ & $0.366$ & $-0.160$ & $-0.228$ & $-0.199$ \\ 
-IP & $0.961$ & $1$ & $0.289$ & $-0.009$ & $-0.127$ & $0.056$ \\ 
-Surface & $0.366$ & $0.289$ & $1$ & $-0.166$ & $-0.191$ & $-0.310$ \\ 
-Revenus & $-0.160$ & $-0.009$ & $-0.166$ & $1$ & $0.228$ & $0.652$ \\ 
-Index pésticides & $-0.228$ & $-0.127$ & $-0.191$ & $0.228$ & $1$ & $0.414$ \\ 
-Temps & $-0.199$ & $0.056$ & $-0.310$ & $0.652$ & $0.414$ & $1$ \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table} 
 
 \FloatBarrier
 
@@ -942,8 +838,7 @@ Avant de términer cette partie d'étude statistique de notre échantillon il fa
 
 \FloatBarrier
 
-
-```{r echo = FALSE}
+```{r echo = FALSE, fig.cap = "Rélations bivariés dans le cas de transformation within, partie 1"}
 p1 = dataW %>% 
     ggplot(aes(qi, ipi, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
@@ -966,8 +861,7 @@ grid.arrange(p1, p2, nrow = 1)
 
 \FloatBarrier
 
-
-```{r echo = FALSE}
+```{r echo = FALSE, fig.cap = "Rélations bivariés dans le cas de transformation within, partie 2"}
 p1 = dataW %>% 
     ggplot(aes(qi, si, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
@@ -989,8 +883,7 @@ grid.arrange(p1, p2, nrow = 1)
 
 \FloatBarrier
 
-# Modèlisation
-\FloatBarrier
+# 6. Modèlisation
 
 ```{r eval = FALSE, include = FALSE}
 #####################################################
@@ -998,15 +891,10 @@ grid.arrange(p1, p2, nrow = 1)
 #####################################################
 ```
 
-\FloatBarrier
-
-## Modèlisation
 - Presentation de la méthode 
 - Les estimations 
     - OLS, WLS et SUR 
     - 2SLS, W2SLS, 3SLS et i3SLS 
-
-\FloatBarrier
 
 ## Presentation de la méthode
 
@@ -1062,8 +950,6 @@ D'ici nous avons à notre disposition deux outils d'identification des effets é
   \item Doubles moindre carrés, lesquels on peut utiliser car on s'interesse principalement aux rôle de pésticides dans la production du vin ;
 \end{itemize}
 
-\FloatBarrier
-
 ```{r include = FALSE, eval = FALSE}
 ###################
 # Not evaluated !!!
@@ -1089,8 +975,6 @@ dataD = datai %>%
     cbind(ikiDum) %>% 
     cbind(riDum)
 ```
-
-\FloatBarrier
 
 ```{r include = FALSE, eval = FALSE}
 ###################
@@ -1119,8 +1003,6 @@ dataWD = dataW %>%
 rm(ikiDum) ; rm(riDum)
 ```
 
-\FloatBarrier
-
 ## La sratégie d'identification 
 
 Nous attendons à ce que l'éstimateur de 3SLS, qui permet de capter tous les effets de correlations entre les équation en presence de plusieures variables exogènes nous permettra d'obtenir des estimations fiables. 
@@ -1136,7 +1018,7 @@ Quand même dès le debut nous envisageons des problèmes possibles avec les ré
 - Faible representation des effets hetérogenes entre les régions (nous estimons seulemnt les effets moyens)
 - Les interferences induites par l'heterogénéité 
 
-# Résultats 
+# 7. Résultats 
 
 Dans cette séction nous allons presenter les prémiers résultats économétriques.
 Lors de ces prémiéres éstimations nous supposons que les effets sont identiques pour tous les département (on fait la correction pour les effets fixes au niveau départemental quand même).
@@ -1165,8 +1047,6 @@ Les modèles suivantes sont traitées séparement :
     - 2SLS, W2SLS 
     - 3SLS et 3SLS itérés (le dérnier modèle étant similaire à FIML)
 
-\FloatBarrier
-
 ```{r include = FALSE, eval = FALSE}
 # - Vérification des hypothèses (5 hypothèses) :
 #     - La moyenne nulle des erreurs 
@@ -1178,17 +1058,12 @@ Les modèles suivantes sont traitées séparement :
 # Hence 3SLS is efficient and FIML is consistent even if residuals are not normal.
 ```
 
-\FloatBarrier
-
 ## Les résultats OLS, WLS et SUR
-\FloatBarrier
 
 ```{r include = FALSE}
 # Data transformation for systemfit
 dataWX = as.data.frame(dataW)
 ```
-
-\FloatBarrier
 
 ```{r include = FALSE}
 # equations
@@ -1212,16 +1087,15 @@ sur = systemfit(system,
 \FloatBarrier
 
 ```{r echo = FALSE, results = "asis"}
-texreg(list(ols, wls, sur),
+texreg(float.pos = "!htbp", 
+    list(ols, wls, sur),
     custom.model.names = c("OLS", "WLS", "SUR"),
     label = "table : ols, wls and sur")
 ```
 
-
 \FloatBarrier
 
-## Independance des résidus   
-\FloatBarrier
+## Independance des résidus  
 
 ```{r include = FALSE}
 cordata = dataWX %>% 
@@ -1239,35 +1113,19 @@ rownames(cormat) = c("Vin", "IP",
         "Surface", "Revenus", 
         "Pesticides")
 ```
+
 \FloatBarrier
 
-```{r include = FALSE}
-stargazer(cormat, 
-    title = "Correlation des résidus",
-    summary = F)
+```{r echo = FALSE, results = "asis"}
+xtable(cormat, 
+    caption = "Correlation des résidus",
+    align = "l|rrrrrr")
 # cordata %>% ggplot(aes(x = u6, y = f6)) + geom_point() + geom_smooth()
 ```
-
-\begin{table}[!htbp] \centering 
-  \caption{Correlation des résidus} 
-\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & OLS D & OLS O & WLS D & WLS O & SUR D & SUR O \\ 
-\hline \\[-1.8ex] 
-Vin & $0.232$ & $0.244$ & $0.232$ & $0.244$ & $0.273$ & $0.275$ \\ 
-IP & $-0$ & $-0$ & $0$ & $-0$ & $0$ & $0$ \\ 
-Surface & $0.271$ & $-0$ & $0.271$ & $0$ & $0.313$ & $0.236$ \\ 
-Revenus & $0$ & $-0.480$ & $-0$ & $-0.480$ & $-0.393$ & $-0.542$ \\ 
-Pesticides & $-0.308$ & $-0$ & $-0.308$ & $0$ & $-0.373$ & $-0.281$ \\
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table} 
 
 \FloatBarrier
 
 ## L'autocorrelation et l'hétéroskedacité
-\FloatBarrier
 
 ```{r include = FALSE}
 # Panel Durbin-Watson test
@@ -1293,30 +1151,19 @@ pDW[2,3] = cordataDW[1,6]/cordataDW[1,12]
 colnames(pDW) = c("OLS", "WLS", "SUR")
 rownames(pDW) = c("Equation de demande", "Equation d'offre")
 ```
-\FloatBarrier
-
-```{r include = FALSE}
-stargazer(pDW, 
-    title = "Durbin-Watson test statistics",
-    summary = F)
-```
-
-\begin{table}[!htbp] \centering 
-  \caption{Durbin-Watson test statistics}
-\begin{tabular}{@{\extracolsep{5pt}} cccc} 
-\\[-1.8ex]\hline
-\hline \\[-1.8ex] 
- & OLS & WLS & SUR \\ 
-\hline \\[-1.8ex] 
-Equation de demande & $1.129$ & $1.129$ & $1.583$ \\ 
-Equation d'offre & $1.062$ & $1.062$ & $1.549$ \\ 
-\hline \\[-1.8ex]
-\end{tabular} 
-\end{table} 
 
 \FloatBarrier
 
 ```{r echo = FALSE, results = "asis"}
+stargazer(pDW, 
+    header = FALSE,
+    title = "Les statistiques test de Durbin-Watson",
+    summary = FALSE)
+```
+
+\FloatBarrier
+
+```{r include = FALSE}
 BartT = data.frame(ncol = 3, nrow = 2)
 BartT[1,1] = ols_test_bartlett(cordata, u1, 
     group_var = ndep)$pval
@@ -1333,30 +1180,20 @@ BartT[2,3] = ols_test_bartlett(cordata, u6,
 colnames(BartT) = c("OLS", "WLS", "SUR")
 rownames(BartT) = c("Equation de demande", "Equation d'offre")
 ```
+
 \FloatBarrier
 
 ```{r include = FALSE}
 stargazer(BartT,
+    header = FALSE,
     summary = FALSE,
-    title = "Bartlett heteroscedasticity test")
+    title = "Les résultat du test de Bartlett sur l'heteroscedacité")
 ```
- 
-\begin{table}[!htbp] \centering 
-  \caption{Bartlett heteroscedasticity test} 
-\begin{tabular}{@{\extracolsep{5pt}} cccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & OLS & WLS & SUR \\ 
-\hline \\[-1.8ex] 
-Equation de demande & $0.828$ & $0.828$ & $1$ \\ 
-Equation d'offre & $0.999$ & $0.999$ & $1$ \\ 
-\hline \\[-1.8ex]
-\end{tabular} 
-\end{table}
 
 \FloatBarrier
 
 ## Le comportement des résidus 
+
 \FloatBarrier
 
 ```{r include = FALSE}
@@ -1370,34 +1207,23 @@ ShapT[2,3] = shapiro.test(sur$eq[[2]]$res)$p.val
 colnames(ShapT) = c("OLS", "WLS", "SUR")
 rownames(ShapT) = c("Equation de demande", "Equation d'offre")
 ```
+
 \FloatBarrier
 
 ```{r include = FALSE}
 stargazer(ShapT,
+    header = FALSE,
     summary = FALSE,
-    title = "Shapiro-Wilk normality test")
+    title = "Shapiro-Wilk test de normalité des résidus")
 ```
-
-\begin{table}[!htbp] \centering 
-  \caption{Shapiro-Wilk normality test}
-\begin{tabular}{@{\extracolsep{5pt}} cccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & OLS & WLS & SUR \\ 
-\hline \\[-1.8ex] 
-Equation de demande & $0$ & $0$ & $0$ \\ 
-Equation d'offre & $0.0003$ & $0.0003$ & $0$ \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table} 
 
 \FloatBarrier
 
 ## Les PDF des résidus 
+
 \FloatBarrier
 
-
-```{r echo = FALSE}
+```{r echo = FALSE, fig.cap = "Les PDF des résidus"}
 par(mfrow = c(1,2), cex = 0.5)
 plot(density(ols$eq[[1]]$res), col = "blue", 
     main = "Demande", xlab = "Residuals")
@@ -1412,14 +1238,13 @@ legend(x = "topright", legend = c("OLS", "WLS", "SUR"),
     cex = 1, lwd = 3)
 ```
 
-
 \FloatBarrier
 
 ## Les résidus contre la variable prédite 
+
 \FloatBarrier
 
-
-```{r echo = FALSE}
+```{r echo = FALSE, fig.cap = "Les résidus contre la variable prédite"}
 par(mfrow = c(1,2), cex = 0.5)
 plot(y = ols$eq[[1]]$res, x = ols$eq[[1]]$fit,
     col = "blue", 
@@ -1442,10 +1267,10 @@ legend(x = "topright", legend = c("OLS", "WLS", "SUR"),
     cex = 1, lwd = 3)
 ```
 
-
 \FloatBarrier
 
 ## Les résultats 2SLS, W2SLS, 3SLS et i3SLS
+
 \FloatBarrier
 
 ```{r include = FALSE}
@@ -1477,17 +1302,19 @@ fiml = systemfit(system,
     method = "3SLS", maxit = 1000)
 ```
 
+\FloatBarrier
 
 ```{r echo = FALSE, results = "asis"}
-texreg(list(sls2, wsls2, sls3, fiml),
+texreg(float.pos = "!htbp", 
+    list(sls2, wsls2, sls3, fiml),
     custom.model.names = c("2SLS", "W2SLS", "3SLS", "i3SLS"),
     label = "table : 2sls, w2sls, 3sls and fiml")
 ```
 
-
 \FloatBarrier
 
 ## Comparaison des modèles  
+
 \FloatBarrier
 
 ```{r include = FALSE}
@@ -1505,8 +1332,7 @@ stargazer(res,
     title = "Hausman 3SLS consistency test",
     summary = F, 
     header = F)
-```
- 
+``` 
 
 \FloatBarrier
 
@@ -1519,27 +1345,15 @@ stargazer(res,
 
 ```{r include = FALSE}
 lr = lrtest(sls2, sls3, fiml)
-stargazer(lr, title = "Likelihood test",
-    summary = FALSE)
+xtable(lr, 
+    caption = "ML test de spécification",
+    align = "c|ccccc")
 ```
-
-\begin{table}[!htbp] \centering 
-  \caption{Likelihood test} 
-\begin{tabular}{@{\extracolsep{5pt}} cccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & \#Df & LogLik & Df & Chisq & Pr(\textgreater Chisq) \\ 
-\hline \\[-1.8ex] 
-1 & $6$ & $-149.621$ & $-$ & $-$ & $-$ \\ 
-2 & $8$ & $-65.614$ & $2$ & $168.013$ & $0$ \\ 
-3 & $8$ & $-82.702$ & $0$ & $34.176$ & $0$ \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table} 
 
 \FloatBarrier
 
 ## Le comportement des résidus 
+
 \FloatBarrier
 
 ```{r include = FALSE}
@@ -1553,26 +1367,15 @@ ShapT[2,3] = shapiro.test(fiml$eq[[2]]$res)$p.val
 colnames(ShapT) = c("2SLS", "3SLS", "i3SLS")
 rownames(ShapT) = c("Equation de demande", "Equation d'offre")
 ```
+
 \FloatBarrier
 
-```{r include = FALSE}
+```{r echo = FALSE, results = "asis"}
 stargazer(ShapT,
+    header = FALSE,
     summary = FALSE,
-    title = "Shapiro-Wilk normality test")
+    title = "Shapiro-Wilk test de normalité")
 ```
-
-\begin{table}[!htbp] \centering 
-  \caption{Shapiro-Wilk normality test}
-\begin{tabular}{@{\extracolsep{5pt}} cccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & 2SLS & 3SLS & i3SLS \\ 
-\hline \\[-1.8ex] 
-Equation de demande & $0.00003$ & $0.00003$ & $0.00003$ \\ 
-Equation d'offre & $0.00000$ & $0.00000$ & $0.00000$ \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table} 
 
 \FloatBarrier
 
@@ -1585,6 +1388,7 @@ resdata3 = dataWX %>%
         u5 = fiml$eq[[1]]$res,
         u6 = fiml$eq[[2]]$res)
 ```
+
 \FloatBarrier
 
 ```{r include = FALSE}
@@ -1600,32 +1404,19 @@ rownames(BartT) = c("Equation de demande", "Equation d'offre")
 ```
 \FloatBarrier
 
-```{r include = FALSE}
+```{r echo = FALSE, results = "asis"}
 stargazer(BartT,
     summary = FALSE,
-    title = "Bartlett heteroscedasticity test")
+    title = "Test de Bartlett sur l'heterockedacité")
 ```
- 
-\begin{table}[!htbp] \centering 
-  \caption{Bartlett heteroscedasticity test} 
-\begin{tabular}{@{\extracolsep{5pt}} cccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex]
- & 2SLS & 3SLS & i3SLS \\ 
-\hline \\[-1.8ex] 
-Equation de demande & $0.975$ & $0.975$ & $0.975$ \\ 
-Equation d'offre & $0.0003$ & $0.002$ & $0.001$ \\ 
-\hline \\[-1.8ex]
-\end{tabular} 
-\end{table} 
 
 \FloatBarrier
 
 ## Les PDF des résidus 
+
 \FloatBarrier
 
-
-```{r echo = FALSE}
+```{r echo = FALSE, fig.cap = "Les PDF des résidus"}
 par(mfrow = c(1,2), cex = 0.5)
 plot(density(sls2$eq[[1]]$res), col = "blue", 
     main = "Demande", xlab = "Residuals")
@@ -1640,14 +1431,13 @@ legend(x = "topright", legend = c("2SLS", "i3SLS", "3SLS"),
     cex = 1, lwd = 3)
 ```
 
-
 \FloatBarrier
 
 ## Les résidus contre la variable prédite  
+
 \FloatBarrier
 
-
-```{r echo = FALSE}
+```{r echo = FALSE, fig.cap = "Les résidus contre la variable prédite"}
 par(mfrow = c(1,2), cex = 0.5)
 plot(y = sls2$eq[[1]]$res, x = sls2$eq[[1]]$fit,
     col = "blue", 
@@ -1671,14 +1461,13 @@ legend(x = "topright", legend = c("2SLS", "i3SLS", "3SLS"),
     cex = 1, lwd = 3)
 ```
 
-
 \FloatBarrier
 
 ## Les résidus et les prédictions pour i3SLS  
+
 \FloatBarrier
 
-
-```{r echo = FALSE}
+```{r echo = FALSE, fig.cap = "Les résidus et les prédictions"}
 par(mfrow = c(1,2), cex = 0.5)
 plot(y = fiml$eq[[1]]$res, x = as.numeric(resdata3$qi),
     col = "red", pch = 17, 
@@ -1704,6 +1493,7 @@ lines(y = fiml$eq[[2]]$fit + fiml$eq[[2]]$res, x = resdata3$qi,
 \FloatBarrier
 
 ## L'autocorrelation 
+
 \FloatBarrier
 
 ```{r include = FALSE}
@@ -1733,34 +1523,23 @@ pDW[2,3] = resdataDW[1,6]/resdataDW[1,12]
 colnames(pDW) = c("2SLS", "3SLS", "i3SLS")
 rownames(pDW) = c("Equation de demande", "Equation d'offre")
 ```
+
 \FloatBarrier
 
 ```{r include = FALSE}
-stargazer(pDW, 
-    title = "Durbin-Watson test statistics",
-    summary = F)
+stargazer(pDW,
+    header = FALSE,
+    title = "Le resultats du test de Durbin-Watson",
+    summary = FALSE)
 ```
-
-\begin{table}[!htbp] \centering 
-  \caption{Durbin-Watson test statistics}
-\begin{tabular}{@{\extracolsep{5pt}} cccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & 2SLS & 3SLS & i3SLS \\ 
-\hline \\[-1.8ex] 
-Equation de demande & $0.842$ & $0.842$ & $0.842$ \\ 
-Equation d'offre & $0.643$ & $0.643$ & $0.643$ \\ 
-\hline \\[-1.8ex]
-\end{tabular}
-\end{table} 
 
 \FloatBarrier
 
 ## L'autocorrelation sur 2 dimentions pour i3SLS
+
 \FloatBarrier
 
-
-```{r echo = FALSE}
+```{r echo = FALSE, fig.cap = "L'autocorrelation pour le modèle  i3SLS"}
 par(mfrow = c(1,2), cex = 0.5)
 acf(fiml$eq[[1]]$res, main = "Demande")
 acf(fiml$eq[[2]]$res, main = "Offre")
@@ -1769,6 +1548,7 @@ acf(fiml$eq[[2]]$res, main = "Offre")
 \FloatBarrier
 
 ## L'independance des résidus  
+
 \FloatBarrier
 
 ```{r include = FALSE}
@@ -1781,33 +1561,20 @@ rownames(cormat) = c("Vin", "IP",
         "Surface", "Revenus", 
         "Pesticides")
 ```
+
 \FloatBarrier
 
 ```{r include = FALSE}
-stargazer(cormat, 
-    title = "Correlation des résidus",
-    summary = F)
+xtable(cormat, 
+    caption = "Correlation des résidus",
+    align = "l|rrrrrr")
 ```
-
-\begin{table}[!htbp] \centering
-  \caption{Correlation des residus}
-\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & 2SLS D & 2SLS O & 3SLS D & 3SLS O & i3SLS D & i3SLS O \\ 
-\hline \\[-1.8ex]
-Vin & $-0.561$ & $0.906$ & $-0.561$ & $0.898$ & $-0.561$ & $0.901$ \\ 
-IP & $-0.746$ & $0.948$ & $-0.746$ & $0.938$ & $-0.746$ & $0.941$ \\ 
-Surface & $-0.034$ & $0$ & $-0.034$ & $0.032$ & $-0.034$ & $0.024$ \\ 
-Revenus & $0$ & $0$ & $-0$ & $0$ & $0$ & $-0$ \\ 
-Pesticides & $-0.113$ & $0$ & $-0.113$ & $0.105$ & $-0.113$ & $0.080$ \\ 
-\hline \\[-1.8ex]
-\end{tabular} 
-\end{table} 
 
 \FloatBarrier
 
-# Clustering et la séparation des groupes (Between transformation approach)
+# References
+
+# 8. Clustering et la séparation des groupes (Between transformation approach)
 
 Nous avons vus dans le comportement des résidus une nature non-aléatoire grouppé. 
 Cela nous amène à l'idée de construire k-clusters pour modèliser les rélations par grouppe.
@@ -1837,13 +1604,14 @@ for (i in 2:15) {
     wss[i] = sum(kmeans(iter.max = 100, dataB[,-1], centers = i)$withinss)
 }
 ```
+
 \par
 Nous povons supposer que le nombre des clusters optimal est entre 3 et 5.
 Prenant en compte les graphiques des résidus vus lros d'analse des modèles nous allons supposer qu'il n'y a que 3 clusters principaux.
 
 \FloatBarrier
 
-```{r echo = FALSE, results = "asis"}
+```{r echo = FALSE, fig.cap = "Le choix des clusters"}
 plot(1:15, wss, type = "l", 
     xlab = "Nomber de clusters",
     ylab = "WSS",
@@ -1864,6 +1632,7 @@ fit = kmeans(iter.max = 100, dataB[,-1], 3)
 nclef = data.frame(ndep = dataB$ndep, clust = fit$cluster)
 dataWY = left_join(dataW, nclef, by = "ndep")
 ```
+
 ```{r echo = FALSE, results = "asis"}
 clusters = cbind(fit$centers, fit$size)
 names(clusters) = c("Groupe", "Quantité", "IP", 
@@ -1929,7 +1698,8 @@ sls3x = systemfit(systemx,
 \FloatBarrier
 
 ```{r echo = FALSE, results = "asis"}
-texreg(list(olsx, sls2x, sls3x),
+texreg(float.pos = "!htbp", 
+    list(olsx, sls2x, sls3x),
     custom.model.names = c("OLS", "2SLS", "3SLS"),
     label = "table : ols, 2sls et 3sls")
 ```
@@ -2404,7 +2174,8 @@ sls3x = systemfit(systemz,
 \FloatBarrier
 
 ```{r echo = FALSE, results = "asis"}
-texreg(list(olsx, sls2x, sls3x),
+texreg(float.pos = "!htbp", 
+    list(olsx, sls2x, sls3x),
     custom.model.names = c("OLS", "2SLS", "3SLS"),
     label = "table : ols, 2sls et 3sls, full information clusters")
 ```
@@ -2588,7 +2359,8 @@ Conclusion : les problèmes restent non résolus.
 
 \FloatBarrier
 
-## Bibliographie 
 - Cembalo L., Caracciolo F., & Pomarici E. (2014). "Drinking cheaply : the demand for basic wine in italy." *Australian Journal of Agricultural and Resource Economics*, 58(3). 374-391.
 - Butault J-P., Delame N., Jacquet F. & Zardet G. (2011). "L'utilisation des pesticides en France: état des lieux et perspectives de réduction." *Notes et études socio-économiques*, 35. 7-26
 - Pujol J. (2017). "Apports des produits phytosanitaires en viticulture et climat : une analyse à partir des enquêtes pratiques culturales." *Agreste Les Dossiers*. 39. 3-25
+
+# References 
