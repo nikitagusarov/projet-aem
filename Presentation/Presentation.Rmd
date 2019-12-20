@@ -1,6 +1,6 @@
 ---
-title: "Etude des effets des pésticides dans la production des vins de table"
-shorttitle : "Les effets des pésticides"
+title: "Etude des effets des pesticides dans la production des vins de table"
+shorttitle : "Les effets des pesticides"
 subtitle: "Analyse empirique des marchés"
 author: A. Blanc, N. Gusarov, S. Picon
 shortauthor : A.Blanc, N.Gusarov, S.Picon
@@ -283,7 +283,7 @@ Dans cette étude, nous chercherons à étudier l'équilibre sur le marché du v
 ```
 
 ## Les pesticides
-- Présentation du problème des pésticides
+- Présentation du problème des pesticides
 - Etat actuel
 - Comment baisser l'utilisation de pesticides
 
@@ -297,12 +297,12 @@ Dans cette étude, nous chercherons à étudier l'équilibre sur le marché du v
     - des interdiction des produits les plus toxiques ;
     - l'instauration d'une taxe, payée par les agriculteurs (Butault et al, 2011).
 
-- Malgres les efforts l'utilisation perdure :
+- Malgré les efforts l'utilisation perdure :
     - Hausse des ventes de produits phytosanitaires ;
-    - Augmentation des doses utilisés (+12% en 2014-2016) ;
+    - Augmentation des doses utilisées (+12% en 2014-2016) ;
   
 ## Etat actuel
-Contrairement aux attentes des autorités aucune baisse de l'utilisation de pesticides :
+Contrairement aux attentes des autorités, aucune baisse de l'utilisation de pesticides :
 
 - Le nombre de doses unité augmente de 23% entre 2008 et 2017 ;
 - Le nombre de substances actives utilisées a augmenté de 15% entre 2011 et 2017 ;
@@ -310,8 +310,8 @@ Contrairement aux attentes des autorités aucune baisse de l'utilisation de pest
 - Les grandes cultures (blés, etc...) sont les premières utilisatrices de pesticides 67.4% ;
 - Les vignes sont les deuxièmes 14.4% (Butault et al, 2011).
     
-## Comment baisser l'utilisation de pesticides
-Les méthodes contemporaines visant à baisser l'utilisation des pésticides sont :
+## Comment diminuer l'utilisation de pesticides
+Les méthodes contemporaines visant à réduire l'utilisation des pesticides sont :
 
 - Le changement de mode de culture :
     - agriculture biologique ;
@@ -327,13 +327,13 @@ Les méthodes contemporaines visant à baisser l'utilisation des pésticides son
 
 ## Le marché du vin français
 - Le vin français 
-- Utilisation des pésticides dans la viticulture
-- Le problème d'heterogénéité
+- Utilisation des pesticides dans la viticulture
+- Le problème d'hétérogénéité
 - Les vins de table
 - Le marché des vins de table français
 
 ## Le vin français 
-France est un producteur de vin important :
+La France est un producteur de vin important :
 
 - 10% surface de vigne mondiale ;
 - 3% de la surface agricole française est dediée au vin ;
@@ -367,20 +367,20 @@ Les vins peuvent être divisés en 2 grandes classes suivant leurs prix (Cembalo
     - une demande spécifique
 
 - Les vins de qualité faible
-    - hétérogènéité moins importante (Cembalo et al., 2014)
+    - hétérogénéité moins importante (Cembalo et al., 2014)
 
 ## Les vins de table
-Les vins de tables sont des vins sans indication géographiques :
+Les vins de table sont des vins sans indication géographique :
 
-- hétérogènéité plus faible que pour les autre types ;
+- hétérogénéité plus faible que pour les autre types ;
 - prix bas.
 
 Nous traitons seulement des vins sans indication géographique :
 
 - La situation sur ce marché influence l'utilisation des pesticides ;
-- Il existe une homogénéité presque parfaite dans les vins sans indication géographique (Cembalo et al, 2014).
+- Il existe une homogénéité presque parfaite parmi les vins sans indication géographique (Cembalo et al, 2014).
 
-## Le marché des vins de tables Français
+## Le marché des vins de table français
 Représente 10% de la production (VIN & SOCIETE, 2018)
 
 - Hausse des transactions en 2011 :
@@ -393,19 +393,19 @@ Représente 10% de la production (VIN & SOCIETE, 2018)
     - Vins rosés : 3%
     - Vins blancs : 13%
 
-# Le Modèle théorique
+# Le modèle théorique
 ```{r eval = FALSE, include = FALSE}
 #####################################################
 ###################  Théorie mod  ###################
 #####################################################
 ```
 
-## Le Modèle théorique
+## Le modèle théorique
 - Le rôle des pesticides dans la production du vin
 - Le rôle de la demande sur la production et l'offre en général
 - La formalisation et les équations
 
-## Le rôle de la demande sur la production et l'offre en génèral
+## Le rôle de la demande sur la production et l'offre en général
 - Nous supposons que sur le marché des vins simples la demande est unique pour toute la France.
 - La production de vin varie par département à cause de variations climatologiques
 - On observe l'équilibre sur le marché au niveau du pays. Ainsi, la quantité demandée = quantité offerte par l'ensemble des régions.
@@ -419,9 +419,9 @@ Représente 10% de la production (VIN & SOCIETE, 2018)
 ```
 
 ## Les données
-- Souces des données 
+- Sources des données 
 - Déscription des données 
-- Les variables choisi
+- Les variables sélectionnées
 - Les variables utilisées pour notre modèle
 
 ## Sources des données : 
@@ -441,11 +441,11 @@ Représente 10% de la production (VIN & SOCIETE, 2018)
 ## Les variables utilisées pour notre modèle
 - Variables endogènes : 
     - la quantité totale produite de vin rouge et blanc non IG par département (en hectolitres, en log), 
-    - le prix moyen des vins rouges-blancs (idice, en log).
+    - le prix moyen des vins rouges-blancs (indice, en log).
 - Variables exogènes : 
     - le revenu médian par département (en euros par personne par année, en log), 
     - la surface agricole destinée aux vins de table (en hectares, en log),
-    - la quantité des pesticides utilisés sur la vigne (indice, en log).
+    - la quantité de pesticides utilisés sur la vigne (indice, en log).
 
 # L'étude statistique
 ```{r eval = FALSE, include = FALSE}
@@ -455,13 +455,13 @@ Représente 10% de la production (VIN & SOCIETE, 2018)
 ```
 
 ## L'étude statistique 
-- L'étude bivarié
+- L'étude bivariée
 - L'étude de la variance 
 - L'étude des types d'effets
 - L'analyse de la correlation
 - La transformation **within**
 
-## Visualisatoin des interdependances
+## Visualisatoin des interdépendances
 ```{r echo = FALSE}
 p1 = datai %>% 
     ggplot(aes(qi, ipi, col = as.factor(ndep))) +
@@ -481,7 +481,7 @@ grid.arrange(p1, p2, nrow = 1)
 # Probably it is better to do it by variable
 ```
 
-## Visualisatoin des interdependances
+## Visualisation des interdépendances
 ```{r echo = FALSE}
 p1 = datai %>% 
     ggplot(aes(qi, si, col = as.factor(ndep))) +
@@ -655,15 +655,15 @@ p2 = dataW %>%
 grid.arrange(p1, p2, nrow = 1)
 ```
 
-
 # Modèlisation
+
 ```{r eval = FALSE, include = FALSE}
 #####################################################
 ###################  Modèlisation  ##################
 #####################################################
 ```
 
-## Modèlisation
+## Modélisation
 - Presentation de la méthode 
 - Les estimations 
     - OLS
@@ -672,7 +672,7 @@ grid.arrange(p1, p2, nrow = 1)
 ## Presentation de la méthode
 - Explication de la méthode utilisée
     - Panel data
-        - Within transforation 
+        - Within transformation 
         - Fixed effects 
         - Obtained slopes are averages for all population 
     - AIDS model 
@@ -682,8 +682,8 @@ grid.arrange(p1, p2, nrow = 1)
         - The distribution of the estimators are normally distributed only in large samples 
         - The estimator is (asymptotically) efficient
 - Limites du modèle 
-    - Faible representation des effets hetérogenes entre les régions (nous estimons seulemnt les effets moyens)
-    - Les interferences induites par l'heterogénéité 
+    - Faible représentation des effets hetérogènes entre les régions (nous estimons seulement des effets moyens)
+    - Les interférences induites par l'hétérogénéité 
 
 ```{r include = FALSE, eval = FALSE}
 ###################
@@ -738,17 +738,17 @@ dataWD = dataW %>%
 rm(ikiDum) ; rm(riDum)
 ```
 
-## Résultats des estimation
+## Résultats des estimations
 - Les coefficients estimés avec leurs variance 
-- L'efficience et comparaison des estimateurs 
+- L'efficience et la comparaison des estimateurs 
 - Etude des erreurs 
     - La distribution des erreurs
         - La normalité 
         - Centrage sur 0 
-        - Independance des variables explicatives 
+        - Indépendance des variables explicatives 
 
     - L'autocorrelation des résidus 
-    - L'hétéroskedacité  
+    - L'hétéroscedasticité  
 
 ```{r include = FALSE, eval = FALSE}
 # - Vérification des hypothèses (5 hypothèses) :
@@ -798,7 +798,7 @@ texreg(list(ols #, wls, sur
 ```
 
 
-## Independance des résidus   
+## Indépendance des résidus   
 ```{r include = FALSE}
 cordata = dataWX %>% 
     mutate(u1 = ols$res
@@ -829,8 +829,6 @@ xtable(round(cormat, 4),
 # cordata %>% ggplot(aes(x = u6, y = f6)) + geom_point() + geom_smooth()
 ```
 
-
-## Test
 ```{r include = FALSE}
 # Panel Durbin-Watson test
 cordataDW = cordata %>% 
@@ -1340,22 +1338,22 @@ texreg(float.pos = "!htbp",
 
 ## Conclusions 
 - Le marché du vin
-- Le rôle des pésticides  
-- Validité 
+- Le rôle des pesticides  
+- Validité interne
 
 ## Le marché du vin
-- Un comportement inattendus 
-    - Les effets de substitution contre les produits de la haute gamme 
-    - Les effets négatives du revenu 
-    - 
+- Un comportement inattendu 
+    - Les effets de substitution vis-à-vis des produits haut de gamme 
+    - Les effets négatifs du revenu 
+    
 
-## Le rôle des pésticides
+## Le rôle des pesticides
 - Confirmation des résultats des études précedentes 
     - Utilisés pour réduire les pertes 
 
 ## Validité 
 - Faible validité du modèle économétrique 
-    - Variables ommises 
+    - Variables omises 
 
 ## Bibliographie 
 - Cembalo L., Caracciolo F., & Pomarici E. (2014). "Drinking cheaply : the demand for basic wine in italy." *Australian Journal of Agricultural and Resource Economics*, 58(3). 374-391.
