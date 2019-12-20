@@ -37,7 +37,6 @@ bibliography: biblio.bib
 ###################
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(size = "tiny")
-# knitr::opts_chunk$set(dev = "pdf")
 knitr::opts_chunk$set(dpi = 600)
 knitr::opts_chunk$set(fig.align = "center") 
 knitr::opts_chunk$set(fig.pos = "!htbp")

@@ -75,15 +75,12 @@
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
 \newif\ifbibliography
-\usepackage{graphicx,grffile}
+\usepackage{longtable,booktabs}
+\usepackage{caption}
+% These lines are needed to make table captions work with longtable:
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\def\fnum@table{\tablename~\thetable}
 \makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -615,14 +612,22 @@ génèral}
 \begin{frame}{Visualisatoin des interdependances}
 \protect\hypertarget{visualisatoin-des-interdependances}{}
 
-\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-17-1.pdf}
+\tiny
+
+\begin{center}\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-17-1} \end{center}
+
+\normalsize
 
 \end{frame}
 
 \begin{frame}{Visualisatoin des interdependances}
 \protect\hypertarget{visualisatoin-des-interdependances-1}{}
 
-\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-18-1.pdf}
+\tiny
+
+\begin{center}\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-18-1} \end{center}
+
+\normalsize
 
 \end{frame}
 
@@ -630,15 +635,17 @@ génèral}
 \protect\hypertarget{etude-de-la-variance}{}
 
 \tiny
+
 \begin{table}[!htbp] \centering 
-  \caption{Variance study}
-\begin{tabular}{@{\extracolsep{5pt}} l|cccc} 
+  \caption{Variance par type} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
  & Mean & Overall & Between & Within \\ 
 \hline \\[-1.8ex] 
-Index prix & $0.175$ & $0.568$ & $0.368$ & $0.434$ \\ 
-Index pesticides & $0.170$ & $0.333$ & $0.239$ & $0.234$ \\ 
+Index prix & $1.431$ & $1.339$ & $1.012$ & $0.883$ \\ 
+Index pesticides & $1.257$ & $0.483$ & $0.335$ & $0.350$ \\ 
 Surface & $4.892$ & $1.986$ & $1.955$ & $0.410$ \\ 
 Revenus & $9.891$ & $0.061$ & $0.061$ & $0.011$ \\ 
 Temps & $3$ & $1.416$ & $0$ & $1.416$ \\ 
@@ -649,20 +656,24 @@ Temps & $3$ & $1.416$ & $0$ & $1.416$ \\
 \normalsize
 
 \tiny
-\begin{table}[!htbp] \centering
-  \caption{Chow pooling test}
-\begin{tabular}{@{\extracolsep{5pt}} l|cc} 
+
+\begin{table}[!htbp] \centering 
+  \caption{Chow pooling test} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
  & Random & Fixed \\ 
 \hline \\[-1.8ex] 
-Index prix & $0.535$ & $0.533$ \\ 
-Index pesticides & $0.485$ & $0.451$ \\ 
+Index prix & $0$ & $0$ \\ 
+Index pesticides & $0.354$ & $0.294$ \\ 
 Surface & $0$ & $0.0001$ \\ 
 Revenus & $0.297$ & $0.247$ \\ 
-\hline \\[-1.8ex]
+\hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
+
+\normalsize
 
 \end{frame}
 
@@ -670,20 +681,24 @@ Revenus & $0.297$ & $0.247$ \\
 \protect\hypertarget{letude-des-types-deffets}{}
 
 \tiny
+
 \begin{table}[!htbp] \centering 
-  \caption{Lagrange multiplier test, p-values}
-\begin{tabular}{@{\extracolsep{5pt}} l|ccc} 
+  \caption{Lagrange multiplier test, p-values} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
- & Individual & Time & Two-ways \\ 
+ & Individual & Time & Twoways \\ 
 \hline \\[-1.8ex] 
-Index prix & $0$ & $0.169$ & $0$ \\ 
-Index pesticides & $0$ & $0.222$ & $0$ \\ 
+Index prix & $0$ & $0.256$ & $0$ \\ 
+Index pesticides & $0$ & $0.229$ & $0$ \\ 
 Surface & $0$ & $0.030$ & $0$ \\ 
 Revenus & $0$ & $0.248$ & $0$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
+
+\normalsize
 
 \end{frame}
 
@@ -691,54 +706,79 @@ Revenus & $0$ & $0.248$ & $0$ \\
 \protect\hypertarget{lanalyse-de-la-correlation}{}
 
 \tiny
-\begin{table}[!htbp] \centering
-  \caption{Overall correlation}
-\begin{tabular}{@{\extracolsep{5pt}} l|cccccc}
-\\[-1.8ex]\hline
-\hline \\[-1.8ex]
- & Quantité du vin & IP & Surface & Revenus & Index pésticides & Temps \\
-\hline \\[-1.8ex]
-Quantité du vin & $1$ & $0.154$ & $0.956$ & $-0.027$ & $-0.078$ & $-0.036$ \\      
-IP & $0.154$ & $1$ & $0.045$ & $-0.037$ & $-0.127$ & $0.043$ \\
-Surface & $0.956$ & $0.045$ & $1$ & $-0.057$ & $-0.060$ & $-0.064$ \\
-Revenus & $-0.027$ & $-0.037$ & $-0.057$ & $1$ & $-0.052$ & $0.119$ \\
-Index pésticides & $-0.078$ & $-0.127$ & $-0.060$ & $-0.052$ & $1$ & $0.291$ \\  
-Temps & $-0.036$ & $0.043$ & $-0.064$ & $0.119$ & $0.291$ & $1$ \\
-\hline \\[-1.8ex]
-\end{tabular}
-\end{table}
+
+\normalsize
 
 \tiny
-\begin{table}[!htbp] \centering 
-  \caption{Within transformation correlation}
-\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & Quantité du vin & IP & Surface & Revenus & Index pésticides & Temps \\ 
-\hline \\[-1.8ex] 
-Quantité du vin & $1$ & $0.961$ & $0.366$ & $-0.160$ & $-0.228$ & $-0.199$ \\ 
-IP & $0.961$ & $1$ & $0.289$ & $-0.009$ & $-0.127$ & $0.056$ \\ 
-Surface & $0.366$ & $0.289$ & $1$ & $-0.166$ & $-0.191$ & $-0.310$ \\ 
-Revenus & $-0.160$ & $-0.009$ & $-0.166$ & $1$ & $0.228$ & $0.652$ \\ 
-Index pésticides & $-0.228$ & $-0.127$ & $-0.191$ & $0.228$ & $1$ & $0.414$ \\ 
-Temps & $-0.199$ & $0.056$ & $-0.310$ & $0.652$ & $0.414$ & $1$ \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table}
+
+\begin{longtable}[]{@{}lrrrrrr@{}}
+\toprule
+& Quantité du vin & IP & Surface & Revenus & Index pésticides &
+Temps\tabularnewline
+\midrule
+\endhead
+Quantité du vin & 1.0000 & 0.0177 & 0.9559 & -0.0266 & -0.0667 &
+-0.0360\tabularnewline
+IP & 0.0177 & 1.0000 & -0.0513 & 0.0065 & -0.0590 &
+0.1082\tabularnewline
+Surface & 0.9559 & -0.0513 & 1.0000 & -0.0567 & -0.0486 &
+-0.0640\tabularnewline
+Revenus & -0.0266 & 0.0065 & -0.0567 & 1.0000 & -0.0433 &
+0.1188\tabularnewline
+Index pésticides & -0.0667 & -0.0590 & -0.0486 & -0.0433 & 1.0000 &
+0.2971\tabularnewline
+Temps & -0.0360 & 0.1082 & -0.0640 & 0.1188 & 0.2971 &
+1.0000\tabularnewline
+\bottomrule
+\end{longtable}
+
+\normalsize
+
+\tiny
+
+\begin{longtable}[]{@{}lrrrrrr@{}}
+\toprule
+& Quantité du vin & IP & Surface & Revenus & Index pésticides &
+Temps\tabularnewline
+\midrule
+\endhead
+Quantité du vin & 1.0000 & 0.6656 & 0.3655 & -0.1601 & -0.1813 &
+-0.1994\tabularnewline
+IP & 0.6656 & 1.0000 & 0.1862 & 0.1119 & -0.0108 & 0.1640\tabularnewline
+Surface & 0.3655 & 0.1862 & 1.0000 & -0.1657 & -0.2035 &
+-0.3103\tabularnewline
+Revenus & -0.1601 & 0.1119 & -0.1657 & 1.0000 & 0.2103 &
+0.6522\tabularnewline
+Index pésticides & -0.1813 & -0.0108 & -0.2035 & 0.2103 & 1.0000 &
+0.4100\tabularnewline
+Temps & -0.1994 & 0.1640 & -0.3103 & 0.6522 & 0.4100 &
+1.0000\tabularnewline
+\bottomrule
+\end{longtable}
+
+\normalsize
 
 \end{frame}
 
 \begin{frame}{La transformation \textbf{within}}
 \protect\hypertarget{la-transformation-within}{}
 
-\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-29-1.pdf}
+\tiny
+
+\begin{center}\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-29-1} \end{center}
+
+\normalsize
 
 \end{frame}
 
 \begin{frame}{La transformation \textbf{within}}
 \protect\hypertarget{la-transformation-within-1}{}
 
-\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-30-1.pdf}
+\tiny
+
+\begin{center}\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-30-1} \end{center}
+
+\normalsize
 
 \end{frame}
 
@@ -758,7 +798,7 @@ Temps & $-0.199$ & $0.056$ & $-0.310$ & $0.652$ & $0.414$ & $1$ \\
   \begin{itemize}
   \tightlist
   \item
-    OLS, WLS et SUR
+    OLS
   \item
     2SLS, W2SLS, 3SLS et i3SLS
   \end{itemize}
@@ -856,41 +896,37 @@ Temps & $-0.199$ & $0.056$ & $-0.310$ & $0.652$ & $0.414$ & $1$ \\
 
 \end{frame}
 
-\begin{frame}{Les résultats OLS, WLS et SUR}
-\protect\hypertarget{les-resultats-ols-wls-et-sur}{}
+\begin{frame}{Les résultats OLS}
+\protect\hypertarget{les-resultats-ols}{}
 
 \tiny
 
 \begin{table}
 \begin{center}
-\begin{tabular}{l c c c }
+\begin{tabular}{l c }
 \hline
- & OLS & WLS & SUR \\
+ & OLS \\
 \hline
-Demande: ipi        & $0.93^{***}$  & $0.93^{***}$  & $0.93^{***}$  \\
-                    & $(0.01)$      & $(0.01)$      & $(0.01)$      \\
-Demande: ri         & $-5.75^{***}$ & $-5.75^{***}$ & $-2.00^{***}$ \\
-                    & $(0.47)$      & $(0.47)$      & $(0.33)$      \\
-Offre: ipi          & $0.90^{***}$  & $0.90^{***}$  & $0.92^{***}$  \\
-                    & $(0.01)$      & $(0.01)$      & $(0.01)$      \\
-Offre: si           & $0.08^{***}$  & $0.08^{***}$  & $0.02^{*}$    \\
-                    & $(0.01)$      & $(0.01)$      & $(0.01)$      \\
-Offre: iki          & $-0.17^{***}$ & $-0.17^{***}$ & $-0.05^{**}$  \\
-                    & $(0.02)$      & $(0.02)$      & $(0.02)$      \\
+ipi        & $0.30^{***}$  \\
+           & $(0.02)$      \\
+si         & $0.23^{***}$  \\
+           & $(0.04)$      \\
+iki        & $-0.16^{***}$ \\
+           & $(0.05)$      \\
 \hline
-Demande: R$^2$      & 0.95          & 0.95          & 0.94          \\
-Offre: R$^2$        & 0.94          & 0.94          & 0.93          \\
-Demande: Adj. R$^2$ & 0.95          & 0.95          & 0.94          \\
-Offre: Adj. R$^2$   & 0.94          & 0.94          & 0.93          \\
-Num. obs. (total)   & 690           & 690           & 690           \\
+R$^2$      & 0.52          \\
+Adj. R$^2$ & 0.52          \\
+Num. obs.  & 345           \\
+RMSE       & 0.29          \\
 \hline
-\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\multicolumn{2}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
 \caption{Statistical models}
-\label{table : ols, wls and sur}
+\label{table : ols}
 \end{center}
 \end{table}
-\tiny
+
+\normalsize
 
 \end{frame}
 
@@ -898,87 +934,96 @@ Num. obs. (total)   & 690           & 690           & 690           \\
 \protect\hypertarget{independance-des-residus}{}
 
 \tiny
-\begin{table}[!htbp] \centering 
-  \caption{Correlation des résidus} 
-\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & OLS D & OLS O & WLS D & WLS O & SUR D & SUR O \\ 
-\hline \\[-1.8ex] 
-Vin & $0.232$ & $0.244$ & $0.232$ & $0.244$ & $0.273$ & $0.275$ \\ 
-IP & $-0$ & $-0$ & $0$ & $-0$ & $0$ & $0$ \\ 
-Surface & $0.271$ & $-0$ & $0.271$ & $0$ & $0.313$ & $0.236$ \\ 
-Revenus & $0$ & $-0.480$ & $-0$ & $-0.480$ & $-0.393$ & $-0.542$ \\ 
-Pesticides & $-0.308$ & $-0$ & $-0.308$ & $0$ & $-0.373$ & $-0.281$ \\
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table}
+
+\begin{longtable}[]{@{}lr@{}}
+\toprule
+& OLS\tabularnewline
+\midrule
+\endhead
+Vin & 0.6932\tabularnewline
+IP & 0.0000\tabularnewline
+Surface & 0.0000\tabularnewline
+Revenus & -0.2389\tabularnewline
+Pesticides & 0.0000\tabularnewline
+\bottomrule
+\end{longtable}
+
+\normalsize
 
 \end{frame}
 
-\begin{frame}{L'autocorrelation et l'hétéroskedacité}
-\protect\hypertarget{lautocorrelation-et-lheteroskedacite}{}
+\begin{frame}{Test}
+\protect\hypertarget{test}{}
 
 \tiny
+
 \begin{table}[!htbp] \centering 
-  \caption{Durbin-Watson test statistics}
-\begin{tabular}{@{\extracolsep{5pt}} cccc} 
-\\[-1.8ex]\hline
+  \caption{Durbin-Watson test statistics} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccc} 
+\\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
- & OLS & WLS & SUR \\ 
+ & OLS & NA \\ 
 \hline \\[-1.8ex] 
-Equation de demande & $1.129$ & $1.129$ & $1.583$ \\ 
-Equation d'offre & $1.062$ & $1.062$ & $1.549$ \\ 
-\hline \\[-1.8ex]
+Equation d'offre & $0.627$ & $1$ \\ 
+\hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
 
-\tiny 
+\normalsize
+
+\tiny
+
+\normalsize
+
+\tiny
+
 \begin{table}[!htbp] \centering 
   \caption{Bartlett heteroscedasticity test} 
-\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
- & OLS & WLS & SUR \\ 
+ & OLS & NA \\ 
 \hline \\[-1.8ex] 
-Equation de demande & $0.828$ & $0.828$ & $1$ \\ 
-Equation d'offre & $0.999$ & $0.999$ & $1$ \\ 
-\hline \\[-1.8ex]
+Equation d'offre & $0$ & $1$ \\ 
+\hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
 
-\end{frame}
-
-\begin{frame}{Le comportement des résidus}
-\protect\hypertarget{le-comportement-des-residus}{}
+\normalsize
 
 \tiny
+
 \begin{table}[!htbp] \centering 
-  \caption{Shapiro-Wilk normality test}
-\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+  \caption{Shapiro-Wilk normality test} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
- & OLS & WLS & SUR \\ 
+ & OLS & NA \\ 
 \hline \\[-1.8ex] 
-Equation de demande & $0$ & $0$ & $0$ \\ 
-Equation d'offre & $0.0003$ & $0.0003$ & $0$ \\ 
+Equation d'offre & $0$ & $6$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
 
-\end{frame}
-
-\begin{frame}{Les PDF des résidus}
-\protect\hypertarget{les-pdf-des-residus}{}
-
-\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-46-1.pdf}
+\normalsize
 
 \end{frame}
 
-\begin{frame}{Les résidus contre la variable prédite}
-\protect\hypertarget{les-residus-contre-la-variable-predite}{}
+\begin{frame}{Présentation graphique des résidus}
+\protect\hypertarget{presentation-graphique-des-residus}{}
 
-\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-47-1.pdf}
+\tiny
+
+\begin{center}\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-46-1} \end{center}
+
+\normalsize
+
+\tiny
+
+\normalsize
 
 \end{frame}
 
@@ -993,22 +1038,22 @@ Equation d'offre & $0.0003$ & $0.0003$ & $0$ \\
 \hline
  & 2SLS & W2SLS & 3SLS & i3SLS \\
 \hline
-Demande: ipi        & $1.19^{***}$  & $1.19^{***}$  & $1.19^{***}$  & $1.19^{***}$  \\
-                    & $(0.06)$      & $(0.06)$      & $(0.06)$      & $(0.06)$      \\
-Demande: ri         & $-5.67^{***}$ & $-5.67^{***}$ & $-5.67^{***}$ & $-5.67^{***}$ \\
-                    & $(0.71)$      & $(0.71)$      & $(0.71)$      & $(0.71)$      \\
-Offre: ipi          & $-1.22$       & $-1.22$       & $-0.71$       & $-0.81$       \\
-                    & $(1.97)$      & $(1.97)$      & $(1.96)$      & $(1.60)$      \\
-Offre: si           & $0.70$        & $0.70$        & $0.46$        & $0.51$        \\
-                    & $(0.59)$      & $(0.59)$      & $(0.58)$      & $(0.47)$      \\
-Offre: iki          & $-0.46$       & $-0.46$       & $-0.73^{*}$   & $-0.68^{*}$   \\
-                    & $(0.34)$      & $(0.34)$      & $(0.32)$      & $(0.26)$      \\
+Demande: ipi        & $0.79^{***}$   & $0.79^{***}$   & $0.79^{***}$   & $0.79^{***}$   \\
+                    & $(0.15)$       & $(0.15)$       & $(0.15)$       & $(0.15)$       \\
+Demande: ri         & $-13.07^{***}$ & $-13.07^{***}$ & $-13.07^{***}$ & $-13.07^{***}$ \\
+                    & $(2.76)$       & $(2.76)$       & $(2.76)$       & $(2.76)$       \\
+Offre: ipi          & $-0.28$        & $-0.28$        & $-0.25$        & $-0.25$        \\
+                    & $(0.25)$       & $(0.25)$       & $(0.25)$       & $(0.24)$       \\
+Offre: si           & $0.47^{***}$   & $0.47^{***}$   & $0.45^{***}$   & $0.45^{***}$   \\
+                    & $(0.13)$       & $(0.13)$       & $(0.13)$       & $(0.12)$       \\
+Offre: iki          & $-0.11$        & $-0.11$        & $-0.17^{*}$    & $-0.17^{*}$    \\
+                    & $(0.09)$       & $(0.09)$       & $(0.08)$       & $(0.08)$       \\
 \hline
-Demande: R$^2$      & 0.88          & 0.88          & 0.88          & 0.88          \\
-Offre: R$^2$        & -3.37         & -3.37         & -1.60         & -1.90         \\
-Demande: Adj. R$^2$ & 0.88          & 0.88          & 0.88          & 0.88          \\
-Offre: Adj. R$^2$   & -3.40         & -3.40         & -1.62         & -1.92         \\
-Num. obs. (total)   & 690           & 690           & 690           & 690           \\
+Demande: R$^2$      & -0.41          & -0.41          & -0.41          & -0.41          \\
+Offre: R$^2$        & -0.87          & -0.87          & -0.74          & -0.75          \\
+Demande: Adj. R$^2$ & -0.42          & -0.42          & -0.42          & -0.42          \\
+Offre: Adj. R$^2$   & -0.89          & -0.89          & -0.75          & -0.76          \\
+Num. obs. (total)   & 690            & 690            & 690            & 690            \\
 \hline
 \multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
@@ -1016,7 +1061,8 @@ Num. obs. (total)   & 690           & 690           & 690           & 690       
 \label{table : 2sls, w2sls, 3sls and fiml}
 \end{center}
 \end{table}
-\tiny
+
+\normalsize
 
 \end{frame}
 
@@ -1033,81 +1079,87 @@ Num. obs. (total)   & 690           & 690           & 690           & 690       
 \hline \\[-1.8ex] 
  & Test & Resultats \\ 
 \hline \\[-1.8ex] 
-1 & 2SLS contre 3SLS & $0.350$ \\ 
-2 & 2SLS contre i3SLS & $0.735$ \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table} 
-\tiny
-
-\tiny
-\begin{table}[!htbp] \centering 
-  \caption{Likelihood test} 
-\begin{tabular}{@{\extracolsep{5pt}} cccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & \#Df & LogLik & Df & Chisq & Pr(\textgreater Chisq) \\ 
-\hline \\[-1.8ex] 
-1 & $6$ & $-149.621$ & $-$ & $-$ & $-$ \\ 
-2 & $8$ & $-65.614$ & $2$ & $168.013$ & $0$ \\ 
-3 & $8$ & $-82.702$ & $0$ & $34.176$ & $0$ \\ 
+1 & 2SLS contre 3SLS & $0.827$ \\ 
+2 & 2SLS contre i3SLS & $0.910$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
+
+\normalsize
 
 \end{frame}
 
 \begin{frame}{Le comportement des résidus}
-\protect\hypertarget{le-comportement-des-residus-1}{}
+\protect\hypertarget{le-comportement-des-residus}{}
 
 \tiny
+
 \begin{table}[!htbp] \centering 
-  \caption{Shapiro-Wilk normality test}
+  \caption{Shapiro-Wilk normality test} 
+  \label{} 
 \begin{tabular}{@{\extracolsep{5pt}} cccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
  & 2SLS & 3SLS & i3SLS \\ 
 \hline \\[-1.8ex] 
-Equation de demande & $0.00003$ & $0.00003$ & $0.00003$ \\ 
-Equation d'offre & $0.00000$ & $0.00000$ & $0.00000$ \\ 
+Equation de demande & $0$ & $0$ & $0$ \\ 
+Equation d'offre & $0$ & $0$ & $0$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
 
-\tiny 
+\normalsize
+
+\tiny
+
 \begin{table}[!htbp] \centering 
   \caption{Bartlett heteroscedasticity test} 
+  \label{} 
 \begin{tabular}{@{\extracolsep{5pt}} cccc} 
 \\[-1.8ex]\hline 
-\hline \\[-1.8ex]
+\hline \\[-1.8ex] 
  & 2SLS & 3SLS & i3SLS \\ 
 \hline \\[-1.8ex] 
-Equation de demande & $0.975$ & $0.975$ & $0.975$ \\ 
-Equation d'offre & $0.0003$ & $0.002$ & $0.001$ \\ 
-\hline \\[-1.8ex]
+Equation de demande & $0$ & $0$ & $0$ \\ 
+Equation d'offre & $0$ & $0$ & $0$ \\ 
+\hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
+
+\normalsize
 
 \end{frame}
 
 \begin{frame}{Les PDF des résidus}
-\protect\hypertarget{les-pdf-des-residus-1}{}
+\protect\hypertarget{les-pdf-des-residus}{}
 
-\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-59-1.pdf}
+\tiny
+
+\begin{center}\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-59-1} \end{center}
+
+\normalsize
 
 \end{frame}
 
 \begin{frame}{Les résidus contre la variable prédite}
-\protect\hypertarget{les-residus-contre-la-variable-predite-1}{}
+\protect\hypertarget{les-residus-contre-la-variable-predite}{}
 
-\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-60-1.pdf}
+\tiny
+
+\begin{center}\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-60-1} \end{center}
+
+\normalsize
 
 \end{frame}
 
 \begin{frame}{Les résidus et les prédictions pour i3SLS}
 \protect\hypertarget{les-residus-et-les-predictions-pour-i3sls}{}
 
-\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-61-1.pdf}
+\tiny
+
+\begin{center}\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-61-1} \end{center}
+
+\normalsize
 
 \end{frame}
 
@@ -1115,25 +1167,33 @@ Equation d'offre & $0.0003$ & $0.002$ & $0.001$ \\
 \protect\hypertarget{lautocorrelation}{}
 
 \tiny
+
 \begin{table}[!htbp] \centering 
-  \caption{Durbin-Watson test statistics}
+  \caption{Durbin-Watson test statistics} 
+  \label{} 
 \begin{tabular}{@{\extracolsep{5pt}} cccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
  & 2SLS & 3SLS & i3SLS \\ 
 \hline \\[-1.8ex] 
-Equation de demande & $0.842$ & $0.842$ & $0.842$ \\ 
-Equation d'offre & $0.643$ & $0.643$ & $0.643$ \\ 
-\hline \\[-1.8ex]
-\end{tabular}
+Equation de demande & $0.618$ & $0.618$ & $0.618$ \\ 
+Equation d'offre & $0.637$ & $0.638$ & $0.638$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
 \end{table}
+
+\normalsize
 
 \end{frame}
 
 \begin{frame}{L'autocorrelation sur 2 dimentions pour i3SLS}
 \protect\hypertarget{lautocorrelation-sur-2-dimentions-pour-i3sls}{}
 
-\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-64-1.pdf}
+\tiny
+
+\begin{center}\includegraphics{Presentation_files/figure-beamer/unnamed-chunk-64-1} \end{center}
+
+\normalsize
 
 \end{frame}
 
@@ -1141,21 +1201,95 @@ Equation d'offre & $0.643$ & $0.643$ & $0.643$ \\
 \protect\hypertarget{lindependance-des-residus}{}
 
 \tiny
-\begin{table}[!htbp] \centering
-  \caption{Correlation des residus}
-\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & 2SLS D & 2SLS O & 3SLS D & 3SLS O & i3SLS D & i3SLS O \\ 
-\hline \\[-1.8ex]
-Vin & $-0.561$ & $0.906$ & $-0.561$ & $0.898$ & $-0.561$ & $0.901$ \\ 
-IP & $-0.746$ & $0.948$ & $-0.746$ & $0.938$ & $-0.746$ & $0.941$ \\ 
-Surface & $-0.034$ & $0$ & $-0.034$ & $0.032$ & $-0.034$ & $0.024$ \\ 
-Revenus & $0$ & $0$ & $-0$ & $0$ & $0$ & $-0$ \\ 
-Pesticides & $-0.113$ & $0$ & $-0.113$ & $0.105$ & $-0.113$ & $0.080$ \\ 
-\hline \\[-1.8ex]
-\end{tabular} 
+
+\begin{longtable}[]{@{}lrrrrrr@{}}
+\toprule
+& 2SLS D & 2SLS O & 3SLS D & 3SLS O & i3SLS D & i3SLS O\tabularnewline
+\midrule
+\endhead
+Vin & -0.1309 & 0.8783 & -0.1309 & 0.8803 & -0.1309 &
+0.8802\tabularnewline
+IP & -0.7983 & 0.8470 & -0.7983 & 0.8355 & -0.7983 &
+0.8364\tabularnewline
+Surface & 0.0005 & 0.0000 & 0.0005 & -0.0002 & 0.0005 &
+-0.0002\tabularnewline
+Revenus & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &
+0.0000\tabularnewline
+Pesticides & -0.0764 & 0.0000 & -0.0764 & 0.0349 & -0.0764 &
+0.0324\tabularnewline
+\bottomrule
+\end{longtable}
+
+\normalsize
+
+\end{frame}
+
+\begin{frame}{Clusterisation}
+\protect\hypertarget{clusterisation}{}
+
+\tiny
+
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{Presentation_files/figure-beamer/unnamed-chunk-68-1} 
+
+}
+
+\caption{Le choix des clusters}\label{fig:unnamed-chunk-68}
+\end{figure}
+
+\normalsize
+
+\end{frame}
+
+\begin{frame}{Modèlisation}
+\protect\hypertarget{modelisation-2}{}
+
+\tiny
+
+\begin{table}[!htbp]
+\begin{center}
+\begin{tabular}{l c c c }
+\hline
+ & OLS & 2SLS & 3SLS \\
+\hline
+Demande: ipi        & $0.33^{***}$   & $0.68^{***}$   & $0.68^{***}$   \\
+                    & $(0.02)$       & $(0.10)$       & $(0.10)$       \\
+Demande: ri1        & $-8.11^{***}$  & $-10.60^{***}$ & $-10.59^{***}$ \\
+                    & $(2.13)$       & $(3.09)$       & $(3.04)$       \\
+Demande: ri2        & $-6.52^{*}$    & $-7.41$        & $-6.72$        \\
+                    & $(2.82)$       & $(4.01)$       & $(3.94)$       \\
+Demande: ri3        & $-12.97^{***}$ & $-18.98^{***}$ & $-19.39^{***}$ \\
+                    & $(2.78)$       & $(4.26)$       & $(4.23)$       \\
+Offre: ipi          & $0.29^{***}$   & $-0.15$        & $-0.14$        \\
+                    & $(0.02)$       & $(0.17)$       & $(0.17)$       \\
+Offre: si1          & $0.23^{***}$   & $0.28^{**}$    & $0.32^{***}$   \\
+                    & $(0.06)$       & $(0.10)$       & $(0.09)$       \\
+Offre: si2          & $0.83^{***}$   & $1.38^{***}$   & $1.41^{***}$   \\
+                    & $(0.17)$       & $(0.35)$       & $(0.35)$       \\
+Offre: si3          & $0.18^{**}$    & $0.46^{**}$    & $0.42^{**}$    \\
+                    & $(0.06)$       & $(0.14)$       & $(0.14)$       \\
+Offre: iki1         & $-0.27^{***}$  & $-0.35^{**}$   & $-0.37^{**}$   \\
+                    & $(0.07)$       & $(0.12)$       & $(0.12)$       \\
+Offre: iki2         & $0.07$         & $0.27$         & $0.23$         \\
+                    & $(0.09)$       & $(0.17)$       & $(0.16)$       \\
+Offre: iki3         & $-0.13$        & $-0.03$        & $-0.07$        \\
+                    & $(0.09)$       & $(0.15)$       & $(0.15)$       \\
+\hline
+Demande: R$^2$      & 0.50           & -0.00          & -0.01          \\
+Offre: R$^2$        & 0.54           & -0.27          & -0.21          \\
+Demande: Adj. R$^2$ & 0.50           & -0.01          & -0.02          \\
+Offre: Adj. R$^2$   & 0.54           & -0.29          & -0.23          \\
+Num. obs. (total)   & 690            & 690            & 690            \\
+\hline
+\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\caption{Statistical models}
+\label{table : ols, 2sls et 3sls, full information clusters}
+\end{center}
 \end{table}
+
+\normalsize
 
 \end{frame}
 

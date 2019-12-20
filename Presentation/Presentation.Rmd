@@ -35,9 +35,17 @@ fontsize: 11pt
 ###################
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(size = "tiny")
-knitr::opts_chunk$set(fig_caption = " ")
-# knitr::opts_chunk$set(dev = "pdf")
 knitr::opts_chunk$set(dpi = 600)
+knitr::opts_chunk$set(fig.align = "center") 
+knitr::opts_chunk$set(fig.pos = "!htbp")
+# Set chunk size
+def.chunk.hook  = knitr::knit_hooks$get("chunk")
+knitr::knit_hooks$set(chunk = 
+    function(x, options) {
+        x = def.chunk.hook(x, options)
+        ifelse(options$size != "normalsize", 
+            paste0("\n \\", options$size,"\n\n", x, "\n\n \\normalsize"), x)
+    })
 ```
 
 ```{r include = FALSE, eval = FALSE}
@@ -52,17 +60,21 @@ purl("./Presentation/Presentation.Rmd",
 ##########
 # Packages
 ##########
+# DAta management
 require(tidyverse)
-require(plm)
-require(Formula)
-require(gridExtra)
-require(stargazer)
-require(texreg)
 require(rlang)
 require(dummies)
-require(stargazer)
+# Modelisation
+require(plm)
+require(Formula)
 require(systemfit)
 require(olsrr)
+# Graphics
+require(gridExtra)
+# Print latex results
+require(stargazer)
+require(texreg)
+require(xtable)
 ```
 
 ```{r include = FALSE}
@@ -102,9 +114,9 @@ datai = datax %>%
     arrange(ndep) %>%
     mutate(si = log(s_vin_simple + 0.001), 
         qi = log(q_blanc + q_rouge + 0.001), 
-        ipi = log(IP),
+        ipi = IP,
         ri = log(revenu.déflaté),
-        iki = log(IQK),
+        iki = IQK,
         t = as.integer(as.factor(annee)),
         year = annee) %>%
     dplyr::select(year, ndep, qi, ipi, si, ri, iki, t)
@@ -502,29 +514,15 @@ results = print.xtsum(lxtsums)
 rownames(results) = c("Index prix", "Index pesticides",
     "Surface", "Revenus", "Temps")
 ```
-```{r echo = FALSE, eval = FALSE}
+
+
+```{r echo = FALSE, results = "asis"}
 stargazer(results, 
-    title = "Variance study",
+    header = FALSE,
+    title = "Variance par type",
     summary = FALSE)
 ```
-\tiny
-\begin{table}[!htbp] \centering 
-  \caption{Variance study}
-\begin{tabular}{@{\extracolsep{5pt}} l|cccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & Mean & Overall & Between & Within \\ 
-\hline \\[-1.8ex] 
-Index prix & $0.175$ & $0.568$ & $0.368$ & $0.434$ \\ 
-Index pesticides & $0.170$ & $0.333$ & $0.239$ & $0.234$ \\ 
-Surface & $4.892$ & $1.986$ & $1.955$ & $0.410$ \\ 
-Revenus & $9.891$ & $0.061$ & $0.061$ & $0.011$ \\ 
-Temps & $3$ & $1.416$ & $0$ & $1.416$ \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table}
 
-\normalsize 
 
 ```{r include = FALSE}
 Formulas = list(
@@ -536,50 +534,29 @@ Dtest = Effect.testing(Formulas, data = datap)
 rownames(Dtest) = c("Index prix", "Index pesticides",
     "Surface", "Revenus")
 ```
-```{r include = FALSE}
+
+
+```{r echo = FALSE, results = "asis"}
 stargazer(Dtest[,c(1:2)], 
+    header = FALSE,
     title = "Chow pooling test",
     summary = FALSE)
 ```
-\tiny
-\begin{table}[!htbp] \centering
-  \caption{Chow pooling test}
-\begin{tabular}{@{\extracolsep{5pt}} l|cc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & Random & Fixed \\ 
-\hline \\[-1.8ex] 
-Index prix & $0.535$ & $0.533$ \\ 
-Index pesticides & $0.485$ & $0.451$ \\ 
-Surface & $0$ & $0.0001$ \\ 
-Revenus & $0.297$ & $0.247$ \\ 
-\hline \\[-1.8ex]
-\end{tabular} 
-\end{table} 
 
-## L'étude des types d'effets  
-```{r include = FALSE}
+
+## L'étude des types d'effets 
+
+
+```{r echo = FALSE, results = "asis"}
 stargazer(Dtest[,c(3:ncol(Dtest))], 
+    header = FALSE,
     title = "Lagrange multiplier test, p-values",
     summary = FALSE)
 ```
-\tiny
-\begin{table}[!htbp] \centering 
-  \caption{Lagrange multiplier test, p-values}
-\begin{tabular}{@{\extracolsep{5pt}} l|ccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & Individual & Time & Two-ways \\ 
-\hline \\[-1.8ex] 
-Index prix & $0$ & $0.169$ & $0$ \\ 
-Index pesticides & $0$ & $0.222$ & $0$ \\ 
-Surface & $0$ & $0.030$ & $0$ \\ 
-Revenus & $0$ & $0.248$ & $0$ \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table} 
+
 
 ## L'analyse de la correlation
+
 ```{r echo = FALSE}
 correlation = cor(datap)
 colnames(correlation) = c("Quantité du vin", "IP", 
@@ -589,28 +566,14 @@ rownames(correlation) = c("Quantité du vin", "IP",
         "Surface", "Revenus", 
         "Index pésticides", "Temps")
 ```
-```{r include = FALSE}
-stargazer(correlation, 
-    title = "Overall correlation",
-    summary = F)
+
+
+```{r echo = FALSE, results = "asis"}
+xtable(round(correlation, 4), 
+    caption = "Overall correlation",
+    align = "l|cccccc")
 ```
-\tiny
-\begin{table}[!htbp] \centering
-  \caption{Overall correlation}
-\begin{tabular}{@{\extracolsep{5pt}} l|cccccc}
-\\[-1.8ex]\hline
-\hline \\[-1.8ex]
- & Quantité du vin & IP & Surface & Revenus & Index pésticides & Temps \\
-\hline \\[-1.8ex]
-Quantité du vin & $1$ & $0.154$ & $0.956$ & $-0.027$ & $-0.078$ & $-0.036$ \\      
-IP & $0.154$ & $1$ & $0.045$ & $-0.037$ & $-0.127$ & $0.043$ \\
-Surface & $0.956$ & $0.045$ & $1$ & $-0.057$ & $-0.060$ & $-0.064$ \\
-Revenus & $-0.027$ & $-0.037$ & $-0.057$ & $1$ & $-0.052$ & $0.119$ \\
-Index pésticides & $-0.078$ & $-0.127$ & $-0.060$ & $-0.052$ & $1$ & $0.291$ \\  
-Temps & $-0.036$ & $0.043$ & $-0.064$ & $0.119$ & $0.291$ & $1$ \\
-\hline \\[-1.8ex]
-\end{tabular}
-\end{table}
+
 
 ```{r include = FALSE}
 ###################
@@ -624,6 +587,7 @@ dataW$iki = Within(datap$iki)
 dataW$si = Within(datap$si)
 dataW$ri = Within(datap$ri)
 ```
+
 ```{r include = FALSE}
 correlationW = cor(dataW)
 dataW$ndep = index(datap)$ndep
@@ -634,30 +598,18 @@ rownames(correlationW) = c("Quantité du vin", "IP",
         "Surface", "Revenus", 
         "Index pésticides", "Temps")
 ```
-```{r include = FALSE}
-stargazer(correlationW, 
-    title = "Within transformation correlation",
-    summary = F)
+
+
+```{r echo = FALSE, results = "asis"}
+xtable(round(correlationW, 4), 
+    caption = "Within transformation correlation",
+    align = "l|rrrrrr")
 ```
-\tiny
-\begin{table}[!htbp] \centering 
-  \caption{Within transformation correlation}
-\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & Quantité du vin & IP & Surface & Revenus & Index pésticides & Temps \\ 
-\hline \\[-1.8ex] 
-Quantité du vin & $1$ & $0.961$ & $0.366$ & $-0.160$ & $-0.228$ & $-0.199$ \\ 
-IP & $0.961$ & $1$ & $0.289$ & $-0.009$ & $-0.127$ & $0.056$ \\ 
-Surface & $0.366$ & $0.289$ & $1$ & $-0.166$ & $-0.191$ & $-0.310$ \\ 
-Revenus & $-0.160$ & $-0.009$ & $-0.166$ & $1$ & $0.228$ & $0.652$ \\ 
-Index pésticides & $-0.228$ & $-0.127$ & $-0.191$ & $0.228$ & $1$ & $0.414$ \\ 
-Temps & $-0.199$ & $0.056$ & $-0.310$ & $0.652$ & $0.414$ & $1$ \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table} 
+
 
 ## La transformation **within**
+
+
 ```{r echo = FALSE}
 p1 = dataW %>% 
     ggplot(aes(qi, ipi, col = as.factor(ndep))) +
@@ -679,7 +631,10 @@ grid.arrange(p1, p2, nrow = 1)
 # Probably it is better to do it by variable
 ```
 
+
 ## La transformation **within**
+
+
 ```{r echo = FALSE}
 p1 = dataW %>% 
     ggplot(aes(qi, si, col = as.factor(ndep))) +
@@ -700,6 +655,7 @@ p2 = dataW %>%
 grid.arrange(p1, p2, nrow = 1)
 ```
 
+
 # Modèlisation
 ```{r eval = FALSE, include = FALSE}
 #####################################################
@@ -710,7 +666,7 @@ grid.arrange(p1, p2, nrow = 1)
 ## Modèlisation
 - Presentation de la méthode 
 - Les estimations 
-    - OLS, WLS et SUR 
+    - OLS
     - 2SLS, W2SLS, 3SLS et i3SLS 
 
 ## Presentation de la méthode
@@ -805,7 +761,8 @@ rm(ikiDum) ; rm(riDum)
 # Hence 3SLS is efficient and FIML is consistent even if residuals are not normal.
 ```
 
-## Les résultats OLS, WLS et SUR
+## Les résultats OLS
+
 ```{r include = FALSE}
 # Data transformation for systemfit
 dataWX = as.data.frame(dataW)
@@ -817,216 +774,208 @@ eqdemand = qi ~ 0 + ipi + ri
 eqoffer = qi ~ 0 + ipi + si + iki 
 system = list(Demande = eqdemand, Offre = eqoffer)
 # OLS
-ols = systemfit(system, 
+ols = lm(eqoffer, 
     data = dataWX, 
     method = "OLS")
-# WLS
-wls = systemfit(system, 
-    data = dataWX, 
-    method = "WLS")
-# SUR
-sur = systemfit(system, 
-    data = dataWX, 
-    method = "SUR")
+# # WLS
+# wls = systemfit(system, 
+#     data = dataWX, 
+#     method = "WLS")
+# # SUR
+# sur = systemfit(system, 
+#     data = dataWX, 
+#     method = "SUR")
 ```
-\tiny
+
+
 ```{r echo = FALSE, results = "asis"}
-texreg(list(ols, wls, sur),
-    custom.model.names = c("OLS", "WLS", "SUR"),
-    label = "table : ols, wls and sur")
+texreg(list(ols #, wls, sur
+        ),
+    custom.model.names = c("OLS" #, "WLS", "SUR"
+        ),
+    label = "table : ols" #, wls and sur"
+        )
 ```
-\tiny
+
 
 ## Independance des résidus   
 ```{r include = FALSE}
 cordata = dataWX %>% 
-    mutate(u1 = ols$eq[[1]]$res,
-        u2 = ols$eq[[2]]$res,
-        u3 = wls$eq[[1]]$res,
-        u4 = wls$eq[[2]]$res,
-        u5 = sur$eq[[1]]$res,
-        u6 = sur$eq[[2]]$res)
-cormat = cor(cordata[,-c(6,7)])[1:5, 6:11]
-colnames(cormat) = c("OLS D", "OLS O", 
-        "WLS D", "WLS O", 
-        "SUR D", "SUR O")
+    mutate(u1 = ols$res
+        # u1 = ols$eq[[1]]$res,
+        # u2 = ols$eq[[2]]$res,
+        # u3 = wls$eq[[1]]$res,
+        # u4 = wls$eq[[2]]$res,
+        # u5 = sur$eq[[1]]$res,
+        # u6 = sur$eq[[2]]$res
+        )
+cormat = cor(cordata[,-c(6,7)])[1:5, 6] %>% 
+    as.data.frame()
+colnames(cormat) = c("OLS" # D", "OLS O", 
+#         "WLS D", "WLS O", 
+#         "SUR D", "SUR O"
+        )
 rownames(cormat) = c("Vin", "IP", 
         "Surface", "Revenus", 
         "Pesticides")
 ```
-```{r include = FALSE}
-stargazer(cormat, 
-    title = "Correlation des résidus",
-    summary = F)
+
+
+```{r echo = FALSE, results = "asis"}
+xtable(round(cormat, 4),
+    caption = "Correlation des résidus",
+    align = "l|r" #rrrr"
+    )
 # cordata %>% ggplot(aes(x = u6, y = f6)) + geom_point() + geom_smooth()
 ```
-\tiny
-\begin{table}[!htbp] \centering 
-  \caption{Correlation des résidus} 
-\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & OLS D & OLS O & WLS D & WLS O & SUR D & SUR O \\ 
-\hline \\[-1.8ex] 
-Vin & $0.232$ & $0.244$ & $0.232$ & $0.244$ & $0.273$ & $0.275$ \\ 
-IP & $-0$ & $-0$ & $0$ & $-0$ & $0$ & $0$ \\ 
-Surface & $0.271$ & $-0$ & $0.271$ & $0$ & $0.313$ & $0.236$ \\ 
-Revenus & $0$ & $-0.480$ & $-0$ & $-0.480$ & $-0.393$ & $-0.542$ \\ 
-Pesticides & $-0.308$ & $-0$ & $-0.308$ & $0$ & $-0.373$ & $-0.281$ \\
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table} 
 
-## L'autocorrelation et l'hétéroskedacité
+
+## Test
 ```{r include = FALSE}
 # Panel Durbin-Watson test
 cordataDW = cordata %>% 
     group_by(ndep) %>%
     mutate(u1_diff = u1 - dplyr::lag(u1),
-        u2_diff = u2 - dplyr::lag(u2),
-        u3_diff = u3 - dplyr::lag(u3),
-        u4_diff = u4 - dplyr::lag(u4),
-        u5_diff = u5 - dplyr::lag(u5),
-        u6_diff = u6 - dplyr::lag(u6)) %>%
+        # u2_diff = u2 - dplyr::lag(u2),
+        # u3_diff = u3 - dplyr::lag(u3),
+        # u4_diff = u4 - dplyr::lag(u4),
+        # u5_diff = u5 - dplyr::lag(u5),
+        # u6_diff = u6 - dplyr::lag(u6)
+        ) %>%
     ungroup() %>%
     select(contains("u")) %>%
     mutate_all(function(x) replace_na(x, 0)) %>%
     summarise_all(function(x) sum(x^2))
-pDW = data.frame(ncol = 3, nrow = 2)
-pDW[1,1] = cordataDW[1,1]/cordataDW[1,7]
-pDW[2,1] = cordataDW[1,2]/cordataDW[1,8]
-pDW[1,2] = cordataDW[1,3]/cordataDW[1,9]
-pDW[2,2] = cordataDW[1,4]/cordataDW[1,10]
-pDW[1,3] = cordataDW[1,5]/cordataDW[1,11]
-pDW[2,3] = cordataDW[1,6]/cordataDW[1,12]
-colnames(pDW) = c("OLS", "WLS", "SUR")
-rownames(pDW) = c("Equation de demande", "Equation d'offre")
+pDW = data.frame(ncol = 1, nrow = 1)#(ncol = 3, nrow = 2)
+pDW[1,1] = cordataDW[1,1]/cordataDW[1,2]
+# pDW[2,1] = cordataDW[1,2]/cordataDW[1,8]
+# pDW[1,2] = cordataDW[1,3]/cordataDW[1,9]
+# pDW[2,2] = cordataDW[1,4]/cordataDW[1,10]
+# pDW[1,3] = cordataDW[1,5]/cordataDW[1,11]
+# pDW[2,3] = cordataDW[1,6]/cordataDW[1,12]
+colnames(pDW) = c("OLS" #, "WLS", "SUR"
+    )
+rownames(pDW) = c( #"Equation de demande", 
+    "Equation d'offre")
 ```
-```{r include = FALSE}
+
+
+```{r echo = FALSE, results = "asis"}
 stargazer(pDW, 
+    header = FALSE,
     title = "Durbin-Watson test statistics",
     summary = F)
 ```
 
-\tiny
-\begin{table}[!htbp] \centering 
-  \caption{Durbin-Watson test statistics}
-\begin{tabular}{@{\extracolsep{5pt}} cccc} 
-\\[-1.8ex]\hline
-\hline \\[-1.8ex] 
- & OLS & WLS & SUR \\ 
-\hline \\[-1.8ex] 
-Equation de demande & $1.129$ & $1.129$ & $1.583$ \\ 
-Equation d'offre & $1.062$ & $1.062$ & $1.549$ \\ 
-\hline \\[-1.8ex]
-\end{tabular} 
-\end{table} 
 
 ```{r echo = FALSE, results = "asis"}
-BartT = data.frame(ncol = 3, nrow = 2)
+BartT = data.frame(ncol = 1, nrow = 1)
+#    (ncol = 3, nrow = 2)
 BartT[1,1] = ols_test_bartlett(cordata, u1, 
-    group_var = ndep)$pval
-BartT[2,1] = ols_test_bartlett(cordata, u2, 
-    group_var = ndep)$pval
-BartT[1,2] = ols_test_bartlett(cordata, u3, 
-    group_var = ndep)$pval
-BartT[2,2] = ols_test_bartlett(cordata, u4, 
-    group_var = ndep)$pval
-BartT[1,3] = ols_test_bartlett(cordata, u5, 
-    group_var = ndep)$pval
-BartT[2,3] = ols_test_bartlett(cordata, u6, 
-    group_var = ndep)$pval
-colnames(BartT) = c("OLS", "WLS", "SUR")
-rownames(BartT) = c("Equation de demande", "Equation d'offre")
+    group_var = ndep)$pval 
+# BartT[2,1] = ols_test_bartlett(cordata, u2, 
+#     group_var = ndep)$pval
+# BartT[1,2] = ols_test_bartlett(cordata, u3, 
+#     group_var = ndep)$pval
+# BartT[2,2] = ols_test_bartlett(cordata, u4, 
+#     group_var = ndep)$pval
+# BartT[1,3] = ols_test_bartlett(cordata, u5, 
+#     group_var = ndep)$pval
+# BartT[2,3] = ols_test_bartlett(cordata, u6, 
+#     group_var = ndep)$pval
+colnames(BartT) = c("OLS" #, "WLS", "SUR"
+    )
+rownames(BartT) = c(#"Equation de demande", 
+    "Equation d'offre")
 ```
-```{r include = FALSE}
+
+
+```{r echo = FALSE, results = "asis"}
 stargazer(BartT,
+    header = FALSE,
     summary = FALSE,
     title = "Bartlett heteroscedasticity test")
 ```
-\tiny 
-\begin{table}[!htbp] \centering 
-  \caption{Bartlett heteroscedasticity test} 
-\begin{tabular}{@{\extracolsep{5pt}} cccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & OLS & WLS & SUR \\ 
-\hline \\[-1.8ex] 
-Equation de demande & $0.828$ & $0.828$ & $1$ \\ 
-Equation d'offre & $0.999$ & $0.999$ & $1$ \\ 
-\hline \\[-1.8ex]
-\end{tabular} 
-\end{table}
 
-## Le comportement des résidus 
 ```{r include = FALSE}
 ShapT = data.frame(nrow = 2, ncol = 6)
-ShapT[1,1] = shapiro.test(ols$eq[[1]]$res)$p.val
-ShapT[2,1] = shapiro.test(ols$eq[[2]]$res)$p.val
-ShapT[1,2] = shapiro.test(wls$eq[[1]]$res)$p.val
-ShapT[2,2] = shapiro.test(wls$eq[[2]]$res)$p.val
-ShapT[1,3] = shapiro.test(sur$eq[[1]]$res)$p.val
-ShapT[2,3] = shapiro.test(sur$eq[[2]]$res)$p.val
-colnames(ShapT) = c("OLS", "WLS", "SUR")
-rownames(ShapT) = c("Equation de demande", "Equation d'offre")
+ShapT[1,1] = shapiro.test(ols$res)$p.val
+# ShapT[1,1] = shapiro.test(ols$eq[[1]]$res)$p.val
+# ShapT[2,1] = shapiro.test(ols$eq[[2]]$res)$p.val
+# ShapT[1,2] = shapiro.test(wls$eq[[1]]$res)$p.val
+# ShapT[2,2] = shapiro.test(wls$eq[[2]]$res)$p.val
+# ShapT[1,3] = shapiro.test(sur$eq[[1]]$res)$p.val
+# ShapT[2,3] = shapiro.test(sur$eq[[2]]$res)$p.val
+colnames(ShapT) = c("OLS" #, "WLS", "SUR"
+    )
+rownames(ShapT) = c(#"Equation de demande", 
+    "Equation d'offre")
 ```
-```{r include = FALSE}
+
+```{r echo = FALSE, results = "asis"}
 stargazer(ShapT,
+    header = FALSE,
     summary = FALSE,
     title = "Shapiro-Wilk normality test")
 ```
-\tiny
-\begin{table}[!htbp] \centering 
-  \caption{Shapiro-Wilk normality test}
-\begin{tabular}{@{\extracolsep{5pt}} cccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & OLS & WLS & SUR \\ 
-\hline \\[-1.8ex] 
-Equation de demande & $0$ & $0$ & $0$ \\ 
-Equation d'offre & $0.0003$ & $0.0003$ & $0$ \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table} 
 
-## Les PDF des résidus 
+
+## Présentation graphique des résidus 
 ```{r echo = FALSE}
 par(mfrow = c(1,2), cex = 0.5)
-plot(density(ols$eq[[1]]$res), col = "blue", 
+# par(mfrow = c(1,2), cex = 0.5)
+plot(density(ols$res), col = "blue", 
     main = "Demande", xlab = "Residuals")
-lines(density(wls$eq[[1]]$res), col = "green")
-lines(density(sur$eq[[1]]$res), col = "red")
-plot(density(sur$eq[[2]]$res), col = "red", 
-    main = "Offre", xlab = "Residuals")
-lines(density(wls$eq[[2]]$res), col = "green")
-lines(density(ols$eq[[2]]$res), col = "blue")
-legend(x = "topright", legend = c("OLS", "WLS", "SUR"),
-    col = c("blue", "green", "red"), xpd = NA,
+plot(y = as.numeric(ols$res), 
+    x = as.numeric(dataWX$qi), 
+    col = "red", 
+    main = "Demande", 
+    ylab = "Fitted - résidus", xlab = "Real")
+points(y = as.numeric(ols$fit), 
+    x = as.numeric(dataWX$qi), 
+    col = "blue", pch = 17)
+lines(y = as.numeric(ols$fit) + as.numeric(ols$res), 
+    x = as.numeric(dataWX$qi),
+    col = "black")
+legend(x = "bottomright", legend = c("Résidus", "Fitted", "Real"),
+    col = c("red", "blue", "black"), xpd = NA,
     cex = 1, lwd = 3)
+# plot(density(ols$eq[[1]]$res), col = "blue", 
+#     main = "Demande", xlab = "Residuals")
+# lines(density(wls$eq[[1]]$res), col = "green")
+# lines(density(sur$eq[[1]]$res), col = "red")
+# plot(density(sur$eq[[2]]$res), col = "red", 
+#     main = "Offre", xlab = "Residuals")
+# lines(density(wls$eq[[2]]$res), col = "green")
+# lines(density(ols$eq[[2]]$res), col = "blue")
+# legend(x = "topright", legend = c("OLS", "WLS", "SUR"),
+#     col = c("blue", "green", "red"), xpd = NA,
+#     cex = 1, lwd = 3)
 ```
 
-## Les résidus contre la variable prédite 
+
 ```{r echo = FALSE}
-par(mfrow = c(1,2), cex = 0.5)
-plot(y = ols$eq[[1]]$res, x = ols$eq[[1]]$fit,
-    col = "blue", 
-    main = "Demande", 
-    ylab = "Residuals", xlab = "Fitted")
-points(y = wls$eq[[1]]$res, x = wls$eq[[1]]$fit,
-    col = "green", pch = 17)
-points(y = sur$eq[[1]]$res, x = sur$eq[[1]]$fit,
-    col = "red", pch = 14)
-plot(x = ols$eq[[2]]$res, y = ols$eq[[2]]$fit,
-    col = "blue", 
-    main = "Offre", 
-    ylab = "Residuals", xlab = "Fitted")
-points(y = wls$eq[[2]]$res, x = wls$eq[[2]]$fit,
-    col = "green", pch = 17)
-points(y = sur$eq[[2]]$res, x = sur$eq[[2]]$fit,
-    col = "red", pch = 14)
-legend(x = "topright", legend = c("OLS", "WLS", "SUR"),
-    col = c("blue", "green", "red"), xpd = NA,
-    cex = 1, lwd = 3)
+## Les résidus contre la variable prédite 
+# par(mfrow = c(1,2), cex = 0.5)
+# plot(y = ols$eq[[1]]$res, x = ols$eq[[1]]$fit,
+#     col = "blue", 
+#     main = "Demande", 
+#     ylab = "Residuals", xlab = "Fitted")
+# points(y = wls$eq[[1]]$res, x = wls$eq[[1]]$fit,
+#     col = "green", pch = 17)
+# points(y = sur$eq[[1]]$res, x = sur$eq[[1]]$fit,
+#     col = "red", pch = 14)
+# plot(x = ols$eq[[2]]$res, y = ols$eq[[2]]$fit,
+#     col = "blue", 
+#     main = "Offre", 
+#     ylab = "Residuals", xlab = "Fitted")
+# points(y = wls$eq[[2]]$res, x = wls$eq[[2]]$fit,
+#     col = "green", pch = 17)
+# points(y = sur$eq[[2]]$res, x = sur$eq[[2]]$fit,
+#     col = "red", pch = 14)
+# legend(x = "topright", legend = c("OLS", "WLS", "SUR"),
+#     col = c("blue", "green", "red"), xpd = NA,
+#     cex = 1, lwd = 3)
 ```
 
 ## Les résultats 2SLS, W2SLS, 3SLS et i3SLS
@@ -1058,13 +1007,14 @@ fiml = systemfit(system,
     data = dataWX, 
     method = "3SLS", maxit = 1000)
 ```
-\tiny
+
+
 ```{r echo = FALSE, results = "asis"}
 texreg(list(sls2, wsls2, sls3, fiml),
     custom.model.names = c("2SLS", "W2SLS", "3SLS", "i3SLS"),
     label = "table : 2sls, w2sls, 3sls and fiml")
 ```
-\tiny
+
 
 ## Comparaison des modèles  
 ```{r include = FALSE}
@@ -1074,39 +1024,30 @@ h2 = hausman.systemfit(sls2, fiml)
 res = data.frame(Test = c("2SLS contre 3SLS", "2SLS contre i3SLS"),
     Resultats = c(h1$p.val, h2$p.val))
 ```
-\tiny
+
+
 ```{r echo = FALSE, results = "asis"}
 stargazer(res, 
     title = "Hausman 3SLS consistency test",
     summary = F, 
     header = F)
 ```
-\tiny 
+
 
 ```{r include = FALSE}
 # - Linear test :
 # What should be tested ???
 # linearHypothesis(sls2, 
-```
-```{r include = FALSE}
 lr = lrtest(sls2, sls3, fiml)
-stargazer(lr, title = "Likelihood test",
-    summary = FALSE)
 ```
-\tiny
-\begin{table}[!htbp] \centering 
-  \caption{Likelihood test} 
-\begin{tabular}{@{\extracolsep{5pt}} cccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & \#Df & LogLik & Df & Chisq & Pr(\textgreater Chisq) \\ 
-\hline \\[-1.8ex] 
-1 & $6$ & $-149.621$ & $-$ & $-$ & $-$ \\ 
-2 & $8$ & $-65.614$ & $2$ & $168.013$ & $0$ \\ 
-3 & $8$ & $-82.702$ & $0$ & $34.176$ & $0$ \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table} 
+
+
+```{r include = FALSE}
+xtable(lr, 
+    caption = "Likelihood test",
+    align = "l|rrrrr")
+```
+ 
 
 ## Le comportement des résidus 
 ```{r include = FALSE}
@@ -1120,24 +1061,15 @@ ShapT[2,3] = shapiro.test(fiml$eq[[2]]$res)$p.val
 colnames(ShapT) = c("2SLS", "3SLS", "i3SLS")
 rownames(ShapT) = c("Equation de demande", "Equation d'offre")
 ```
-```{r include = FALSE}
+
+
+```{r echo = FALSE, results = "asis"}
 stargazer(ShapT,
+    header = FALSE,
     summary = FALSE,
     title = "Shapiro-Wilk normality test")
 ```
-\tiny
-\begin{table}[!htbp] \centering 
-  \caption{Shapiro-Wilk normality test}
-\begin{tabular}{@{\extracolsep{5pt}} cccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & 2SLS & 3SLS & i3SLS \\ 
-\hline \\[-1.8ex] 
-Equation de demande & $0.00003$ & $0.00003$ & $0.00003$ \\ 
-Equation d'offre & $0.00000$ & $0.00000$ & $0.00000$ \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table} 
+
 
 ```{r include = FALSE}
 resdata3 = dataWX %>% 
@@ -1159,24 +1091,15 @@ BartT[2,3] = ols_test_bartlett(resdata3, u6, group_var = ndep)$pval
 colnames(BartT) = c("2SLS", "3SLS", "i3SLS")
 rownames(BartT) = c("Equation de demande", "Equation d'offre")
 ```
-```{r include = FALSE}
+
+
+```{r echo = FALSE, results = "asis"}
 stargazer(BartT,
+    header = FALSE,
     summary = FALSE,
     title = "Bartlett heteroscedasticity test")
 ```
-\tiny 
-\begin{table}[!htbp] \centering 
-  \caption{Bartlett heteroscedasticity test} 
-\begin{tabular}{@{\extracolsep{5pt}} cccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex]
- & 2SLS & 3SLS & i3SLS \\ 
-\hline \\[-1.8ex] 
-Equation de demande & $0.975$ & $0.975$ & $0.975$ \\ 
-Equation d'offre & $0.0003$ & $0.002$ & $0.001$ \\ 
-\hline \\[-1.8ex]
-\end{tabular} 
-\end{table} 
+ 
 
 ## Les PDF des résidus 
 ```{r echo = FALSE}
@@ -1235,7 +1158,7 @@ legend(x = "bottomleft", legend = c("Résidus", "Fitted", "Real"),
     cex = 1, lwd = 3)
 plot(y = fiml$eq[[2]]$fit, x = as.numeric(resdata3$qi), 
     col = "blue", pch = 17, 
-    main = "Demande", 
+    main = "Offre", 
     ylab = "Fitted - résidus", xlab = "Real")
 points(y = fiml$eq[[2]]$res, x = resdata3$qi,
     col = "red", pch = 14)
@@ -1271,24 +1194,15 @@ pDW[2,3] = resdataDW[1,6]/resdataDW[1,12]
 colnames(pDW) = c("2SLS", "3SLS", "i3SLS")
 rownames(pDW) = c("Equation de demande", "Equation d'offre")
 ```
-```{r include = FALSE}
+
+
+```{r echo = FALSE, results = "asis"}
 stargazer(pDW, 
+    header = FALSE,
     title = "Durbin-Watson test statistics",
     summary = F)
 ```
-\tiny
-\begin{table}[!htbp] \centering 
-  \caption{Durbin-Watson test statistics}
-\begin{tabular}{@{\extracolsep{5pt}} cccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & 2SLS & 3SLS & i3SLS \\ 
-\hline \\[-1.8ex] 
-Equation de demande & $0.842$ & $0.842$ & $0.842$ \\ 
-Equation d'offre & $0.643$ & $0.643$ & $0.643$ \\ 
-\hline \\[-1.8ex]
-\end{tabular}
-\end{table} 
+
 
 ## L'autocorrelation sur 2 dimentions pour i3SLS
 ```{r echo = FALSE}
@@ -1308,29 +1222,16 @@ rownames(cormat) = c("Vin", "IP",
         "Surface", "Revenus", 
         "Pesticides")
 ```
-```{r include = FALSE}
-stargazer(cormat, 
-    title = "Correlation des résidus",
-    summary = F)
-```
-\tiny
-\begin{table}[!htbp] \centering
-  \caption{Correlation des residus}
-\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & 2SLS D & 2SLS O & 3SLS D & 3SLS O & i3SLS D & i3SLS O \\ 
-\hline \\[-1.8ex]
-Vin & $-0.561$ & $0.906$ & $-0.561$ & $0.898$ & $-0.561$ & $0.901$ \\ 
-IP & $-0.746$ & $0.948$ & $-0.746$ & $0.938$ & $-0.746$ & $0.941$ \\ 
-Surface & $-0.034$ & $0$ & $-0.034$ & $0.032$ & $-0.034$ & $0.024$ \\ 
-Revenus & $0$ & $0$ & $-0$ & $0$ & $0$ & $-0$ \\ 
-Pesticides & $-0.113$ & $0$ & $-0.113$ & $0.105$ & $-0.113$ & $0.080$ \\ 
-\hline \\[-1.8ex]
-\end{tabular} 
-\end{table} 
 
-```{r eval = FALSE, include = FALSE}
+
+```{r echo = FALSE, results = "asis"}
+xtable(round(cormat, 4), 
+    caption = "Correlation des résidus",
+    align = "l|rrrrrr")
+```
+
+## Clusterisation
+```{r include = FALSE}
 # Clustering 
 # Between dataframe
 dataB = datap 
@@ -1342,67 +1243,92 @@ dataB$ri = Between(datap$ri)
 dataB$ndep = index(datap)$ndep
 # Between correction
 dataB = dataB %>% 
-    select(-t)
+    dplyr::select(-t)
 dataB = dataB %>% 
     group_by(ndep) %>% 
     summarise_all(mean)
 # Analysis for clustering
-wss = (nrow(dataB)-1)*sum(apply(dataB,2,var))
+wss = (nrow(dataB[,-1])-1)*sum(apply(dataB[,-1], 2, var))
 for (i in 2:15) {
-    wss[i] = sum(kmeans(dataB, centers = i)$withinss)
+    wss[i] = sum(kmeans(iter.max = 100, dataB[,-1], centers = i)$withinss)
 }
 ```
 
-```{r eval = FALSE, include = FALSE}
+```{r echo = FALSE, fig.cap = "Le choix des clusters"}
 plot(1:15, wss, type = "l", 
-    xlab = "Number of Clusters",
-    ylab = "Within groups sum of squares",
-    main = "Le choix des clusters") # 3, 4, 5
-points(1:15, wss)
+    xlab = "Nomber de clusters",
+    ylab = "WSS") # 3, 4, 5
+points(1:15, wss, col = "red")
 ```
 
-```{r eval = FALSE, include = FALSE}
+```{r include = FALSE}
+dataWi = as.data.frame(dataW) 
+dataWi$ndep = as.factor(index(dataW)$ndep)
+```
+
+```{r include = FALSE}
 # Grouping
-fit = kmeans(dataB[,-1], 3)
-# require(FactoMineR)
-nclef = data.frame(ndep = dataB$ndep, clust = fit$cluster)
-dataWY = left_join(dataW, nclef, by = "ndep")
-# Equations
-eqdemandx = qi ~ 0  + 
-    I(ipi*as.numeric(clust == 1)) +  
-    I(ipi*as.numeric(clust == 2)) + 
-    I(ipi*as.numeric(clust == 3)) + 
-    I(ri*as.numeric(clust == 1)) +  
-    I(ri*as.numeric(clust == 2)) + 
-    I(ri*as.numeric(clust == 3))
-eqofferx = qi ~ 0 + 
-    I(ipi*as.numeric(clust == 1)) +
-    I(ipi*as.numeric(clust == 2)) + 
-    I(ipi*as.numeric(clust == 3)) + 
-    I(si*as.numeric(clust == 1)) + 
-    I(si*as.numeric(clust == 2)) + 
-    I(si*as.numeric(clust == 3)) + 
-    I(iki*as.numeric(clust == 1)) + 
-    I(iki*as.numeric(clust == 2)) + 
-    I(iki*as.numeric(clust == 3))
-instx = ~ I(ri*as.numeric(clust == 1)) +  
-    I(ri*as.numeric(clust == 2)) + 
-    I(ri*as.numeric(clust == 3)) + 
-    I(si*as.numeric(clust == 1)) + 
-    I(si*as.numeric(clust == 2)) + 
-    I(si*as.numeric(clust == 3)) + 
-    I(iki*as.numeric(clust == 1)) + 
-    I(iki*as.numeric(clust == 2)) + 
-    I(iki*as.numeric(clust == 3))
-systemx = list(Demande = eqdemandx, Offre = eqofferx)
+fit1 = kmeans(iter.max = 100, dataB[,-1], 3)
+# Sup 
+
+nclef = data.frame(ndep = dataB$ndep, clust = fit1$cluster)
+dataWY = left_join(dataWi, nclef, by = "ndep")
 ```
 
-```{r eval = FALSE, include = FALSE}
+## Modèlisation
+
+```{r include = FALSE}
+# Data transformation
+dataWY = dataWY %>% 
+    mutate(ipi1 = ipi*as.numeric(clust == 1),
+        ipi2 = ipi*as.numeric(clust == 2),
+        ipi3 = ipi*as.numeric(clust == 3),
+        ri1 = ri*as.numeric(clust == 1),
+        ri2 = ri*as.numeric(clust == 2),
+        ri3 = ri*as.numeric(clust == 3),
+        si1 = si*as.numeric(clust == 1),
+        si2 = si*as.numeric(clust == 2),
+        si3 = si*as.numeric(clust == 3),
+        iki1 = iki*as.numeric(clust == 1),
+        iki2 = iki*as.numeric(clust == 2),
+        iki3 = iki*as.numeric(clust == 3))
+```
+
+```{r include = FALSE}
+# Equations
+eqdemandz = qi ~ 0 + ipi +
+    ri1 + ri2 + ri3 
+eqofferz = qi ~ 0 + ipi + 
+    si1 + si2 + si3 +
+    iki1 + iki2 + iki3
+instz = ~ ri1 + ri2 + ri3 + 
+    si1 + si2 + si3 +
+    iki1 + iki2 + iki3
+systemz = list(Demande = eqdemandz, Offre = eqofferz)
+```
+
+```{r include = FALSE}
+# OLS
+olsx = systemfit(systemz, 
+    data = dataWY, 
+    method = "OLS")
 # 2SLS
-sls2x = systemfit(systemx, 
-    inst = inst,
+sls2x = systemfit(systemz, 
+    inst = instz,
     data = dataWY, 
     method = "2SLS")
+# 3SLS
+sls3x = systemfit(systemz, 
+    inst = instz,
+    data = dataWY, 
+    method = "3SLS")
+```
+
+```{r echo = FALSE, results = "asis"}
+texreg(float.pos = "!htbp", 
+    list(olsx, sls2x, sls3x),
+    custom.model.names = c("OLS", "2SLS", "3SLS"),
+    label = "table : ols, 2sls et 3sls, full information clusters")
 ```
 
 # Conclusions 
