@@ -6,7 +6,7 @@ author: A. Blanc, N. Gusarov, S. Picon
 shortauthor : A.Blanc, N.Gusarov, S.Picon
 institute: UniversitÃ© Grenoble Alpes
 shortinstitute: UGA
-date: 20/12/2019
+date: 19/12/2019
 header-includes:
     - \usepackage{array}
     - \usepackage{multicol}
@@ -260,19 +260,19 @@ Effect.testing = function(Formulas, data) {
 
 ## Introduction
 \center
-\textbf{Quel est l'effet de l'utilisation des pesticides sur le marchÃ© des vins simples ?}
+\textbf{Quel est l'effet de l'utilisation des pesticides sur le marché des vins simples ?}
 
-Dans cette Ã©tude, nous chercherons Ã  Ã©tudier l'Ã©quilibre sur le marchÃ© du vin. 
+Dans cette étude, nous chercherons à étudier l'équilibre sur le marché du vin. 
 
-## Plan de la prÃ©sentation
-- PrÃ©sentation de la problÃ©matique
+## Plan de la présentation
+- Présentation de la problÃ©matique
     - Pesticides 
-    - MarchÃ© du vin 
+    - Marché du vin 
 
-- Le modÃ¨le thÃ©orique 
-- Les donnÃ©es
-- ModÃ©lisation
-- Les rÃ©sultats
+- Le modèle théorique 
+- Les données
+- Modélisation
+- Les résultats
 - Conclusion 
 
 # Les pesticides
@@ -283,181 +283,181 @@ Dans cette Ã©tude, nous chercherons Ã  Ã©tudier l'Ã©quilibre sur le marchÃ© du v
 ```
 
 ## Les pesticides
-- PrÃ©sentation du problÃ¨me des pesticides
+- Présentation du problème des pesticides
 - Etat actuel
 - Comment baisser l'utilisation de pesticides
 
-## PrÃ©sentation du problÃ¨me des pesticides
-- Source de nombreux dÃ©bats sur la santÃ© et l'environnement.
-- Le rÃ´le actuel :
-    - Moyen de protection contre les alÃ©as climatiques ;
-    - Outil pour la prÃ©servation du rendement.
+## Présentation du problème des pesticides
+- Source de nombreux débats sur la santÃ© et l'environnement.
+- Le rôle actuel :
+    - Moyen de protection contre les aléas climatiques ;
+    - Outil pour la préservation du rendement.
 
 - Plusieurs mesures mises en places pour rÃ©duire leurs usages :
     - des interdictions des produits les plus toxiques ;
-    - l'instauration d'une taxe, payÃ©e par les agriculteurs (Butault et al, 2011).
+    - l'instauration d'une taxe, payée par les agriculteurs (Butault et al, 2011).
 
-- MalgrÃ© les efforts l'utilisation perdure :
+- Malgré les efforts l'utilisation perdure :
     - Hausse des ventes de produits phytosanitaires ;
-    - Augmentation des doses utilisÃ©es (+12% en 2014-2016) ;
+    - Augmentation des doses utilisées (+12% en 2014-2016) ;
   
 ## Etat actuel
-Contrairement aux attentes des autoritÃ©s, aucune baisse de l'utilisation de pesticides :
+Contrairement aux attentes des autorités, aucune baisse de l'utilisation de pesticides :
 
-- Le nombre de doses unitÃ© augmente de 23% entre 2008 et 2017 ;
-- Le nombre de substances actives utilisÃ©es a augmentÃ© de 15% entre 2011 et 2017 ;
+- Le nombre de doses unité augmente de 23% entre 2008 et 2017 ;
+- Le nombre de substances actives utilisées a augmenté de 15% entre 2011 et 2017 ;
 - Une baisse des produits les plus dangereux de 6%, en 2017 (Moghaddam et al, 2019) ;
-- Les grandes cultures (blÃ©s, etc...) sont les premiÃ¨res utilisatrices de pesticides 67.4% ;
-- Les vignes sont les deuxiÃ¨mes 14.4% (Butault et al, 2011).
+- Les grandes cultures (blés, etc...) sont les premiÃ¨res utilisatrices de pesticides 67.4% ;
+- Les vignes sont les deuxièmes 14.4% (Butault et al, 2011).
     
 ## Comment diminuer l'utilisation de pesticides
-Les mÃ©thodes contemporaines visant Ã  rÃ©duire l'utilisation des pesticides sont :
+Les méthodes contemporaines visant à réduire l'utilisation des pesticides sont :
 
 - Le changement de mode de culture :
     - agriculture biologique ;
-    - agriculture raisonnÃ©e ;
+    - agriculture raisonnée ;
 - La diversification des cultures, ce qui est impossible pour la vigne (Moghaddam et al, 2019).
 
-# Le marchÃ© du vin franÃ§ais
+# Le marché du vin français
 ```{r eval = FALSE, include = FALSE}
 #####################################################
 ###################  Viticulture  ###################
 #####################################################
 ```
 
-## Le marchÃ© du vin franÃ§ais
-- Le vin franÃ§ais 
+## Le marché du vin français
+- Le vin français 
 - Utilisation des pesticides dans la viticulture
-- Le problÃ¨me d'hÃ©tÃ©rogÃ©nÃ©itÃ©
+- Le problème d'hétérogénéité
 - Les vins de table
-- Le marchÃ© des vins de table franÃ§ais
+- Le marché des vins de table français
 
-## Le vin franÃ§ais 
+## Le vin français 
 La France est un producteur de vin important :
 
 - 10% surface de vigne mondiale ;
-- 3% de la surface agricole franÃ§aise est dediÃ©e au vin ;
+- 3% de la surface agricole française est dediée au vin ;
 - 16% de la production mondiale ;
-- Le vin est la boisson alcoolisÃ©e la plus consommÃ©e en France ;
-- 88% des ventes de vins en France sont effectuÃ©es dans des grandes surfaces (CNIV, 2018).
+- Le vin est la boisson alcoolisée la plus consommée en France ;
+- 88% des ventes de vins en France sont effectuées dans des grandes surfaces (CNIV, 2018).
 
 La consommation de vins en France, tous types (FranceAgrimer, 2011) :
 
 - 55% de vins rouges ;
 - 16% de vins blancs ;
-- 29% de vins rosÃ©s.
+- 29% de vins rosés.
   
 ## Utilisation des pesticides dans la viticulture
 La viticulture un type de culture gourmand en pesticides :
 
-- 14.4% des produits phytosanitaires utilisÃ©s en France ;
-- 2-Ã¨me culture utilisatrice de pesticides en France ;
-- Fortes disparitÃ©s d'utilisation des pesticides entre les rÃ©gions (Butault et al, 2011) ;
-- Les bassins viticoles FranÃ§ais utilisent en majoritÃ© des fongicides et des bactÃ©ricides sur la vigne ;
-- La champagne est la rÃ©gion la plus utilisatrice de pesticide avec un IFT de 21.4 en 2013 ;
+- 14.4% des produits phytosanitaires utilisés en France ;
+- 2-ème culture utilisatrice de pesticides en France ;
+- Fortes disparités d'utilisation des pesticides entre les régions (Butault et al, 2011) ;
+- Les bassins viticoles Français utilisent en majorité des fongicides et des bactéricides sur la vigne ;
+- La champagne est la région la plus utilisatrice de pesticide avec un IFT de 21.4 en 2013 ;
   
-## Le problÃ¨me d'heterogÃ©nÃ©itÃ©
-Il existe une forte hÃ©tÃ©rogÃ©nÃ©itÃ© entre les diffÃ©rents labels mais aussi Ã  l'intÃ©rieur de ces labels. 
+## Le problème d'hétérogénéité
+Il existe une forte hétérogénéité entre les différents labels mais aussi à l'intérieur de ces labels. 
 
-Les vins peuvent Ãªtre divisÃ©s en 2 grandes classes suivant leurs prix (Cembalo et al., 2014) :
+Les vins peuvent être divisés en 2 grandes classes suivant leurs prix (Cembalo et al., 2014) :
 
-- Les vins de qualitÃ© supÃ©rieure
-    - limitation des quantitÃ©s produites
-    - l'origine contrÃ´lÃ© 
-    - une demande spÃ©cifique
+- Les vins de qualité supérieure
+    - limitation des quantités produites
+    - l'origine contrôlé 
+    - une demande spécifique
 
-- Les vins de qualitÃ© faible
-    - hÃ©tÃ©rogÃ©nÃ©itÃ© moins importante (Cembalo et al., 2014)
+- Les vins de qualité faible
+    - hétérogénéité moins importante (Cembalo et al., 2014)
 
 ## Les vins de table
 Les vins de table sont des vins sans indication gÃ©ographique :
 
-- hÃ©tÃ©rogÃ©nÃ©itÃ© plus faible que pour les autre types ;
+- hétérogénéité plus faible que pour les autre types ;
 - prix bas.
 
 Nous traitons seulement des vins sans indication gÃ©ographique :
 
-- La situation sur ce marchÃ© influence l'utilisation des pesticides ;
-- Il existe une homogÃ©nÃ©itÃ© presque parfaite parmi les vins sans indication gÃ©ographique (Cembalo et al, 2014).
+- La situation sur ce marché influence l'utilisation des pesticides ;
+- Il existe une homogénéité presque parfaite parmi les vins sans indication géographique (Cembalo et al, 2014).
 
-## Le marchÃ© des vins de table franÃ§ais
-ReprÃ©sente 10% de la production (VIN & SOCIETE, 2018)
+## Le marché des vins de table français
+Représente 10% de la production (VIN & SOCIETE, 2018)
 
 - Hausse des transactions en 2011 :
     - Vins rouges : 29 %
-    - Vins rosÃ©s : 13% 
+    - Vins rosés : 13% 
     - Vins blancs : 76%
 
 - Hausse des prix en 2011 : 
     - Vins rouges : 12%
-    - Vins rosÃ©s : 3%
+    - Vins rosés : 3%
     - Vins blancs : 13%
 
-# Le modÃ¨le thÃ©orique
+# Le modèle théorique
 ```{r eval = FALSE, include = FALSE}
 #####################################################
 ###################  ThÃ©orie mod  ###################
 #####################################################
 ```
 
-## Le modÃ¨le thÃ©orique
-- Le rÃ´le des pesticides dans la production du vin
-- Le rÃ´le de la demande sur la production et l'offre en gÃ©nÃ©ral
-- La formalisation et les Ã©quations
+## Le modèle théorique
+- Le rôle des pesticides dans la production du vin
+- Le rôle de la demande sur la production et l'offre en général
+- La formalisation et les équations
 
-## Le rÃ´le de la demande sur la production et l'offre en gÃ©nÃ©ral
-- Nous supposons que sur le marchÃ© des vins simples la demande est unique pour toute la France.
-- La production de vin varie par dÃ©partement Ã  cause de variations climatologiques
-- On observe l'Ã©quilibre sur le marchÃ© au niveau du pays. Ainsi, la quantitÃ© demandÃ©e = quantitÃ© offerte par l'ensemble des rÃ©gions.
-- La demande de pesticides est inÃ©lastique au prix. Ainsi, la quantitÃ© de pesticides utilisÃ©e dÃ©pend seulement des intentions et des besoins des agriculteurs.
+## Le rôle de la demande sur la production et l'offre en général
+- Nous supposons que sur le marché des vins simples la demande est unique pour toute la France.
+- La production de vin varie par département à cause de variations climatologiques
+- On observe l'équilibre sur le marché au niveau du pays. Ainsi, la quantité demandée = quantité offerte par l'ensemble des départements.
+- La demande de pesticides est inélastique au prix. Ainsi, la quantité de pesticides utilisée dépend seulement des intentions et des besoins des agriculteurs.
 
-# Les donnÃ©es
+# Les données
 ```{r eval = FALSE, include = FALSE}
 #####################################################
 ###################  DonnÃ©es mob  ###################
 #####################################################
 ```
 
-## Les donnÃ©es
-- Sources des donnÃ©es 
-- DÃ©scription des donnÃ©es 
-- Les variables sÃ©lectionnÃ©es
-- Les variables utilisÃ©es pour notre modÃ¨le
+## Les données
+- Sources des données 
+- Description des données 
+- Les variables sélectionnées
+- Les variables utilisées pour notre modèle
 
-## Sources des donnÃ©es : 
-- Les donnÃ©es de ventes de pesticides par dÃ©partement (INERIS)
-- Les donnÃ©es sur les prix du vin (FranceAgrimer)
-- Les donnÃ©es sur la population (INSEE)
-- Les donnÃ©es sur la production de vin (SSM Finances Publiques)
-- Variation par dÃ©partement franÃ§ais (pour les rÃ©gions produisant le vin)
-- Variation par annÃ©e (2012 Ã  2016)
+## Sources des données : 
+- Les données de ventes de pesticides par département (INERIS)
+- Les données sur les prix du vin (FranceAgrimer)
+- Les données sur la population (INSEE)
+- Les données sur la production de vin (SSM Finances Publiques)
+- Variation par département français (pour les départements produisant le vin)
+- Variation par année (2012 à 2016)
    
-## DÃ©scription des donnÃ©es :
-- Toutes les variables varient par dÃ©partement et par annÃ©e.
-- Le pÃ©riode temporelle comprise dans notre Ã©chantillon est de 2012 Ã  2016.
-- SÃ©lection des rÃ©gions productrices de vin et utilisatrices de pesticides (69 dÃ©partements).
+## Description des données :
+- Toutes les variables varient par département et par année.
+- La période temporelle comprise dans notre échantillon est de 2012 à 2016.
+- Sélection des régions productrices de vin et utilisatrices de pesticides (69 départements).
 - Utilisation de l'echelle logarithmique afin de contracter la variance.
 
-## Les variables utilisÃ©es pour notre modÃ¨le
-- Variables endogÃ¨nes : 
-    - la quantitÃ© totale produite de vin rouge et blanc non IG par dÃ©partement (en hectolitres, en log), 
+## Les variables utilisées pour notre modèle
+- Variables endogènes : 
+    - la quantité totale produite de vin rouge et blanc non IG par département (en hectolitres, en log), 
     - le prix moyen des vins rouges-blancs (indice, en log).
-- Variables exogÃ¨nes : 
-    - le revenu mÃ©dian par dÃ©partement (en euros par personne par annÃ©e, en log), 
-    - la surface agricole destinÃ©e aux vins de table (en hectares, en log),
-    - la quantitÃ© de pesticides utilisÃ©s sur la vigne (indice, en log).
+- Variables exogènes : 
+    - le revenu médian par département (en euros par personne par année, en log), 
+    - la surface agricole destinée aux vins de table (en hectares, en log),
+    - la quantité de pesticides utilisés sur la vigne (indice, en log).
 
-# L'Ã©tude statistique
+# L'étude statistique
 ```{r eval = FALSE, include = FALSE}
 #####################################################
 ###################  Statistique  ###################
 #####################################################
 ```
 
-## L'Ã©tude statistique 
-- L'Ã©tude bivariÃ©e
-- L'Ã©tude de la variance 
-- L'Ã©tude des types d'effets
+## L'étude statistique 
+- L'étude bivariée
+- L'étude de la variance 
+- L'étude des types d'effets
 - L'analyse de la correlation
 - La transformation **within**
 
@@ -481,7 +481,7 @@ grid.arrange(p1, p2, nrow = 1)
 # Probably it is better to do it by variable
 ```
 
-## Visualisation des interdÃ©pendances
+## Visualisation des interdépendances
 ```{r echo = FALSE}
 p1 = datai %>% 
     ggplot(aes(qi, si, col = as.factor(ndep))) +
@@ -544,7 +544,7 @@ stargazer(Dtest[,c(1:2)],
 ```
 
 
-## L'Ã©tude des types d'effets 
+## L'étude des types d'effets 
 
 
 ```{r echo = FALSE, results = "asis"}
@@ -591,12 +591,12 @@ dataW$ri = Within(datap$ri)
 ```{r include = FALSE}
 correlationW = cor(dataW)
 dataW$ndep = index(datap)$ndep
-colnames(correlationW) = c("QuantitÃ© du vin", "IP", 
+colnames(correlationW) = c("Quantité du vin", "IP", 
         "Surface", "Revenus", 
-        "Index pÃ©sticides", "Temps")
-rownames(correlationW) = c("QuantitÃ© du vin", "IP", 
+        "Index pesticides", "Temps")
+rownames(correlationW) = c("Quantité du vin", "IP", 
         "Surface", "Revenus", 
-        "Index pÃ©sticides", "Temps")
+        "Index pesticides", "Temps")
 ```
 
 
@@ -617,7 +617,7 @@ p1 = dataW %>%
     geom_smooth(method = "lm", se = F, size = 0.25) +
     geom_smooth(aes(qi, ipi, col = "black"), method = "loess", size = 0.4) +
     # ggtitle("Q ~ IP") +
-    xlab("QuantitÃ© du vin") + ylab("Index du prix") +
+    xlab("Quantité du vin") + ylab("Index du prix") +
     pres_theme
 p2 = dataW %>% 
     ggplot(aes(qi, iki, col = as.factor(ndep))) +
@@ -625,7 +625,7 @@ p2 = dataW %>%
     geom_smooth(method = "lm", se = F, size = 0.25) +
     geom_smooth(aes(qi, iki, col = "black"), method = "loess", size = 0.4) +
     # ggtitle("Q ~ IK") +
-    xlab("QuantitÃ© du vin") + ylab("Index des pÃ©sticides") +
+    xlab("Quantité du vin") + ylab("Index des pesticides") +
     pres_theme
 grid.arrange(p1, p2, nrow = 1)
 # Probably it is better to do it by variable
@@ -642,7 +642,7 @@ p1 = dataW %>%
     geom_smooth(method = "lm", se = F, size = 0.25) +
     geom_smooth(aes(qi, si, col = "black"), method = "loess", size = 0.4) +
     # ggtitle("Q ~ S") +
-    xlab("QuantitÃ© du vin") + ylab("Surface qultivÃ©") +
+    xlab("Quantité du vin") + ylab("Surface cultivée") +
     pres_theme
 p2 = dataW %>% 
     ggplot(aes(qi, ri, col = as.factor(ndep))) +
@@ -650,12 +650,12 @@ p2 = dataW %>%
     geom_smooth(method = "lm", se = F, size = 0.25) +
     geom_smooth(aes(qi, ri, col = "black"), method = "loess", size = 0.4) +
     # ggtitle("Q ~ R") +
-    xlab("QuantitÃ© du vin") + ylab("Revenus") +
+    xlab("Quantité du vin") + ylab("Revenus") +
     pres_theme
 grid.arrange(p1, p2, nrow = 1)
 ```
 
-# ModÃ¨lisation
+# Modélisation
 
 ```{r eval = FALSE, include = FALSE}
 #####################################################
@@ -663,14 +663,14 @@ grid.arrange(p1, p2, nrow = 1)
 #####################################################
 ```
 
-## ModÃ©lisation
-- Presentation de la mÃ©thode 
+## Modélisation
+- Presentation de la méthode 
 - Les estimations 
     - OLS
     - 2SLS, W2SLS, 3SLS et i3SLS 
 
-## Presentation de la mÃ©thode
-- Explication de la mÃ©thode utilisÃ©e
+## Presentation de la méthode
+- Explication de la méthode utilisée
     - Panel data
         - Within transformation 
         - Fixed effects 
@@ -681,9 +681,9 @@ grid.arrange(p1, p2, nrow = 1)
         - It generates consistent estimates
         - The distribution of the estimators are normally distributed only in large samples 
         - The estimator is (asymptotically) efficient
-- Limites du modÃ¨le 
-    - Faible reprÃ©sentation des effets hetÃ©rogÃ¨nes entre les rÃ©gions (nous estimons seulement des effets moyens)
-    - Les interfÃ©rences induites par l'hÃ©tÃ©rogÃ©nÃ©itÃ© 
+- Limites du modèle 
+    - Faible représentation des effets hétérogènes entre les régions (nous estimons seulement des effets moyens)
+    - Les interférences induites par l'hétérogénéité 
 
 ```{r include = FALSE, eval = FALSE}
 ###################
@@ -738,17 +738,17 @@ dataWD = dataW %>%
 rm(ikiDum) ; rm(riDum)
 ```
 
-## RÃ©sultats des estimations
-- Les coefficients estimÃ©s avec leurs variance 
+## Résultats des estimations
+- Les coefficients estimés avec leurs variance 
 - L'efficience et la comparaison des estimateurs 
 - Etude des erreurs 
     - La distribution des erreurs
-        - La normalitÃ© 
+        - La normalité 
         - Centrage sur 0 
-        - IndÃ©pendance des variables explicatives 
+        - Indépendance des variables explicatives 
 
-    - L'autocorrelation des rÃ©sidus 
-    - L'hÃ©tÃ©roscedasticitÃ©  
+    - L'autocorrelation des résidus 
+    - L'hétéroscedasticité  
 
 ```{r include = FALSE, eval = FALSE}
 # - VÃ©rification des hypothÃ¨ses (5 hypothÃ¨ses) :
@@ -761,7 +761,7 @@ rm(ikiDum) ; rm(riDum)
 # Hence 3SLS is efficient and FIML is consistent even if residuals are not normal.
 ```
 
-## Les rÃ©sultats OLS
+## Les résultats OLS
 
 ```{r include = FALSE}
 # Data transformation for systemfit
@@ -798,7 +798,7 @@ texreg(list(ols #, wls, sur
 ```
 
 
-## IndÃ©pendance des rÃ©sidus   
+## Indépendance des résidus   
 ```{r include = FALSE}
 cordata = dataWX %>% 
     mutate(u1 = ols$res
@@ -828,8 +828,6 @@ xtable(round(cormat, 4),
     )
 # cordata %>% ggplot(aes(x = u6, y = f6)) + geom_point() + geom_smooth()
 ```
-
-## Tests
 
 ```{r include = FALSE}
 # Panel Durbin-Watson test
@@ -920,7 +918,7 @@ stargazer(ShapT,
 ```
 
 
-## PrÃ©sentation graphique des rÃ©sidus 
+## Présentation graphique des résidus 
 ```{r echo = FALSE}
 par(mfrow = c(1,2), cex = 0.5)
 # par(mfrow = c(1,2), cex = 0.5)
@@ -978,7 +976,7 @@ legend(x = "bottomright", legend = c("RÃ©sidus", "Fitted", "Real"),
 #     cex = 1, lwd = 3)
 ```
 
-## Les rÃ©sultats 2SLS, W2SLS, 3SLS et i3SLS
+## Les résultats 2SLS, W2SLS, 3SLS et i3SLS
 ```{r include = FALSE}
 # equations
 eqdemand = qi ~ 0 + ipi + ri
@@ -1016,7 +1014,7 @@ texreg(list(sls2, wsls2, sls3, fiml),
 ```
 
 
-## Comparaison des modÃ¨les  
+## Comparaison des modèles  
 ```{r include = FALSE}
 h1 = hausman.systemfit(sls2, sls3) # p = 1, 3SLS inconsistent
 # 2SLS estimator is consistent
@@ -1049,7 +1047,7 @@ xtable(lr,
 ```
  
 
-## Le comportement des rÃ©sidus 
+## Le comportement des résidus 
 ```{r include = FALSE}
 ShapT = data.frame(nrow = 2, ncol = 6)
 ShapT[1,1] = shapiro.test(sls2$eq[[1]]$res)$p.val
@@ -1101,7 +1099,7 @@ stargazer(BartT,
 ```
  
 
-## Les PDF des rÃ©sidus 
+## Les PDF des résidus 
 ```{r echo = FALSE}
 par(mfrow = c(1,2), cex = 0.5)
 plot(density(sls2$eq[[1]]$res), col = "blue", 
@@ -1117,7 +1115,7 @@ legend(x = "topright", legend = c("2SLS", "i3SLS", "3SLS"),
     cex = 1, lwd = 3)
 ```
 
-## Les rÃ©sidus contre la variable prÃ©dite  
+## Les résidus contre la variable prédite  
 ```{r echo = FALSE}
 par(mfrow = c(1,2), cex = 0.5)
 plot(y = sls2$eq[[1]]$res, x = sls2$eq[[1]]$fit,
@@ -1142,7 +1140,7 @@ legend(x = "topright", legend = c("2SLS", "i3SLS", "3SLS"),
     cex = 1, lwd = 3)
 ```
 
-## Les rÃ©sidus et les prÃ©dictions pour i3SLS  
+## Les résidus et les prédictions pour i3SLS  
 ```{r echo = FALSE}
 par(mfrow = c(1,2), cex = 0.5)
 plot(y = fiml$eq[[1]]$res, x = as.numeric(resdata3$qi),
@@ -1211,7 +1209,7 @@ acf(fiml$eq[[1]]$res, main = "Demande")
 acf(fiml$eq[[2]]$res, main = "Offre")
 ```
 
-## L'independance des rÃ©sidus  
+## L'independance des résidus  
 ```{r include = FALSE}
 cormat = cor(resdata3[,-c(6,7)])
 cormat = cormat[1:5, 6:11]
@@ -1275,7 +1273,7 @@ nclef = data.frame(ndep = dataB$ndep, clust = fit1$cluster)
 dataWY = left_join(dataWi, nclef, by = "ndep")
 ```
 
-## ModÃ¨lisation
+## Modélisation
 
 ```{r include = FALSE}
 # Data transformation
@@ -1339,25 +1337,25 @@ texreg(float.pos = "!htbp",
 ```
 
 ## Conclusions 
-- Le marchÃ© du vin
-- Le rÃ´le des pesticides  
-- ValiditÃ© interne
+- Le marché du vin
+- Le rôle des pesticides  
+- Validité interne
 
-## Le marchÃ© du vin
+## Le marché du vin
 - Un comportement inattendu 
-    - Les effets de substitution vis-Ã -vis des produits haut de gamme 
-    - Les effets nÃ©gatifs du revenu 
+    - Les effets de substitution vis-à-vis des produits haut de gamme 
+    - Les effets négatifs du revenu 
     
 
-## Le rÃ´le des pesticides
-- Confirmation des rÃ©sultats des Ã©tudes prÃ©cedentes 
-    - UtilisÃ©s pour rÃ©duire les pertes 
+## Le rôle des pesticides
+- Confirmation des résultats des études précedentes 
+    - Utilisés pour réduire les pertes 
 
-## ValiditÃ© 
-- Faible validitÃ© du modÃ¨le Ã©conomÃ©trique 
+## Validité 
+- Faible validité du modèle économétrique 
     - Variables omises 
 
 ## Bibliographie 
 - Cembalo L., Caracciolo F., & Pomarici E. (2014). "Drinking cheaply : the demand for basic wine in italy." *Australian Journal of Agricultural and Resource Economics*, 58(3). 374-391.
-- Butault J-P., Delame N., Jacquet F. & Zardet G. (2011). "L'utilisation des pesticides en France: Ã©tat des lieux et perspectives de rÃ©duction." *Notes et Ã©tudes socio-Ã©conomiques*, 35. 7-26
-- Pujol J. (2017). "Apports des produits phytosanitaires en viticulture et climat : une analyse Ã  partir des enquÃªtes pratiques culturales." *Agreste Les Dossiers*. 39. 3-25
+- Butault J-P., Delame N., Jacquet F. & Zardet G. (2011). "L'utilisation des pesticides en France: état des lieux et perspectives de réduction." *Notes et études socio-économiques*, 35. 7-26
+- Pujol J. (2017). "Apports des produits phytosanitaires en viticulture et climat : une analyse à partir des enquêtes pratiques culturales." *Agreste Les Dossiers*. 39. 3-25

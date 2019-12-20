@@ -6,7 +6,7 @@ author: A. Blanc, N. Gusarov, S. Picon
 shortauthor : A.Blanc, N.Gusarov, S.Picon
 institute: Université Grenoble Alpes
 shortinstitute: UGA
-date: 20/12/2019
+date: 19/12/2019
 header-includes:
     - \usepackage{array}
     - \usepackage{multicol}
@@ -291,10 +291,10 @@ Dans cette étude, nous chercherons à étudier l'équilibre sur le marché du v
 - Source de nombreux débats sur la santé et l'environnement.
 - Le rôle actuel :
     - Moyen de protection contre les aléas climatiques ;
-    - Outil pour la préservation du rendement.
+    - Outil pour la réservation du rendement.
 
 - Plusieurs mesures mises en places pour réduire leurs usages :
-    - des interdictions des produits les plus toxiques ;
+    - des interdiction des produits les plus toxiques ;
     - l'instauration d'une taxe, payée par les agriculteurs (Butault et al, 2011).
 
 - Malgré les efforts l'utilisation perdure :
