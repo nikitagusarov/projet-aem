@@ -6,7 +6,7 @@ author: A. Blanc, N. Gusarov, S. Picon
 shortauthor : A.Blanc, N.Gusarov, S.Picon
 institute: Université Grenoble Alpes
 shortinstitute: UGA
-date: 19/12/2019 
+date: 25/12/2019  
 header-includes:
     - \usepackage{array}
     - \usepackage{multicol}
@@ -269,6 +269,12 @@ De cette façon nous chercherons à étudier l'équilibre sur le marché des vin
 ####################################################
 ```
 
+\hline 
+
+Mettre des sources partout !
+
+\hline
+
 Pour lutter contre l’utilisation des pesticides l’Etat Français et l’union européenne ont mis en place des mesures. 
 Ainsi, l’Etat Français lors du grenelle de l’environnement de 2006 a fixé ces objectifs. 
 Ainsi, le plan ECOPHYTO 2018 visait à réduire de 50% l’utilisation des pesticides de synthèse. 
@@ -393,6 +399,16 @@ Suivant le raisonnement des chercheurs [@cembalo2014], dans une catégorie de vi
  
 Cela nous permet d'analyser le marché par département est non par des marques/produits.
 
+\hline
+
+Ajouter des articles proches par la méthodologie à notre 
+
+- le cas du modèle simple,  
+- le cas du marchéliée,  
+- le cas des clusters.
+
+\hline
+
 ## Utilisation des pesticides dans la viticulture
 
 Les phytosanitaires sont très utilisés dans les cultures comme la viticulture. 
@@ -410,6 +426,14 @@ Ainsi, pour la vigne l’IFT varie de 7 en Provence à 22 en Champagne.
 ```
 
 ## Les hypothèses théoriques
+
+\hline
+
+Ajouter les réferences ...
+
+Ajouter la partie sur la demande non rélié ...
+
+\hline
 
 Comme proposé dans la littérature, notre étude sur les vins non coûteux (non IGP) est effectué au niveau du pays @cembalo2014 pour deux raisons. 
 D'abord, les prix de vente moyens des marchés sont diffèrent en raison des droits de douane à l'importation et des taxes à la consommation différents (Anderson et Nelgen 2011).
@@ -431,7 +455,21 @@ Pour conclure, nos suppositions au niveau du marché des vins sont les suivantes
 En ce qui concerne les pesticides, nous supposons que la demande des pesticides est inélastique au prix, ce qui nous permet d'exclure la partie de l'offre des pesticides du notre analyse. 
 C'est-à-dire, la quantité de pesticides utilisée correspond seulement à des intentions et aux besoins des agriculteurs. 
 
+\hline
+
+Ajouter une partie sur la clusterisation et les differences du comportement ...
+
+Ajouter un paragraph sur la comparaison eventuelle de ces modèles et les conclusions possibles ...
+
+\hline
+
 ## Formalisation 
+
+\hline
+
+Formaliser la partie sur la demande non rélié ...
+
+\hline
 
 En formalisant notre modèle théorique, nous posons, que la demande agregée de vin en France est de la forme suivante :
 
@@ -511,6 +549,14 @@ L'effet des pésticides dans la production du vin serons captés par le terme $c
 
 Il faut stresser, que nous supposons les effets de prix sont identiques pour tous les département en moyenne, tandis que nous laissons quand même les effets des autres variables dépéndantes (ex: le revenu et les pésticides) de varier par département.
 
+\hline
+
+Formaliser la partie sur la clusterisation et les differences du comportement ...
+
+Formaliser le paragraph sur la comparaison eventuelle de ces modèles et les conclusions possibles ...
+
+\hline
+
 # 4. Les données
 
 ```{r eval = FALSE, include = FALSE}
@@ -534,6 +580,12 @@ Nous avons utilisé les bases des données suivantes pour notre analyse :
 - Les données sur la production de vin (SSM Finances Publiques)
 
 ## Les variables utilisées pour notre modèle
+
+\hline
+
+réverifier tous les sources et la naure des données ...
+
+\hline
 
 Dans notre étude nous faisons face à un problème avec deux variables endogènes et trois variables exogènes.
 
@@ -763,6 +815,16 @@ dataW$ri = Within(datap$ri)
 ###################  Modèlisation  ##################
 #####################################################
 ```
+
+\hline 
+
+Séparer les modèles (OLS, 3SLS avec justification par 2SLS et la comparaison avec i3SLS, clusters en OLS et 3SLS).
+
+Justifier le choix des modèles par 3 cas théoriques. 
+
+Ajouter des liens avec des études méthodologiques precedents.
+
+\hline
 
 Cette partie du travail abordera la formulation économétrique du notre problème.
 Nous allons débuter par la présentation des notions théoriques implimentés dans ce travail, suivis par la formalisation économétrique du modèle théorique que nous avons spécifié dans la séction 5.
@@ -2351,7 +2413,3 @@ t & la tendance temporelle \\
 ###################   References   ##################
 #####################################################
 ```
-
-- Cembalo L., Caracciolo F., & Pomarici E. (2014). "Drinking cheaply : the demand for basic wine in italy." *Australian Journal of Agricultural and Resource Economics*, 58(3). 374-391.
-- Butault J-P., Delame N., Jacquet F. & Zardet G. (2011). "L'utilisation des pesticides en France: état des lieux et perspectives de réduction." *Notes et études socio-économiques*, 35. 7-26
-- Pujol J. (2017). "Apports des produits phytosanitaires en viticulture et climat : une analyse à partir des enquêtes pratiques culturales." *Agreste Les Dossiers*. 39. 3-25
