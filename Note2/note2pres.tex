@@ -25,7 +25,7 @@
 \usepackage{hyperref}
 \hypersetup{unicode=true,
             pdftitle={Etude des effets des pésticides dans la production des vins de table},
-            pdfauthor={A. Blanc, N. Gusarov, S. Picon},
+            pdfauthor={Arnaud Blanc, Nikita Gusarov, Sasha Picon},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
@@ -79,20 +79,123 @@
     \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
   \subtitle{Analyse empirique des marchés}
-  \author{A. Blanc, N. Gusarov, S. Picon}
+  \author{Arnaud Blanc, Nikita Gusarov, Sasha Picon}
     \preauthor{\centering\large\emph}
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{19/12/2019}
+    \date{25/12/2019}
 
-\usepackage{array}
-\usepackage{multicol}
-\usepackage{graphicx}
+\usepackage{setspace}
+
+% to make the first rows bold in tables
+\usepackage{longtable}
+\usepackage{tabu}
+\usepackage{booktabs}
+
+% Floats
+\usepackage{morefloats}
+\usepackage{float}
 \usepackage{placeins}
+
+% highlighting
+\usepackage{soul}
+
+% Short toc
+\usepackage{shorttoc}
+\setcounter{tocdepth}{1}
+
+% referencing mutliple things with a single command - \cref
+\usepackage{cleveref}
+
+% Change section names style
+\usepackage[dvipsnames]{xcolor}
+% \usepackage{sectsty}
+
+% \sectionfont{\color{Green}}  % sets colour of sections
+% \subsectionfont{\color{Green}}  % sets colour of sub
+% \subsubsectionfont{\color{Green}}  % sets colour of subsub
+
+% this makes dots in table of contents
+% \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+% to change the title of contents
+% \renewcommand{\contentsname}{Whatever}
+
+% line numbers for review purposes
+% this package might not be available in default latex installation 
+% get it by 'sudo tlmgr install lineno'
+%\usepackage{lineno}
+%\linenumbers
+
+% Array
+\usepackage{array}
+
+% Multiple columns
+\usepackage{multicol}
+
+% Image insertion and colors
+\usepackage{graphicx}
+
+% to be able to include latex comments
+\newenvironment{dummy}{}{}
+
+% maketitle definition
+\makeatletter
+\def\@maketitle{
+    \pagenumbering{gobble}
+    \raggedright
+    \includegraphics[height = 40mm]{univlogo.jpg} 
+    \begin{center}
+        \vspace*{\fill}
+            {\Huge \@title}\\
+            \par
+            \rule{5cm}{0.4pt}
+            \par
+            %\textbf{Rapport de stage}\\[10mm]
+            {\Large \@author}\\[10mm]
+        \vspace*{\fill}
+    \end{center}
+    {\large Tuteur : }\\
+    \hspace{10mm} {\large Adélaïde Fadhuile}\\
+    \vspace{10mm}
+    {\large Niveau d'études : }\\
+    \hspace{10mm} {\large Master 2}\\
+    {\large Parcours : }\\
+    \hspace{10mm} {\large Chargé d'études économiques et statistique}\\
+    \vspace{20mm}
+    \begin{center}
+        {\large Université Grenoble Alpes}\\
+        {\large Faculté d'économie et gestion}\\
+        \vspace{5mm}
+        2019 - 2020\\
+    \end{center}
+    \clearpage
+}
+\makeatother
 
 \begin{document}
 \maketitle
+
+
+\hypersetup{linkcolor = black}
+\pagenumbering{roman}
+
+\tableofcontents
+
+% \newpage
+
+% % list of figures have to be added manually to table of contents
+% \listoffigures 
+
+% \newpage
+% \listoftables
+
+% \doublespacing
+
+\newpage
+
+\pagenumbering{arabic}
+\hypersetup{linkcolor = blue}
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
@@ -117,6 +220,16 @@ est sensé de nous donner des résultats plus précis et fiables.
 
 \hypertarget{les-pesticides}{%
 \section{1. Les pesticides}\label{les-pesticides}}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+\textcolor{red}{Mettre des sources partout !}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
 
 Pour lutter contre l'utilisation des pesticides l'Etat Français et
 l'union européenne ont mis en place des mesures. Ainsi, l'Etat Français
@@ -308,6 +421,26 @@ et donc une différenciation peu marquée.
 Cela nous permet d'analyser le marché par département est non par des
 marques/produits.
 
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+\textcolor{red}{Ajouter des articles proches par la méthodologie à notre }
+
+\begin{itemize}
+\tightlist
+\item
+  \textcolor{red}{le cas du modèle simple,  }
+\item
+  \textcolor{red}{le cas du marchéliée, }
+\item
+  \textcolor{red}{le cas des clusters.}
+\end{itemize}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
 \hypertarget{utilisation-des-pesticides-dans-la-viticulture}{%
 \subsection{Utilisation des pesticides dans la
 viticulture}\label{utilisation-des-pesticides-dans-la-viticulture}}
@@ -325,6 +458,18 @@ de 7 en Provence à 22 en Champagne.
 
 \hypertarget{les-hypotheses-theoriques}{%
 \subsection{Les hypothèses théoriques}\label{les-hypotheses-theoriques}}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+\textcolor{red}{Ajouter les réferences ...}
+
+\textcolor{red}{Ajouter la partie sur la demande non rélié ...}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
 
 Comme proposé dans la littérature, notre étude sur les vins non coûteux
 (non IGP) est effectué au niveau du pays Cembalo, Caracciolo, and
@@ -370,8 +515,30 @@ partie de l'offre des pesticides du notre analyse. C'est-à-dire, la
 quantité de pesticides utilisée correspond seulement à des intentions et
 aux besoins des agriculteurs.
 
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+\textcolor{red}{Ajouter une partie sur la clusterisation et les differences du comportement ...}
+
+\textcolor{red}{Ajouter un paragraph sur la comparaison eventuelle de ces modèles et les conclusions possibles ...}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
 \hypertarget{formalisation}{%
 \subsection{Formalisation}\label{formalisation}}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+\textcolor{red}{Formaliser la partie sur la demande non rélié ...}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
 
 En formalisant notre modèle théorique, nous posons, que la demande
 agregée de vin en France est de la forme suivante :
@@ -488,6 +655,18 @@ pour tous les département en moyenne, tandis que nous laissons quand
 même les effets des autres variables dépéndantes (ex: le revenu et les
 pésticides) de varier par département.
 
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+\textcolor{red}{Formaliser la partie sur la clusterisation et les differences du comportement ...}
+
+\textcolor{red}{Formaliser le paragraph sur la comparaison eventuelle de ces modèles et les conclusions possibles ...}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
 \hypertarget{les-donnees}{%
 \section{4. Les données}\label{les-donnees}}
 
@@ -519,6 +698,22 @@ Nous avons utilisé les bases des données suivantes pour notre analyse :
 \hypertarget{les-variables-utilisees-pour-notre-modele}{%
 \subsection{Les variables utilisées pour notre
 modèle}\label{les-variables-utilisees-pour-notre-modele}}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+\textcolor{red}{Réverifier tous les sources et la naure des données ...}
+
+\textcolor{red}{Expliciter la procedure de création des variables}
+
+\textcolor{red}{Preciser les effets attendus des variables}
+
+\textcolor{red}{Discuter les externalités (ou c'est mieux de l'inclure dans la partie théorique ? ou contextualisation ? A VOIR)}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
 
 Dans notre étude nous faisons face à un problème avec deux variables
 endogènes et trois variables exogènes.
@@ -728,6 +923,16 @@ population.
 \hypertarget{letude-des-types-deffets}{%
 \subsection{L'étude des types d'effets}\label{letude-des-types-deffets}}
 
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+\textcolor{red}{Expliciter pourquoi on choisis les effets fixes (une comparaison avec les effets randomisés ?)}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
 Nous avons déjà vu, qu'il est fortement probable que nous faisons face à
 un modèle aux effets fixes individuelles. Il faut quand même le
 justifier. Pour faire cela, nous allons effectuer le test de
@@ -768,6 +973,24 @@ Maintenat nous allons \ldots{}
 
 \hypertarget{modelisation}{%
 \section{6. Modèlisation}\label{modelisation}}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+\textcolor{red}{Séparer les modèles (OLS, 3SLS avec justification par 2SLS et la comparaison avec i3SLS, clusters en OLS et 3SLS).}
+
+\textcolor{red}{Justifier le choix des modèles par 3 cas théoriques. Discuter les avantages et les inconveniences}
+
+\textcolor{red}{Ajouter des liens avec des études méthodologiques precedents.}
+
+\textcolor{red}{Pour le modèle 2SLS préciser la forme, tester les instruments}
+
+\textcolor{red}{Arbitrage du choix de 2SLS vs 3SLS}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
 
 Cette partie du travail abordera la formulation économétrique du notre
 problème. Nous allons débuter par la présentation des notions théoriques
@@ -1010,8 +1233,6 @@ Nous avons vus dans le comportement des résidus une nature non-aléatoire
 grouppé. Cela nous amène à l'idée de construire k-clusters pour
 modèliser les rélations par grouppe.
 
-\par
-
 Nous supposons que les départements ayant des valeurs moyennes
 interannuelles proches (transformation Between) ont le comportement
 identique. La clusterisation est effectué sur les données Between pour
@@ -1089,34 +1310,34 @@ Les résultats obtenus sont suivants :
 \hline
  & OLS & 2SLS & 3SLS \\
 \hline
-Demande: ipi        & $0.33^{***}$  & $0.62^{***}$   & $0.61^{***}$   \\
-                    & $(0.02)$      & $(0.09)$       & $(0.09)$       \\
-Demande: ri1        & $-9.59^{***}$ & $-11.68^{***}$ & $-11.75^{***}$ \\
-                    & $(2.62)$      & $(3.47)$       & $(3.47)$       \\
-Demande: ri2        & $-8.60^{**}$  & $-14.46^{***}$ & $-14.42^{***}$ \\
-                    & $(2.62)$      & $(3.88)$       & $(3.88)$       \\
-Demande: ri3        & $-8.84^{***}$ & $-8.92^{**}$   & $-8.98^{**}$   \\
-                    & $(2.37)$      & $(3.07)$       & $(3.07)$       \\
-Offre: ipi          & $0.30^{***}$  & $-0.07$        & $-0.07$        \\
-                    & $(0.02)$      & $(0.15)$       & $(0.15)$       \\
-Offre: si1          & $0.25^{***}$  & $0.37^{**}$    & $0.38^{**}$    \\
-                    & $(0.07)$      & $(0.12)$       & $(0.12)$       \\
-Offre: si2          & $0.21^{**}$   & $0.51^{**}$    & $0.51^{**}$    \\
-                    & $(0.07)$      & $(0.16)$       & $(0.16)$       \\
-Offre: si3          & $0.26^{***}$  & $0.29^{**}$    & $0.29^{**}$    \\
-                    & $(0.07)$      & $(0.10)$       & $(0.10)$       \\
-Offre: iki1         & $-0.08$       & $-0.04$        & $-0.04$        \\
-                    & $(0.08)$      & $(0.11)$       & $(0.11)$       \\
-Offre: iki2         & $-0.14$       & $-0.08$        & $-0.08$        \\
-                    & $(0.07)$      & $(0.11)$       & $(0.11)$       \\
-Offre: iki3         & $-0.31^{**}$  & $-0.35^{*}$    & $-0.35^{*}$    \\
-                    & $(0.10)$      & $(0.14)$       & $(0.14)$       \\
+Demande: ipi        & $0.33^{***}$   & $0.15^{***}$   & $0.16^{***}$ \\
+                    & $(0.02)$       & $(0.03)$       & $(0.03)$     \\
+Demande: ri1        & $-17.14^{***}$ & $-18.38^{***}$ & $-3.30^{**}$ \\
+                    & $(2.09)$       & $(2.35)$       & $(1.26)$     \\
+Demande: ri2        & $-1.69$        & $0.99$         & $0.48$       \\
+                    & $(1.92)$       & $(2.17)$       & $(1.19)$     \\
+Demande: ri3        & $-22.12^{*}$   & $13.13$        & $13.93$      \\
+                    & $(10.47)$      & $(12.23)$      & $(12.17)$    \\
+Offre: ipi          & $0.37^{***}$   & $0.16^{***}$   & $0.19^{***}$ \\
+                    & $(0.02)$       & $(0.03)$       & $(0.03)$     \\
+Offre: si1          & $0.26^{***}$   & $0.31^{***}$   & $0.06^{*}$   \\
+                    & $(0.04)$       & $(0.05)$       & $(0.03)$     \\
+Offre: si2          & $0.14$         & $0.21^{*}$     & $0.03$       \\
+                    & $(0.08)$       & $(0.09)$       & $(0.05)$     \\
+Offre: si3          & $-2.58^{***}$  & $-0.68$        & $-0.58$      \\
+                    & $(0.37)$       & $(0.47)$       & $(0.46)$     \\
+Offre: iki1         & $-0.18^{***}$  & $-0.20^{***}$  & $-0.04$      \\
+                    & $(0.05)$       & $(0.06)$       & $(0.03)$     \\
+Offre: iki2         & $-0.06$        & $0.00$         & $-0.01$      \\
+                    & $(0.08)$       & $(0.09)$       & $(0.05)$     \\
+Offre: iki3         & $13.81^{***}$  & $8.01^{*}$     & $4.03$       \\
+                    & $(3.21)$       & $(3.74)$       & $(2.99)$     \\
 \hline
-Demande: R$^2$      & 0.50          & 0.15           & 0.16           \\
-Offre: R$^2$        & 0.53          & -0.04          & -0.04          \\
-Demande: Adj. R$^2$ & 0.49          & 0.15           & 0.15           \\
-Offre: Adj. R$^2$   & 0.52          & -0.06          & -0.06          \\
-Num. obs. (total)   & 690           & 690            & 690            \\
+Demande: R$^2$      & 0.54           & 0.42           & 0.37         \\
+Offre: R$^2$        & 0.59           & 0.46           & 0.42         \\
+Demande: Adj. R$^2$ & 0.54           & 0.42           & 0.36         \\
+Offre: Adj. R$^2$   & 0.59           & 0.45           & 0.41         \\
+Num. obs. (total)   & 690            & 690            & 690          \\
 \hline
 \multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
@@ -1512,11 +1733,11 @@ résidus}\label{c1-independance-des-residus}}
 
 \begin{figure}[!htbp]
 
-{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-79-1} 
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-80-1} 
 
 }
 
-\caption{Les résidus contre la variable prédite}\label{fig:unnamed-chunk-79}
+\caption{Les résidus contre la variable prédite}\label{fig:unnamed-chunk-80}
 \end{figure}
 
 \FloatBarrier
@@ -1525,11 +1746,11 @@ résidus}\label{c1-independance-des-residus}}
 
 \begin{figure}[!htbp]
 
-{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-80-1} 
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-81-1} 
 
 }
 
-\caption{Les résidus et les prédictions, le cas de i3SLS}\label{fig:unnamed-chunk-80}
+\caption{Les résidus et les prédictions, le cas de i3SLS}\label{fig:unnamed-chunk-81}
 \end{figure}
 
 \FloatBarrier
@@ -1549,8 +1770,8 @@ résidus}\label{c1-independance-des-residus}}
 \hline \\[-1.8ex] 
  & 2SLS & 3SLS & i3SLS \\ 
 \hline \\[-1.8ex] 
-Equation de demande & $0.842$ & $0.842$ & $0.842$ \\ 
-Equation d'offre & $0.643$ & $0.643$ & $0.643$ \\ 
+Equation de demande & $0.618$ & $0.618$ & $0.618$ \\ 
+Equation d'offre & $0.637$ & $0.638$ & $0.638$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
@@ -1564,8 +1785,8 @@ l'hétéroskedacité}\label{c3-test-de-lheteroskedacite}}
 \FloatBarrier
 
 \% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard
-University. E-mail: hlavac at fas.harvard.edu \% Date and time: mar.,
-déc. 17, 2019 - 10:05:16
+University. E-mail: hlavac at fas.harvard.edu \% Date and time: sam.,
+déc. 21, 2019 - 15:43:24
 
 \begin{table}[!htbp] \centering 
   \caption{Test de Bartlett sur l'heterockedacité} 
@@ -1613,11 +1834,11 @@ Equation d'offre & $0$ & $0$ & $0$ \\
 
 \begin{figure}[!htbp]
 
-{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-88-1} 
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-89-1} 
 
 }
 
-\caption{Les PDF des résidus}\label{fig:unnamed-chunk-88}
+\caption{Les PDF des résidus}\label{fig:unnamed-chunk-89}
 \end{figure}
 
 \FloatBarrier
@@ -1671,9 +1892,9 @@ Les groupes sont définies par des caractéristiques suivantes :
 \hline \\[-1.8ex] 
  & qi & ipi & si & ri & iki & .1 \\ 
 \hline \\[-1.8ex] 
-1 & $10.609$ & $1.393$ & $6.705$ & $9.880$ & $1.273$ & $27$ \\ 
-2 & $7.468$ & $1.416$ & $4.345$ & $9.905$ & $1.238$ & $34$ \\ 
-3 & $4.340$ & $1.622$ & $1.098$ & $9.870$ & $1.284$ & $8$ \\ 
+1 & $5.445$ & $1.872$ & $2.395$ & $9.882$ & $1.290$ & $18$ \\ 
+2 & $10.940$ & $1.332$ & $7.000$ & $9.867$ & $1.290$ & $21$ \\ 
+3 & $8.245$ & $1.235$ & $4.914$ & $9.914$ & $1.213$ & $30$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
@@ -1699,36 +1920,36 @@ Les groupes sont définies par des caractéristiques suivantes :
 \hline \\[-1.8ex] 
  & qi & ipi & si & ri & iki & n & k & t \\ 
 \hline \\[-1.8ex] 
-1 & -0.043063 & -0.485394 & -0.006689 & -0.011934 & -0.136598 & 11 & 1 & 1 \\ 
-2 & -0.522764 & -0.680564 & -0.095039 & 8e-05 & 0.01366 & 11 & 1 & 2 \\ 
-3 & 0.013249 & 0.007324 & -0.088849 & -0.007139 & 0.189861 & 11 & 1 & 3 \\ 
-4 & -0.042498 & -0.028727 & -0.155952 & 0.00375 & -0.1211 & 11 & 1 & 4 \\ 
-5 & 0.595076 & 1.187361 & 0.34653 & 0.015243 & 0.054177 & 11 & 1 & 5 \\ 
-6 & -0.214078 & -0.800681 & -0.133121 & -0.01161 & -0.106981 & 11 & 2 & 1 \\ 
-7 & 0.214574 & 0.182905 & -0.035569 & 0.002559 & -0.118985 & 11 & 2 & 2 \\ 
-8 & 0.413915 & 0.739933 & 0.052065 & -0.006124 & 0.111213 & 11 & 2 & 3 \\ 
-9 & 0.273287 & 0.651725 & -0.067857 & 0.002892 & -0.172443 & 11 & 2 & 4 \\ 
-10 & -0.687698 & -0.773882 & 0.184482 & 0.012282 & 0.287196 & 11 & 2 & 5 \\ 
-11 & 0.217917 & -0.112984 & 0.304215 & -0.009846 & -0.164836 & 17 & 3 & 1 \\ 
-12 & 0.36242 & 0.291567 & 0.205441 & 0.00356 & -0.058565 & 17 & 3 & 2 \\ 
-13 & 0.245299 & 0.231216 & 0.050376 & -0.006807 & 0.031069 & 17 & 3 & 3 \\ 
-14 & 0.064032 & 0.212893 & 0.112624 & 0.001855 & -0.040787 & 17 & 3 & 4 \\ 
-15 & -0.889668 & -0.622692 & -0.672657 & 0.011238 & 0.233119 & 17 & 3 & 5 \\ 
+1 & 0.345588 & 0.058152 & 0.359033 & -0.009476 & -0.340214 & 16 & 1 & 1 \\ 
+2 & 0.253177 & 0.154783 & 0.378035 & 0.002941 & -0.166672 & 16 & 1 & 2 \\ 
+3 & 0.268735 & 0.251647 & 0.150603 & -0.00779 & 0.073214 & 16 & 1 & 3 \\ 
+4 & -0.134008 & -0.006006 & -0.201242 & 0.001986 & 0.0317 & 16 & 1 & 4 \\ 
+5 & -0.733492 & -0.458576 & -0.686429 & 0.01234 & 0.401972 & 16 & 1 & 5 \\ 
+6 & 0.001481 & -0.520485 & 0.358768 & -0.014219 & -0.231042 & 7 & 2 & 1 \\ 
+7 & 0.234121 & 0.060227 & 0.064584 & -0.00091 & -0.123662 & 7 & 2 & 2 \\ 
+8 & 0.283902 & 0.298411 & -0.026948 & -0.00374 & 0.409993 & 7 & 2 & 3 \\ 
+9 & 0.5986 & 1.155182 & 0.045766 & 0.00452 & -0.258706 & 7 & 2 & 4 \\ 
+10 & -1.118103 & -0.993335 & -0.442169 & 0.014349 & 0.203417 & 7 & 2 & 5 \\ 
+11 & -0.043063 & -0.485394 & -0.006689 & -0.011934 & -0.136598 & 11 & 3 & 1 \\ 
+12 & -0.522764 & -0.680564 & -0.095039 & 8e-05 & 0.01366 & 11 & 3 & 2 \\ 
+13 & 0.013249 & 0.007324 & -0.088849 & -0.007139 & 0.189861 & 11 & 3 & 3 \\ 
+14 & -0.042498 & -0.028727 & -0.155952 & 0.00375 & -0.1211 & 11 & 3 & 4 \\ 
+15 & 0.595076 & 1.187361 & 0.34653 & 0.015243 & 0.054177 & 11 & 3 & 5 \\ 
 16 & -1.595397 & -7.941881 & -0.261529 & -0.02149 & -0.049931 & 1 & 4 & 1 \\ 
 17 & 0.253285 & -1.404496 & -0.153318 & 0.001641 & -0.013255 & 1 & 4 & 2 \\ 
 18 & 0.529538 & 2.487263 & 0.747453 & -0.004844 & 0.080087 & 1 & 4 & 3 \\ 
 19 & 0.936501 & 9.608734 & 0.226164 & 0.006494 & -0.034652 & 1 & 4 & 4 \\ 
 20 & -0.123927 & -2.749621 & -0.55877 & 0.018199 & 0.017751 & 1 & 4 & 5 \\ 
-21 & 0.07682 & -0.225532 & 0.143562 & -0.011449 & -0.381097 & 26 & 5 & 1 \\ 
-22 & -0.117662 & -0.151243 & 0.167836 & 0.000138 & -0.022597 & 26 & 5 & 2 \\ 
-23 & 0.115517 & 0.195875 & 0.033916 & -0.007162 & 0.200495 & 26 & 5 & 3 \\ 
-24 & 0.002217 & 0.143615 & -0.141259 & 0.003865 & -0.068942 & 26 & 5 & 4 \\ 
-25 & -0.076892 & 0.037284 & -0.204055 & 0.014607 & 0.272141 & 26 & 5 & 5 \\ 
-26 & 0.331723 & 0.045837 & 0.698945 & -0.008934 & -0.757732 & 3 & 6 & 1 \\ 
-27 & 0.295625 & 0.239917 & 0.88176 & -0.000274 & -0.455128 & 3 & 6 & 2 \\ 
-28 & 0.210653 & 0.144478 & 0.145383 & -0.008319 & -6e-06 & 3 & 6 & 3 \\ 
-29 & -0.425008 & -0.121026 & -0.878387 & 0.002134 & 0.263817 & 3 & 6 & 4 \\ 
-30 & -0.412993 & -0.309206 & -0.847702 & 0.015394 & 0.949049 & 3 & 6 & 5 \\ 
+21 & 0.099748 & -0.177332 & 0.145469 & -0.011801 & -0.409562 & 20 & 5 & 1 \\ 
+22 & -0.160495 & -0.187575 & 0.152093 & -0.000718 & -0.004243 & 20 & 5 & 2 \\ 
+23 & 0.097164 & 0.173283 & 0.031231 & -0.006981 & 0.176087 & 20 & 5 & 3 \\ 
+24 & -0.021779 & 0.099385 & -0.149378 & 0.004259 & -0.06455 & 20 & 5 & 4 \\ 
+25 & -0.014638 & 0.092238 & -0.179415 & 0.015241 & 0.302268 & 20 & 5 & 5 \\ 
+26 & -0.228037 & -0.728211 & -0.116323 & -0.009457 & -0.064913 & 14 & 6 & 1 \\ 
+27 & 0.276381 & 0.329244 & 0.040554 & 0.004651 & -0.04572 & 14 & 6 & 2 \\ 
+28 & 0.294871 & 0.572517 & -0.007039 & -0.007414 & -0.042767 & 14 & 6 & 3 \\ 
+29 & 0.090488 & 0.298657 & 0.053383 & 0.001548 & -0.071183 & 14 & 6 & 4 \\ 
+30 & -0.433703 & -0.472206 & 0.029425 & 0.010672 & 0.224582 & 14 & 6 & 5 \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
@@ -1738,7 +1959,7 @@ Les groupes sont définies par des caractéristiques suivantes :
 \hypertarget{representation-graphique}{%
 \paragraph{Representation graphique}\label{representation-graphique}}
 
-\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-96-1} \end{center}
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-97-1} \end{center}
 
 \hypertarget{d3-cas-dinformation-complete}{%
 \subsubsection{D3 Cas d'information
@@ -1759,21 +1980,21 @@ Les groupes sont définies par des caractéristiques suivantes :
 \hline \\[-1.8ex] 
  & qi & ipi & si & ri & iki & n & k & t \\ 
 \hline \\[-1.8ex] 
-1 & 5.37234 & 0 & 2.473289 & 9.869431 & 0 & 17 & 1 & 1 \\ 
-2 & -0.016113 & -0.123711 & 0.243583 & 0.001429 & -0.006446 & 21 & 1 & 2 \\ 
-3 & 0.212944 & 0.282023 & 0.055454 & -0.007052 & 0.139638 & 21 & 1 & 3 \\ 
-4 & -0.043623 & 0.105585 & -0.289131 & 0.003124 & -0.077699 & 21 & 1 & 4 \\ 
-5 & -0.255188 & 4.9e-05 & -0.198252 & 0.013691 & 0.273823 & 21 & 1 & 5 \\ 
-6 & 8.204277 & 0 & 4.987838 & 9.900816 & 0 & 30 & 2 & 1 \\ 
-7 & -0.025599 & -0.100967 & 0.045283 & 0.002595 & -0.048242 & 26 & 2 & 2 \\ 
-8 & 0.183029 & 0.347599 & -0.022566 & -0.006784 & 0.180412 & 26 & 2 & 3 \\ 
-9 & 0.165375 & 0.713245 & 0.118392 & 0.002797 & -0.091783 & 26 & 2 & 4 \\ 
-10 & -0.219784 & -0.192492 & -0.203218 & 0.012529 & 0.189919 & 26 & 2 & 5 \\ 
-11 & 10.905002 & 0 & 7.048328 & 9.860348 & 0 & 22 & 3 & 1 \\ 
-12 & 0.084361 & 0.004019 & 0.119041 & -0.00016 & -0.124121 & 22 & 3 & 2 \\ 
-13 & 0.172876 & 0.23654 & 0.088152 & -0.006961 & 0.068628 & 22 & 3 & 3 \\ 
-14 & -0.001697 & 0.12228 & -0.165249 & 0.003621 & -0.042728 & 22 & 3 & 4 \\ 
-15 & -0.383271 & -0.170071 & -0.207016 & 0.01476 & 0.316841 & 22 & 3 & 5 \\ 
+1 & 0.098311 & -0.291704 & 0.206247 & -0.01031 & -0.27852 & 39 & 1 & 1 \\ 
+2 & 0.223902 & 0.18426 & 0.174215 & 0.002905 & -0.108882 & 39 & 1 & 2 \\ 
+3 & 0.283634 & 0.373141 & 0.059067 & -0.006982 & 0.141058 & 39 & 1 & 3 \\ 
+4 & 0.086134 & 0.306445 & -0.065995 & 0.002333 & -0.059896 & 39 & 1 & 4 \\ 
+5 & -0.691981 & -0.572142 & -0.373534 & 0.012054 & 0.30624 & 39 & 1 & 5 \\ 
+6 & 0.001186 & -0.359222 & 0.04895 & -0.012025 & -0.234518 & 29 & 2 & 1 \\ 
+7 & -0.280464 & -0.376425 & 0.078291 & -0.000723 & 0.004804 & 29 & 2 & 2 \\ 
+8 & 0.049743 & 0.107731 & -0.01841 & -0.006913 & 0.122468 & 29 & 2 & 3 \\ 
+9 & -0.032737 & 0.065232 & -0.147634 & 0.004155 & -0.089222 & 29 & 2 & 4 \\ 
+10 & 0.262272 & 0.562683 & 0.038803 & 0.015506 & 0.196468 & 29 & 2 & 5 \\ 
+11 & -1.595397 & -7.941881 & -0.261529 & -0.02149 & -0.049931 & 1 & 3 & 1 \\ 
+12 & 0.253285 & -1.404496 & -0.153318 & 0.001641 & -0.013255 & 1 & 3 & 2 \\ 
+13 & 0.529538 & 2.487263 & 0.747453 & -0.004844 & 0.080087 & 1 & 3 & 3 \\ 
+14 & 0.936501 & 9.608734 & 0.226164 & 0.006494 & -0.034652 & 1 & 3 & 4 \\ 
+15 & -0.123927 & -2.749621 & -0.55877 & 0.018199 & 0.017751 & 1 & 3 & 5 \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
@@ -1785,7 +2006,7 @@ Les groupes sont définies par des caractéristiques suivantes :
 
 \FloatBarrier
 
-\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-99-1} \end{center}
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-100-1} \end{center}
 
 \FloatBarrier
 
@@ -1808,7 +2029,7 @@ Etudions la validité du modèle 3SLS :
 \hline \\[-1.8ex] 
  & Test & Resultats \\ 
 \hline \\[-1.8ex] 
-1 & 2SLS contre 3SLS & $0.879$ \\ 
+1 & 2SLS contre 3SLS & $0$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
@@ -1825,7 +2046,7 @@ La normalité des résidus :
 \hline \\[-1.8ex] 
  & OLS & 2SLS & 3SLS \\ 
 \hline \\[-1.8ex] 
-Equation de demande & $0$ & $0$ & $0$ \\ 
+Equation de demande & $0$ & $0.00000$ & $0$ \\ 
 Equation d'offre & $0$ & $0$ & $0$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
@@ -1847,7 +2068,7 @@ L'heteroscedacité :
 \hline \\[-1.8ex] 
  & OLS & 2SLS & 3SLS \\ 
 \hline \\[-1.8ex] 
-Equation de demande & $0$ & $0$ & $0$ \\ 
+Equation de demande & $0$ & $0.00002$ & $0.00000$ \\ 
 Equation d'offre & $0$ & $0.00000$ & $0.00000$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
@@ -1859,7 +2080,7 @@ Les PDF des résidus :
 
 \FloatBarrier
 
-\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-107-1} \end{center}
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-108-1} \end{center}
 
 \FloatBarrier
 
@@ -1867,7 +2088,7 @@ Les résidus contre les variables prédites :
 
 \FloatBarrier
 
-\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-108-1} \end{center}
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-109-1} \end{center}
 
 \FloatBarrier
 
@@ -1886,9 +2107,9 @@ base des données finale.
   \centering
 \caption{Ditionnaire des varibales}
 \begin{tabular}{c|l}
-  \hline
+  \noindent\rule[0.5ex]{\linewidth}{1pt}
   Variable & Description \\
-  \hline
+  \noindent\rule[0.5ex]{\linewidth}{1pt}
 année & année \\
 ndep & numéro de département \\
 si & superficie de vigne sans indication géographique en hectare en log \\
@@ -1897,7 +2118,7 @@ ipi & indice des prix du vin sans IG déflatés en log  \\
 ri & revenu disponible brut des ménages français déflatés en log \\
 iki & indice de quantité de pesticides achetés en log \\
 t & la tendance temporelle \\
-\hline
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 \end{tabular}
 \end{table}
 
@@ -1906,24 +2127,8 @@ t & la tendance temporelle \\
 \newpage
 
 \hypertarget{references}{%
-\section{References}\label{references}}
-
-\begin{itemize}
-\tightlist
-\item
-  Cembalo L., Caracciolo F., \& Pomarici E. (2014). ``Drinking cheaply :
-  the demand for basic wine in italy.'' \emph{Australian Journal of
-  Agricultural and Resource Economics}, 58(3). 374-391.
-\item
-  Butault J-P., Delame N., Jacquet F. \& Zardet G. (2011).
-  ``L'utilisation des pesticides en France: état des lieux et
-  perspectives de réduction.'' \emph{Notes et études socio-économiques},
-  35. 7-26
-\item
-  Pujol J. (2017). ``Apports des produits phytosanitaires en viticulture
-  et climat : une analyse à partir des enquêtes pratiques culturales.''
-  \emph{Agreste Les Dossiers}. 39. 3-25
-\end{itemize}
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
 
 \hypertarget{refs}{}
 \leavevmode\hypertarget{ref-cembalo2014}{}%

@@ -2,16 +2,17 @@
 title: "Etude des effets des pésticides dans la production des vins de table"
 shorttitle : "Les effets des pésticides"
 subtitle: "Analyse empirique des marchés"
-author: A. Blanc, N. Gusarov, S. Picon
+author: Arnaud Blanc, Nikita Gusarov, Sasha Picon
 shortauthor : A.Blanc, N.Gusarov, S.Picon
 institute: Université Grenoble Alpes
 shortinstitute: UGA
 date: 25/12/2019  
-header-includes:
-    - \usepackage{array}
-    - \usepackage{multicol}
-    - \usepackage{graphicx}
-    - \usepackage{placeins}
+# header-includes:
+#     - \usepackage{array}
+#     - \usepackage{multicol}
+#     - \usepackage{graphicx}
+#     - \usepackage{placeins}
+#     - \usepackage{xcolor}
 output: 
     pdf_document:
         # template: Template.tex
@@ -24,8 +25,9 @@ output:
         fig_height: 3
         fig_caption: yes
         number_sections: FALSE
-        # includes:
-        #     in_header: Header.tex
+        includes:
+            in_header: packages.sty
+            before_body: toc.sty
 fontsize: 11pt
 bibliography: biblio.bib
 # geometry: margin = 0.5in
@@ -269,11 +271,11 @@ De cette façon nous chercherons à étudier l'équilibre sur le marché des vin
 ####################################################
 ```
 
-\hline 
+\noindent\rule[0.5ex]{\linewidth}{1pt} 
 
-Mettre des sources partout !
+\textcolor{red}{Mettre des sources partout !}
 
-\hline
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 
 Pour lutter contre l’utilisation des pesticides l’Etat Français et l’union européenne ont mis en place des mesures. 
 Ainsi, l’Etat Français lors du grenelle de l’environnement de 2006 a fixé ces objectifs. 
@@ -399,15 +401,15 @@ Suivant le raisonnement des chercheurs [@cembalo2014], dans une catégorie de vi
  
 Cela nous permet d'analyser le marché par département est non par des marques/produits.
 
-\hline
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 
-Ajouter des articles proches par la méthodologie à notre 
+\textcolor{red}{Ajouter des articles proches par la méthodologie à notre }
 
-- le cas du modèle simple,  
-- le cas du marchéliée,  
-- le cas des clusters.
+- \textcolor{red}{le cas du modèle simple,  }
+- \textcolor{red}{le cas du marchéliée, } 
+- \textcolor{red}{le cas des clusters.}
 
-\hline
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 
 ## Utilisation des pesticides dans la viticulture
 
@@ -427,13 +429,13 @@ Ainsi, pour la vigne l’IFT varie de 7 en Provence à 22 en Champagne.
 
 ## Les hypothèses théoriques
 
-\hline
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 
-Ajouter les réferences ...
+\textcolor{red}{Ajouter les réferences ...}
 
-Ajouter la partie sur la demande non rélié ...
+\textcolor{red}{Ajouter la partie sur la demande non rélié ...}
 
-\hline
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 
 Comme proposé dans la littérature, notre étude sur les vins non coûteux (non IGP) est effectué au niveau du pays @cembalo2014 pour deux raisons. 
 D'abord, les prix de vente moyens des marchés sont diffèrent en raison des droits de douane à l'importation et des taxes à la consommation différents (Anderson et Nelgen 2011).
@@ -455,21 +457,21 @@ Pour conclure, nos suppositions au niveau du marché des vins sont les suivantes
 En ce qui concerne les pesticides, nous supposons que la demande des pesticides est inélastique au prix, ce qui nous permet d'exclure la partie de l'offre des pesticides du notre analyse. 
 C'est-à-dire, la quantité de pesticides utilisée correspond seulement à des intentions et aux besoins des agriculteurs. 
 
-\hline
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 
-Ajouter une partie sur la clusterisation et les differences du comportement ...
+\textcolor{red}{Ajouter une partie sur la clusterisation et les differences du comportement ...}
 
-Ajouter un paragraph sur la comparaison eventuelle de ces modèles et les conclusions possibles ...
+\textcolor{red}{Ajouter un paragraph sur la comparaison eventuelle de ces modèles et les conclusions possibles ...}
 
-\hline
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 
 ## Formalisation 
 
-\hline
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 
-Formaliser la partie sur la demande non rélié ...
+\textcolor{red}{Formaliser la partie sur la demande non rélié ...}
 
-\hline
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 
 En formalisant notre modèle théorique, nous posons, que la demande agregée de vin en France est de la forme suivante :
 
@@ -549,13 +551,13 @@ L'effet des pésticides dans la production du vin serons captés par le terme $c
 
 Il faut stresser, que nous supposons les effets de prix sont identiques pour tous les département en moyenne, tandis que nous laissons quand même les effets des autres variables dépéndantes (ex: le revenu et les pésticides) de varier par département.
 
-\hline
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 
-Formaliser la partie sur la clusterisation et les differences du comportement ...
+\textcolor{red}{Formaliser la partie sur la clusterisation et les differences du comportement ...}
 
-Formaliser le paragraph sur la comparaison eventuelle de ces modèles et les conclusions possibles ...
+\textcolor{red}{Formaliser le paragraph sur la comparaison eventuelle de ces modèles et les conclusions possibles ...}
 
-\hline
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 
 # 4. Les données
 
@@ -581,11 +583,17 @@ Nous avons utilisé les bases des données suivantes pour notre analyse :
 
 ## Les variables utilisées pour notre modèle
 
-\hline
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 
-réverifier tous les sources et la naure des données ...
+\textcolor{red}{Réverifier tous les sources et la naure des données ...}
 
-\hline
+\textcolor{red}{Expliciter la procedure de création des variables}
+
+\textcolor{red}{Preciser les effets attendus des variables}
+
+\textcolor{red}{Discuter les externalités (ou c'est mieux de l'inclure dans la partie théorique ? ou contextualisation ? A VOIR)}
+
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 
 Dans notre étude nous faisons face à un problème avec deux variables endogènes et trois variables exogènes.
 
@@ -772,6 +780,12 @@ Sauf le cas de la surface nous ne pouvons pas rejeter l'hypothese nulle, specifi
 
 ## L'étude des types d'effets  
 
+\noindent\rule[0.5ex]{\linewidth}{1pt} 
+
+\textcolor{red}{Expliciter pourquoi on choisis les effets fixes (une comparaison avec les effets randomisés ?)}
+
+\noindent\rule[0.5ex]{\linewidth}{1pt}
+
 Nous avons déjà vu, qu'il est fortement probable que nous faisons face à un modèle aux effets fixes individuelles. 
 Il faut quand même le justifier.
 Pour faire cela, nous allons effectuer le test de multiplicateur de Lagrange sur la nature des effets fixes. 
@@ -816,15 +830,19 @@ dataW$ri = Within(datap$ri)
 #####################################################
 ```
 
-\hline 
+\noindent\rule[0.5ex]{\linewidth}{1pt} 
 
-Séparer les modèles (OLS, 3SLS avec justification par 2SLS et la comparaison avec i3SLS, clusters en OLS et 3SLS).
+\textcolor{red}{Séparer les modèles (OLS, 3SLS avec justification par 2SLS et la comparaison avec i3SLS, clusters en OLS et 3SLS).}
 
-Justifier le choix des modèles par 3 cas théoriques. 
+\textcolor{red}{Justifier le choix des modèles par 3 cas théoriques. Discuter les avantages et les inconveniences}
 
-Ajouter des liens avec des études méthodologiques precedents.
+\textcolor{red}{Ajouter des liens avec des études méthodologiques precedents.}
 
-\hline
+\textcolor{red}{Pour le modèle 2SLS préciser la forme, tester les instruments}
+
+\textcolor{red}{Arbitrage du choix de 2SLS vs 3SLS}
+
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 
 Cette partie du travail abordera la formulation économétrique du notre problème.
 Nous allons débuter par la présentation des notions théoriques implimentés dans ce travail, suivis par la formalisation économétrique du modèle théorique que nous avons spécifié dans la séction 5.
@@ -1091,7 +1109,7 @@ texreg(float.pos = "!htbp",
 
 Nous avons vus dans le comportement des résidus une nature non-aléatoire grouppé. 
 Cela nous amène à l'idée de construire k-clusters pour modèliser les rélations par grouppe.
-\par 
+
 Nous supposons que les départements ayant des valeurs moyennes interannuelles proches (transformation Between) ont le comportement identique.
 La clusterisation est effectué sur les données Between pour les départements.
 
@@ -1280,7 +1298,7 @@ points(1:15, wss, col = "red")
 
 ```{r include = FALSE}
 # Grouping
-fit3 = kmeans(iter.max = 100, dataC[,-1], 3)
+fit3 = kmeans(iter.max = 100, dataC[,-6], 3)
 # require(FactoMineR)
 nclef3 = data.frame(ndep = as.factor(dataC$ndep), clust = fit3$cluster)
 dataWZ = left_join(dataWi, nclef3, by = "ndep")
@@ -1377,12 +1395,14 @@ texreg(float.pos = "!htbp",
 \FloatBarrier
 
 ## Le rôle des pésticides
+
 - Confirmation des résultats des études précedentes 
     - Utilisés pour réduire les pertes 
 
 \FloatBarrier
 
 ## Validité 
+
 - Faible validité du modèle économétrique 
     - Variables ommises 
 
@@ -1827,6 +1847,16 @@ fiml = systemfit(system,
 ### C1 Independance des résidus  
 
 ```{r include = FALSE}
+resdata3 = dataWX %>% 
+    mutate(u1 = sls2$eq[[1]]$res,
+        u2 = sls2$eq[[2]]$res,
+        u3 = sls3$eq[[1]]$res,
+        u4 = sls3$eq[[2]]$res,
+        u5 = fiml$eq[[1]]$res,
+        u6 = fiml$eq[[2]]$res)
+```
+
+```{r include = FALSE}
 cormat = cor(resdata3[,-c(6,7)])
 cormat = cormat[1:5, 6:11]
 colnames(cormat) = c("2SLS D", "2SLS O", 
@@ -2168,7 +2198,7 @@ Les groupes sont définies par des caractéristiques suivantes :
 
 ```{r include = FALSE}
 names(clusters3)[(ncol(clusters3)-1):ncol(clusters3)] = c("n", "k")
-c1 = clusters %>%
+c1 = clusters3 %>%
     dplyr::select(qi, ipi, si, ri, iki, n, k) %>%
     mutate(t = 1)
 c2 = clusters3 %>%
@@ -2210,22 +2240,22 @@ stargazer(round(centers3, 6),
 
 ```{r echo = FALSE, results = "asis"}
 # Plot 
-p1 = centers %>% ggplot(aes(y = qi, x = t, col = as.factor(k))) + 
+p1 = centers3 %>% ggplot(aes(y = qi, x = t, col = as.factor(k))) + 
     geom_path() + geom_point() +
     xlab("Temps") + ylab("Quantité") +
     ggtitle("Q~T") +
     pres_theme
-p2 = centers %>% ggplot(aes(y = ipi, x = t, col = as.factor(k))) + 
+p2 = centers3 %>% ggplot(aes(y = ipi, x = t, col = as.factor(k))) + 
     geom_path() + geom_point() +
     xlab("Temps") + ylab("IP") +
     ggtitle("IP~T") +
     pres_theme
-p3 = centers %>% ggplot(aes(y = iki, x = t, col = as.factor(k))) + 
+p3 = centers3 %>% ggplot(aes(y = iki, x = t, col = as.factor(k))) + 
     geom_path() + geom_point() +
     xlab("Temps") + ylab("Index pesticides") +
     ggtitle("IK~T") +
     pres_theme
-p4 = centers %>% ggplot(aes(y = ri, x = t, col = as.factor(k))) + 
+p4 = centers3 %>% ggplot(aes(y = ri, x = t, col = as.factor(k))) + 
     geom_path() + geom_point() +
     xlab("Temps") + ylab("Revenus") +
     ggtitle("R~T") +
@@ -2256,7 +2286,7 @@ resdata3x = dataWZ %>%
 h1 = hausman.systemfit(sls2x, sls3x) # p = 1, 3SLS inconsistent
 # 2SLS estimator is consistent
 res = data.frame(Test = c("2SLS contre 3SLS"),
-    Resultats = c(h1$p.val))
+    Resultats = c(h1$p.val)) 
 ```
 
 \FloatBarrier
@@ -2387,9 +2417,9 @@ Finalement, nous offrons au lecteur un tableau de reference pour notre base des 
   \centering
 \caption{Ditionnaire des varibales}
 \begin{tabular}{c|l}
-  \hline
+  \noindent\rule[0.5ex]{\linewidth}{1pt}
   Variable & Description \\
-  \hline
+  \noindent\rule[0.5ex]{\linewidth}{1pt}
 année & année \\
 ndep & numéro de département \\
 si & superficie de vigne sans indication géographique en hectare en log \\
@@ -2398,7 +2428,7 @@ ipi & indice des prix du vin sans IG déflatés en log  \\
 ri & revenu disponible brut des ménages français déflatés en log \\
 iki & indice de quantité de pesticides achetés en log \\
 t & la tendance temporelle \\
-\hline
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 \end{tabular}
 \end{table}
 
