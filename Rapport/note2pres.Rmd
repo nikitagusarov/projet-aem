@@ -278,18 +278,17 @@ De cette façon nous chercherons à étudier l'équilibre sur le marché des vin
 \noindent\rule[0.5ex]{\linewidth}{1pt}
 
 Pour lutter contre l’utilisation des pesticides l’Etat Français et l’union européenne ont mis en place des mesures. 
-Ainsi, l’Etat Français lors du grenelle de l’environnement de 2006 a fixé ces objectifs. 
+Ainsi, l’Etat Français lors du grenelle de l’environnement de 2006 a fixé ses objectifs. 
 Ainsi, le plan ECOPHYTO 2018 visait à réduire de 50% l’utilisation des pesticides de synthèse. 
-Le deuxième objectif est le passage en agriculture biologique à 6% de la surface agricole utilisée en 2010 et vise 20% en 2020. 
+Le deuxième objectif est le passage en agriculture biologique à 6% de la surface agricole utilisée en 2010 et vise 20% en 2020.[@Butault2014.bib]
 
 En 2008, les 30 produits les plus toxiques les plus toxiques sont interdits. 
 Une taxe sur les phytosanitaires a aussi été mise en place. 
-Cette taxe est croissante avec leur niveau de toxicité. 
-Cette taxe devait augmenter au fil des années et l’octroi de crédits d’impôt en faveur de l’agriculture biologique.
+Cette taxe est croissante avec le niveau de toxicité de ces produits. 
+Cette taxe devait augmenter au fil des années. De plus, l’octroi de crédits d’impôt en faveur de l’agriculture biologique devait aussi permettre de réduire l'utilisation des pesticides.[@Butault2014.bib]
 
-Malgré tous ces efforts, l’utilisation des pesticides perdurent. 
-La France enregistre une hausse des ventes de produits phytosanitaires de 10000 tonnes, entre 2011 et 2016. 
-En 2008, le nombre de doses unités a été créé pour enregistrer l’évolution de la demande de pesticide. 
+Malgré tous ces efforts, l’utilisation des pesticides perdurent.  
+En 2008, le nombre de doses unités a été créé pour enregistrer l’évolution de la demande de pesticide.[@Butault2014.bib]
 On remarque que les doses utilisées augmentent de 12% en 2014-2016 par rapport à 2009-2011.  
 
 ## Etat actuel
@@ -300,10 +299,10 @@ Certaines critiques ont été faites sur l’utilisation du Nodu.
 Il est possible d’utiliser le nombre de substances actives utilisées. 
 Mais, cet indicateur connaît lui aussi une hausse de 15% entre 2011 et 2017. 
 
-Néanmoins, les politiques ont quand même eu quelques effets positifs, puisque l’achat des produits les plus dangereux baisse de 6% en 2017.  
+Néanmoins, les politiques ont quand même eu quelques effets positifs, puisque l’achat des produits les plus dangereux baisse de 6% en 2017. [@Moghaddam2019.bib] 
 Les grandes cultures sont les premières utilisatrices de pesticides. 
 Elles représentent 67,4% de l’utilisation de pesticides. 
-La deuxième culture est celle de la vigne ce qui représente 14,4%  des pesticides utilisés.
+La deuxième culture est celle de la vigne ce qui représente 14,4%  des pesticides utilisés.[@Butault2014.bib]
 
 ## Comment baisser l'utilisation de pesticides
 
@@ -331,24 +330,20 @@ Ensuite l’agriculture doit se déplacer vers l’agriculture biologique qui n�
 #####################################################
 ```
 
-La France est l’un des principaux producteurs et vendeurs de vin dans le monde. En effet, la France représente 10% de la surface de vigne dans le monde. 
-La surface de vigne française se répartit dans 65 des 95 départements de la métropole. 
-En France, il y a plus de 750000 hectares de vignes qui sont exploitées en 2018. 
+La France est l’un des principaux producteurs de vins. En effet, la France représente 10% de la surface des vignes mondiales. La production de vins représentait 4.6 milliards  de litres. La France représentait 17% de la production totale de vins. 3% de la surface agricole française est consacrée à la production agricole. Néanmoins, le vin représente 15% de la production agricole en valeur. [@CNIV, 2018]
+La France est aussi l’un des principaux consommateurs de vins. En effet, en France, il s’agit de la boisson alcoolisée la plus consommée. 88% des ventes de vins en France sont effectuées en grande surface. Néanmoins, la consommation française de vin baisse depuis une trentaine d’années. [@CNIV2018.bib] 
 
-Ainsi, en France, une exploitation agricole sur cinq est une exploitation viticole. Cela représente 85000 exploitations. 
-La production de vins en France, représentait 4,6 milliard de litres. 
-Cela représentait plus de 17% de la production totale de vin. 
-En volume de production la France se place donc en deuxième position derrière le volume de production de l’Italie. 
-3% de la surface agricole est consacrée à la production de vin. 
-Néanmoins, le vin représente 15% de la production agricole en valeur. 
+## Utilisation des pesticides dans la viticulture
 
-Du côté du consommateur, la France est le deuxième pays consommateur de vin derrière les Etats Unis. 
-En effet, la consommation de vin en France représentait plus de 3,5 milliards de bouteille, en 2018. 
-Néanmoins, on remarque une baisse de la consommation Française depuis une trentaine d’année.
+La viticulture est le deuxième secteur agricole en termes d’utilisation des pesticides. En effet, elle représente plus de 14.4% des dépenses de produits phytosanitaires,  en France. Néanmoins, ces pesticides ne sont pas utilisés dans la même proportion dans toutes les régions de France. [@Butault2011.bib] 
+Les bassins viticoles Français utilisent en majorité des fongicides et des bactéricides. En effet, la vigne fait face à des aléas climatiques qui permettent le développement de champignons comme le Mildiou. [@Pujol2017.bib] 
+Pour lutter contre le développement de ces champignons, les viticulteurs ne peuvent utiliser que des fongicides. En effet, ils ne peuvent pas utiliser la rotation des cultures qui pourraient réduire ou empêcher le développement de ces champignons puisque la vigne est une culture pérenne. Les pieds de vigne ne sont pas replantés chaque année. Il est donc nécessaire d’utiliser les pesticides dans la vigne pour protéger la production et éviter les pertes. En effet, les champignons s’attaquent aux feuilles de la vigne et aux fruits. Donc la pulvérisation de pesticides est un des seuls moyens pour protéger les rendements des cultures viticoles.  Néanmoins, l’utilisation des pesticides a aussi un impact du côté de la demande de vin. Cet impact est plus ambigu, à cause d’un manque de transparence d’information sur les bouteilles de vin. [@Prudent2018.bib]
+Un sondage de l’Ifop sur les habitudes et perceptions de consommation des Français a montré que 93% des Français considèrent que la présence de pesticides dans les aliments a un impact sur la santé. 89% des Français souhaiteraient être informés de la présence ou non de pesticides dans les produits alimentaires, à travers un étiquetage. [@Ifop2017.bib]
 
 ## Le problème d'heterogénéité
 
-Il existe une forte hétérogénéité entre les différents labels mais aussi à l'intérieur de ces labels. 
+Le secteur du vin est constitué de produits qui sont fortement hétérogènes.
+En effet, il existe une forte hétérogénéité entre les différents labels (AOP, IGP, sans IG) mais aussi au sein de ces labels. 
 
 Dans le commerce du vin, il est courant de diviser les vins en deux grandes classes en fonction de leurs prix [@cembalo2014] : 
 
@@ -360,46 +355,19 @@ Les vins de cépage appartiennent à la catégorie des vins autres que VQPRD, qu
 
 En tenant compte des spécificités du marhcé du vin français, nous utilisons la méthodologie du ministère d'agriculture et divisons le marché en deux parties :
 
-- La gamme haute (les vins IGP, vendus dans des magasins spécifiques) ;
-- La gamme basse (les vins non IGP, vendus en grands surfaces).
+- La gamme haute (les vins IGP et AOP, vendus dans des magasins spécifiques) ;
+- La gamme basse (les vins sans IG, vendus en grands surfaces).
 
 La première partie est soumise à des règlements spécifiques : limitations des quantités produites, origine contrôlé, un caractère de la demande spécifique. 
-La deuxième, c'est-à-dire le marché des vins moins chers, est aussi complexe. Les produits classés dans cette catégorie sont susceptibles d'avoir un certain degré d'hétérogénéité, comme cela a été montré par @cembalo2014.
+La deuxième, c'est-à-dire le marché des vins moins chers, est aussi complexe. Néanmoins, elle demeure moins hétérogène @cembalo2014. En effet, les vins qui se situent dans une fourchette de prix étroite sont quasiment homogènes. Ainsi, les vins sans indication géographique ont des attributs intrinsèques simples, une complexité de qualité faible. Il s’agit donc de vins peu différenciés. Nous avons, donc, choisit de nous concentrer sur ces vins sans indication géographique à cause de leur degré d’homogénéité qui est plus fort que pour les autres labels.
 
+Cela nous permet d'analyser le marché par département est non par des marques/produits.
 ## Les vins de table
 
-Ces vins sans indication géographique (sans IG) ont vu leurs transactions augmenter en volume pour toutes les couleurs. 
-Ainsi, on remarque que pour les vins rouges les transactions ont augmenté de 10%, pour les rosées la hausse représentait 52%, pour les vins blancs les volumes de transactions ont presque été doublé. 
-Néanmoins on remarque egalement une baisse des cours des vins sans indication géographique. 
+Le marché des vins sans indication géographiques connaît de forte variation. Nous allons donc revenir sur la période qui précède notre étude. Ainsi, en 2011, les transactions de vente de vins rouges ont augmenté de 29%. Les transactions de vins rosés ont également augmenté de 13%. Pour finir, les transactions de vins blancs augmentaient de 76%. Les prix de ces vins bien que faible connaissent aussi des variations importantes. Ainsi, en 2011, les trois couleurs de vins ont connus des hausses de prix. Les vins rouges ont vu leurs prix moyens augmenté de 12%. Le prix moyens des vins rosés ont aussi crus de 3 %. Pour finir, les prix moyens des vins blancs ont cru de 13%. Les vins de France sans indications géographiques  ont connu une baisse en volume des ventes de 14.6% par rapport à la moyenne des ventes sur la période 2006 à 2010. [@FranceAgriMer2011.bib].
 
-En effet, on remarque que les prix moyens pour les vins rouges et rosées sans indication géographique baisse de 3%. 
-Le prix moyen des vins blancs baisse quand à eux de 12%, pour la campagne 2019/2020. 
-Sur les deux mois de campagne, les échanges de Vin sans indication géographique est de 142 milliers d’hectolitres. 
-Cela correspond à une hausse de 39% par rapport à la campagne précédente. 
-Les ventes représentent 92 milliers d’hectolitres. 
-
-La tendance sur le marché des vins sans indication géographique s’explique par une forte hausse des vins blancs. 
-En effet, ceux-ci connaissent une hausse de près de 28 milliers d’hectolitres, soit une hausse de 232% vis-à-vis de la campagne de 2018-2019. Les vins rosés connaissent également une hausse. 
-Néanmoins, celle-ci reste modeste puisque les ventes augmentaient de 61% par rapport à la campagne 2018/2019. 
-En même temps, les ventes de vins rouges ont légèrement baissé. 
-Le cours des Vins sans indication géographique baisse par rapport à la campagne précédente. 
-
-Lors de la campagne 2018/2019, les ventes de vins en grande distribution sont en baisse. 
-Cela peut s’expliquer par une hausse des prix moyens. 
-Les ventes de vins représentent 8,7 millions d’hectolitres et un chiffre d’affaires de 4,1 milliards d’euros avec un prix moyen de 4,73 euro/litre. 
-La baisse de la consommation de vins rouges s’aggrave avec une baisse de 8% par rapport à la campagne de 2017/2018. 
-Les vins blancs connaissent aussi une faible baisse de 1,2% en volume par rapport à la consommation de la campagne précédente. 
-Pour finir, les ventes de vins rosés ont baissé lors de la campagne 2018/2019. 
-En effet, on enregistre une baisse de 3,9% en volume par rapport à la campagne 2017/2018. 
-La consommation de vin sans indication géographique est de 6% en volume contre 3% en valeur. 
-Les ventes de vins sans indications géographiques sont en légère hausse dans la campagne 2018/2019 par rapport à la campagne 2017/2018. 
-
-Dans notre étude, nous traitons uniquement les vins simples (non IGP). 
-La situation sur ce marché est sensée influencer l'utilisation des pesticides, car les volumes de productions sont plus significatives que pour le marché des vins IGP.
  
-Suivant le raisonnement des chercheurs [@cembalo2014], dans une catégorie de vin avec une fourchette de prix étroite, il existe une homogénéité presque parfaite due à des vins ayant des attributs intrinsèques simples, une complexité de qualité médiocre et donc une différenciation peu marquée.
- 
-Cela nous permet d'analyser le marché par département est non par des marques/produits.
+
 
 \noindent\rule[0.5ex]{\linewidth}{1pt}
 
@@ -411,13 +379,6 @@ Cela nous permet d'analyser le marché par département est non par des marques/
 
 \noindent\rule[0.5ex]{\linewidth}{1pt}
 
-## Utilisation des pesticides dans la viticulture
-
-Les phytosanitaires sont très utilisés dans les cultures comme la viticulture. 
-Il s’agit donc d’un intrant important pour la production de vin. Ainsi, la viticulture utilisait 15% de produit phytosanitaire. 
-La pression sanitaire varie selon les productions et elle est particulierement forte en viticulture. 
-De la même façon, la pression phytosanitaire varie selon les régions. 
-Ainsi, pour la vigne l’IFT varie de 7 en Provence à 22 en Champagne.
 
 # 3. Le cadre théorique
 
@@ -436,7 +397,7 @@ Ainsi, pour la vigne l’IFT varie de 7 en Provence à 22 en Champagne.
 \noindent\rule[0.5ex]{\linewidth}{1pt}
 
 Comme proposé dans la littérature, notre étude sur les vins non coûteux (non IGP) est effectué au niveau du pays @cembalo2014 pour deux raisons. 
-D'abord, les prix de vente moyens des marchés sont diffèrent en raison des droits de douane à l'importation et des taxes à la consommation différents [@anderson2011global].
+D'abord, les prix de vente moyens des marchés sont diffèrents en raison des droits de douane à l'importation et des taxes à la consommation différentes [@anderson2011global].
 De plus, la perception des produits de consommation varie d'un pays à l'autre [@makela2006].
 
 Rachat du vin par les enseignes (grand surfaces) ... @kremer2004
@@ -445,8 +406,8 @@ La plupart des bouteilles achetées sont achetées dans la grande distribution.
 Néanmoins, dans un souci de simplicité nous estimerons que les consommateurs achètent leurs bouteilles directement auprès du viticulteur. 
 Donc nous supprimerons tous les intermédiaires entre le producteur et le marché final.
 
-Quand aux exportations et les importations, n'ayant pas la possibilité contrôler le montant des vins non IGP exportés/importés, nous laissons ces effets au terme d'erreur. 
-Nous ignorons les interactions internationales completement. 
+Quand aux exportations et aux importations, n'ayant pas la possibilité contrôler le montant des vins non IGP exportés/importés, nous laissons ces effets au terme d'erreur. 
+Nous ignorons complétement les interactions internationales. 
 
 ```{r include = FALSE}
 # Il existe indéniablement, au sein de la grande distribution, une offre différenciée par format de vente : les hypermarchés se sont plutôt spécialisés dans le haut et le milieu de gamme avec une sur-représentation des VQPRD, les supermarchés ont privilégié les AOC à bas prix et les vins de table et de pays tandis que le hard discount se spécialisait dans le bas de gamme
@@ -468,22 +429,22 @@ Les coûts des viticulteurs ... @laporte1996
 Facteurs influençant le prix ... @outreville2010
 
 Avant de conclure, nous proposons au lecteur une liste exhaustive des suppositions sur le comportement du marché des vins simples. 
-Premierement, nous supposons que chaque département à une fonction de production unique détérminé par des spécificités historiques, les traditions, la législation, le térroir, ainsi que des conditions météorologiques et géographiques.
+Premièrement, nous supposons que chaque département à une fonction de production unique détérminée par des spécificités historiques, les traditions, la législation, le terroir, ainsi que des conditions météorologiques et géographiques.
 Les effets sont fixes au niveau départamental et peuvent être isolés par des transformations spécifiques des données (ex : une transformation Within).
 Deuxièmement, la quantité vendu sur le marché départamental est consommé au sein du même département. 
-C'est une hipothèse trop réstrictive, qui nous eloigne de la réalité, mais nous devrions l'adopté si nous voulons integrer les rélations entre l'offre et la demande dans notre modèle. 
-Afin de vérifier cette hypothèse nous allons construire deux modèles differents.
+C'est une hypothèse très restrictive, qui nous eloigne de la réalité, mais nous devrions l'adopter si nous voulons intégrer les relations entre l'offre et la demande dans notre modèle. 
+Afin de vérifier cette hypothèse nous allons construire deux modèles différents.
 Finalement, les effets qu'on vise à estimer sont des effets moyens au niveau départamental.
-C'est à dire nous allons obtenir un estimateur des effets moyens pour l'ensemble des département inclus dans notre analyse, ou des effets moyens au sein des groupes des département, si nous revelons des differences significatives entre les départements. 
+C'est à dire nous allons obtenir un estimateur des effets moyens pour l'ensemble des département inclus dans notre analyse, ou des effets moyens au sein des groupes de département, si nous révèlons des differences significatives entre les départements. 
 Un autre modèle nous permettra de vérifier et justifier cette hypothèse.
 
-En ce qui concerne les pesticides, nous supposons d'abord, que l'utilisation des pésticides par les viticulteurs est entrélié avec la demande sur le vin et les préferences des consomamteurs.
-De plus, nous posons, que la demande des pesticides est inélastique au prix, ce qui nous permet d'exclure les intéractions entre les fournisseurs des pésticides et les agriculteurs de notre analyse. 
-C'est-à-dire, la quantité de pesticides utilisés par les agriculteurs correspond seulement à leurs intentions et besoins. 
+En ce qui concerne les pesticides, nous supposons d'abord, que l'utilisation des pesticides par les viticulteurs est relié à la demande sur le vin et les préférences des consomamteurs.
+De plus, nous posons, que la demande des pesticides est inélastique au prix, ce qui nous permet d'exclure les interactions entre les fournisseurs des pesticides et les agriculteurs de notre analyse. 
+La quantité de pesticides utilisés par les agriculteurs correspond seulement à leurs besoins. 
 
-Pour sommariser cette partie, on résume que ce travail va porter sur les effets des pésticides sur l'offre des vins simples. 
-Nous allons tester certains hypothèses sur le comportement et l'organisation des rélations sur le marché des vins simples en comparant des differents modèles. 
-Puis, nous pourrions choisir entre ces modèles differents un le plus vraisamblable, qui nous servira pour répondre à la question de récherche. 
+Pour résumer cette partie,  ce travail va porter sur les effets des pesticides sur l'offre des vins simples. 
+Nous allons tester certaines hypothèses sur le comportement et l'organisation des relations sur le marché des vins simples en comparant les differents modèles. 
+Puis, nous pourrons choisir entre ces modèles differents le plus vraisamblable, qui nous servira à répondre à la question de recherche. 
 
 ## Formalisation 
 
@@ -499,10 +460,10 @@ Avec la quantité offerte déterminé par des contraintes de production et le pr
     qo_i = a_i + b_i Po_i + c_i X_i
 \end{equation}
 
-Où $X$ est un vecteur des variables explicatives influençant la production. Dans le cas le plus simple nous ne prenons en compte que les quantités des pesticides utilisées et la surface disponible, alors l'effet $c_{i1} : c_i = (c_{i1}, c{i2})$ represente l'effet d'utilisation des pésticides dans la production du vin sur l'offre du dérnier.
+Où $X$ est un vecteur des variables explicatives influençant la production. Dans le cas le plus simple nous ne prenons en compte que les quantités des pesticides utilisées et la surface disponible, alors l'effet $c_{i1} : c_i = (c_{i1}, c{i2})$ represente l'effet d'utilisation des pesticides dans la production du vin sur l'offre de ce dernier.
 
-Cette équation déjà en soit permet d'estimer les effets d'utilisation des pésticides sur le marché du vin. 
-Appelons cette modèle théorique M1 pour le réferencier en futur, nous permettant de distinguer le cas sans intéractions simultanées entre l'offre et la demande. 
+Cette équation permet déjà d'estimer les effets de l'utilisation des pesticides sur le marché du vin. 
+Appelons ce modèle théorique M1 pour le réfèrencer dans le futur, nous permettant de distinguer le cas sans intéractions simultanées entre l'offre et la demande. 
 
 Il faut tenir compte que de cette façon nous ignorons plusieurs effets pervers, tels que :
 
@@ -510,10 +471,10 @@ Il faut tenir compte que de cette façon nous ignorons plusieurs effets pervers,
 - La mobilité des produits finis entre des differents départements ;
 - L'exportation et l'importation du vin.
 
-Toutefois, ces résultats ne séront valables que dans la situation où la quantité du vin simple offerte sur le marché est déterminée seulement par le producteur et n'est pas entrélié avec la demande. 
-Comme nous avons vu dans la séction précedente, la demande peut influencer les décisions des viticulteurs (ex: le choix de la procedure téchnique à suivre, d'utiliser ou non les pésticides, etc).
-Dans le cas pareil, nous dévrions prendre en compte les intéractions entre l'offre et la demande.
-A ce but nous introduisons également la demande dans notre analyse. 
+Toutefois, ces résultats ne seront valables que dans la situation où la quantité de vin simple offerte sur le marché est déterminée seulement par le producteur et n'est pas lié à la demande. 
+Comme nous l'avons vu dans la section précedente, la demande peut influencer les décisions des viticulteurs (ex: le choix de la procédure technique à suivre, d'utiliser ou non les pesticides, etc).
+Dans ce cas, nous devrions prendre en compte les intéractions entre l'offre et la demande.
+Dans ce but, nous introduisons également la demande dans notre analyse. 
 
 La demande agregée du vin en France peut s'écrire sous la forme suivante :
 
@@ -521,7 +482,7 @@ La demande agregée du vin en France peut s'écrire sous la forme suivante :
     Qd = \sum_{i = 1}^{N} qd_i 
 \end{equation*}
 
-Où $i \in \{1, ..., N\}$ sont des départements, chacun ayant sa propre fonction de la demande unique : 
+Où $i \in \{1, ..., N\}$ sont des départements, chacun ayant sa propre fonction de demande unique : 
 
 \begin{equation*}
     qd_i = \alpha_i + \beta_i Pd_i + \gamma_i Z_i 
@@ -529,11 +490,11 @@ Où $i \in \{1, ..., N\}$ sont des départements, chacun ayant sa propre fonctio
 
 Avec $Z$ étant l'ensemble des variables ayant une influence sur la demande du vin, dans le cas le plus simple nous n'utilisons que les revenus (c'est une des variables les plus utilisées dans des études empiriques sur le marché du vin).
 
-Pour intégrer cette information dans notre *framework* analytique, nous dévons construire une système d'équations.
-Il y existe plusieures façons de le faire. 
+Pour intégrer cette information dans notre *framework* analytique, nous devons construire un système d'équations.
+Il existe plusieures façons de le faire. 
 
-Dans le prémièr cas, nous pouvons essayer de capter les effets au niveau national.
-Pour le faire nous réecrivons les deux équation (de la demande et de l'offre respectivement) sous la forme suivante :
+Dans le premier cas, nous pouvons essayer de capter les effets au niveau national.
+Pour ce faire nous réécrivons les deux équation (de la demande et de l'offre respectivement) sous la forme suivante :
 
 \begin{equation*}
     Q_o = \sum_{i = 1}^{N} (a_i + b_i Po_i + c_i X) = \sum_{i = 1}^{N} a_i + \sum_{i = 1}^{N} b_i Po_i + \sum_{i = 1}^{N} c_i X
@@ -550,18 +511,18 @@ Ce qui nous produira un système des deux équations, avec $Qd = Qo$ dans la sit
     Qo & = \sum_{i = 1}^{N} a_i + \sum_{i = 1}^{N} b_i Po_i + \sum_{i = 1}^{N} c_i X
 \end{align*}
 
-Neanmoins, ce cas se réleve d'être très complex. 
+Neanmoins, ce cas se révèle être très complexe. 
 D'abord, les effets peuvent être differents pour tous les départements, ce qui nous conduira à une augmentation dans le nombre des paramètres à estimer significative. 
-De plus, même si tous les effets sont identiques pour l'ensemble des départements, des contraintes au niveau des données peuvent se reveler d'être trop restrictives en réduisant au néant la puissance statistique de notre éstimateur (ex : le nombre des observation par années très faible). 
-Dans le deux cas nous faisons face à un impace.
+De plus, même si tous les effets sont identiques pour l'ensemble des départements, des contraintes au niveau des données peuvent se révèler trop restrictives, réduisant, ainsi à néant la puissance statistique de notre estimateur (ex : le nombre des observations par années très faible). 
+Dans le deux cas nous faisons face à une impasse.
 
-Une des modification possibles dans ce cas sera l'introduction d'une contrainte supplementaire au niveau de la demande sur le vin de table.
+Une des modifications possibles dans ce cas sera l'introduction d'une contrainte supplémentaire au niveau de la demande sur le vin de table.
 Afin de pouvoir identifier les effets de toutes les variables par un système d'équations, nous pouvons supposer, que tout le vin produit dans un département est consommé dans le même department. 
 Dans ce cas nous pourrions obtenir des estimateurrs pour les effets moyens au niveau départemental.
-Toutefois, c'est une supposition forte, laquelle nous éloigne de la réalité. 
+Toutefois, c'est une supposition forte qui nous éloigne de la réalité. 
 
 Théoriquement, nous pouvons tout de méme ignorer ces effets, car nous visons à estimer les effets moyens pour tous les départements. 
-De cette façon, lors d'aggregation des effets au niveau national en éstimant le coefficient moyen unique pour tous les départements nous allons mitiger les biais possibles.
+De cette façon, lors de l'agrégation des effets au niveau national en estimant le coefficient moyen unique pour tous les départements nous allons réduire les biais possibles.
 
 Alors,nous pouvons réécrire notre système d'equations sous la forme suivante :
 
@@ -570,23 +531,23 @@ Alors,nous pouvons réécrire notre système d'equations sous la forme suivante 
   qo_i & = a_i + b Po_{i,o} + c X_{i} \\ 
 \end{align*}
 
-Où $qd_i = qo_i$ et $Pd_i = Po_i$, ce qui permet de rélier les équations au niveau départemental.
-Les coefficients $b$, $c$, $\beta$ et $\gamma$ sont supposé fixes pour tous les départements nous donnent un estimateur des effets moyens au niveau de la France.
-L'effet des pésticides dans la production du vin serons captés par le terme $c_{1} : c = (c_{1}, c{2})$ dans ce cas.
+Où $qd_i = qo_i$ et $Pd_i = Po_i$, ce qui permet de relier les équations au niveau départemental.
+Les coefficients $b$, $c$, $\beta$ et $\gamma$ sont supposés fixes pour tous les départements. Ils nous donnent un estimateur des effets moyens au niveau de la France.
+L'effet des pesticides dans la production du vin sera capté par le terme $c_{1} : c = (c_{1}, c{2})$ dans ce cas.
 
-Néanmoins, nous nous posons la question, comment réagir dans le cas où les effets sont differents pour des differents département suite à des spécificité des marché locaux, géographiques ou autres ?
-On peut supposer, qu'il existent au moins quelques groupes majeures ayant des caractéristiques et comportements similaires. 
-Dans ce cas nous pourrions construire des clusters, qui regrouppont des départements ayant des caractéristiques idéntiques. 
+Néanmoins, nous nous posons la question, comment réagir dans le cas où les effets sont differents pour les differents départements à cause des spécificité des marché locaux, géographiques ou autres ?
+On peut supposer, qu'il existe au moins quelques groupes majeures ayant des caractéristiques et des comportements similaires. 
+Dans ce cas nous pourrions construire des clusters, qui regrouppent des départements ayant des caractéristiques identiques. 
 Cela nous permettra de modèliser les effets moyens par cluster en réduisant les biais eventuels.
 
-Ce système peut être formalisé par $K$ systèmes d'équations suivantes :
+Ce système peut être formalisé par les $K$ systèmes d'équations suivants :
 
 \begin{align*}
   qd_{i_{c = const}} & = \alpha_{i_{c = const}} + \beta_{c = const} Pd_{i_{c = const},d} + \gamma_{c = const} Z_{i_{c = const}} \\
   qo_{i_{c = const}} & = a_{i_{c = const}} + b_{c = const} Po_{i_{c = const},o} + c_{c = const} X_{i_{c = const}} \\ 
 \end{align*}
 
-Où $c$ décrive l'appartenance des départements à un des groupes (clusters).
+Où $c$ décrit l'appartenance des départements à un des groupes (clusters).
 
 # 4. Les données
 
