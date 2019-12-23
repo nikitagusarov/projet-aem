@@ -252,16 +252,16 @@ pres_theme = theme(text = element_text(size = rel(3)),
 ```
 
 Aujourd’hui, l’utilisation des pesticides est un problème majeur de l’agriculture.  
-Celle-ci utilise la majeure partie des pesticides en France. 
-Il s’agit d’un enjeu majeur du développement durable car ils ont un impact important sur les risques environnementaux et sanitaires. 
+Celle-ci utilise la plus grande partie des pesticides en France. 
+Il s’agit d’un enjeu à la base du développement durable car ils ont un impact important sur les risques environnementaux et sanitaires. 
 
 Les pesticides sont utilisés dans l’agriculture pour protéger la production. 
-Il est supposer que les pesticides servent à protéger les rendements. 
-En effet, les aléas climatiques influencent sur le développement de champignons ou de maladie. 
+Ils sont supposés protéger les rendements. 
+En effet, les aléas climatiques influencent le développement de champignons ou de maladies. 
 Ainsi, les pesticides permettent de protéger les cultures contre les aléas climatiques et de ne pas perdre de production. 
 
-Dans ce travail nous cherchons à comprendre et estimer les effets des pésticides sur le marché des vins simples.
-De cette façon nous chercherons à étudier l'équilibre sur le marché des vins simples ce qui est sensé de nous donner des résultats plus précis et fiables.
+Dans ce travail nous cherchons à comprendre et à estimer les effets des pesticides sur le marché des vins simples.
+De cette façon nous chercherons à étudier l'équilibre sur le marché des vins simples ce qui est sensé nous donner des résultats plus précis et fiables.
 
 # 1. Les pesticides
 
