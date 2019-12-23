@@ -1,0 +1,2260 @@
+\documentclass[11pt,]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Etude des effets des pésticides dans la production des vins de table},
+            pdfauthor={Arnaud Blanc, Nikita Gusarov, Sasha Picon},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Etude des effets des pésticides dans la production des vins de table}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \subtitle{Analyse empirique des marchés}
+  \author{Arnaud Blanc, Nikita Gusarov, Sasha Picon}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{25/12/2019}
+
+\usepackage{setspace}
+
+% to make the first rows bold in tables
+\usepackage{longtable}
+\usepackage{tabu}
+\usepackage{booktabs}
+
+% Floats
+\usepackage{morefloats}
+\usepackage{float}
+\usepackage{placeins}
+
+% highlighting
+\usepackage{soul}
+
+% Short toc
+\usepackage{shorttoc}
+\setcounter{tocdepth}{1}
+
+% referencing mutliple things with a single command - \cref
+\usepackage{cleveref}
+
+% Change section names style
+\usepackage[dvipsnames]{xcolor}
+% \usepackage{sectsty}
+
+% \sectionfont{\color{Green}}  % sets colour of sections
+% \subsectionfont{\color{Green}}  % sets colour of sub
+% \subsubsectionfont{\color{Green}}  % sets colour of subsub
+
+% this makes dots in table of contents
+% \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+% to change the title of contents
+% \renewcommand{\contentsname}{Whatever}
+
+% line numbers for review purposes
+% this package might not be available in default latex installation 
+% get it by 'sudo tlmgr install lineno'
+%\usepackage{lineno}
+%\linenumbers
+
+% Array
+\usepackage{array}
+
+% Multiple columns
+\usepackage{multicol}
+
+% Image insertion and colors
+\usepackage{graphicx}
+
+% to be able to include latex comments
+\newenvironment{dummy}{}{}
+
+% maketitle definition
+\makeatletter
+\def\@maketitle{
+    \pagenumbering{gobble}
+    \raggedright
+    \includegraphics[height = 40mm]{univlogo.jpg} 
+    \begin{center}
+        \vspace*{\fill}
+            {\Huge \@title}\\
+            \par
+            \rule{5cm}{0.4pt}
+            \par
+            %\textbf{Rapport de stage}\\[10mm]
+            {\Large \@author}\\[10mm]
+        \vspace*{\fill}
+    \end{center}
+    {\large Tuteur : }\\
+    \hspace{10mm} {\large Adélaïde Fadhuile}\\
+    \vspace{10mm}
+    {\large Niveau d'études : }\\
+    \hspace{10mm} {\large Master 2}\\
+    {\large Parcours : }\\
+    \hspace{10mm} {\large Chargé d'études économiques et statistique}\\
+    \vspace{20mm}
+    \begin{center}
+        {\large Université Grenoble Alpes}\\
+        {\large Faculté d'économie et gestion}\\
+        \vspace{5mm}
+        2019 - 2020\\
+    \end{center}
+    \clearpage
+}
+\makeatother
+
+\begin{document}
+\maketitle
+
+
+\hypersetup{linkcolor = black}
+\pagenumbering{roman}
+
+\tableofcontents
+
+% \newpage
+
+% % list of figures have to be added manually to table of contents
+% \listoffigures 
+
+% \newpage
+% \listoftables
+
+% \doublespacing
+
+\newpage
+
+\pagenumbering{arabic}
+\hypersetup{linkcolor = blue}
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+Aujourd'hui, l'utilisation des pesticides est un problème majeur de
+l'agriculture.\\
+Celle-ci utilise la majeure partie des pesticides en France. Il s'agit
+d'un enjeu majeur du développement durable car ils ont un impact
+important sur les risques environnementaux et sanitaires.
+
+Les pesticides sont utilisés dans l'agriculture pour protéger la
+production. Il est supposer que les pesticides servent à protéger les
+rendements. En effet, les aléas climatiques influencent sur le
+développement de champignons ou de maladie. Ainsi, les pesticides
+permettent de protéger les cultures contre les aléas climatiques et de
+ne pas perdre de production.
+
+Dans ce travail nous cherchons à comprendre et estimer les effets des
+pésticides sur le marché des vins simples. De cette façon nous
+chercherons à étudier l'équilibre sur le marché des vins simples ce qui
+est sensé de nous donner des résultats plus précis et fiables.
+
+\hypertarget{les-pesticides}{%
+\section{1. Les pesticides}\label{les-pesticides}}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+\textcolor{red}{Mettre des sources partout !}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+Pour lutter contre l'utilisation des pesticides l'Etat Français et
+l'union européenne ont mis en place des mesures. Ainsi, l'Etat Français
+lors du grenelle de l'environnement de 2006 a fixé ces objectifs. Ainsi,
+le plan ECOPHYTO 2018 visait à réduire de 50\% l'utilisation des
+pesticides de synthèse. Le deuxième objectif est le passage en
+agriculture biologique à 6\% de la surface agricole utilisée en 2010 et
+vise 20\% en 2020.
+
+En 2008, les 30 produits les plus toxiques les plus toxiques sont
+interdits. Une taxe sur les phytosanitaires a aussi été mise en place.
+Cette taxe est croissante avec leur niveau de toxicité. Cette taxe
+devait augmenter au fil des années et l'octroi de crédits d'impôt en
+faveur de l'agriculture biologique.
+
+Malgré tous ces efforts, l'utilisation des pesticides perdurent. La
+France enregistre une hausse des ventes de produits phytosanitaires de
+10000 tonnes, entre 2011 et 2016. En 2008, le nombre de doses unités a
+été créé pour enregistrer l'évolution de la demande de pesticide. On
+remarque que les doses utilisées augmentent de 12\% en 2014-2016 par
+rapport à 2009-2011.
+
+\hypertarget{etat-actuel}{%
+\subsection{Etat actuel}\label{etat-actuel}}
+
+Contrairement aux attentes des autorités, on ne remarque aucune baisse
+de l'utilisation de pesticides. Le Nodu a connu une hausse de 23\% entre
+2008 et 2017. Certaines critiques ont été faites sur l'utilisation du
+Nodu. Il est possible d'utiliser le nombre de substances actives
+utilisées. Mais, cet indicateur connaît lui aussi une hausse de 15\%
+entre 2011 et 2017.
+
+Néanmoins, les politiques ont quand même eu quelques effets positifs,
+puisque l'achat des produits les plus dangereux baisse de 6\% en 2017.\\
+Les grandes cultures sont les premières utilisatrices de pesticides.
+Elles représentent 67,4\% de l'utilisation de pesticides. La deuxième
+culture est celle de la vigne ce qui représente 14,4\% des pesticides
+utilisés.
+
+\hypertarget{comment-baisser-lutilisation-de-pesticides}{%
+\subsection{Comment baisser l'utilisation de
+pesticides}\label{comment-baisser-lutilisation-de-pesticides}}
+
+Afin de baisser l'utilisation des pesticides, des méthodes de cultures
+ont été développées pour baisser l'utilisation des pesticides. Il est
+possible d'utiliser différents mode de culture. On peut en retenir trois
+principaux.
+
+Le premier est l'agriculture intensive. Elle ne limite pas le recours
+aux pesticides.
+
+Le deuxième est l'agriculture raisonnée. Elle limite le recours aux
+pesticides en fonction de seuils.
+
+Le troisième niveau est l'agriculture biologique. Elle supprime les
+traitements avec des produits phytosanitaires de synthèse.
+
+Les professionnels proposent de commencer par utiliser l'agriculture
+raisonnée qui permet de réduire les doses de pesticides légales. Ensuite
+l'agriculture doit se déplacer vers l'agriculture biologique qui
+n'utilise aucun produit phytosanitaire de synthèse.
+
+\hypertarget{le-marche-du-vin-francais}{%
+\section{2. Le marché du vin français}\label{le-marche-du-vin-francais}}
+
+La France est l'un des principaux producteurs et vendeurs de vin dans le
+monde. En effet, la France représente 10\% de la surface de vigne dans
+le monde. La surface de vigne française se répartit dans 65 des 95
+départements de la métropole. En France, il y a plus de 750000 hectares
+de vignes qui sont exploitées en 2018.
+
+Ainsi, en France, une exploitation agricole sur cinq est une
+exploitation viticole. Cela représente 85000 exploitations. La
+production de vins en France, représentait 4,6 milliard de litres. Cela
+représentait plus de 17\% de la production totale de vin. En volume de
+production la France se place donc en deuxième position derrière le
+volume de production de l'Italie. 3\% de la surface agricole est
+consacrée à la production de vin. Néanmoins, le vin représente 15\% de
+la production agricole en valeur.
+
+Du côté du consommateur, la France est le deuxième pays consommateur de
+vin derrière les Etats Unis. En effet, la consommation de vin en France
+représentait plus de 3,5 milliards de bouteille, en 2018. Néanmoins, on
+remarque une baisse de la consommation Française depuis une trentaine
+d'année.
+
+\hypertarget{le-probleme-dheterogeneite}{%
+\subsection{Le problème
+d'heterogénéité}\label{le-probleme-dheterogeneite}}
+
+Il existe une forte hétérogénéité entre les différents labels mais aussi
+à l'intérieur de ces labels.
+
+Dans le commerce du vin, il est courant de diviser les vins en deux
+grandes classes en fonction de leurs prix (Cembalo, Caracciolo, and
+Pomarici 2014) :
+
+\begin{itemize}
+\tightlist
+\item
+  les vins de qualité inférieure, les moins chers avec les
+  caractéristiques de qualité de base ;
+\item
+  les vins de qualité supérieure plus chers, dotés de caractéristiques
+  qualitatives complexes et d'une image de grande valeur.
+\end{itemize}
+
+De plus, pour les vins français, selon Steiner (2004), le système
+européen de classification des ``\emph{vins de qualité produits dans
+certaines régions}'' (VQPRD) contient à la fois des vins AOC et des
+``\emph{vins de haute qualité provenant d'un vignoble régional agréé}''
+(VDQS). Les vins de cépage appartiennent à la catégorie des vins autres
+que VQPRD, qui comprend les \textbf{vins de table} et les
+\textbf{vins de pays}.
+
+En tenant compte des spécificités du marhcé du vin français, nous
+utilisons la méthodologie du ministère d'agriculture et divisons le
+marché en deux parties :
+
+\begin{itemize}
+\tightlist
+\item
+  La gamme haute (les vins IGP, vendus dans des magasins spécifiques) ;
+\item
+  La gamme basse (les vins non IGP, vendus en grands surfaces).
+\end{itemize}
+
+La première partie est soumise à des règlements spécifiques :
+limitations des quantités produites, origine contrôlé, un caractère de
+la demande spécifique. La deuxième, c'est-à-dire le marché des vins
+moins chers, est aussi complexe. Les produits classés dans cette
+catégorie sont susceptibles d'avoir un certain degré d'hétérogénéité,
+comme cela a été montré par Cembalo, Caracciolo, and Pomarici (2014).
+
+\hypertarget{les-vins-de-table}{%
+\subsection{Les vins de table}\label{les-vins-de-table}}
+
+Ces vins sans indication géographique (sans IG) ont vu leurs
+transactions augmenter en volume pour toutes les couleurs. Ainsi, on
+remarque que pour les vins rouges les transactions ont augmenté de 10\%,
+pour les rosées la hausse représentait 52\%, pour les vins blancs les
+volumes de transactions ont presque été doublé. Néanmoins on remarque
+egalement une baisse des cours des vins sans indication géographique.
+
+En effet, on remarque que les prix moyens pour les vins rouges et rosées
+sans indication géographique baisse de 3\%. Le prix moyen des vins
+blancs baisse quand à eux de 12\%, pour la campagne 2019/2020. Sur les
+deux mois de campagne, les échanges de Vin sans indication géographique
+est de 142 milliers d'hectolitres. Cela correspond à une hausse de 39\%
+par rapport à la campagne précédente. Les ventes représentent 92
+milliers d'hectolitres.
+
+La tendance sur le marché des vins sans indication géographique
+s'explique par une forte hausse des vins blancs. En effet, ceux-ci
+connaissent une hausse de près de 28 milliers d'hectolitres, soit une
+hausse de 232\% vis-à-vis de la campagne de 2018-2019. Les vins rosés
+connaissent également une hausse. Néanmoins, celle-ci reste modeste
+puisque les ventes augmentaient de 61\% par rapport à la campagne
+2018/2019. En même temps, les ventes de vins rouges ont légèrement
+baissé. Le cours des Vins sans indication géographique baisse par
+rapport à la campagne précédente.
+
+Lors de la campagne 2018/2019, les ventes de vins en grande distribution
+sont en baisse. Cela peut s'expliquer par une hausse des prix moyens.
+Les ventes de vins représentent 8,7 millions d'hectolitres et un chiffre
+d'affaires de 4,1 milliards d'euros avec un prix moyen de 4,73
+euro/litre. La baisse de la consommation de vins rouges s'aggrave avec
+une baisse de 8\% par rapport à la campagne de 2017/2018. Les vins
+blancs connaissent aussi une faible baisse de 1,2\% en volume par
+rapport à la consommation de la campagne précédente. Pour finir, les
+ventes de vins rosés ont baissé lors de la campagne 2018/2019. En effet,
+on enregistre une baisse de 3,9\% en volume par rapport à la campagne
+2017/2018. La consommation de vin sans indication géographique est de
+6\% en volume contre 3\% en valeur. Les ventes de vins sans indications
+géographiques sont en légère hausse dans la campagne 2018/2019 par
+rapport à la campagne 2017/2018.
+
+Dans notre étude, nous traitons uniquement les vins simples (non IGP).
+La situation sur ce marché est sensée influencer l'utilisation des
+pesticides, car les volumes de productions sont plus significatives que
+pour le marché des vins IGP.
+
+Suivant le raisonnement des chercheurs (Cembalo, Caracciolo, and
+Pomarici 2014), dans une catégorie de vin avec une fourchette de prix
+étroite, il existe une homogénéité presque parfaite due à des vins ayant
+des attributs intrinsèques simples, une complexité de qualité médiocre
+et donc une différenciation peu marquée.
+
+Cela nous permet d'analyser le marché par département est non par des
+marques/produits.
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+\textcolor{red}{Ajouter des articles proches par la méthodologie à notre }
+
+\begin{itemize}
+\tightlist
+\item
+  \textcolor{red}{le cas du modèle simple,  }
+\item
+  \textcolor{red}{le cas du marchéliée, }
+\item
+  \textcolor{red}{le cas des clusters.}
+\end{itemize}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+\hypertarget{utilisation-des-pesticides-dans-la-viticulture}{%
+\subsection{Utilisation des pesticides dans la
+viticulture}\label{utilisation-des-pesticides-dans-la-viticulture}}
+
+Les phytosanitaires sont très utilisés dans les cultures comme la
+viticulture. Il s'agit donc d'un intrant important pour la production de
+vin. Ainsi, la viticulture utilisait 15\% de produit phytosanitaire. La
+pression sanitaire varie selon les productions et elle est
+particulierement forte en viticulture. De la même façon, la pression
+phytosanitaire varie selon les régions. Ainsi, pour la vigne l'IFT varie
+de 7 en Provence à 22 en Champagne.
+
+\hypertarget{le-cadre-theorique}{%
+\section{3. Le cadre théorique}\label{le-cadre-theorique}}
+
+\hypertarget{les-hypotheses-theoriques}{%
+\subsection{Les hypothèses théoriques}\label{les-hypotheses-theoriques}}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+\textcolor{red}{Ajouter les réferences ...}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+Comme proposé dans la littérature, notre étude sur les vins non coûteux
+(non IGP) est effectué au niveau du pays Cembalo, Caracciolo, and
+Pomarici (2014) pour deux raisons. D'abord, les prix de vente moyens des
+marchés sont diffèrent en raison des droits de douane à l'importation et
+des taxes à la consommation différents (Anderson, Nelgen, and others
+2011). De plus, la perception des produits de consommation varie d'un
+pays à l'autre (MÄKELÄ et al. 2006).
+
+Rachat du vin par les enseignes (grand surfaces) \ldots{} KREMER and
+VIOT (2004)
+
+La plupart des bouteilles achetées sont achetées dans la grande
+distribution. Néanmoins, dans un souci de simplicité nous estimerons que
+les consommateurs achètent leurs bouteilles directement auprès du
+viticulteur. Donc nous supprimerons tous les intermédiaires entre le
+producteur et le marché final.
+
+Quand aux exportations et les importations, n'ayant pas la possibilité
+contrôler le montant des vins non IGP exportés/importés, nous laissons
+ces effets au terme d'erreur. Nous ignorons les interactions
+internationales completement.
+
+Facteurs de production \ldots{} Laporte and PICHERY (1996)
+
+Les coûts des viticulteurs \ldots{} Laporte and PICHERY (1996)
+
+Facteurs influençant le prix \ldots{} Outreville (2010)
+
+Avant de conclure, nous proposons au lecteur une liste exhaustive des
+suppositions sur le comportement du marché des vins simples.
+Premierement, nous supposons que chaque département à une fonction de
+production unique détérminé par des spécificités historiques, les
+traditions, la législation, le térroir, ainsi que des conditions
+météorologiques et géographiques. Les effets sont fixes au niveau
+départamental et peuvent être isolés par des transformations spécifiques
+des données (ex : une transformation Within). Deuxièmement, la quantité
+vendu sur le marché départamental est consommé au sein du même
+département. C'est une hipothèse trop réstrictive, qui nous eloigne de
+la réalité, mais nous devrions l'adopté si nous voulons integrer les
+rélations entre l'offre et la demande dans notre modèle. Afin de
+vérifier cette hypothèse nous allons construire deux modèles differents.
+Finalement, les effets qu'on vise à estimer sont des effets moyens au
+niveau départamental. C'est à dire nous allons obtenir un estimateur des
+effets moyens pour l'ensemble des département inclus dans notre analyse,
+ou des effets moyens au sein des groupes des département, si nous
+revelons des differences significatives entre les départements. Un autre
+modèle nous permettra de vérifier et justifier cette hypothèse.
+
+En ce qui concerne les pesticides, nous supposons d'abord, que
+l'utilisation des pésticides par les viticulteurs est entrélié avec la
+demande sur le vin et les préferences des consomamteurs. De plus, nous
+posons, que la demande des pesticides est inélastique au prix, ce qui
+nous permet d'exclure les intéractions entre les fournisseurs des
+pésticides et les agriculteurs de notre analyse. C'est-à-dire, la
+quantité de pesticides utilisés par les agriculteurs correspond
+seulement à leurs intentions et besoins.
+
+Pour sommariser cette partie, on résume que ce travail va porter sur les
+effets des pésticides sur l'offre des vins simples. Nous allons tester
+certains hypothèses sur le comportement et l'organisation des rélations
+sur le marché des vins simples en comparant des differents modèles.
+Puis, nous pourrions choisir entre ces modèles differents un le plus
+vraisamblable, qui nous servira pour répondre à la question de
+récherche.
+
+\hypertarget{formalisation}{%
+\subsection{Formalisation}\label{formalisation}}
+
+En formalisant notre modèle théorique de base, nous posons, que l'offre
+agregée pour toute la France est donnée identiquement par l'équation
+suivante :
+
+\begin{equation}
+    Qo = \sum_{i = 1}^{N} qo_i
+\end{equation}
+
+Avec la quantité offerte déterminé par des contraintes de production et
+le prix sur le marché :
+
+\begin{equation}
+    qo_i = a_i + b_i Po_i + c_i X_i
+\end{equation}
+
+Où \(X\) est un vecteur des variables explicatives influençant la
+production. Dans le cas le plus simple nous ne prenons en compte que les
+quantités des pesticides utilisées et la surface disponible, alors
+l'effet \(c_{i1} : c_i = (c_{i1}, c{i2})\) represente l'effet
+d'utilisation des pésticides dans la production du vin sur l'offre du
+dérnier.
+
+Cette équation déjà en soit permet d'estimer les effets d'utilisation
+des pésticides sur le marché du vin. Appelons cette modèle théorique M1
+pour le réferencier en futur, nous permettant de distinguer le cas sans
+intéractions simultanées entre l'offre et la demande.
+
+Il faut tenir compte que de cette façon nous ignorons plusieurs effets
+pervers, tels que :
+
+\begin{itemize}
+\tightlist
+\item
+  La structure du marché interne de la France ;
+\item
+  La mobilité des produits finis entre des differents départements ;
+\item
+  L'exportation et l'importation du vin.
+\end{itemize}
+
+Toutefois, ces résultats ne séront valables que dans la situation où la
+quantité du vin simple offerte sur le marché est déterminée seulement
+par le producteur et n'est pas entrélié avec la demande. Comme nous
+avons vu dans la séction précedente, la demande peut influencer les
+décisions des viticulteurs (ex: le choix de la procedure téchnique à
+suivre, d'utiliser ou non les pésticides, etc). Dans le cas pareil, nous
+dévrions prendre en compte les intéractions entre l'offre et la demande.
+A ce but nous introduisons également la demande dans notre analyse.
+
+La demande agregée du vin en France peut s'écrire sous la forme suivante
+:
+
+\begin{equation*}
+    Qd = \sum_{i = 1}^{N} qd_i 
+\end{equation*}
+
+Où \(i \in \{1, ..., N\}\) sont des départements, chacun ayant sa propre
+fonction de la demande unique :
+
+\begin{equation*}
+    qd_i = \alpha_i + \beta_i Pd_i + \gamma_i Z_i 
+\end{equation*}
+
+Avec \(Z\) étant l'ensemble des variables ayant une influence sur la
+demande du vin, dans le cas le plus simple nous n'utilisons que les
+revenus (c'est une des variables les plus utilisées dans des études
+empiriques sur le marché du vin).
+
+Pour intégrer cette information dans notre \emph{framework} analytique,
+nous dévons construire une système d'équations. Il y existe plusieures
+façons de le faire.
+
+Dans le prémièr cas, nous pouvons essayer de capter les effets au niveau
+national. Pour le faire nous réecrivons les deux équation (de la demande
+et de l'offre respectivement) sous la forme suivante :
+
+\begin{equation*}
+    Q_o = \sum_{i = 1}^{N} (a_i + b_i Po_i + c_i X) = \sum_{i = 1}^{N} a_i + \sum_{i = 1}^{N} b_i Po_i + \sum_{i = 1}^{N} c_i X
+\end{equation*}
+
+\begin{equation*}
+    Qd = \sum_{i = 1}^{N} ( \alpha_i + \beta_i Pd_i + \gamma_i Z_i ) = \sum_{i = 1}^{N} \alpha_i + \sum_{i = 1}^{N} \beta_i Pd_i + \sum_{i = 1}^{N} \gamma_i Z_i
+\end{equation*}
+
+Ce qui nous produira un système des deux équations, avec \(Qd = Qo\)
+dans la situation d'équilibre :
+
+\begin{align*}
+    Qd & = \sum_{i = 1}^{N} \alpha_i + \sum_{i = 1}^{N} \beta_i Pd_i + \sum_{i = 1}^{N} \gamma_i Z_i \\
+    Qo & = \sum_{i = 1}^{N} a_i + \sum_{i = 1}^{N} b_i Po_i + \sum_{i = 1}^{N} c_i X
+\end{align*}
+
+Neanmoins, ce cas se réleve d'être très complex. D'abord, les effets
+peuvent être differents pour tous les départements, ce qui nous conduira
+à une augmentation dans le nombre des paramètres à estimer
+significative. De plus, même si tous les effets sont identiques pour
+l'ensemble des départements, des contraintes au niveau des données
+peuvent se reveler d'être trop restrictives en réduisant au néant la
+puissance statistique de notre éstimateur (ex : le nombre des
+observation par années très faible). Dans le deux cas nous faisons face
+à un impace.
+
+Une des modification possibles dans ce cas sera l'introduction d'une
+contrainte supplementaire au niveau de la demande sur le vin de table.
+Afin de pouvoir identifier les effets de toutes les variables par un
+système d'équations, nous pouvons supposer, que tout le vin produit dans
+un département est consommé dans le même department. Dans ce cas nous
+pourrions obtenir des estimateurrs pour les effets moyens au niveau
+départemental. Toutefois, c'est une supposition forte, laquelle nous
+éloigne de la réalité.
+
+Théoriquement, nous pouvons tout de méme ignorer ces effets, car nous
+visons à estimer les effets moyens pour tous les départements. De cette
+façon, lors d'aggregation des effets au niveau national en éstimant le
+coefficient moyen unique pour tous les départements nous allons mitiger
+les biais possibles.
+
+Alors,nous pouvons réécrire notre système d'equations sous la forme
+suivante :
+
+\begin{align*}
+  qd_i & = \alpha_{i} + \beta Pd_{i,d} + \gamma Z_{i} \\
+  qo_i & = a_i + b Po_{i,o} + c X_{i} \\ 
+\end{align*}
+
+Où \(qd_i = qo_i\) et \(Pd_i = Po_i\), ce qui permet de rélier les
+équations au niveau départemental. Les coefficients \(b\), \(c\),
+\(\beta\) et \(\gamma\) sont supposé fixes pour tous les départements
+nous donnent un estimateur des effets moyens au niveau de la France.
+L'effet des pésticides dans la production du vin serons captés par le
+terme \(c_{1} : c = (c_{1}, c{2})\) dans ce cas.
+
+Néanmoins, nous nous posons la question, comment réagir dans le cas où
+les effets sont differents pour des differents département suite à des
+spécificité des marché locaux, géographiques ou autres ? On peut
+supposer, qu'il existent au moins quelques groupes majeures ayant des
+caractéristiques et comportements similaires. Dans ce cas nous pourrions
+construire des clusters, qui regrouppont des départements ayant des
+caractéristiques idéntiques. Cela nous permettra de modèliser les effets
+moyens par cluster en réduisant les biais eventuels.
+
+Ce système peut être formalisé par \(K\) systèmes d'équations suivantes
+:
+
+\begin{align*}
+  qd_{i_{c = const}} & = \alpha_{i_{c = const}} + \beta_{c = const} Pd_{i_{c = const},d} + \gamma_{c = const} Z_{i_{c = const}} \\
+  qo_{i_{c = const}} & = a_{i_{c = const}} + b_{c = const} Po_{i_{c = const},o} + c_{c = const} X_{i_{c = const}} \\ 
+\end{align*}
+
+Où \(c\) décrive l'appartenance des départements à un des groupes
+(clusters).
+
+\hypertarget{les-donnees}{%
+\section{4. Les données}\label{les-donnees}}
+
+Avant de passer à la discussion des modèles économétriques il nous faut
+prendre connaissance de la nature des données en notre disposition. Dans
+cette partie de notre travail nous allons presenter la base des données
+utilisé lors de cette étude. Nous commencerons par une presentation des
+sources et des types des données extraits de ces sources. Puis, nous
+procederons avec la déscription des méthodes et thécniques utilisées
+pour transformer ces données et les rendre traitables. Finalement, nous
+presenterons un dictionnaire des variables pour nos bases des données.
+
+\hypertarget{sources-des-donnees}{%
+\subsection{Sources des données :}\label{sources-des-donnees}}
+
+Nous avons utilisé les bases des données suivantes pour notre analyse :
+
+\begin{itemize}
+\tightlist
+\item
+  Les données de ventes de pesticides par département (INERIS)
+\item
+  Les données sur les prix du vin (France Agrimer)
+\item
+  Les données sur la population (INSEE)
+\item
+  Les données sur la production de vin (SSM Finances Publiques)
+\end{itemize}
+
+\hypertarget{les-variables-utilisees-pour-notre-modele}{%
+\subsection{Les variables utilisées pour notre
+modèle}\label{les-variables-utilisees-pour-notre-modele}}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+\textcolor{red}{Réverifier tous les sources et la naure des données ...}
+
+\textcolor{red}{Expliciter la procedure de création des variables}
+
+\textcolor{red}{Preciser les effets attendus des variables}
+
+\textcolor{red}{Discuter les externalités (ou c'est mieux de l'inclure dans la partie théorique ? ou contextualisation ? A VOIR)}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+Dans notre étude nous faisons face à un problème avec deux variables
+endogènes et trois variables exogènes.
+
+Variables endogènes : - la quantité totale produite de vin rouge et
+blanc non IG par département (en hectolitres, en log), - le prix moyen
+des vins rouges-blancs (idice, en log).
+
+Variables exogènes : - le revenu médian par département (en euros par
+personne par année, en log), - la surface agricole destinée aux vins de
+table (en hectares, en log), - la quantité des pesticides utilisés sur
+la vigne (indice, en log).
+
+Au niveau des pesticides, on va s'intéresser plus particulièrement aux
+quantités de produits vendus par département entre 2009 et 2017 utilisés
+principalement sur les cultures viticoles. Il faut faire preuve de
+vigilance sur le conditionnement des produits qui n'est pas exprimé dans
+la même unité au sein de cette base : en litres ou en kilos. Dans notre
+étude nous allons étudier l'impact de la masse totale des pésticides
+utilisés. Pour pouvoir le faire, nous créons un indice qui permet de
+prendre en compte les évolutions des differents types des produits à la
+fois. Nous créons un indice simple :
+
+\begin{equation*}
+  P = \frac{\sum_j p_{j, t} q_{j, t}}{\sum_j p_{j, 0} q_{j, 0}}
+\end{equation*}
+
+Avec \(j\) désignant le produit \(j\), et \(p\) étant un coefficient de
+pondération (dans le cas le plus simple \(p = 1\)).
+
+En ce qui concerne les données sur le prix du vin, on s'intéresse
+principalement au prix moyen des vins rouge- rosés et blancs sans IG
+(Indication Géographique) sur la période 2009-2017. Ces prix sont
+déflatés par l'indice des prix à la consommation (base 100 en 2014). On
+ne considère ici que le prix moyen déflaté au niveau national. Dans le
+deuxième modèle nous avons besoin de créer artificiellement un
+estimateur qui va varier par département. Dans ce but nous créons
+l'indice de prix du vin de table départementale, calculé de façon
+suivante :
+
+\begin{equation*}
+  P = \frac{p_{rouge, t} q_{rouge, t} + p_{blanc, t} q_{blanc, t}}{p_{rouge, 0} q_{rouge, 0} + p_{blanc, 0} q_{blanc, 0}}
+\end{equation*}
+
+Avec \(t\) étant l'anée au période \(t\).
+
+Au niveau des données sur la population, la variable qui nous intéresse
+ici est relative au niveau de revenu, exprimée au niveau départemental
+(laquelle, si besoin nous pourrions facilement aggréger au niceau
+national). Plus précisément, on va utiliser le revenu médian par
+département. Il est aussi déflatée de l'indice des prix à la
+consommation (base 100 en 2014).
+
+Toutes les variables subissent une transformation logarithmique, ce qui
+nous permet d'interpreter les effets estimés plus facilement. Pour un
+modèle logarithmique nous pourrions traiter les estimateurs obtenus
+comme l'elasticité de la demande/l'offre par rapport à des facteurs
+differents. Ainsi, nous cherchons particulierement l'elasticité de
+quantité offerte sur le marché par rapport à la quantité des pésticides
+utilisés.
+
+Les propriétés de ces données sont suivantes :
+
+\begin{itemize}
+\tightlist
+\item
+  Toutes les variables varient par département et par année.
+\item
+  Le période temporelle comprise dans notre échantillon est de 2012 à
+  2016.
+\item
+  Nous ne considérons que les régions produisant du vin.
+\item
+  Nous éliminons les effets fixes pour en substrayant les moyennes
+  départamentales.
+\item
+  Données en panel ``cylindrées''.
+\item
+  Nombre des individus large (69 départements, qui produisent le vin
+  simple et qui utilisent des pésticides) et le nombre des périodes
+  pauvre (5 périodes).
+\end{itemize}
+
+\hypertarget{letude-statistique}{%
+\section{5. L'étude statistique}\label{letude-statistique}}
+
+Dans cette partie de travail nous allons explorer les données
+collectées.
+
+De l'étude de la variance pour les données en panel avec des
+statistiques générales, nous passerons vers l'étude des interdependances
+des variables. Puis, nous allons finir avec étude des donnée alternées
+par une transformation \textbf{within}.
+
+\hypertarget{visualisation-au-niveau-de-la-france}{%
+\subsection{Visualisation au niveau de la
+France}\label{visualisation-au-niveau-de-la-france}}
+
+Pour le prémier analyse il peut être interessant de voir la situation du
+point du vue géographique. Nous visualisons les valuers moyens par
+département des differentes variables (une partie des répresentation se
+trouve dans l'annexe X).
+
+D'abord nous étudions le comportement de la variable dépendante de notre
+systhéme. La quantité du vin sans IG produit par département semble
+pouvoir être correlé à partir de la figure suivante.
+
+\FloatBarrier
+
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-18-1} 
+
+}
+
+\caption{Les quantité du vin non-IG moyennes par département}\label{fig:unnamed-chunk-18}
+\end{figure}
+
+\FloatBarrier
+
+Puis, nous observons le comportement du reste des variables (les
+representations graphiques sont grouppés dans l'annexe X). L'indice des
+prix se comporte pratiquement comme quantité du vin produite, car cet
+indice fut construit par biais de cette variable. Les autres moyennes ne
+semblent pas avoir des structures corrélés dans l'espace au niveau de la
+France. Dans notre analyse nous nous laissons liberté d'ignorer les
+effets possibles d'autocorrelation spatiale dans nos données, parce que
+au moment de constructions de notre base des données nous avons ignoré
+les département ne produisant pas le vin simple, mais qui peuvent quand
+même jouer son rôle si nous étions à prendre en compte la structure
+spatiale des nos données.
+
+\hypertarget{etude-de-la-variance}{%
+\subsection{Etude de la variance}\label{etude-de-la-variance}}
+
+Passons maintenant à l'étude de la variance. Nous allons décortiquer la
+variance par type (between et within) afin d'obtenir une idée sur le
+choix preferable de la dimention d'aggregation des nos données, car il
+peut se reveler que la théorie ne corresponde pas à la réalitée (ex:
+nous faisons face aux effets fixes par année et non par département).
+
+Le tableau suivant regrouppe les statistiques déscriptives essentielles
+:
+
+\begin{itemize}
+\tightlist
+\item
+  Moyennes
+\item
+  Variance sur l'échantillon complet
+\item
+  Variance \emph{between}
+\item
+  Variance \emph{within}
+\end{itemize}
+
+\FloatBarrier
+
+\begin{table}[!htbp] \centering 
+  \caption{Etude de la variance} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Mean & Overall & Between & Within \\ 
+\hline \\[-1.8ex] 
+Index prix & $1.431$ & $1.339$ & $1.012$ & $0.883$ \\ 
+Index pesticides & $1.257$ & $0.483$ & $0.335$ & $0.350$ \\ 
+Surface & $4.892$ & $1.986$ & $1.955$ & $0.410$ \\ 
+Revenus & $9.891$ & $0.061$ & $0.061$ & $0.011$ \\ 
+Temps & $3$ & $1.416$ & $0$ & $1.416$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\FloatBarrier
+
+Il est facile a rémarquer que la variance \emph{between} est plus
+significative que la variance \emph{within}. Cela nous amêne à l'idée
+qu'il faut utiliser un modèle qui permettra estimer et corriger ces
+inégalités entre les individus, car nous sommes plus interessés par des
+effets individuels moyens (les effets moyens pour tous les
+départemetns). Ce qui est completement conforme à notre hypothèse qu'on
+a exprimé lors de la formalisation du modèle économique théorique.
+
+De plus, il est interessant d'observer les résultats obtenus pour le
+test de Chow comparant le modèle complet (\emph{pooled model}) contre
+les modèles au effet fixes et randomes. Le tableau suivant régrouppe les
+p-valeurs de ce test pour les modèles univariées differents.
+
+\FloatBarrier
+
+\begin{table}[!htbp] \centering 
+  \caption{Les p-valeurs de pooling-test de Chow} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Random & Fixed \\ 
+\hline \\[-1.8ex] 
+Index prix & $0$ & $0$ \\ 
+Index pesticides & $0.354$ & $0.294$ \\ 
+Surface & $0$ & $0.0001$ \\ 
+Revenus & $0.297$ & $0.247$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\FloatBarrier
+
+Sauf le cas de la surface nous ne pouvons pas rejeter l'hypothese nulle,
+specifiant que les individus ont des effets identiques pour toute la
+population.
+
+\hypertarget{letude-des-types-deffets}{%
+\subsection{L'étude des types d'effets}\label{letude-des-types-deffets}}
+
+Nous avons déjà vu, qu'il est fortement probable que nous faisons face à
+un modèle aux effets fixes individuelles. Il faut quand même le
+justifier. Pour faire cela, nous allons effectuer le test de
+multiplicateur de Lagrange sur la nature des effets (individuels,
+temporels ou en double dimention). Selon les résultats des tests il est
+difficile de choisir arbitrairement un type des effets. Il est évidente
+que nous avons des effets fixes au niveau individuel ou des fixes en
+double dimention pour toutes les variables.
+
+\FloatBarrier
+
+\begin{table}[!htbp] \centering 
+  \caption{p-valeurs de Lagrange multiplier test} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Individual & Time & Twoways \\ 
+\hline \\[-1.8ex] 
+Index prix & $0$ & $0.256$ & $0$ \\ 
+Index pesticides & $0$ & $0.229$ & $0$ \\ 
+Surface & $0$ & $0.030$ & $0$ \\ 
+Revenus & $0$ & $0.248$ & $0$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\FloatBarrier
+
+Selon les résultats obtenus, ainsi que les evidences théoriques des
+études anterieurs nous décidons de ne garder que les effets fixes au
+niveau individuel afin de faciliter l'analyse.
+
+\hypertarget{lanalyse-de-la-correlation}{%
+\subsection{L'analyse de la
+correlation}\label{lanalyse-de-la-correlation}}
+
+Dans le tableau ci-dessous nous presentons les correlations des
+variables après la correction pour les effets fixes individuels (nous
+effectuons la transformation \emph{within} sur nos données en
+substrayant les moyennes individuelles pour l'ensemble des variables).
+Dans les annexes nous proposons egalement un tableau de correlation pour
+les données non-transformées, ce qui permet d'observer les inégalités et
+une pauvre répresentativitée des liens entres les variables pour les
+données initiales.
+
+Particulierement nous pouvons remarquer une forte correlation entre la
+quantité offerte et le prix d'équilibre. Egalement \ldots{}
+
+\hypertarget{modelisation}{%
+\section{6. Modèlisation}\label{modelisation}}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+\textcolor{red}{Séparer les modèles (OLS, 3SLS avec justification par 2SLS et la comparaison avec i3SLS, clusters en OLS et 3SLS).}
+
+\textcolor{red}{Justifier le choix des modèles par 3 cas théoriques. Discuter les avantages et les inconveniences}
+
+\textcolor{red}{Ajouter des liens avec des études méthodologiques precedents.}
+
+\textcolor{red}{Pour le modèle 2SLS préciser la forme, tester les instruments}
+
+\textcolor{red}{Arbitrage du choix de 2SLS vs 3SLS}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+Cette partie du travail abordera la formulation économétrique du notre
+problème. Nous allons débuter par la présentation des notions théoriques
+implimentés dans ce travail, suivis par la formalisation économétrique
+du modèle théorique que nous avons spécifié dans la séction 5. Après,
+nous expliquerons la stratégie d'identification utilisée.
+
+\hypertarget{presentation-de-la-methodologie}{%
+\subsection{Presentation de la
+méthodologie}\label{presentation-de-la-methodologie}}
+
+L'AIDS (\emph{almost ideal demand system}) et les autres modèles de
+demande cités dans la littérature ont de nombreuses lacunes qui les
+rendent impropres pour l'estimation du marché du vin, selon Cembalo,
+Caracciolo, and Pomarici (2014). Quand même, dans notre étude nous
+allons utiliser un approche similaire à ce modèle là, sous des
+suppositions restrictives.
+
+Ce modèle nous permettra de simuler l'équilibre sur le marché du vin,
+prenant ainsi en compte la pluspart des facteurs incitant les
+producteurs du vin d'utiliser les pésticides.
+
+\hypertarget{modele-econometrique}{%
+\subsection{Modèle économétrique}\label{modele-econometrique}}
+
+Dans cette séction nous allons presenter une par une nos modèles
+économétriques correspondant chacune à un des trois cadres théoriques
+possibles. Tous les modèles visent à estimer les effets moyenns pour
+tous les départements sous des hypothèses differentes du fonctionnement
+du marché. Dans tous les cas, l'aggregation des effets au niveau
+national (ou au niveau des grouppes) nous permet de mitiger les biais
+eventuels, liés à la misspecification du modèle.
+
+Pour le cadre où nous n'observons pas des interactions entre la demande
+et l'offre sur le marché (M1), nous ésimons un modèle simple. Nous
+écrivons notre modèle sous la forme suivante :
+
+\begin{equation*}
+  qo_{i,t} = a_1 + b Po_{i,t} + c X_{i,t} + u_{i,t}
+\end{equation*}
+
+A ce point nous avons un choix : soit nous supposons que les
+agriculteurs sont des preneurs des prix, ce qui nous permet de traiter
+le prix comme une variable exogène; soit nous dévrions construire un
+estimateur IV afin de traiter l'endogénéité eventuelle de l'index des
+prix. Evidement le premier cas est le plus simple, mais pour justifier
+l'implementation de cette méthode nous dévrions effectuer des tests
+d'énogénéité des prix. Le deuxième cas est beaucoup plus réaliste,
+puisque les viticulteurs sont rarement preneurs des prix et l'offre
+aussi joue son rôle sur l'équilibre du marché.
+
+Dans la dérnier situation nous utilisons les idées de MacKay and Miller
+(2018), supposant que les variables détérminant la demande sont des
+instruments fiables pour la prédiction des variables endogènes dans
+l'équation d'offre (bien que dans notre cas nous ignorons les effets des
+intéractions entre l'offre et la demande). Particulieremnt ici nous
+pourrions utiliser les données sur les revenus afin d'instrumenter le
+niveau des prix (l'indice des prix du vin).
+
+Passons maintenant au modèle plus complexe (M2), basé sur l'hypothèse
+que la demande influence l'offre, affectant également le mode
+d'utilisation des pésticides par les agriculteurs. Nous pouvons réécrire
+notre système d'equations dans ce cas sous la forme suivante :
+
+\begin{align*}
+  qo_{i,t} & = a_1 + b Po_{i,t} + c X_{i,t} + u_{i,t} \\ 
+  qd_{i,t} & = \alpha_{i} + \beta Pd_{i,t} + \gamma Z_{i,t} + \epsilon_{i,t}  \\
+\end{align*}
+
+Nous posons que l'offre et la demande sont egaux au niveau de
+département : \(qd_{i,t} = qo_{i,t}\). C'est à dire l'offre interne du
+département vise à satisfaire la demande interne du même département.
+
+En termes d'aggregation ex-post des effets estimés, nous sommes sensé de
+tomber sur l'équilibre au niveau du marché national. En d'autre mots, le
+système (qui implique : \(Qd = Qo\)) :
+
+\begin{equation*}
+  qd_{i,t} = qo_{i,t}
+\end{equation*}
+
+Au point d'équilibre nous rencontrons également l'égalité des prix :
+
+\begin{equation*}
+  Po_{1,t} = Pd_{1,t}
+\end{equation*}
+
+De cette façon nous obtenons un système des systèmes des équations. En
+simplifiant l'écriture nous pouvons la representer sous la forme
+suivante :
+
+\begin{align*}
+  q_{i,t} & = \alpha_{i} + \beta P_{i,t} + \gamma Z_{i,t} + \epsilon_{i,t} \\
+  q_{i,t} & = a_i + b P_{i,t} + c X_{i,t} + u_{i,t}
+\end{align*}
+
+Et finalement, nous pouvons estimer les deux modèles (M1 et M2) en
+regrouppant les département par leurs caractéristiques. Appelons ces
+modèles M3.1 et M3.2 réspectivement.
+
+Le prémiér prénant la forme :
+
+\begin{align*}
+  qo_{i,t} & = a_1 + b Po_{i,t} + c X_{i,t} + u_{i,t} \\ 
+\end{align*}
+
+Tandis que le dérnier :
+
+\begin{align*}
+  q_{i_{c},t} & = \alpha_{i_{c}} + \beta P_{i_{c},t} + \gamma Z_{i_{c},t} + \epsilon_{i_{c},t} \\
+  q_{i_{c},t} & = a_i + b P_{i_{c},t} + c X_{i_{c},t} + u_{i_{c},t}
+\end{align*}
+
+Avec \(c\) décrivant l'appartenance de département à un des clusters.
+
+Pour finir cette partie, resumons que nous avons à notre disposition
+plusieurs chemins differents à traiter ce modèle du point de vue
+économétrique. Le plus simple est d'estimer les effets des pésticides
+sur l'offre du vin en ignorant les impacts du comportement des
+consommaterus sur les producteurs. Cette méthode implique une éstimation
+par OLS simples (ou IV-OLS, lesquels introduisent la notion
+d'éndogénéité des prix). D'autre coté, nous pouvons implementer les
+tripples moindre carrés (nous dévrions comparer les résultats obtenus
+avec un système des équations non-réliées, éstimé par 2SLS afin de
+traiter l'éndogenèité), qui nous permettrons d'obtenir des résultats
+identiques aux résultats d'estimations des équation structurelles sous
+l'hypothèse des intéractions entre l'offre et la demande. Cette méthode
+offre la possibilité d'estimer le système d'équations avec plusieurs
+variables endogèenes en prenant en compte les deux coté du marché à la
+fois. Finalement, si on trouve qu'il y existe une heterogeneité entre
+les départements en termes d'équilibre interne, nous pourrions réestimer
+les modèles en clusterisant nos \emph{individus} (départements) par des
+differents classes selon leurs attributs, pour après estimer les
+equations par cluster.
+
+\hypertarget{hypotheses-sur-les-resultats}{%
+\subsection{Hypothèses sur les
+résultats}\label{hypotheses-sur-les-resultats}}
+
+Nous attendons à ce que l'éstimateur de 3SLS, qui permet de capter les
+effets de correlations entre les équation en presence de plusieures
+variables exogènes nous permettra d'obtenir des estimations les plus
+fiables. Cette méthode nous permet à depasser le biais de simultanéité
+qui apparaisse dans le cas d'estimation des systèmes d'équations liées
+(dans notre cas nous étudions les effets des pésticides sur l'offre et
+production du vin simple sous hypothèse de présence des effets du
+marché). L'estimateur pareil donne des résultats similaires à
+l'éstimateur de ILS (\emph{indirect least squares}). De plus, sa version
+iterée (qui converge à des résultats similaires à ceux obtenus par
+l'éstimation avec maximum de vraisamblance) donne des résultats avec la
+moindre variance.
+
+Les propriétés de cet éstimateurs sont :
+
+\begin{itemize}
+\tightlist
+\item
+  Consistence ;
+\item
+  Efficience (asymptotique) ;
+\item
+  La distribuitions pour les estimateurs suit une loi normale suelement
+  dans des grands échantillons.
+\end{itemize}
+
+Quand même dès le debut nous envisageons que cet éstimateur ne refletera
+pas la nature du marché. C'est pourquoi nous, dans ce travail, testons
+plusieurs modèles.
+
+Parmis les inconveniences eventuelles on a également la faible
+representation des effets hetérogenes entre les départements par le
+modèle. Nous estimons seulemnt les effets moyens et ainsi ignorons les
+differences des élasticités pour des départements differents.
+Hereusement ce problème peut être rémédiée par l'introduction des
+clusters, regrouppant des département ayant le comportement similaire.
+
+Finalement, il existe des effets qu'on ignore completement, mais qui
+risquent d'intervenir. Par example, nous ignorons la présence
+d'autocorrelation spatiale et/ou temporelle dans notre modèle.
+Egalement, un nombre probablement insuffisant des facteurs est utilisé
+dans ce modèle, ce qui risaue d'apporter le biais des variables omises
+dans nos estimations.
+
+\hypertarget{resultats-des-estimations}{%
+\section{7. Résultats des estimations}\label{resultats-des-estimations}}
+
+Dans cette séction nous allons presenter les résultats économétriques
+pour des differents modèles ainsi que les comparer.
+
+Nous estimons un enseble des differents modèles possibles afin de
+pouvoir choisir la méthode la plus raisonnable. Les modèles suivantes
+sont traitées séparement :
+
+\begin{itemize}
+\tightlist
+\item
+  M1 : modèle simple sans intéractions entre l'offre et la demande ;
+\item
+  M2 : modèle complexe visant à integrer les intéractions entre l'offre
+  et la demande en presence des variables éndogènes ;
+\item
+  M3 : les modèles sur les données clustérisés (M3.1 et M3.2
+  réspectivement pour les deux cas précedents).
+\end{itemize}
+
+\hypertarget{les-resultats-en-absence-des-interactions}{%
+\subsection{Les résultats en absence des
+intéractions}\label{les-resultats-en-absence-des-interactions}}
+
+\FloatBarrier
+
+\begin{table}[!htbp]
+\begin{center}
+\begin{tabular}{l c c c }
+\hline
+ & OLS & WLS & SUR \\
+\hline
+Demande: ipi        & $0.33^{***}$  & $0.33^{***}$  & $0.32^{***}$ \\
+                    & $(0.02)$      & $(0.02)$      & $(0.02)$     \\
+Demande: ri         & $-9.00^{***}$ & $-9.00^{***}$ & $-1.10$      \\
+                    & $(1.46)$      & $(1.46)$      & $(0.66)$     \\
+Offre: ipi          & $0.30^{***}$  & $0.30^{***}$  & $0.32^{***}$ \\
+                    & $(0.02)$      & $(0.02)$      & $(0.02)$     \\
+Offre: si           & $0.23^{***}$  & $0.23^{***}$  & $0.03$       \\
+                    & $(0.04)$      & $(0.04)$      & $(0.02)$     \\
+Offre: iki          & $-0.16^{***}$ & $-0.16^{***}$ & $-0.02$      \\
+                    & $(0.05)$      & $(0.05)$      & $(0.02)$     \\
+\hline
+Demande: R$^2$      & 0.50          & 0.50          & 0.46         \\
+Offre: R$^2$        & 0.52          & 0.52          & 0.46         \\
+Demande: Adj. R$^2$ & 0.50          & 0.50          & 0.45         \\
+Offre: Adj. R$^2$   & 0.52          & 0.52          & 0.46         \\
+Num. obs. (total)   & 690           & 690           & 690          \\
+\hline
+\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\caption{Statistical models}
+\label{table : ols, wls and sur}
+\end{center}
+\end{table}
+
+\FloatBarrier
+
+\hypertarget{les-resultats-2sls-w2sls-3sls-et-i3sls}{%
+\subsection{Les résultats 2SLS, W2SLS, 3SLS et
+i3SLS}\label{les-resultats-2sls-w2sls-3sls-et-i3sls}}
+
+\FloatBarrier
+
+\FloatBarrier
+
+\begin{table}[!htbp]
+\begin{center}
+\begin{tabular}{l c c c c }
+\hline
+ & 2SLS & W2SLS & 3SLS & i3SLS \\
+\hline
+Demande: ipi        & $0.79^{***}$   & $0.79^{***}$   & $0.79^{***}$   & $0.79^{***}$   \\
+                    & $(0.15)$       & $(0.15)$       & $(0.15)$       & $(0.15)$       \\
+Demande: ri         & $-13.07^{***}$ & $-13.07^{***}$ & $-13.07^{***}$ & $-13.07^{***}$ \\
+                    & $(2.76)$       & $(2.76)$       & $(2.76)$       & $(2.76)$       \\
+Offre: ipi          & $-0.28$        & $-0.28$        & $-0.25$        & $-0.25$        \\
+                    & $(0.25)$       & $(0.25)$       & $(0.25)$       & $(0.24)$       \\
+Offre: si           & $0.47^{***}$   & $0.47^{***}$   & $0.45^{***}$   & $0.45^{***}$   \\
+                    & $(0.13)$       & $(0.13)$       & $(0.13)$       & $(0.12)$       \\
+Offre: iki          & $-0.11$        & $-0.11$        & $-0.17^{*}$    & $-0.17^{*}$    \\
+                    & $(0.09)$       & $(0.09)$       & $(0.08)$       & $(0.08)$       \\
+\hline
+Demande: R$^2$      & -0.41          & -0.41          & -0.41          & -0.41          \\
+Offre: R$^2$        & -0.87          & -0.87          & -0.74          & -0.75          \\
+Demande: Adj. R$^2$ & -0.42          & -0.42          & -0.42          & -0.42          \\
+Offre: Adj. R$^2$   & -0.89          & -0.89          & -0.75          & -0.76          \\
+Num. obs. (total)   & 690            & 690            & 690            & 690            \\
+\hline
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\caption{Statistical models}
+\label{table : 2sls, w2sls, 3sls and fiml}
+\end{center}
+\end{table}
+
+\FloatBarrier
+
+\hypertarget{clusterisation-et-modelisation-par-groupe}{%
+\subsection{Clusterisation et modèlisation par
+groupe}\label{clusterisation-et-modelisation-par-groupe}}
+
+\hypertarget{between}{%
+\subsubsection{\texorpdfstring{\emph{Between}}{Between}}\label{between}}
+
+Nous avons vus dans le comportement des résidus une nature non-aléatoire
+grouppé. Cela nous amène à l'idée de construire k-clusters pour
+modèliser les rélations par grouppe.
+
+Nous supposons que les départements ayant des valeurs moyennes
+interannuelles proches (transformation Between) ont le comportement
+identique. La clusterisation est effectué sur les données Between pour
+les départements.
+
+Nous povons supposer que le nombre des clusters optimal est entre 3 et
+5. Prenant en compte les graphiques des résidus vus lros d'analse des
+modèles nous allons supposer qu'il n'y a que 3 clusters principaux.
+
+\FloatBarrier
+
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-37-1} 
+
+}
+
+\caption{Le choix des clusters}\label{fig:unnamed-chunk-37}
+\end{figure}
+
+\FloatBarrier
+
+\hypertarget{within}{%
+\subsubsection{\texorpdfstring{\emph{Within}}{Within}}\label{within}}
+
+Nous avons vus dans le comportement des résidus une nature non-aléatoire
+grouppé. Cela nous amène à l'idée de construire k-clusters pour
+modèliser les rélations par grouppe.
+
+D'abord on compare le comportement des cluster pour les données à
+l'information complete et les données Within.
+
+Comme nous pouvons voir dans les résultats le nombre des cluster
+optimaux est trop large pour les séparer dans l'analyse :
+
+Nous povons supposer que le nombre des clusters optimal est entre 6 et
+15.
+
+\FloatBarrier
+
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-43-1} \end{center}
+
+\FloatBarrier
+
+\hypertarget{information-complete}{%
+\subsubsection{Information complete}\label{information-complete}}
+
+Dans le cas d'information complete on a :
+
+Nous povons supposer que le nombre des clusters optimal est entre 3 et
+5. Prenant en compte les graphiques des résidus vus lros d'analse des
+modèles nous allons supposer qu'il n'y a que 3 clusters principaux.
+
+\FloatBarrier
+
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-48-1} \end{center}
+
+\FloatBarrier
+
+\hypertarget{modelisation-1}{%
+\subsubsection{Modèlisation}\label{modelisation-1}}
+
+\FloatBarrier
+
+Nous evaluons le système en introduisant les variables de grouppe (dummy
+variables) sous l'hypothèse des résidus joints.
+
+Les résultats obtenus sont suivants :
+
+\FloatBarrier
+
+\begin{table}[!htbp]
+\begin{center}
+\begin{tabular}{l c c c }
+\hline
+ & OLS & 2SLS & 3SLS \\
+\hline
+Demande: ipi        & $0.33^{***}$   & $0.15^{***}$   & $0.16^{***}$ \\
+                    & $(0.02)$       & $(0.03)$       & $(0.03)$     \\
+Demande: ri1        & $-1.69$        & $0.99$         & $0.48$       \\
+                    & $(1.92)$       & $(2.17)$       & $(1.19)$     \\
+Demande: ri2        & $-17.14^{***}$ & $-18.38^{***}$ & $-3.30^{**}$ \\
+                    & $(2.09)$       & $(2.35)$       & $(1.26)$     \\
+Demande: ri3        & $-22.12^{*}$   & $13.13$        & $13.93$      \\
+                    & $(10.47)$      & $(12.23)$      & $(12.17)$    \\
+Offre: ipi          & $0.37^{***}$   & $0.16^{***}$   & $0.19^{***}$ \\
+                    & $(0.02)$       & $(0.03)$       & $(0.03)$     \\
+Offre: si1          & $0.14$         & $0.21^{*}$     & $0.03$       \\
+                    & $(0.08)$       & $(0.09)$       & $(0.05)$     \\
+Offre: si2          & $0.26^{***}$   & $0.31^{***}$   & $0.06^{*}$   \\
+                    & $(0.04)$       & $(0.05)$       & $(0.03)$     \\
+Offre: si3          & $-2.58^{***}$  & $-0.68$        & $-0.58$      \\
+                    & $(0.37)$       & $(0.47)$       & $(0.46)$     \\
+Offre: iki1         & $-0.06$        & $0.00$         & $-0.01$      \\
+                    & $(0.08)$       & $(0.09)$       & $(0.05)$     \\
+Offre: iki2         & $-0.18^{***}$  & $-0.20^{***}$  & $-0.04$      \\
+                    & $(0.05)$       & $(0.06)$       & $(0.03)$     \\
+Offre: iki3         & $13.81^{***}$  & $8.01^{*}$     & $4.03$       \\
+                    & $(3.21)$       & $(3.74)$       & $(2.99)$     \\
+\hline
+Demande: R$^2$      & 0.54           & 0.42           & 0.37         \\
+Offre: R$^2$        & 0.59           & 0.46           & 0.42         \\
+Demande: Adj. R$^2$ & 0.54           & 0.42           & 0.36         \\
+Offre: Adj. R$^2$   & 0.59           & 0.45           & 0.41         \\
+Num. obs. (total)   & 690            & 690            & 690          \\
+\hline
+\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\caption{Statistical models}
+\label{table : ols, 2sls et 3sls, full information clusters}
+\end{center}
+\end{table}
+
+\FloatBarrier
+
+\hypertarget{conclusions}{%
+\section{9. Conclusions}\label{conclusions}}
+
+\begin{itemize}
+\tightlist
+\item
+  Le marché du vin
+\item
+  Le rôle des pésticides\\
+\item
+  Validité
+\end{itemize}
+
+\FloatBarrier
+
+\hypertarget{le-marche-du-vin}{%
+\subsection{Le marché du vin}\label{le-marche-du-vin}}
+
+\begin{itemize}
+\tightlist
+\item
+  Un comportement inattendus
+
+  \begin{itemize}
+  \item
+    Les effets de substitution contre les produits de la haute gamme
+  \item
+    Les effets négatives du revenu
+  \item
+  \end{itemize}
+\end{itemize}
+
+\FloatBarrier
+
+\hypertarget{le-role-des-pesticides}{%
+\subsection{Le rôle des pésticides}\label{le-role-des-pesticides}}
+
+\begin{itemize}
+\tightlist
+\item
+  Confirmation des résultats des études précedentes
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Utilisés pour réduire les pertes
+  \end{itemize}
+\end{itemize}
+
+\FloatBarrier
+
+\hypertarget{validite}{%
+\subsection{Validité}\label{validite}}
+
+\begin{itemize}
+\tightlist
+\item
+  Faible validité du modèle économétrique
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Variables ommises
+  \end{itemize}
+\end{itemize}
+
+\FloatBarrier
+
+\newpage
+
+\hypertarget{annexes}{%
+\section{Annexes}\label{annexes}}
+
+\hypertarget{a-les-statistiques-descriptives}{%
+\subsection{A Les statistiques
+déscriptives}\label{a-les-statistiques-descriptives}}
+
+\hypertarget{a1-les-moyennes-par-departement}{%
+\subsubsection{A1 Les moyennes par
+département}\label{a1-les-moyennes-par-departement}}
+
+\FloatBarrier
+
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-56-1} 
+
+}
+
+\caption{Les valeurs moyennes par département, partie 1}\label{fig:unnamed-chunk-56}
+\end{figure}
+
+\FloatBarrier
+
+\FloatBarrier
+
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-57-1} 
+
+}
+
+\caption{Les valeurs moyennes par département, partie 2}\label{fig:unnamed-chunk-57}
+\end{figure}
+
+\FloatBarrier
+
+\newpage
+
+\hypertarget{a2-les-graphiques-bivaries}{%
+\subsubsection{A2 Les graphiques
+bivariés}\label{a2-les-graphiques-bivaries}}
+
+\hypertarget{cas-general}{%
+\paragraph{Cas général}\label{cas-general}}
+
+\FloatBarrier
+
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-58-1} 
+
+}
+
+\caption{L'étude bivarié, partie 1}\label{fig:unnamed-chunk-58}
+\end{figure}
+
+\FloatBarrier
+
+\FloatBarrier
+
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-59-1} 
+
+}
+
+\caption{L'étude bivarié, partie 2}\label{fig:unnamed-chunk-59}
+\end{figure}
+
+\FloatBarrier
+
+\hypertarget{transformation-within}{%
+\paragraph{\texorpdfstring{Transformation
+\emph{Within}}{Transformation Within}}\label{transformation-within}}
+
+\FloatBarrier
+
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-60-1} 
+
+}
+
+\caption{Rélations bivariés dans le cas de transformation within, partie 1}\label{fig:unnamed-chunk-60}
+\end{figure}
+
+\FloatBarrier
+
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-61-1} 
+
+}
+
+\caption{Rélations bivariés dans le cas de transformation within, partie 2}\label{fig:unnamed-chunk-61}
+\end{figure}
+
+\FloatBarrier
+
+\newpage
+
+\hypertarget{a3-la-correlation}{%
+\subsubsection{A3 La correlation}\label{a3-la-correlation}}
+
+\hypertarget{cas-general-1}{%
+\paragraph{Cas général}\label{cas-general-1}}
+
+Le premier tableau combrend les résultats pour les données
+telles-quelles, le deuxieme par contre integre les résultats pour les
+données sous la trasformation \emph{within}.
+
+\FloatBarrier
+
+\begin{longtable}[]{@{}lrrrrrr@{}}
+\toprule
+& Quantité du vin & IP & Surface & Revenus & Index pésticides &
+Temps\tabularnewline
+\midrule
+\endhead
+Quantité du vin & 1.0000 & 0.0177 & 0.9559 & -0.0266 & -0.0667 &
+-0.0360\tabularnewline
+IP & 0.0177 & 1.0000 & -0.0513 & 0.0065 & -0.0590 &
+0.1082\tabularnewline
+Surface & 0.9559 & -0.0513 & 1.0000 & -0.0567 & -0.0486 &
+-0.0640\tabularnewline
+Revenus & -0.0266 & 0.0065 & -0.0567 & 1.0000 & -0.0433 &
+0.1188\tabularnewline
+Index pésticides & -0.0667 & -0.0590 & -0.0486 & -0.0433 & 1.0000 &
+0.2971\tabularnewline
+Temps & -0.0360 & 0.1082 & -0.0640 & 0.1188 & 0.2971 &
+1.0000\tabularnewline
+\bottomrule
+\end{longtable}
+
+\FloatBarrier
+
+\hypertarget{transformation-within-1}{%
+\paragraph{\texorpdfstring{Transformation
+\emph{Within}}{Transformation Within}}\label{transformation-within-1}}
+
+Les rélations entre les variables mieux ressortent pour les données
+transformées.
+
+\FloatBarrier
+
+\begin{longtable}[]{@{}lrrrrrr@{}}
+\toprule
+& Quantité du vin & IP & Surface & Revenus & Index pésticides &
+Temps\tabularnewline
+\midrule
+\endhead
+Quantité du vin & 1.0000 & 0.6656 & 0.3655 & -0.1601 & -0.1813 &
+-0.1994\tabularnewline
+IP & 0.6656 & 1.0000 & 0.1862 & 0.1119 & -0.0108 & 0.1640\tabularnewline
+Surface & 0.3655 & 0.1862 & 1.0000 & -0.1657 & -0.2035 &
+-0.3103\tabularnewline
+Revenus & -0.1601 & 0.1119 & -0.1657 & 1.0000 & 0.2103 &
+0.6522\tabularnewline
+Index pésticides & -0.1813 & -0.0108 & -0.2035 & 0.2103 & 1.0000 &
+0.4100\tabularnewline
+Temps & -0.1994 & 0.1640 & -0.3103 & 0.6522 & 0.4100 &
+1.0000\tabularnewline
+\bottomrule
+\end{longtable}
+
+\FloatBarrier
+
+\newpage
+
+\hypertarget{b-analyse-des-resultats-ols-wls-et-sur}{%
+\subsection{B Analyse des résultats OLS, WLS et
+SUR}\label{b-analyse-des-resultats-ols-wls-et-sur}}
+
+\hypertarget{b1-independance-des-residus}{%
+\subsubsection{B1 Independance des
+résidus}\label{b1-independance-des-residus}}
+
+\FloatBarrier
+
+\begin{longtable}[]{@{}lrrrrrr@{}}
+\toprule
+& OLS D & OLS O & WLS D & WLS O & SUR D & SUR O\tabularnewline
+\midrule
+\endhead
+Vin & 0.7080 & 0.6932 & 0.7080 & 0.6932 & 0.7458 & 0.7454\tabularnewline
+IP & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000\tabularnewline
+Surface & 0.2786 & 0.0000 & 0.2786 & 0.0000 & 0.3202 &
+0.2841\tabularnewline
+Revenus & 0.0000 & -0.2389 & 0.0000 & -0.2389 & -0.2793 &
+-0.3067\tabularnewline
+Pesticides & -0.1749 & 0.0000 & -0.1749 & 0.0000 & -0.2277 &
+-0.2021\tabularnewline
+\bottomrule
+\end{longtable}
+
+\FloatBarrier
+
+\FloatBarrier
+
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-70-1} 
+
+}
+
+\caption{Les résidus contre la variable prédite}\label{fig:unnamed-chunk-70}
+\end{figure}
+
+\FloatBarrier
+
+\hypertarget{b2-lautocorrelation}{%
+\subsubsection{B2 L'autocorrelation}\label{b2-lautocorrelation}}
+
+\FloatBarrier
+
+\begin{table}[!htbp] \centering 
+  \caption{Les statistiques test de Durbin-Watson} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & OLS & WLS & SUR \\ 
+\hline \\[-1.8ex] 
+Equation de demande & $0.653$ & $0.653$ & $0.687$ \\ 
+Equation d'offre & $0.627$ & $0.627$ & $0.683$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\FloatBarrier
+
+\hypertarget{b3-test-de-lheteroskedacite}{%
+\subsubsection{B3 Test de
+l'hétéroskedacité}\label{b3-test-de-lheteroskedacite}}
+
+\FloatBarrier
+
+\begin{table}[!htbp] \centering 
+  \caption{Les résultat du test de Bartlett sur l'heteroscedacité} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & OLS & WLS & SUR \\ 
+\hline \\[-1.8ex] 
+Equation de demande & $0$ & $0$ & $0$ \\ 
+Equation d'offre & $0$ & $0$ & $0$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\FloatBarrier
+
+\newpage
+
+\hypertarget{b4-la-normalite-des-residus}{%
+\subsubsection{B4 La normalité des
+résidus}\label{b4-la-normalite-des-residus}}
+
+\FloatBarrier
+
+\FloatBarrier
+
+\begin{table}[!htbp] \centering 
+  \caption{Shapiro-Wilk test de normalité des résidus} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & OLS & WLS & SUR \\ 
+\hline \\[-1.8ex] 
+Equation de demande & $0$ & $0$ & $0$ \\ 
+Equation d'offre & $0$ & $0$ & $0$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\FloatBarrier
+
+\FloatBarrier
+
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-77-1} 
+
+}
+
+\caption{Les PDF des résidus}\label{fig:unnamed-chunk-77}
+\end{figure}
+
+\FloatBarrier
+
+\newpage
+
+\hypertarget{c-analyse-des-resultats-2sls-w2sls-3sls-et-i3sls}{%
+\subsection{C Analyse des résultats 2SLS, W2SLS, 3SLS et
+i3SLS}\label{c-analyse-des-resultats-2sls-w2sls-3sls-et-i3sls}}
+
+\FloatBarrier
+
+\FloatBarrier
+
+\hypertarget{c1-independance-des-residus}{%
+\subsubsection{C1 Independance des
+résidus}\label{c1-independance-des-residus}}
+
+\FloatBarrier
+
+\FloatBarrier
+
+\FloatBarrier
+
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-82-1} 
+
+}
+
+\caption{Les résidus contre la variable prédite}\label{fig:unnamed-chunk-82}
+\end{figure}
+
+\FloatBarrier
+
+\FloatBarrier
+
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-83-1} 
+
+}
+
+\caption{Les résidus et les prédictions, le cas de i3SLS}\label{fig:unnamed-chunk-83}
+\end{figure}
+
+\FloatBarrier
+
+\newpage
+
+\hypertarget{c2-lautocorrelation}{%
+\subsubsection{C2 L'autocorrelation}\label{c2-lautocorrelation}}
+
+\FloatBarrier
+
+\begin{table}[!htbp] \centering 
+  \caption{Les resultats du test de Durbin-Watson} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & 2SLS & 3SLS & i3SLS \\ 
+\hline \\[-1.8ex] 
+Equation de demande & $0.618$ & $0.618$ & $0.618$ \\ 
+Equation d'offre & $0.637$ & $0.638$ & $0.638$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\FloatBarrier
+
+\hypertarget{c3-test-de-lheteroskedacite}{%
+\subsubsection{C3 Test de
+l'hétéroskedacité}\label{c3-test-de-lheteroskedacite}}
+
+\FloatBarrier
+
+\% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard
+University. E-mail: hlavac at fas.harvard.edu \% Date and time: lun.,
+déc. 23, 2019 - 20:15:19
+
+\begin{table}[!htbp] \centering 
+  \caption{Test de Bartlett sur l'heterockedacité} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & 2SLS & 3SLS & i3SLS \\ 
+\hline \\[-1.8ex] 
+Equation de demande & $0$ & $0$ & $0$ \\ 
+Equation d'offre & $0$ & $0$ & $0$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\FloatBarrier
+
+\newpage
+
+\hypertarget{c4-la-normalite-des-residus}{%
+\subsubsection{C4 La normalité des
+résidus}\label{c4-la-normalite-des-residus}}
+
+\FloatBarrier
+
+\FloatBarrier
+
+\begin{table}[!htbp] \centering 
+  \caption{Shapiro-Wilk test de normalité} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & 2SLS & 3SLS & i3SLS \\ 
+\hline \\[-1.8ex] 
+Equation de demande & $0$ & $0$ & $0$ \\ 
+Equation d'offre & $0$ & $0$ & $0$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\FloatBarrier
+
+\FloatBarrier
+
+\begin{figure}[!htbp]
+
+{\centering \includegraphics{note2pres_files/figure-latex/unnamed-chunk-91-1} 
+
+}
+
+\caption{Les PDF des résidus}\label{fig:unnamed-chunk-91}
+\end{figure}
+
+\FloatBarrier
+
+\hypertarget{c5-comparaison-des-modeles}{%
+\subsubsection{C5 Comparaison des
+modèles}\label{c5-comparaison-des-modeles}}
+
+\FloatBarrier
+
+\FloatBarrier
+
+\begin{table}[!htbp] \centering 
+  \caption{Hausman 3SLS consistency test} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Test & Resultats \\ 
+\hline \\[-1.8ex] 
+1 & 2SLS contre 3SLS & $0.827$ \\ 
+2 & 2SLS contre i3SLS & $0.910$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\FloatBarrier
+
+\FloatBarrier
+
+\FloatBarrier
+
+\newpage
+
+\hypertarget{d-clusterisation}{%
+\subsection{D Clusterisation}\label{d-clusterisation}}
+
+\hypertarget{d1-between-transformation}{%
+\subsubsection{\texorpdfstring{D1 \emph{Between}
+transformation}{D1 Between transformation}}\label{d1-between-transformation}}
+
+Les groupes sont définies par des caractéristiques suivantes :
+
+\FloatBarrier
+
+\begin{table}[!htbp] \centering 
+  \caption{Les centres des clusters} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & qi & ipi & si & ri & iki & .1 \\ 
+\hline \\[-1.8ex] 
+1 & $10.609$ & $1.393$ & $6.705$ & $9.880$ & $1.273$ & $27$ \\ 
+2 & $7.468$ & $1.416$ & $4.345$ & $9.905$ & $1.238$ & $34$ \\ 
+3 & $4.340$ & $1.622$ & $1.098$ & $9.870$ & $1.284$ & $8$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\FloatBarrier
+
+\hypertarget{d2-within-transformation}{%
+\subsubsection{\texorpdfstring{D2 \emph{Within}
+transformation}{D2 Within transformation}}\label{d2-within-transformation}}
+
+\hypertarget{les-centres}{%
+\paragraph{Les centres}\label{les-centres}}
+
+Les groupes sont définies par des caractéristiques suivantes :
+
+\FloatBarrier
+
+\begin{table}[!htbp] \centering 
+  \caption{Les centres des clusters} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & qi & ipi & si & ri & iki & n & k & t \\ 
+\hline \\[-1.8ex] 
+1 & -0.252896 & -0.793219 & -0.07542 & -0.013193 & -0.256673 & 5 & 1 & 1 \\ 
+2 & -0.362457 & -0.716949 & 0.041055 & -0.000747 & -0.036528 & 5 & 1 & 2 \\ 
+3 & 0.166103 & 0.2392 & -0.013413 & -0.006388 & 0.157998 & 5 & 1 & 3 \\ 
+4 & -0.215706 & -0.332061 & -0.199289 & 0.004172 & -0.019761 & 5 & 1 & 4 \\ 
+5 & 0.664955 & 1.603029 & 0.247068 & 0.016155 & 0.154963 & 5 & 1 & 5 \\ 
+6 & -0.173176 & -0.700641 & -0.063262 & -0.011699 & -0.091867 & 16 & 2 & 1 \\ 
+7 & 0.281974 & 0.276242 & 0.030031 & 0.001569 & -0.073717 & 16 & 2 & 2 \\ 
+8 & 0.318986 & 0.534754 & -0.017193 & -0.005653 & 0.076719 & 16 & 2 & 3 \\ 
+9 & 0.272819 & 0.635118 & 0.096895 & 0.003199 & -0.147998 & 16 & 2 & 4 \\ 
+10 & -0.700603 & -0.745473 & -0.046471 & 0.012585 & 0.236862 & 16 & 2 & 5 \\ 
+11 & 0.053201 & -0.250299 & 0.089817 & -0.012167 & -0.261237 & 20 & 3 & 1 \\ 
+12 & -0.150237 & -0.20443 & 0.168342 & -0.001309 & -0.012628 & 20 & 3 & 2 \\ 
+13 & 0.061586 & 0.149078 & 0.01519 & -0.006477 & 0.094218 & 20 & 3 & 3 \\ 
+14 & -0.023929 & 0.120274 & -0.129925 & 0.004456 & -0.074835 & 20 & 3 & 4 \\ 
+15 & 0.059379 & 0.185377 & -0.143424 & 0.015498 & 0.254483 & 20 & 3 & 5 \\ 
+16 & 0.126897 & -0.260636 & 0.047425 & -0.010084 & -0.134339 & 5 & 4 & 1 \\ 
+17 & -0.719432 & -0.703363 & -0.254722 & 0.002955 & 0.095193 & 5 & 4 & 2 \\ 
+18 & -0.141159 & -0.225144 & -0.158017 & -0.009434 & 0.29572 & 5 & 4 & 3 \\ 
+19 & 0.176733 & 0.308934 & -0.1592 & 0.002576 & -0.259209 & 5 & 4 & 4 \\ 
+20 & 0.556961 & 0.880209 & 0.524514 & 0.013987 & 0.002635 & 5 & 4 & 5 \\ 
+21 & 0.282059 & -0.014017 & 0.400864 & -0.009269 & -0.409711 & 22 & 5 & 1 \\ 
+22 & 0.204605 & 0.138187 & 0.285719 & 0.003743 & -0.134925 & 22 & 5 & 2 \\ 
+23 & 0.274731 & 0.275854 & 0.118099 & -0.007893 & 0.166927 & 22 & 5 & 3 \\ 
+24 & -0.058265 & 0.063243 & -0.18248 & 0.001702 & 0.015278 & 22 & 5 & 4 \\ 
+25 & -0.70313 & -0.463267 & -0.622202 & 0.011716 & 0.362431 & 22 & 5 & 5 \\ 
+26 & -1.595397 & -7.941881 & -0.261529 & -0.02149 & -0.049931 & 1 & 6 & 1 \\ 
+27 & 0.253285 & -1.404496 & -0.153318 & 0.001641 & -0.013255 & 1 & 6 & 2 \\ 
+28 & 0.529538 & 2.487263 & 0.747453 & -0.004844 & 0.080087 & 1 & 6 & 3 \\ 
+29 & 0.936501 & 9.608734 & 0.226164 & 0.006494 & -0.034652 & 1 & 6 & 4 \\ 
+30 & -0.123927 & -2.749621 & -0.55877 & 0.018199 & 0.017751 & 1 & 6 & 5 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\FloatBarrier
+
+\hypertarget{representation-graphique}{%
+\paragraph{Representation graphique}\label{representation-graphique}}
+
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-99-1} \end{center}
+
+\hypertarget{d3-cas-dinformation-complete}{%
+\subsubsection{D3 Cas d'information
+complete}\label{d3-cas-dinformation-complete}}
+
+\hypertarget{les-centres-1}{%
+\paragraph{Les centres}\label{les-centres-1}}
+
+Les groupes sont définies par des caractéristiques suivantes :
+
+\FloatBarrier
+
+\begin{table}[!htbp] \centering 
+  \caption{Les centres des clusters} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & qi & ipi & si & ri & iki & n & k & t \\ 
+\hline \\[-1.8ex] 
+1 & 0.001186 & -0.359222 & 0.04895 & -0.012025 & -0.234518 & 29 & 1 & 1 \\ 
+2 & -0.280464 & -0.376425 & 0.078291 & -0.000723 & 0.004804 & 29 & 1 & 2 \\ 
+3 & 0.049743 & 0.107731 & -0.01841 & -0.006913 & 0.122468 & 29 & 1 & 3 \\ 
+4 & -0.032737 & 0.065232 & -0.147634 & 0.004155 & -0.089222 & 29 & 1 & 4 \\ 
+5 & 0.262272 & 0.562683 & 0.038803 & 0.015506 & 0.196468 & 29 & 1 & 5 \\ 
+6 & 0.098311 & -0.291704 & 0.206247 & -0.01031 & -0.27852 & 39 & 2 & 1 \\ 
+7 & 0.223902 & 0.18426 & 0.174215 & 0.002905 & -0.108882 & 39 & 2 & 2 \\ 
+8 & 0.283634 & 0.373141 & 0.059067 & -0.006982 & 0.141058 & 39 & 2 & 3 \\ 
+9 & 0.086134 & 0.306445 & -0.065995 & 0.002333 & -0.059896 & 39 & 2 & 4 \\ 
+10 & -0.691981 & -0.572142 & -0.373534 & 0.012054 & 0.30624 & 39 & 2 & 5 \\ 
+11 & -1.595397 & -7.941881 & -0.261529 & -0.02149 & -0.049931 & 1 & 3 & 1 \\ 
+12 & 0.253285 & -1.404496 & -0.153318 & 0.001641 & -0.013255 & 1 & 3 & 2 \\ 
+13 & 0.529538 & 2.487263 & 0.747453 & -0.004844 & 0.080087 & 1 & 3 & 3 \\ 
+14 & 0.936501 & 9.608734 & 0.226164 & 0.006494 & -0.034652 & 1 & 3 & 4 \\ 
+15 & -0.123927 & -2.749621 & -0.55877 & 0.018199 & 0.017751 & 1 & 3 & 5 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\FloatBarrier
+
+\hypertarget{representation-graphique-1}{%
+\paragraph{Representation graphique}\label{representation-graphique-1}}
+
+\FloatBarrier
+
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-102-1} \end{center}
+
+\FloatBarrier
+
+\hypertarget{e-analyse-des-resultats-pour-information-clusterisee-ols-2sls-et-3sls}{%
+\subsection{E Analyse des résultats pour information clusterisée OLS,
+2SLS et
+3SLS}\label{e-analyse-des-resultats-pour-information-clusterisee-ols-2sls-et-3sls}}
+
+Etudions la validité du modèle 3SLS :
+
+\FloatBarrier
+
+\FloatBarrier
+
+\begin{table}[!htbp] \centering 
+  \caption{Hausman 3SLS consistency test} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Test & Resultats \\ 
+\hline \\[-1.8ex] 
+1 & 2SLS contre 3SLS & $0$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+La normalité des résidus :
+
+\FloatBarrier
+
+\begin{table}[!htbp] \centering 
+  \caption{Shapiro-Wilk normality test} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & OLS & 2SLS & 3SLS \\ 
+\hline \\[-1.8ex] 
+Equation de demande & $0$ & $0.00000$ & $0$ \\ 
+Equation d'offre & $0$ & $0$ & $0$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\FloatBarrier
+
+L'heteroscedacité :
+
+\FloatBarrier
+
+\FloatBarrier
+
+\begin{table}[!htbp] \centering 
+  \caption{Bartlett heteroscedasticity test} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & OLS & 2SLS & 3SLS \\ 
+\hline \\[-1.8ex] 
+Equation de demande & $0$ & $0.00002$ & $0.00000$ \\ 
+Equation d'offre & $0$ & $0.00000$ & $0.00000$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\FloatBarrier
+
+Les PDF des résidus :
+
+\FloatBarrier
+
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-110-1} \end{center}
+
+\FloatBarrier
+
+Les résidus contre les variables prédites :
+
+\FloatBarrier
+
+\begin{center}\includegraphics{note2pres_files/figure-latex/unnamed-chunk-111-1} \end{center}
+
+\FloatBarrier
+
+\newpage
+
+\hypertarget{f-dictionnaire-des-variables}{%
+\subsection{F Dictionnaire des
+variables}\label{f-dictionnaire-des-variables}}
+
+Finalement, nous offrons au lecteur un tableau de reference pour notre
+base des données finale.
+
+\FloatBarrier
+
+\begin{table}[!htbp]
+  \centering
+\caption{Ditionnaire des varibales}
+\begin{tabular}{c|l}
+  \noindent\rule[0.5ex]{\linewidth}{1pt}
+  Variable & Description \\
+  \noindent\rule[0.5ex]{\linewidth}{1pt}
+année & année \\
+ndep & numéro de département \\
+si & superficie de vigne sans indication géographique en hectare en log \\
+qi & quantité de vins produits en hectolitre en log \\
+ipi & indice des prix du vin sans IG déflatés en log  \\
+ri & revenu disponible brut des ménages français déflatés en log \\
+iki & indice de quantité de pesticides achetés en log \\
+t & la tendance temporelle \\
+\noindent\rule[0.5ex]{\linewidth}{1pt}
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\newpage
+
+\hypertarget{references}{%
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\leavevmode\hypertarget{ref-anderson2011global}{}%
+Anderson, Kym, Signe Nelgen, and others. 2011. \emph{Global Wine
+Markets, 1961 to 2009: A Statistical Compendium}. University of Adelaide
+Press.
+
+\leavevmode\hypertarget{ref-cembalo2014}{}%
+Cembalo, Luigi, Francesco Caracciolo, and Eugenio Pomarici. 2014.
+``Drinking Cheaply: The Demand for Basic Wine in Italy.''
+\emph{Australian Journal of Agricultural and Resource Economics} 58 (3):
+374--91.
+
+\leavevmode\hypertarget{ref-kremer2004}{}%
+KREMER, Florence, and Catherine VIOT. 2004. ``Conflit et Coopération Au
+Sein Du Canal: L'interaction Stratégique Entre La Grande Distribution et
+Les Producteurs de La Filière Viti-Vinicole.''
+
+\leavevmode\hypertarget{ref-laporte1996}{}%
+Laporte, Catherine, and Marie-Claude PICHERY. 1996. ``Production costs
+of AOC Burgundy wines.'' Research Report. Laboratoire d'analyse et de
+techniques économiques(LATEC).
+\url{https://hal.archives-ouvertes.fr/hal-01526958}.
+
+\leavevmode\hypertarget{ref-mackay2018}{}%
+MacKay, Alexander, and Nathan H Miller. 2018. ``Estimating Models of
+Supply and Demand: Instruments and Covariance Restrictions.''
+
+\leavevmode\hypertarget{ref-makela2006}{}%
+MÄKELÄ, PIA, GERHARD GMEL, ULRIKE GRITTNER, HERVÉ KUENDIG, SANDRA
+KUNTSCHE, KIM BLOOMFIELD, and ROBIN ROOM. 2006. ``DRINKING PATTERNS AND
+THEIR GENDER DIFFERENCES IN EUROPE.'' \emph{Alcohol and Alcoholism} 41
+(October): i8--i18. \url{https://doi.org/10.1093/alcalc/agl071}.
+
+\leavevmode\hypertarget{ref-outreville2010}{}%
+Outreville, J François. 2010. ``Les Facteurs Déterminant Le Prix Du
+Vin.'' \emph{Enometrica} 3 (1): 25--33.
+
+\leavevmode\hypertarget{ref-steiner2004}{}%
+Steiner, Bodo. 2004. ``French Wines on the Decline? Econometric Evidence
+from Britain.'' \emph{Journal of Agricultural Economics} 55 (2):
+267--88.
+
+
+\end{document}
