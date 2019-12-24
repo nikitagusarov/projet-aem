@@ -1267,7 +1267,7 @@ clusters3 = cbind(fit3$centers, fit3$size, k <- c(1:3)) %>%
 Afin de pouvoir comparer des valeurs differents de WSS (*within summ of squares*) nous allons visualiser la valeur dun indice : 
 
 \begin{equation*}
-    WSS^{'} = \frac{WSS}{min(WSS)}
+    WSS^{'} = \frac{SS}{min(WSS)}
 \end{equation*}
 
 Ce qui nous permettra d'évaluer les écarts rélatives du WSS de sa valeur minimale (pour nombre des clusters égal à 15).
