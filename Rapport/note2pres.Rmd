@@ -282,15 +282,15 @@ De cette façon nous chercherons à étudier l'équilibre sur le marché des vin
 Pour lutter contre l’utilisation des pesticides l’Etat Français et l’union européenne ont mis en place des mesures. 
 Ainsi, l’Etat Français lors du grenelle de l’environnement de 2006 a fixé ses objectifs. 
 Ainsi, le plan ECOPHYTO 2018 visait à réduire de 50% l’utilisation des pesticides de synthèse. 
-Le deuxième objectif est le passage en agriculture biologique à 6% de la surface agricole utilisée en 2010 et vise 20% en 2020.[@Butault2014.bib]
+Le deuxième objectif est le passage en agriculture biologique à 6% de la surface agricole utilisée en 2010 et vise 20% en 2020.[@Butault2014]
 
 En 2008, les 30 produits les plus toxiques les plus toxiques sont interdits. 
 Une taxe sur les phytosanitaires a aussi été mise en place. 
 Cette taxe est croissante avec le niveau de toxicité de ces produits. 
-Cette taxe devait augmenter au fil des années. De plus, l’octroi de crédits d’impôt en faveur de l’agriculture biologique devait aussi permettre de réduire l'utilisation des pesticides.[@Butault2014.bib]
+Cette taxe devait augmenter au fil des années. De plus, l’octroi de crédits d’impôt en faveur de l’agriculture biologique devait aussi permettre de réduire l'utilisation des pesticides.[@Butault2014]
 
 Malgré tous ces efforts, l’utilisation des pesticides perdurent.  
-En 2008, le nombre de doses unités a été créé pour enregistrer l’évolution de la demande de pesticide.[@Butault2014.bib]
+En 2008, le nombre de doses unités a été créé pour enregistrer l’évolution de la demande de pesticide.[@Butault2014]
 On remarque que les doses utilisées augmentent de 12% en 2014-2016 par rapport à 2009-2011.  
 
 ## Etat actuel
@@ -301,10 +301,10 @@ Certaines critiques ont été faites sur l’utilisation du Nodu.
 Il est possible d’utiliser le nombre de substances actives utilisées. 
 Mais, cet indicateur connaît lui aussi une hausse de 15% entre 2011 et 2017. 
 
-Néanmoins, les politiques ont quand même eu quelques effets positifs, puisque l’achat des produits les plus dangereux baisse de 6% en 2017. [@Moghaddam2019.bib] 
+Néanmoins, les politiques ont quand même eu quelques effets positifs, puisque l’achat des produits les plus dangereux baisse de 6% en 2017. [@Moghaddam2019] 
 Les grandes cultures sont les premières utilisatrices de pesticides. 
 Elles représentent 67,4% de l’utilisation de pesticides. 
-La deuxième culture est celle de la vigne ce qui représente 14,4%  des pesticides utilisés.[@Butault2014.bib]
+La deuxième culture est celle de la vigne ce qui représente 14,4%  des pesticides utilisés.[@Butault2014]
 
 ## Comment baisser l'utilisation de pesticides
 
@@ -333,14 +333,14 @@ Ensuite l’agriculture doit se déplacer vers l’agriculture biologique qui n�
 ```
 
 La France est l’un des principaux producteurs de vins. En effet, la France représente 10% de la surface des vignes mondiales. La production de vins représentait 4.6 milliards  de litres. La France représentait 17% de la production totale de vins. 3% de la surface agricole française est consacrée à la production agricole. Néanmoins, le vin représente 15% de la production agricole en valeur. [@CNIV, 2018]
-La France est aussi l’un des principaux consommateurs de vins. En effet, en France, il s’agit de la boisson alcoolisée la plus consommée. 88% des ventes de vins en France sont effectuées en grande surface. Néanmoins, la consommation française de vin baisse depuis une trentaine d’années. [@CNIV2018.bib] 
+La France est aussi l’un des principaux consommateurs de vins. En effet, en France, il s’agit de la boisson alcoolisée la plus consommée. 88% des ventes de vins en France sont effectuées en grande surface. Néanmoins, la consommation française de vin baisse depuis une trentaine d’années. [@CNIV2018] 
 
 ## Utilisation des pesticides dans la viticulture
 
-La viticulture est le deuxième secteur agricole en termes d’utilisation des pesticides. En effet, elle représente plus de 14.4% des dépenses de produits phytosanitaires,  en France. Néanmoins, ces pesticides ne sont pas utilisés dans la même proportion dans toutes les régions de France. [@Butault2011.bib] 
-Les bassins viticoles Français utilisent en majorité des fongicides et des bactéricides. En effet, la vigne fait face à des aléas climatiques qui permettent le développement de champignons comme le Mildiou. [@Pujol2017.bib] 
-Pour lutter contre le développement de ces champignons, les viticulteurs ne peuvent utiliser que des fongicides. En effet, ils ne peuvent pas utiliser la rotation des cultures qui pourraient réduire ou empêcher le développement de ces champignons puisque la vigne est une culture pérenne. Les pieds de vigne ne sont pas replantés chaque année. Il est donc nécessaire d’utiliser les pesticides dans la vigne pour protéger la production et éviter les pertes. En effet, les champignons s’attaquent aux feuilles de la vigne et aux fruits. Donc la pulvérisation de pesticides est un des seuls moyens pour protéger les rendements des cultures viticoles.  Néanmoins, l’utilisation des pesticides a aussi un impact du côté de la demande de vin. Cet impact est plus ambigu, à cause d’un manque de transparence d’information sur les bouteilles de vin. [@Prudent2018.bib]
-Un sondage de l’Ifop sur les habitudes et perceptions de consommation des Français a montré que 93% des Français considèrent que la présence de pesticides dans les aliments a un impact sur la santé. 89% des Français souhaiteraient être informés de la présence ou non de pesticides dans les produits alimentaires, à travers un étiquetage. [@Ifop2017.bib]
+La viticulture est le deuxième secteur agricole en termes d’utilisation des pesticides. En effet, elle représente plus de 14.4% des dépenses de produits phytosanitaires,  en France. Néanmoins, ces pesticides ne sont pas utilisés dans la même proportion dans toutes les régions de France. [@Butault2011] 
+Les bassins viticoles Français utilisent en majorité des fongicides et des bactéricides. En effet, la vigne fait face à des aléas climatiques qui permettent le développement de champignons comme le Mildiou. [@Pujol2017] 
+Pour lutter contre le développement de ces champignons, les viticulteurs ne peuvent utiliser que des fongicides. En effet, ils ne peuvent pas utiliser la rotation des cultures qui pourraient réduire ou empêcher le développement de ces champignons puisque la vigne est une culture pérenne. Les pieds de vigne ne sont pas replantés chaque année. Il est donc nécessaire d’utiliser les pesticides dans la vigne pour protéger la production et éviter les pertes. En effet, les champignons s’attaquent aux feuilles de la vigne et aux fruits. Donc la pulvérisation de pesticides est un des seuls moyens pour protéger les rendements des cultures viticoles.  Néanmoins, l’utilisation des pesticides a aussi un impact du côté de la demande de vin. Cet impact est plus ambigu, à cause d’un manque de transparence d’information sur les bouteilles de vin. [@Prudent2018]
+Un sondage de l’Ifop sur les habitudes et perceptions de consommation des Français a montré que 93% des Français considèrent que la présence de pesticides dans les aliments a un impact sur la santé. 89% des Français souhaiteraient être informés de la présence ou non de pesticides dans les produits alimentaires, à travers un étiquetage. [@Ifop2017]
 
 ## Le problème d'heterogénéité
 
@@ -366,7 +366,7 @@ La deuxième, c'est-à-dire le marché des vins moins chers, est aussi complexe.
 Cela nous permet d'analyser le marché par département est non par des marques/produits.
 ## Les vins de table
 
-Le marché des vins sans indication géographiques connaît de forte variation. Nous allons donc revenir sur la période qui précède notre étude. Ainsi, en 2011, les transactions de vente de vins rouges ont augmenté de 29%. Les transactions de vins rosés ont également augmenté de 13%. Pour finir, les transactions de vins blancs augmentaient de 76%. Les prix de ces vins bien que faible connaissent aussi des variations importantes. Ainsi, en 2011, les trois couleurs de vins ont connus des hausses de prix. Les vins rouges ont vu leurs prix moyens augmenté de 12%. Le prix moyens des vins rosés ont aussi crus de 3 %. Pour finir, les prix moyens des vins blancs ont cru de 13%. Les vins de France sans indications géographiques  ont connu une baisse en volume des ventes de 14.6% par rapport à la moyenne des ventes sur la période 2006 à 2010. [@FranceAgriMer2011.bib].
+Le marché des vins sans indication géographiques connaît de forte variation. Nous allons donc revenir sur la période qui précède notre étude. Ainsi, en 2011, les transactions de vente de vins rouges ont augmenté de 29%. Les transactions de vins rosés ont également augmenté de 13%. Pour finir, les transactions de vins blancs augmentaient de 76%. Les prix de ces vins bien que faible connaissent aussi des variations importantes. Ainsi, en 2011, les trois couleurs de vins ont connus des hausses de prix. Les vins rouges ont vu leurs prix moyens augmenté de 12%. Le prix moyens des vins rosés ont aussi crus de 3 %. Pour finir, les prix moyens des vins blancs ont cru de 13%. Les vins de France sans indications géographiques  ont connu une baisse en volume des ventes de 14.6% par rapport à la moyenne des ventes sur la période 2006 à 2010. [@FranceAgriMer2011].
 
  
 
