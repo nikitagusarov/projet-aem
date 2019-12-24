@@ -1289,21 +1289,37 @@ instz = ~ ri1 + ri2 + ri3 +
 ```
 
 ```{r include = FALSE}
-# OLS
-olsx = lm(eqoffer, 
-    data = dataWX)
-# IV-OLS
-ivolsx = ivreg(eqoffer, 
+# OLS 1
+olsx1 = lm(eqoffer, 
+    data = dataWZ[dataWZ$clust == 1,])
+# IV-OLS 1
+ivolsx1 = ivreg(eqoffer, 
     inst, 
-    data = dataWX)
+    data = dataWZ[dataWZ$clust == 1,])
+# OLS 2
+olsx2 = lm(eqoffer, 
+    data = dataWZ[dataWZ$clust == 2,])
+# IV-OLS 2
+ivolsx2 = ivreg(eqoffer, 
+    inst, 
+    data = dataWZ[dataWZ$clust == 2,])
+# OLS 3
+olsx3 = lm(eqoffer, 
+    data = dataWZ[dataWZ$clust == 3,])
+# IV-OLS 3
+ivolsx3 = ivreg(eqoffer, 
+    inst, 
+    data = dataWZ[dataWZ$clust == 3,])
 ```
 
 \FloatBarrier
 
 ```{r echo = FALSE, results = "asis"}
 texreg(float.pos = "!htbp", 
-    list(olsx, ivolsx),
-    custom.model.names = c("OLS", "IV-OLS"),
+    list(olsx1, ivolsx1,
+        olsx2, ivolsx2,
+        olsx3, ivolsx3),
+    # custom.model.names = c("OLS", "IV-OLS"),
     label = "table : ols et ivols clusters")
 ```
 
@@ -1328,31 +1344,88 @@ Nous evaluons le système en introduisant les variables de grouppe (dummy variab
 
 ```{r include = FALSE}
 # Equations 
-# 2SLS
-## 2SLS is an equivalent of ILS (indirect least squares)
-sls2x = systemfit(system, 
+# 2SLS 1
+sls2x1 = systemfit(system, 
     inst = inst,
-    data = dataWX, 
+    data = dataWZ[dataWZ$clust == 1,], 
     method = "2SLS")
-# 3SLS
-sls3x = systemfit(system, 
+# 3SLS 1
+sls3x1 = systemfit(system, 
     inst = inst,
-    data = dataWX, 
+    data = dataWZ[dataWZ$clust == 1,], 
     method = "3SLS")
-# FIML (iterated 3SLS)
-fimlx = systemfit(system, 
+# FIML (iterated 3SLS) 1
+fimlx1 = systemfit(system, 
     inst = inst,
-    data = dataWX, 
+    data = dataWZ[dataWZ$clust == 1,], 
+    method = "3SLS", maxit = 1000)
+# 2SLS 2
+sls2x2 = systemfit(system, 
+    inst = inst,
+    data = dataWZ[dataWZ$clust == 2,], 
+    method = "2SLS")
+# 3SLS 2
+sls3x2 = systemfit(system, 
+    inst = inst,
+    data = dataWZ[dataWZ$clust == 2,], 
+    method = "3SLS")
+# FIML (iterated 3SLS) 2
+fimlx2 = systemfit(system, 
+    inst = inst,
+    data = dataWZ[dataWZ$clust == 2,], 
+    method = "3SLS", maxit = 1000)
+# 2SLS 3
+sls2x3 = systemfit(system, 
+    inst = inst,
+    data = dataWZ[dataWZ$clust == 3,], 
+    method = "2SLS")
+# 3SLS 3
+sls3x3 = systemfit(system, 
+    inst = inst,
+    data = dataWZ[dataWZ$clust == 3,], 
+    method = "3SLS")
+# FIML (iterated 3SLS) 3
+fimlx3 = systemfit(system, 
+    inst = inst,
+    data = dataWZ[dataWZ$clust == 3,], 
     method = "3SLS", maxit = 1000)
 ```
+
+Cluster 1
 
 \FloatBarrier
 
 ```{r echo = FALSE, results = "asis"}
 texreg(float.pos = "!htbp", 
-    list(sls2x, sls3x, fimlx),
+    list(sls2x1, sls3x1, fimlx1),
     custom.model.names = c("2SLS", "3SLS", "i3SLS"),
-    label = "table : 2sls, 3sls and fiml clusters")
+    label = "table : 2sls, 3sls and fiml cluster 1")
+```
+
+\FloatBarrier
+
+Cluster 2
+
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
+texreg(float.pos = "!htbp", 
+    list(sls2x2, sls3x2, fimlx2),
+    custom.model.names = c("2SLS", "3SLS", "i3SLS"),
+    label = "table : 2sls, 3sls and fiml cluster 2")
+```
+
+\FloatBarrier
+
+Cluster 3
+
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
+texreg(float.pos = "!htbp", 
+    list(sls2x3, sls3x3, fimlx3),
+    custom.model.names = c("2SLS", "3SLS", "i3SLS"),
+    label = "table : 2sls, 3sls and fiml cluster 3")
 ```
 
 \FloatBarrier
@@ -1409,7 +1482,7 @@ texreg(float.pos = "!htbp",
 
 \FloatBarrier
 
-```{r echo = FALSE, fig_height = 4, results = "asis", fig.cap = "Les valeurs moyennes par département"}
+```{r echo = FALSE, fig.height = 4, results = "asis", fig.cap = "Les valeurs moyennes par département"}
 # Plot
 p1 = spplot(formes, "ipi", 
     col.regions = colorRampPalette(c('grey96', 'blue'))(30),  
@@ -1436,7 +1509,7 @@ grid.arrange(p1, p2, p3, p4, nrow = 2)
 
 \FloatBarrier
 
-```{r echo = FALSE, fig_height = 4, fig.cap = "L'étude bivarié"}
+```{r echo = FALSE, fig.height = 4, fig.cap = "L'étude bivarié"}
 p1 = datai %>% 
     ggplot(aes(qi, ipi, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
@@ -1475,7 +1548,7 @@ grid.arrange(p1, p2, p3, p4, nrow = 2)
 
 \FloatBarrier
 
-```{r echo = FALSE, fig.cap = "Rélations bivariés dans le cas de transformation within"}
+```{r echo = FALSE, fig.height = 4, fig.cap = "Rélations bivariés dans le cas de transformation within"}
 p1 = dataWi %>% 
     ggplot(aes(qi, ipi, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
@@ -1926,7 +1999,7 @@ stargazer(ShapT,
 
 \FloatBarrier
 
-```{r echo = FALSE, fig.cap = "Les PDF des résidus"}
+```{r echo = FALSE, fig.height = 4, fig.cap = "Les PDF des résidus"}
 par(mfrow = c(1,2), cex = 0.5)
 plot(density(sls2$eq[[1]]$res), col = "blue", 
     main = "Demande", xlab = "Residuals")
@@ -2050,7 +2123,7 @@ stargazer(round(centers2, 6),
 
 #### Representation graphique
 
-```{r echo = FALSE, results = "asis"}
+```{r echo = FALSE, fig.height = 4, results = "asis"}
 # Plot 
 p1 = centers2 %>% ggplot(aes(y = qi, x = t, col = as.factor(k))) + 
     geom_path() + geom_point() +
@@ -2124,7 +2197,7 @@ stargazer(round(centers3, 6),
 
 \FloatBarrier
 
-```{r echo = FALSE, results = "asis"}
+```{r echo = FALSE, fig.height = 4, results = "asis"}
 # Plot 
 p1 = centers3 %>% ggplot(aes(y = qi, x = t, col = as.factor(k))) + 
     geom_path() + geom_point() +
@@ -2149,174 +2222,6 @@ p4 = centers3 %>% ggplot(aes(y = ri, x = t, col = as.factor(k))) +
 # Arrange
 grid.arrange(p1, p2, p3, p4, nrow = 2, ncol = 2)
 ```
-
-\FloatBarrier
-
-## E Analyse des résultats pour information clusterisée OLS, 2SLS et 3SLS
-
-Etudions la validité du modèle 3SLS : 
-
-```{r include = FALSE}
-resdata3x = dataWZ %>% 
-    mutate(u1 = sls2x$eq[[1]]$res,
-        u2 = sls2x$eq[[2]]$res,
-        u3 = sls3x$eq[[1]]$res,
-        u4 = sls3x$eq[[2]]$res,
-        u5 = fimlx$eq[[1]]$res,
-        u6 = fimlx$eq[[2]]$res)
-```
-
-\FloatBarrier
-
-```{r include = FALSE}
-h1 = hausman.systemfit(sls2x, sls3x) # p = 1, 3SLS inconsistent
-# 2SLS estimator is consistent
-res = data.frame(Test = c("2SLS contre 3SLS"),
-    Resultats = c(h1$p.val)) 
-```
-
-\FloatBarrier
-
-```{r echo = FALSE, results = "asis"}
-stargazer(res, 
-    title = "Hausman 3SLS consistency test",
-    summary = F, 
-    header = F)
-```
-
-La normalité des résidus :
-
-```{r include = FALSE}
-ShapT = data.frame(nrow = 2, ncol = 6)
-ShapT[1,1] = shapiro.test(sls2x$eq[[1]]$res)$p.val
-ShapT[2,1] = shapiro.test(sls2x$eq[[2]]$res)$p.val
-ShapT[1,2] = shapiro.test(sls3x$eq[[1]]$res)$p.val
-ShapT[2,2] = shapiro.test(sls3x$eq[[2]]$res)$p.val
-ShapT[1,3] = shapiro.test(fimlx$eq[[1]]$res)$p.val
-ShapT[2,3] = shapiro.test(fimlx$eq[[2]]$res)$p.val
-colnames(ShapT) = c("OLS", "2SLS", "3SLS")
-rownames(ShapT) = c("Equation de demande", "Equation d'offre")
-```
-\FloatBarrier
-
-```{r echo = FALSE, results = "asis"}
-stargazer(ShapT,
-    summary = FALSE,
-    title = "Shapiro-Wilk normality test",
-    header = F)
-```
-
-\FloatBarrier
-
-L'heteroscedacité :
-
-\FloatBarrier
-
-```{r include = FALSE}
-BartT = data.frame(ncol = 3, nrow = 2)
-BartT[1,1] = ols_test_bartlett(resdata3x, u1, 
-    group_var = ndep)$pval
-BartT[2,1] = ols_test_bartlett(resdata3x, u2, 
-    group_var = ndep)$pval
-BartT[1,2] = ols_test_bartlett(resdata3x, u3, 
-    group_var = ndep)$pval
-BartT[2,2] = ols_test_bartlett(resdata3x, u4, 
-    group_var = ndep)$pval
-BartT[1,3] = ols_test_bartlett(resdata3x, u5, 
-    group_var = ndep)$pval
-BartT[2,3] = ols_test_bartlett(resdata3x, u6, 
-    group_var = ndep)$pval
-colnames(BartT) = c("2SLS", "3SLS", "i3SLS")
-rownames(BartT) = c("Equation de demande", "Equation d'offre")
-```
-\FloatBarrier
-
-```{r echo = FALSE, results = "asis"}
-stargazer(BartT,
-    summary = FALSE,
-    title = "Bartlett heteroscedasticity test",
-    header = F)
-```
-
-\FloatBarrier
-
-Les PDF des résidus :
-
-\FloatBarrier
-
-```{r echo = FALSE}
-par(mfrow = c(1,2), cex = 0.5)
-plot(density(sls2x$eq[[1]]$res), col = "blue", 
-    main = "Demande", xlab = "Residuals")
-lines(density(sls3x$eq[[1]]$res), col = "green4")
-lines(density(fimlx$eq[[1]]$res), col = "red")
-plot(density(fimlx$eq[[2]]$res), col = "red", 
-    main = "Offre", xlab = "Residuals")
-lines(density(sls3x$eq[[2]]$res), col = "green4")
-lines(density(sls2x$eq[[2]]$res), col = "blue")
-legend(x = "topright", legend = c("OLS", "2SLS", "3SLS"),
-    col = c("blue", "green4", "red"), xpd = NA,
-    cex = 1, lwd = 3)
-```
-
-\FloatBarrier
-
-Les résidus contre les variables prédites : 
-
-\FloatBarrier
-
-```{r echo = FALSE}
-par(mfrow = c(1,2), cex = 0.5)
-plot(y = fimlx$eq[[1]]$res, x = fimlx$eq[[1]]$fit,
-    col = "red", 
-    main = "Demande", 
-    ylab = "Residuals", xlab = "Fitted")
-points(y = sls3x$eq[[1]]$res, x = sls3x$eq[[1]]$fit,
-    col = "green4", pch = 17)
-points(y = sls2x$eq[[1]]$res, x = sls2x$eq[[1]]$fit,
-    col = "blue", pch = 14)
-plot(y = fimlx$eq[[2]]$res, x = fimlx$eq[[2]]$fit,
-    col = "red", 
-    main = "Offre", 
-    ylab = "Residuals", xlab = "Fitted")
-points(y = sls3x$eq[[2]]$res, x = sls3x$eq[[2]]$fit,
-    col = "green4", pch = 17)
-points(y = sls2x$eq[[2]]$res, x = sls2x$eq[[2]]$fit,
-    col = "blue", pch = 14)
-par(xpd = NA)
-legend(x = "topright", legend = c("OLS", "2SLS", "3SLS"),
-    col = c("blue", "green4", "red"), xpd = NA,
-    cex = 1, lwd = 3)
-```
-
-\FloatBarrier
-
-\newpage
-
-## F Dictionnaire des variables 
-
-Finalement, nous offrons au lecteur un tableau de reference pour notre base des données finale.
-
-\FloatBarrier
-
-\begin{table}[!htbp]
-  \centering
-\caption{Ditionnaire des varibales}
-\begin{tabular}{c|l}
-  \noindent\rule[0.5ex]{\linewidth}{1pt}
-  Variable & Description \\
-  \noindent\rule[0.5ex]{\linewidth}{1pt}
-année & année \\
-ndep & numéro de département \\
-si & superficie de vigne sans indication géographique en hectare en log \\
-qi & quantité de vins produits en hectolitre en log \\
-ipi & indice des prix du vin sans IG déflatés en log  \\
-ri & revenu disponible brut des ménages français déflatés en log \\
-iki & indice de quantité de pesticides achetés en log \\
-t & la tendance temporelle \\
-\noindent\rule[0.5ex]{\linewidth}{1pt}
-\end{tabular}
-\end{table}
 
 \FloatBarrier
 
