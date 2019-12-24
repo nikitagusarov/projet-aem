@@ -340,7 +340,7 @@ Les bassins viticoles Français utilisent en majorité des fongicides et des bac
 Pour lutter contre le développement de ces champignons, les viticulteurs ne peuvent utiliser que des fongicides. En effet, ils ne peuvent pas utiliser la rotation des cultures qui pourraient réduire ou empêcher le développement de ces champignons puisque la vigne est une culture pérenne. Les pieds de vigne ne sont pas replantés chaque année. Il est donc nécessaire d’utiliser les pesticides dans la vigne pour protéger la production et éviter les pertes. En effet, les champignons s’attaquent aux feuilles de la vigne et aux fruits. Donc la pulvérisation de pesticides est un des seuls moyens pour protéger les rendements des cultures viticoles.  Néanmoins, l’utilisation des pesticides a aussi un impact du côté de la demande de vin. Cet impact est plus ambigu, à cause d’un manque de transparence d’information sur les bouteilles de vin. [@Prudent2018.bib]
 Un sondage de l’Ifop sur les habitudes et perceptions de consommation des Français a montré que 93% des Français considèrent que la présence de pesticides dans les aliments a un impact sur la santé. 89% des Français souhaiteraient être informés de la présence ou non de pesticides dans les produits alimentaires, à travers un étiquetage. [@Ifop2017.bib]
 
-## Le problème d'heterogénéité
+## Le problème d'hétérogénéité
 
 Le secteur du vin est constitué de produits qui sont fortement hétérogènes.
 En effet, il existe une forte hétérogénéité entre les différents labels (AOP, IGP, sans IG) mais aussi au sein de ces labels. 
@@ -396,7 +396,7 @@ Le marché des vins sans indication géographiques connaît de forte variation. 
 
 \noindent\rule[0.5ex]{\linewidth}{1pt}
 
-Comme proposé dans la littérature, notre étude sur les vins non coûteux (non IGP) est effectué au niveau du pays @cembalo2014 pour deux raisons. 
+Comme proposé dans la littérature, notre étude sur les vins non coûteux (non IGP) est effectuée au niveau du pays @cembalo2014 pour deux raisons. 
 D'abord, les prix de vente moyens des marchés sont diffèrents en raison des droits de douane à l'importation et des taxes à la consommation différentes [@anderson2011global].
 De plus, la perception des produits de consommation varie d'un pays à l'autre [@makela2006].
 
