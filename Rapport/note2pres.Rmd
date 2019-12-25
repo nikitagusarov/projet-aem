@@ -976,6 +976,22 @@ Les modèles suivants sont traités séparement :
 
 ## M1 : Les résultats en absence d'intéractions
 
+Dans le cas des modèles sans intéractions avec la demande, nous pouvons separerr deux cas differents.
+Le premier, le plus simple, se base sur l'hypothèse, que les prix des vins simples sont imposés aux agriculteurs par les consomateurs (ou, ce qui est beaucoup plus probable, par des grand enseignes ayant un pouvoir de négociation significatif).
+Cela implique que nous pouvons considèrer les prix d'être exogènes dans notre modèlisation d'offre et par concequant estimer notre modèle par des MCO (OLS - *ordinary least squares*) simples.
+En ce qui concerne le deuxième cas, nous posons que les prix dans l'equation d'offre sont endogènes. 
+C'est-à-dire, les agriculteurs affecte les prix par son niveau de production et par les quantités emmis sur le marché final. 
+Afin de traiter ce problème d'endogèneité nous pouvons utiliser le méthode des variables instrumentales (IV-OLS). 
+Mais quels instruments choisir ?
+Sur ce point nous adresson au travail de @mackay2018 (et plus particulierement le travail fondateur de @hausman1996valuation), où les auteurs démontrent que les instrument d'offre choisis parmis les regresseurs de l'équation de la demande sont des instruments suffisament pertinents.
+Dans notre cas nous pouvons instrumenter les prix par les revenus dans les départements étudiés, ce qui est conforme à la théorie économique, car le niveau des prix doit être correlé avec le revenu réel.
+
+Neanmoins, nous allons encore vérifier la validité de cet instrument et du modèle résultant.
+Par example, bien que notre supposition sur l'instrument rentre parfaitement dans le cadre théorique, nous n'observons qu'une faible correlation entre l'index des prix et les révenus (voir l'annexe X).
+Les revenus ont la moindre correlation avec la variable explicative quand même.
+
+Les résultats pour les deux modèles sont présenté dans le tableau ci-aprés : 
+
 ```{r include = FALSE}
 # Data transformation for systemfit
 dataWX = as.data.frame(dataW)
@@ -1007,6 +1023,31 @@ texreg(float.pos = "!htbp",
 ```
 
 \FloatBarrier
+
+Avant de commenter les effets estimés, nous devons stresser que le modèle en presence d'endogénéité n'est pas correcte (les estimateurs obtenus sont biaisé et loins de la réalité). 
+D'abord, les instruments utilisé pour l'estimer sont asssez faibles et donne pas des résultats pertinents.
+De plus, à partir des résultats du test de Wu-Haussman nous pouvons conclure qui nous indique que les estimateurs OLS et IV-OLS sont identiquement consistent et que nous n'avons pas des raisons pour utiliser l'estimateurs de IV-OLS (dans cette situation les résultats obtenus par OLS sont plus efficaces).
+Les résultats de ces tests sont regrouppés dans l'annexe X.
+
+Toutefois, les résultats obtenus par l'estimateur de OLS risquent d'être également biaisés.
+Dans l'annexe X nous pouvons voir que Shapiro-Wilk test rejette la normalité des résidus de notre modèle (annexe X), bien que la fonction de répartition partielle a une forme proche à normale (annexe X).
+Nous risquons également d'avoir des biais dans la variance des estimateurs, car selon le test de Bartlett sur l'heteroscedacité nous réjétons l'hypothèse de l'homoscedacité des résidus (annexe X).
+Au moins dans ce cas nous n'avons pas des problèmes avec l'autocorrelation, ce qui peut s'expliquer par utilisation des données temporelles en série trop courte pour y pouvoir detecter l'autocorrelation.
+Les résidus également ne sont pas correlé avec des variables explicatives, mais ont oune correlation forte avec la variable dependante, ce qui nous indique sur la misspécification possible dans notre modèle (annexe X).
+L'explication la plus probable à ce problème est qu'on n'étudie pas suffisament d'effets dans notre modèle et rencontrons par suite le biais de variable omise.
+Le graphique des résidus nous montre en même temps la nature quasi-aléatoire des résidus.
+
+Maintenant, passons au résultats obtenus. 
+L'indexe des prix a une faible effet positive sur l'équilibre du marché.
+Néanmoins il n'est pas trop sensible de commenter ces effets plus précisement, car nous n'avons toujour pas une évidence forte sur sa exogénité.
+La surface dediée au vins simples a également un effet positive sur la quantité du vin simple vendu, ce qui est toutà fait naturelle, vu que c'est le facteur principal de production du vin. 
+Finalement, nous passons à l'effet le plus interessant dans le contexte de notre étude. 
+Nous rappelons à notre lecteur que c'est exactement cet effet, l'effet des pésticides sur le marché du vin, qu'on vise à estimer.
+Conformement aux études precedents nous découvrons que les pésticides ont un impact négative sur l'offre du vin simple, ce qui s'explique par leur nature d'utilisation.
+C'est-à-dire, nous obtenons une confirmation que les pésticides sont utilisés pour minimiser les pertes par les agriculteurs. 
+Particulierement dans le cadre du modèle estimé, l'effet moyen pour l'ensemble des départements est qu'une augmentation de 1% d'utilisation des pésticides est une reponse des agriculteurs à des pértes et de la baisse de l'offre d'au moint de 0.0016%, toutes choses égales par ailleurs.
+Les résultats en termes numeriques sont assez ambigus, car nous faisons face à des nombreux problèmes dans la spécification du modèle, quand même nous pouvons constater un effet de minimisation des pertes dans l'utilisation des pésticides.  
+Cette nature révele des implications importantes en termes de traitement futur du problème d'utilisation excessif des pésticicdes dans la viticulture.
 
 ## M2 : Les résultats dans le cas des effets du marché presents
 
@@ -1049,15 +1090,19 @@ fiml = systemfit(system,
     inst = inst,
     data = dataWX, 
     method = "3SLS", maxit = 1000)
+# SUR
+sur = systemfit(system,
+    data = dataWX, 
+    method = "SUR")
 ```
 
 \FloatBarrier
 
 ```{r echo = FALSE, results = "asis"}
 texreg(float.pos = "!htbp", 
-    list(sls2, sls3, fiml),
-    custom.model.names = c("2SLS", "3SLS", "i3SLS"),
-    label = "table : 2sls, 3sls and fiml")
+    list(sur, sls3),
+    custom.model.names = c("SUR", "3SLS"),
+    label = "table : sur et 3sls")
 ```
 
 \FloatBarrier
@@ -1662,21 +1707,30 @@ rownames(cormat) = c("Vin", "IP",
 ```{r echo = FALSE, results = "asis"}
 xtable(round(cormat, 4), 
     caption = "Correlation des résidus",
-    align = "l|rr")
+    align = "l|rr",
+    floating = T)
 ```
 
 \FloatBarrier
 
 \FloatBarrier
 
-```{r echo = FALSE, fig.cap = "Les résidus contre la variable prédite"}
+```{r echo = FALSE, fig.cap = "Le comportement des résidus"}
 # Visualisation des résidus
+par(mfrow = c(1,2), cex = 0.5)
 plot(y = as.numeric(ols$res), x = as.numeric(ols$fit),
     col = "blue", 
-    main = "Demande", 
+    main = "Les résidus contre la variable prédite", 
     ylab = "Residuals", xlab = "Fitted")
 points(y = as.numeric(ivols$res), x = as.numeric(ivols$fit),
     col = "red", pch = 17)
+legend(x = "topright", legend = c("OLS", "IV-OLS"),
+    col = c("blue", "red"), xpd = NA,
+    cex = 1, lwd = 3)
+# Representation graphique des résidus
+plot(density(ols$res), col = "blue", 
+    main = "Les PDF des résidus", xlab = "Residuals")
+lines(density(ivols$res), col = "red")
 legend(x = "topright", legend = c("OLS", "IV-OLS"),
     col = c("blue", "red"), xpd = NA,
     cex = 1, lwd = 3)
@@ -1737,8 +1791,6 @@ stargazer(BartT,
 
 \FloatBarrier
 
-\newpage
-
 ### B4 La normalité des résidus 
 
 \FloatBarrier
@@ -1763,23 +1815,7 @@ stargazer(ShapT,
 
 \FloatBarrier
 
-\FloatBarrier
-
-```{r echo = FALSE, fig.cap = "Les PDF des résidus"}
-# Representation graphique des résidus
-plot(density(ols$res), col = "blue", 
-    main = "Demande", xlab = "Residuals")
-lines(density(ivols$res), col = "red")
-legend(x = "topright", legend = c("OLS", "IV-OLS"),
-    col = c("blue", "red"), xpd = NA,
-    cex = 1, lwd = 3)
-```
-
-\FloatBarrier
-
-\newpage
-
-### B5 Comparaisons des modèles 
+### B5 Diagnostiques IV-OLS 
 
 ```{r include = FALSE}
 # IV-OLS diagnostics
@@ -1802,6 +1838,19 @@ stargazer(ivchek,
 
 ## C Analyse des résultats M2
 
+### C1 Comparaison des modèles 
+
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
+texreg(float.pos = "!htbp", 
+    list(sls2, sls3, fiml),
+    custom.model.names = c("2SLS", "3SLS", "i3SLS"),
+    label = "table : 2sls, 3sls and fiml")
+```
+
+\FloatBarrier
+
 ### C1 Independance des résidus  
 
 ```{r include = FALSE}
@@ -1810,8 +1859,8 @@ resdata3 = dataW %>%
         u2 = sls2$eq[[2]]$res,
         u3 = sls3$eq[[1]]$res,
         u4 = sls3$eq[[2]]$res,
-        u5 = fiml$eq[[1]]$res,
-        u6 = fiml$eq[[2]]$res)
+        u5 = sur$eq[[1]]$res,
+        u6 = sur$eq[[2]]$res)
 ```
 
 ```{r include = FALSE}
@@ -1843,7 +1892,7 @@ plot(y = sls2$eq[[1]]$res, x = sls2$eq[[1]]$fit,
     col = "blue", 
     main = "Demande", 
     ylab = "Residuals", xlab = "Fitted")
-points(y = fiml$eq[[1]]$res, x = fiml$eq[[1]]$fit,
+points(y = sur$eq[[1]]$res, x = sur$eq[[1]]$fit,
     col = "green4", pch = 17)
 points(y = sls3$eq[[1]]$res, x = sls3$eq[[1]]$fit,
     col = "red", pch = 14)
@@ -1851,7 +1900,7 @@ plot(y = sls2$eq[[2]]$res, x = sls2$eq[[2]]$fit,
     col = "blue", 
     main = "Offre", 
     ylab = "Residuals", xlab = "Fitted")
-points(y = fiml$eq[[2]]$res, x = fiml$eq[[2]]$fit,
+points(y = sur$eq[[2]]$res, x = sur$eq[[2]]$fit,
     col = "green4", pch = 17)
 points(y = sls3$eq[[2]]$res, x = sls3$eq[[2]]$fit,
     col = "red", pch = 14)
@@ -1867,24 +1916,24 @@ legend(x = "topright", legend = c("2SLS", "i3SLS", "3SLS"),
 
 ```{r echo = FALSE, fig.cap = "Les résidus et les prédictions, le cas de i3SLS"}
 par(mfrow = c(1,2), cex = 0.5)
-plot(y = fiml$eq[[1]]$res, x = as.numeric(resdata3$qi),
+plot(y = sur$eq[[1]]$res, x = as.numeric(resdata3$qi),
     col = "red", pch = 17, 
     main = "Demande", 
     ylab = "Fitted - résidus", xlab = "Real")
-points(y = fiml$eq[[1]]$fit, x = resdata3$qi, 
+points(y = sur$eq[[1]]$fit, x = resdata3$qi, 
     col = "blue", pch = 17)
-lines(y = fiml$eq[[1]]$fit + fiml$eq[[1]]$res, x = resdata3$qi,
+lines(y = sur$eq[[1]]$fit + sur$eq[[1]]$res, x = resdata3$qi,
     col = "black")
 legend(x = "bottomleft", legend = c("Résidus", "Fitted", "Real"),
     col = c("red", "blue", "black"), xpd = NA,
     cex = 1, lwd = 3)
-plot(y = fiml$eq[[2]]$fit, x = as.numeric(resdata3$qi), 
+plot(y = sur$eq[[2]]$fit, x = as.numeric(resdata3$qi), 
     col = "blue", pch = 17, 
     main = "Offre", 
     ylab = "Fitted - résidus", xlab = "Real")
-points(y = fiml$eq[[2]]$res, x = resdata3$qi,
+points(y = sur$eq[[2]]$res, x = resdata3$qi,
     col = "red", pch = 14)
-lines(y = fiml$eq[[2]]$fit + fiml$eq[[2]]$res, x = resdata3$qi,
+lines(y = sur$eq[[2]]$fit + sur$eq[[2]]$res, x = resdata3$qi,
     col = "black")
 ```
 
@@ -1941,8 +1990,8 @@ resdata3 = dataW %>%
         u2 = sls2$eq[[2]]$res,
         u3 = sls3$eq[[1]]$res,
         u4 = sls3$eq[[2]]$res,
-        u5 = fiml$eq[[1]]$res,
-        u6 = fiml$eq[[2]]$res)
+        u5 = sur$eq[[1]]$res,
+        u6 = sur$eq[[2]]$res)
 ```
 
 ```{r include = FALSE}
@@ -1979,8 +2028,8 @@ ShapT[1,1] = shapiro.test(sls2$eq[[1]]$res)$p.val
 ShapT[2,1] = shapiro.test(sls2$eq[[2]]$res)$p.val
 ShapT[1,2] = shapiro.test(sls3$eq[[1]]$res)$p.val
 ShapT[2,2] = shapiro.test(sls3$eq[[2]]$res)$p.val
-ShapT[1,3] = shapiro.test(fiml$eq[[1]]$res)$p.val
-ShapT[2,3] = shapiro.test(fiml$eq[[2]]$res)$p.val
+ShapT[1,3] = shapiro.test(sur$eq[[1]]$res)$p.val
+ShapT[2,3] = shapiro.test(sur$eq[[2]]$res)$p.val
 colnames(ShapT) = c("2SLS", "3SLS", "i3SLS")
 rownames(ShapT) = c("Equation de demande", "Equation d'offre")
 ```
@@ -2002,11 +2051,11 @@ stargazer(ShapT,
 par(mfrow = c(1,2), cex = 0.5)
 plot(density(sls2$eq[[1]]$res), col = "blue", 
     main = "Demande", xlab = "Residuals")
-lines(density(fiml$eq[[1]]$res), col = "green4")
+lines(density(sur$eq[[1]]$res), col = "green4")
 lines(density(sls3$eq[[1]]$res), col = "red")
 plot(density(sls3$eq[[2]]$res), col = "red", 
     main = "Offre", xlab = "Residuals")
-lines(density(fiml$eq[[2]]$res), col = "green4")
+lines(density(sur$eq[[2]]$res), col = "green4")
 lines(density(sls2$eq[[2]]$res), col = "blue")
 legend(x = "topright", legend = c("2SLS", "i3SLS", "3SLS"),
     col = c("blue", "green4", "red"), xpd = NA,
@@ -2020,10 +2069,10 @@ legend(x = "topright", legend = c("2SLS", "i3SLS", "3SLS"),
 \FloatBarrier
 
 ```{r include = FALSE}
-h1 = hausman.systemfit(sls2, sls3) # p = 1, 3SLS inconsistent
+h1 = hausman.systemfit(sls3, sls2) # p = 1, 3SLS inconsistent
 # 2SLS estimator is consistent
-h2 = hausman.systemfit(sls2, fiml)
-res = data.frame(Test = c("2SLS contre 3SLS", "2SLS contre i3SLS"),
+h2 = hausman.systemfit(sls3, sur)
+res = data.frame(Test = c("3SLS contre 2SLS", "3SLS contre SUR"),
     Resultats = c(h1$p.val, h2$p.val))
 ```
 
@@ -2046,7 +2095,7 @@ stargazer(res,
 \FloatBarrier
 
 ```{r include = FALSE}
-lr = lrtest(sls2, sls3, fiml)
+lr = lrtest(sls2, sls3, sur)
 xtable(round(lr, 4), 
     caption = "ML test de spécification",
     align = "c|ccccc")
