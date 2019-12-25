@@ -1510,33 +1510,33 @@ grid.arrange(p1, p2, p3, p4, nrow = 2)
 
 ```{r echo = FALSE, fig.height = 4, fig.cap = "L'étude bivarié"}
 p1 = datai %>% 
-    ggplot(aes(qi, ipi, col = as.factor(ndep))) +
+    ggplot(aes(y = qi, x = ipi, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
     geom_smooth(method = "lm", se = F, size = 0.25) +
     # ggtitle("Q ~ IP") +
-    xlab("Quantité du vin") + ylab("Index du prix") +
+    ylab("Quantité du vin") + xlab("Index du prix") +
     pres_theme
 p2 = datai %>% 
-    ggplot(aes(qi, iki, col = as.factor(ndep))) +
+    ggplot(aes(y = qi, x = iki, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
     geom_smooth(method = "lm", se = F, size = 0.25) +
     # ggtitle("Q ~ IK") +
-    xlab("Quantité du vin") + ylab("Index des pésticides") +
+    ylab("Quantité du vin") + xlab("Index des pésticides") +
     pres_theme
 # Probably it is better to do it by variable
 p3 = datai %>% 
-    ggplot(aes(qi, si, col = as.factor(ndep))) +
+    ggplot(aes(y = qi, x = si, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
     geom_smooth(method = "lm", se = F, size = 0.25) +
     # ggtitle("Q ~ S") +
-    xlab("Quantité du vin") + ylab("Surface qultivé") +
+    ylab("Quantité du vin") + xlab("Surface qultivé") +
     pres_theme
 p4 = datai %>% 
-    ggplot(aes(qi, ri, col = as.factor(ndep))) +
+    ggplot(aes(y = qi, x = ri, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
     geom_smooth(method = "lm", se = F, size = 0.25) +
     # ggtitle("Q ~ R") +
-    xlab("Quantité du vin") + ylab("Revenus") +
+    ylab("Quantité du vin") + xlab("Revenus") +
     pres_theme
 grid.arrange(p1, p2, p3, p4, nrow = 2)
 ```
@@ -1549,37 +1549,37 @@ grid.arrange(p1, p2, p3, p4, nrow = 2)
 
 ```{r echo = FALSE, fig.height = 4, fig.cap = "Rélations bivariés dans le cas de transformation within"}
 p1 = dataWi %>% 
-    ggplot(aes(qi, ipi, col = as.factor(ndep))) +
+    ggplot(aes(y = qi, x = ipi, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
     geom_smooth(method = "lm", se = F, size = 0.25) +
     geom_smooth(aes(qi, ipi, col = "black"), method = "loess", size = 0.4) +
     # ggtitle("Q ~ IP") +
-    xlab("Quantité du vin") + ylab("Index du prix") +
+    ylab("Quantité du vin") + xlab("Index du prix") +
     pres_theme
 p2 = dataWi %>% 
-    ggplot(aes(qi, iki, col = as.factor(ndep))) +
+    ggplot(aes(y = qi, x = iki, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
     geom_smooth(method = "lm", se = F, size = 0.25) +
     geom_smooth(aes(qi, iki, col = "black"), method = "loess", size = 0.4) +
     # ggtitle("Q ~ IK") +
-    xlab("Quantité du vin") + ylab("Index des pésticides") +
+    ylab("Quantité du vin") + xlab("Index des pésticides") +
     pres_theme
 # Probably it is better to do it by variable
 p3 = dataWi %>% 
-    ggplot(aes(qi, si, col = as.factor(ndep))) +
+    ggplot(aes(y = qi, x = si, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
     geom_smooth(method = "lm", se = F, size = 0.25) +
     geom_smooth(aes(qi, si, col = "black"), method = "loess", size = 0.4) +
     # ggtitle("Q ~ S") +
-    xlab("Quantité du vin") + ylab("Surface qultivé") +
+    ylab("Quantité du vin") + xlab("Surface qultivé") +
     pres_theme
 p4 = dataWi %>% 
-    ggplot(aes(qi, ri, col = as.factor(ndep))) +
+    ggplot(aes(y = qi, x = ri, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
     geom_smooth(method = "lm", se = F, size = 0.25) +
     geom_smooth(aes(qi, ri, col = "black"), method = "loess", size = 0.4) +
     # ggtitle("Q ~ R") +
-    xlab("Quantité du vin") + ylab("Revenus") +
+    ylab("Quantité du vin") + xlab("Revenus") +
     pres_theme
 grid.arrange(p1, p2, p3, p4, nrow = 2)
 ```
