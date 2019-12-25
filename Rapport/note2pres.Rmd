@@ -1067,7 +1067,7 @@ Dans ce cas, les regresseurs endogenes de la demande sont instrumentés tout com
 Ce méthode donne des résultats équivalents à ILS (*indirect least squares*), une téchnique utilisé pour estimer les systémés des équations.
 
 Dans le deuxieme cas nous réjetons l'hypothèse de l'endogénéité des prix pour le marché du vins simple, en supposant qu'il est dicté par le consommateurs final à les acteurs en amont (le distributeur qui rachete le vin d'agriculteur).
-Cela nous amene à imlimenter le méthode SUR (*seamingly unrelated equations*) afin d'introduire la correlation entre les résidus dans notre modèle du marché tout en ignorant l'endogénéité des prix.
+Cela nous amène à implementer le méthode SUR (*seamingly unrelated equations*) afin d'introduire la correlation entre les résidus dans notre modèle du marché tout en ignorant l'endogénéité des prix.
 
 Les résultats pour les deux modèles sont régrouppé sous format d'un tableau ci-dessous :
 
@@ -1115,10 +1115,16 @@ texreg(float.pos = "!htbp",
 \FloatBarrier
 
 Les résultats obtenus pour le cadre avec les prix endogènes (l'estimation par 3SLS) donne forcement des résultats biaisé, car comme nous avons vu dans la séctions précedente nous ne dispososns pas d'instruments suffisament forts pour instrumenter l'index des prix.
+Cela se confirme par la nonsignificativité des indices des prix estimé par l'approche des variables instrumentalles.
+Ces effets sont négatives non-differents de zero, ce qui n'est pas normal pour un bien n'étant le bien de Giffen (bien que nous pouvons arbitrer que le vin le plus ismple pourrais se comporter d'une telle façon, car c'est un des produits alimentaires les plus basiques).
+Des autres tests nous confirment la misspécification  de ctte modèle : les résidus sont parfaitment correlé avec les valeurs de variable dépendante et les prédictions, ce qui est evident des graphiques dans les annexe X; une forte hétereroscedacité, qui cette fois est apparente sur les graphiques (annexes X et X), etc.
+Quand même les tests de spécification ne donne pas aucune indication de misspécification du modèle 3SLS par rapport au modèle 2SLS, ce qui nous rassure dans notre supposition que nous n'utilisaons pas suffisament des variables explicatives dans notre modèle pour utiliser ces approches économétriqes.
 
 Tout de même, nous obtenons des résultats proches à ceux obtenus par OLS simples dans la séction precedente ($-0.16$ contre $-0.17$). 
 Cela confirme notre hypothèse sur le rôle joué par les pésticides dans la propositions du vin simple sur le marché. 
 Néanmoins, nous préferions de ne pas utiliser ce modèle comme notre modèle de réference en futur à cause de plusieurs sources des biais.
+
+En ce qui concerne les résultats d'estimation par SUR, nous constatons des effets ...
 
 ## M3 : Les résultats pour des départements grouppés
 
