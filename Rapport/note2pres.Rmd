@@ -1134,13 +1134,25 @@ Nous suppososn que cet approche peut donner des résultats significativement dif
 
 ### Clusterisation 
 
+Il existent plusieurs façons de séparer et clustériser les données. 
+Nous, dans notre travail, allons implementer la procedure *k-means* ou *k-moyennes*. 
+Cette procedure regrouppes les individus autours des *centres* (dont le nombre est *k*) choisis par un algorithme itérative. 
+Cet algorithme itérative minimise la distance inta-cluster.
+La qualité d'ajustement des clusters est evalué par le paramétre WSS (*within sum of squares*).
+C'est exactement ce paramétre la qu'on va utiliser pour comparer les differents approches et en choisir le plus approprié.
+
+En ce qui concerne les differents méthodes de clustérisation, nous pouvons les choisir en manipulant les données à l'entrée (les *inputs*) de cet algorithme.
+Plus précisement nous pouvons :
+
+- Groupper les départements en utilisant les valeurs moyennes pluriannuelles de leurs caractéristiques (ce qui est idéntique aux données qu'on obtient lors de la transformation *between*) ;
+- Groupper nos individus en utilisant les variations des caractéristiques intra-annuelles (nous appliquons la transformation *within* à nos données, puis nous trasformons nos données afin de conserver la dimention temporelle) ;
+- Utiliser l'information complete pour capter les évolutions aussi bien que les differences générales entre les département étudiés.
+
 #### *Between* 
 
-Nous avons vus dans le comportement des résidus une nature non-aléatoire groupé. 
-Cela nous amène à l'idée de construire k-clusters pour modèliser les relations par groupe.
-
-Nous supposons que les départements ayant des valeurs moyennes interannuelles proches (transformation Between) ont un comportement identique.
-La clusterisation est effectuée sur les données Between pour les départements.
+Nous supposons que les départements ayant des valeurs moyennes inter-annuelles proches, obtenus par la transformation *between*, ont des caractéristiques proches, ainsi qu'un comportement presque identique.
+La clusterisation est effectuée sur les données *between* pour l'ensemble des départements étudiés.
+Les résultats des éstimations ainsi que les centres théoriques pour $k = 3$ se trouvent dans l'annexe X.
 
 ```{r include = FALSE}
 # Clustering 
@@ -1165,8 +1177,7 @@ for (i in 2:15) {
 }
 ```
 
-Nous pouvons supposer que le nombre des clusters optimaux est entre 3 et 5.
-Prenant en compte les graphiques des résidus vus lors des analyses des modèles, nous allons supposer qu'il n'y a que 3 clusters principaux.
+Dans ce cas le nombre des clusters optimaux est entre 3 et 8.
 
 ```{r include = FALSE}
 # Intermediary data
@@ -1185,12 +1196,9 @@ clusters = cbind(fit1$centers, fit1$size, k <- c(1:3)) %>%
 
 ### *Within*
 
-Nous avons vus dans le comportement des résidus une nature non-aléatoire groupé. 
-Cela nous amène à l'idée de construire k-clusters pour modèliser les relations par groupe.
-
-D'abord on compare le comportement des cluster pour les données à l'information complète et les données Within.
-
-Comme nous pouvons le voir dans les résultats le nombre de clusters optimaux est trop large pour les séparer dans l'analyse :
+Dans ce cas nous supposons que les départements ayant des tendances et les évolutions de leurs caractéristiques identiques ont un comportement qui ressamble.
+Plus, précisement, nous commençon par la transformation des nos données en *within*, ce qui implique qu'on substrait les moyennes empiriques intra-annuelles pour toutes les caractéristiques.
+Après, nous transformons les données créant pour chaque caractéristique pour chaque année une variable séparée, ce qui permet de préserver la dimention temporelle de nos données.
 
 ```{r include = FALSE}
 # Clustering Within
@@ -1240,7 +1248,8 @@ clusters2 = cbind(fit2$centers, fit2$size, k <- c(1:3)) %>%
 
 ### Information complète
 
-Dans le cas de l'information complète, on a :
+Dans le cas de l'information complète nous utilisons l'ensemble des informations disponibles sur les individus afin de construire les clusters. 
+Nous utilisons l'approche similaire à celui utilisé dans le cas de clusterisation *within*, sauf que cette fois nous n'effectuons pas la correction sur les valeurs moyennes intra-annuelles.
 
 ```{r include = FALSE}
 # Clustering 
@@ -1277,9 +1286,6 @@ for (i in 2:15) {
 }
 ```
 
-Nous pouvons supposer que le nombre de cluster optimal est entre 3 et 5.
-Prenant en compte les graphiques des résidus vus lors de l'analyse des modèles, nous allons supposer qu'il n'y a que 3 clusters principaux.
-
 ```{r include = FALSE}
 # Grouping
 fit3 = kmeans(iter.max = 100, dataC[,-6], 3)
@@ -1295,7 +1301,7 @@ clusters3 = cbind(fit3$centers, fit3$size, k <- c(1:3)) %>%
 Afin de pouvoir comparer des valeurs differents de WSS (*within summ of squares*) nous allons visualiser la valeur dun indice : 
 
 \begin{equation*}
-    WSS^{'} = \frac{SS}{min(WSS)}
+    WSS^{'} = \frac{WSS}{min(WSS)}
 \end{equation*}
 
 Ce qui nous permettra d'évaluer les écarts rélatives du WSS de sa valeur minimale (pour nombre des clusters égal à 15).
@@ -1307,7 +1313,7 @@ Ce qui nous permettra d'évaluer les écarts rélatives du WSS de sa valeur mini
 plot(1:15, wss1/wss1[15], 
     type = "l", col = "red", 
     xlab = "Nomber de clusters",
-    ylab = "WSS") # 3, 4, 5
+    ylab = "WSS'") # 3, 4, 5
 points(1:15, wss1/wss1[15], col = "red")
 lines(1:15, wss2/wss2[15],
     col = "blue")
