@@ -37,6 +37,7 @@ bibliography: biblio.bib
 ###################
 # Setting r options
 ###################
+# Knitr options
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(size = "tiny")
 knitr::opts_chunk$set(dpi = 600)
@@ -62,6 +63,7 @@ knitr::opts_chunk$set(fig.pos = "!htbp")
 require(stargazer)
 require(texreg)
 require(xtable)
+options(xtable.comment = FALSE)
 # Statistics
 require(systemfit) # System equations
 require(AER) # IV regression
@@ -77,6 +79,8 @@ require(tidyverse)
 require(rlang)
 require(dummies)
 require(dplyr)
+# R options
+options(warn = -1)
 ```
 
 ```{r include = FALSE}
@@ -253,7 +257,7 @@ pres_theme = theme(text = element_text(size = rel(3)),
 ####################################################
 ```
 
-Aujourd’hui, l’utilisation des pesticides est un problème majeur de l’agriculture.  
+Aujourd’hui, l’utilisation des pesticides est un problème majeur de l’agriculture. 
 Celle-ci utilise la plus grande partie des pesticides en France. 
 Il s’agit d’un enjeu à la base du développement durable car ils ont un impact important sur les risques environnementaux et sanitaires. 
 
@@ -273,24 +277,18 @@ De cette façon nous chercherons à étudier l'équilibre sur le marché des vin
 ####################################################
 ```
 
-\noindent\rule[0.5ex]{\linewidth}{1pt} 
-
-\textcolor{red}{Mettre des sources partout !}
-
-\noindent\rule[0.5ex]{\linewidth}{1pt}
-
 Pour lutter contre l’utilisation des pesticides l’Etat Français et l’union européenne ont mis en place des mesures. 
 Ainsi, l’Etat Français lors du grenelle de l’environnement de 2006 a fixé ses objectifs. 
 Ainsi, le plan ECOPHYTO 2018 visait à réduire de 50% l’utilisation des pesticides de synthèse. 
-Le deuxième objectif est le passage en agriculture biologique à 6% de la surface agricole utilisée en 2010 et vise 20% en 2020.[@Butault2014.bib]
+Le deuxième objectif est le passage en agriculture biologique à 6% de la surface agricole utilisée en 2010 et vise 20% en 2020.[@Butault2014]
 
 En 2008, les 30 produits les plus toxiques les plus toxiques sont interdits. 
 Une taxe sur les phytosanitaires a aussi été mise en place. 
 Cette taxe est croissante avec le niveau de toxicité de ces produits. 
-Cette taxe devait augmenter au fil des années. De plus, l’octroi de crédits d’impôt en faveur de l’agriculture biologique devait aussi permettre de réduire l'utilisation des pesticides.[@Butault2014.bib]
+Cette taxe devait augmenter au fil des années. De plus, l’octroi de crédits d’impôt en faveur de l’agriculture biologique devait aussi permettre de réduire l'utilisation des pesticides.[@Butault2014]
 
 Malgré tous ces efforts, l’utilisation des pesticides perdurent.  
-En 2008, le nombre de doses unités a été créé pour enregistrer l’évolution de la demande de pesticide.[@Butault2014.bib]
+En 2008, le nombre de doses unités a été créé pour enregistrer l’évolution de la demande de pesticide.[@Butault2014]
 On remarque que les doses utilisées augmentent de 12% en 2014-2016 par rapport à 2009-2011.  
 
 ## Etat actuel
@@ -301,10 +299,10 @@ Certaines critiques ont été faites sur l’utilisation du Nodu.
 Il est possible d’utiliser le nombre de substances actives utilisées. 
 Mais, cet indicateur connaît lui aussi une hausse de 15% entre 2011 et 2017. 
 
-Néanmoins, les politiques ont quand même eu quelques effets positifs, puisque l’achat des produits les plus dangereux baisse de 6% en 2017. [@Moghaddam2019.bib] 
+Néanmoins, les politiques ont quand même eu quelques effets positifs, puisque l’achat des produits les plus dangereux baisse de 6% en 2017. [@Moghaddam2019] 
 Les grandes cultures sont les premières utilisatrices de pesticides. 
 Elles représentent 67,4% de l’utilisation de pesticides. 
-La deuxième culture est celle de la vigne ce qui représente 14,4%  des pesticides utilisés.[@Butault2014.bib]
+La deuxième culture est celle de la vigne ce qui représente 14,4%  des pesticides utilisés.[@Butault2014]
 
 ## Comment baisser l'utilisation de pesticides
 
@@ -312,16 +310,11 @@ Afin de baisser l’utilisation des pesticides, des méthodes de cultures ont é
 Il est possible d’utiliser différents mode de culture. 
 On peut en retenir trois principaux. 
 
-Le premier est l’agriculture intensive. 
-Elle ne limite pas le recours aux pesticides. 
+- l’agriculture intensive, qui ne limite pas le recours aux pesticides ;
+- l’agriculture raisonnée, qui limite le recours aux pesticides en fonction de seuils ;
+- l’agriculture biologique, qui vise à supprimer les traitements avec des produits phytosanitaires de synthèse. 
 
-Le deuxième est l’agriculture raisonnée. 
-Elle limite le recours aux pesticides en fonction de seuils.
- 
-Le troisième niveau est l’agriculture biologique. 
-Elle supprime les traitements avec des produits phytosanitaires de synthèse. 
-
-Les professionnels proposent de commencer par utiliser l’agriculture raisonnée qui permet de réduire les doses de pesticides légales. 
+Les professionnels proposent de commencer par utiliser l’agriculture raisonnée en viticulture qui permetra de réduire les doses de pesticides légales. 
 Ensuite l’agriculture doit se déplacer vers l’agriculture biologique qui n’utilise aucun produit phytosanitaire de synthèse. 
 
 # 2. Le marché du vin français
@@ -332,15 +325,17 @@ Ensuite l’agriculture doit se déplacer vers l’agriculture biologique qui n�
 #####################################################
 ```
 
-La France est l’un des principaux producteurs de vins. En effet, la France représente 10% de la surface des vignes mondiales. La production de vins représentait 4.6 milliards  de litres. La France représentait 17% de la production totale de vins. 3% de la surface agricole française est consacrée à la production agricole. Néanmoins, le vin représente 15% de la production agricole en valeur. [@CNIV, 2018]
-La France est aussi l’un des principaux consommateurs de vins. En effet, en France, il s’agit de la boisson alcoolisée la plus consommée. 88% des ventes de vins en France sont effectuées en grande surface. Néanmoins, la consommation française de vin baisse depuis une trentaine d’années. [@CNIV2018.bib] 
+La France est l’un des principaux producteurs de vins. En effet, la France représente 10% de la surface des vignes mondiales. La production de vins représentait 4.6 milliards  de litres. La France représentait 17% de la production totale de vins. 3% de la surface agricole française est consacrée à la production agricole. Néanmoins, le vin représente 15% de la production agricole en valeur. [@CNIV2018]
+La France est aussi l’un des principaux consommateurs de vins. En effet, en France, il s’agit de la boisson alcoolisée la plus consommée. 88% des ventes de vins en France sont effectuées en grande surface. Néanmoins, la consommation française de vin baisse depuis une trentaine d’années. [@CNIV2018] 
 
 ## Utilisation des pesticides dans la viticulture
 
-La viticulture est le deuxième secteur agricole en termes d’utilisation des pesticides. En effet, elle représente plus de 14.4% des dépenses de produits phytosanitaires,  en France. Néanmoins, ces pesticides ne sont pas utilisés dans la même proportion dans toutes les régions de France. [@Butault2011.bib] 
-Les bassins viticoles Français utilisent en majorité des fongicides et des bactéricides. En effet, la vigne fait face à des aléas climatiques qui permettent le développement de champignons comme le Mildiou. [@Pujol2017.bib] 
-Pour lutter contre le développement de ces champignons, les viticulteurs ne peuvent utiliser que des fongicides. En effet, ils ne peuvent pas utiliser la rotation des cultures qui pourraient réduire ou empêcher le développement de ces champignons puisque la vigne est une culture pérenne. Les pieds de vigne ne sont pas replantés chaque année. Il est donc nécessaire d’utiliser les pesticides dans la vigne pour protéger la production et éviter les pertes. En effet, les champignons s’attaquent aux feuilles de la vigne et aux fruits. Donc la pulvérisation de pesticides est un des seuls moyens pour protéger les rendements des cultures viticoles.  Néanmoins, l’utilisation des pesticides a aussi un impact du côté de la demande de vin. Cet impact est plus ambigu, à cause d’un manque de transparence d’information sur les bouteilles de vin. [@Prudent2018.bib]
-Un sondage de l’Ifop sur les habitudes et perceptions de consommation des Français a montré que 93% des Français considèrent que la présence de pesticides dans les aliments a un impact sur la santé. 89% des Français souhaiteraient être informés de la présence ou non de pesticides dans les produits alimentaires, à travers un étiquetage. [@Ifop2017.bib]
+La viticulture est le deuxième secteur agricole en termes d’utilisation des pesticides. En effet, elle représente plus de 14.4% des dépenses de produits phytosanitaires,  en France. Néanmoins, ces pesticides ne sont pas utilisés dans la même proportion dans toutes les régions de France. [@Butault2011] 
+
+Les bassins viticoles Français utilisent en majorité des fongicides et des bactéricides. En effet, la vigne fait face à des aléas climatiques qui permettent le développement de champignons comme le Mildiou. [@Pujol2017] 
+Pour lutter contre le développement de ces champignons, les viticulteurs ne peuvent utiliser que des fongicides. En effet, ils ne peuvent pas utiliser la rotation des cultures qui pourraient réduire ou empêcher le développement de ces champignons puisque la vigne est une culture pérenne. Les pieds de vigne ne sont pas replantés chaque année. Il est donc nécessaire d’utiliser les pesticides dans la vigne pour protéger la production et éviter les pertes. En effet, les champignons s’attaquent aux feuilles de la vigne et aux fruits. Donc la pulvérisation de pesticides est un des seuls moyens pour protéger les rendements des cultures viticoles.  Néanmoins, l’utilisation des pesticides a aussi un impact du côté de la demande de vin. Cet impact est plus ambigu, à cause d’un manque de transparence d’information sur les bouteilles de vin. [@Prudent2018]
+
+Un sondage de l’Ifop sur les habitudes et perceptions de consommation des Français a montré que 93% des Français considèrent que la présence de pesticides dans les aliments a un impact sur la santé. 89% des Français souhaiteraient être informés de la présence ou non de pesticides dans les produits alimentaires, à travers un étiquetage. [@Ifop2017]
 
 ## Le problème d'hétérogénéité
 
@@ -364,23 +359,10 @@ La première partie est soumise à des règlements spécifiques : limitations de
 La deuxième, c'est-à-dire le marché des vins moins chers, est aussi complexe. Néanmoins, elle demeure moins hétérogène @cembalo2014. En effet, les vins qui se situent dans une fourchette de prix étroite sont quasiment homogènes. Ainsi, les vins sans indication géographique ont des attributs intrinsèques simples, une complexité de qualité faible. Il s’agit donc de vins peu différenciés. Nous avons, donc, choisit de nous concentrer sur ces vins sans indication géographique à cause de leur degré d’homogénéité qui est plus fort que pour les autres labels.
 
 Cela nous permet d'analyser le marché par département est non par des marques/produits.
+
 ## Les vins de table
 
-Le marché des vins sans indication géographiques connaît de forte variation. Nous allons donc revenir sur la période qui précède notre étude. Ainsi, en 2011, les transactions de vente de vins rouges ont augmenté de 29%. Les transactions de vins rosés ont également augmenté de 13%. Pour finir, les transactions de vins blancs augmentaient de 76%. Les prix de ces vins bien que faible connaissent aussi des variations importantes. Ainsi, en 2011, les trois couleurs de vins ont connus des hausses de prix. Les vins rouges ont vu leurs prix moyens augmenté de 12%. Le prix moyens des vins rosés ont aussi crus de 3 %. Pour finir, les prix moyens des vins blancs ont cru de 13%. Les vins de France sans indications géographiques  ont connu une baisse en volume des ventes de 14.6% par rapport à la moyenne des ventes sur la période 2006 à 2010. [@FranceAgriMer2011.bib].
-
- 
-
-
-\noindent\rule[0.5ex]{\linewidth}{1pt}
-
-\textcolor{red}{Ajouter des articles proches par la méthodologie à notre }
-
-- \textcolor{red}{le cas du modèle simple,  }
-- \textcolor{red}{le cas du marchéliée, } 
-- \textcolor{red}{le cas des clusters.}
-
-\noindent\rule[0.5ex]{\linewidth}{1pt}
-
+Le marché des vins sans indication géographiques connaît de forte variation. Nous allons donc revenir sur la période qui précède notre étude. Ainsi, en 2011, les transactions de vente de vins rouges ont augmenté de 29%. Les transactions de vins rosés ont également augmenté de 13%. Les transactions de vins blancs augmentaient de 76%. Les prix de ces vins bien que faible connaissent aussi des variations importantes. Ainsi, en 2011, les trois couleurs de vins ont connus des hausses de prix. Les vins rouges ont vu leurs prix moyens augmenté de 12%. Le prix moyens des vins rosés ont aussi crus de 3 %. Pour finir, les prix moyens des vins blancs ont cru de 13%. Les vins de France sans indications géographiques  ont connu une baisse en volume des ventes de 14.6% par rapport à la moyenne des ventes sur la période 2006 à 2010. [@FranceAgriMer2011].
 
 # 3. Le cadre théorique
 
@@ -535,7 +517,7 @@ Alors,nous pouvons réécrire notre système d'equations sous la forme suivante 
 
 Où $qd_i = qo_i$ et $Pd_i = Po_i$, ce qui permet de relier les équations au niveau départemental.
 Les coefficients $b$, $c$, $\beta$ et $\gamma$ sont supposés fixes pour tous les départements. Ils nous donnent un estimateur des effets moyens au niveau de la France.
-L'effet des pesticides dans la production du vin sera capté par le terme $c_{1} : c = (c_{1}, c{2})$ dans ce cas.
+L'effet des pesticides dans la production du vin sera capté par le terme $c_{1} : c = (c_{1}, c_{2})$ dans ce cas.
 
 Néanmoins, nous nous posons la question, comment réagir dans le cas où les effets sont differents pour les differents départements à cause des spécificité des marché locaux, géographiques ou autres ?
 On peut supposer, qu'il existe au moins quelques groupes majeures ayant des caractéristiques et des comportements similaires. 
@@ -651,7 +633,7 @@ Les propriétés de ces données sont les suivantes :
 Dans cette partie de l'étude nous allons mener une étude exploratoire sur les données collectées. 
 
 De l'étude de la variance pour les données en panel avec des statistiques générales, nous passerons à l'étude de l'interdependance des variables. 
-Puis, nous allons finir avec l'étude des données alternées par une transformation **within**.
+Puis, nous allons finir avec l'étude des données alternées par une transformation *within*.
 
 ## Visualisation au niveau de la France 
 
@@ -697,7 +679,7 @@ spplot(formes, "qi",
 
 \FloatBarrier
 
-Puis, nous observons le comportement du reste des variables (les représentations graphiques sont groupés dans l'annexe X).
+Puis, nous observons le comportement du reste des variables (les représentations graphiques sont groupés dans l'annexe A1).
 L'indice des prix se comporte pratiquement comme la quantité du vin produite, car cet indice fut construit par l'intermédiaire de cette variable. 
 Les autres moyennes ne semblent pas avoir des structures corrélées dans l'espace au niveau de la France. 
 Dans notre analyse nous nous laissons la liberté d'ignorer les effets possibles d'autocorrélation spatiale dans nos données. En effet, au moment de la constructions de notre base de données, nous avons ignoré les départements ne produisant pas de vin simple. Mais, ils peuvent quand même jouer un rôle si nous prenions en compte la structure spatiale de nos données. 
@@ -1019,6 +1001,7 @@ ivols = ivreg(eqoffer,
 texreg(float.pos = "!htbp", 
     list(ols, ivols),
     custom.model.names = c("OLS", "IV-OLS"),
+    custom.coef.names = c("IP", "Surface", "I pésticides"),
     label = "table : ols et ivols")
 ```
 
@@ -1069,7 +1052,7 @@ Ce méthode donne des résultats équivalents à ILS (*indirect least squares*),
 Dans le deuxieme cas nous réjetons l'hypothèse de l'endogénéité des prix pour le marché du vins simple, en supposant qu'il est dicté par le consommateurs final à les acteurs en amont (le distributeur qui rachete le vin d'agriculteur).
 Cela nous amène à implementer le méthode SUR (*seamingly unrelated equations*) afin d'introduire la correlation entre les résidus dans notre modèle du marché tout en ignorant l'endogénéité des prix.
 
-Les résultats pour les deux modèles sont régrouppé sous format d'un tableau ci-dessous :
+Les résultats pour les deux modèles sont régrouppé sous format d'un tableau ci-dessous ("D" désigne les coefficients de l'équation de la demande et "O" de l'équation de l'offre, qui nous interesse) :
 
 ```{r include = FALSE}
 # Equations
@@ -1109,6 +1092,8 @@ sur = systemfit(system,
 texreg(float.pos = "!htbp", 
     list(sur, sls3),
     custom.model.names = c("SUR", "3SLS"),
+    custom.coef.names = c("D : IP", "D : Revenu", 
+        "O : IP", "O : Surface", "O : I pésticides"),
     label = "table : sur et 3sls")
 ```
 
@@ -1144,8 +1129,8 @@ C'est exactement ce paramétre la qu'on va utiliser pour comparer les differents
 En ce qui concerne les differents méthodes de clustérisation, nous pouvons les choisir en manipulant les données à l'entrée (les *inputs*) de cet algorithme.
 Plus précisement nous pouvons :
 
-- Groupper les départements en utilisant les valeurs moyennes pluriannuelles de leurs caractéristiques (ce qui est idéntique aux données qu'on obtient lors de la transformation *between*) ;
-- Groupper nos individus en utilisant les variations des caractéristiques intra-annuelles (nous appliquons la transformation *within* à nos données, puis nous trasformons nos données afin de conserver la dimention temporelle) ;
+- Groupper les départements en utilisant les valeurs moyennes pluriannuelles de leurs caractéristiques (ce qui est idéntique aux données qu'on obtient lors de la transformation *between*);
+- Groupper nos individus en utilisant les variations des caractéristiques intra-annuelles (nous appliquons la transformation *within* à nos données, puis nous trasformons nos données afin de conserver la dimention temporelle);
 - Utiliser l'information complete pour capter les évolutions aussi bien que les differences générales entre les département étudiés.
 
 #### *Between* 
@@ -1407,6 +1392,7 @@ texreg(float.pos = "!htbp",
     custom.model.names = c("OLS c1", "IV-OLS c1", 
         "OLS c2", "IV-OLS c2", 
         "OLS c3", "IV-OLS c3"),
+    custom.coef.names = c("IP", "Surface", "I pésticides"),
     label = "table : ols et ivols clusters")
 ```
 
@@ -1489,6 +1475,8 @@ texreg(float.pos = "!htbp",
     custom.model.names = c("SUR c1", "3SLS c1",
         "SUR c2", "3SLS c2", 
         "SUR c3", "3SLS c3"),
+    custom.coef.names = c("D : IP", "D : Revenu", 
+        "O : IP", "O : Surface", "O : I pésticides"),
     label = "table : sur et 3sls clusters")
 ```
 
@@ -1496,12 +1484,12 @@ texreg(float.pos = "!htbp",
 
 Nous observons que ...
 
-# 9. Conclusions 
+# 9. Conclusion
 
 ```{r eval = FALSE, include = FALSE}
-####################################################
-###################  Conclusions  ##################
-####################################################
+###################################################
+###################  Conclusion  ##################
+###################################################
 ```
 
 Nous avons étudié et comparé plusieurs modèles differents qui visent à étudier les effets d'utilisation des pésticides sur l'offre du vin de table. 
@@ -1552,16 +1540,18 @@ p3 = spplot(formes, "si",
 p4 = spplot(formes, "ri", 
     col.regions = colorRampPalette(c('grey96', 'orange'))(30),  
     main = list(label = "Revenus par département", cex = 0.8))
-grid.arrange(p1, p2, p3, p4, nrow = 2)
+return(grid.arrange(p1, p2, p3, p4, nrow = 2))
 ```
 
 \FloatBarrier
 
 \newpage
 
-### A2 Les graphiques bivariés
+### A2 L'étude des interdependances
 
-#### Cas général 
+La premier de cet annexe combrend les résultats pour les données telles-quelles, le deuxieme par contre integre les résultats pour les données sous la trasformation *within*.
+
+####  A2.1 Information complete 
 
 \FloatBarrier
 
@@ -1572,14 +1562,14 @@ p1 = datai %>%
     geom_smooth(method = "lm", se = F, size = 0.25) +
     # ggtitle("Q ~ IP") +
     ylab("Quantité du vin") + xlab("Index du prix") +
-    pres_theme
+    pres_theme + xlim(0, 10)
 p2 = datai %>% 
     ggplot(aes(y = qi, x = iki, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
     geom_smooth(method = "lm", se = F, size = 0.25) +
     # ggtitle("Q ~ IK") +
     ylab("Quantité du vin") + xlab("Index des pésticides") +
-    pres_theme
+    pres_theme + xlim(0, 4)
 # Probably it is better to do it by variable
 p3 = datai %>% 
     ggplot(aes(y = qi, x = si, col = as.factor(ndep))) +
@@ -1595,12 +1585,37 @@ p4 = datai %>%
     # ggtitle("Q ~ R") +
     ylab("Quantité du vin") + xlab("Revenus") +
     pres_theme
-grid.arrange(p1, p2, p3, p4, nrow = 2)
+return(grid.arrange(p1, p2, p3, p4, nrow = 2))
 ```
 
 \FloatBarrier
 
-#### Transformation *Within*
+```{r include = FALSE}
+correlation = cor(datap)
+colnames(correlation) = c("Quantité du vin", "IP", 
+        "Surface", "Revenus", 
+        "Index pésticides", "Temps")
+rownames(correlation) = c("Quantité du vin", "IP", 
+        "Surface", "Revenus", 
+        "I pésticides", "Temps")
+```
+
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
+print(xtable(round(correlation, 4), 
+    caption = "La correlation complete",
+    align = "l|rrrrrr"), caption.placement = "bottom")
+```
+
+\FloatBarrier
+
+\newpage
+
+#### A2.2 Transformation *within*
+
+Les rélations entre les variables mieux ressortent pour les données transformées. 
+Ce sont les données que nous intégrons dans nos modèles économétriques.
 
 \FloatBarrier
 
@@ -1612,7 +1627,7 @@ p1 = dataWi %>%
     geom_smooth(aes(qi, ipi, col = "black"), method = "loess", size = 0.4) +
     # ggtitle("Q ~ IP") +
     ylab("Quantité du vin") + xlab("Index du prix") +
-    pres_theme
+    pres_theme + xlim(-4, 4)
 p2 = dataWi %>% 
     ggplot(aes(y = qi, x = iki, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
@@ -1620,7 +1635,7 @@ p2 = dataWi %>%
     geom_smooth(aes(qi, iki, col = "black"), method = "loess", size = 0.4) +
     # ggtitle("Q ~ IK") +
     ylab("Quantité du vin") + xlab("Index des pésticides") +
-    pres_theme
+    pres_theme + xlim(-1, 4)
 # Probably it is better to do it by variable
 p3 = dataWi %>% 
     ggplot(aes(y = qi, x = si, col = as.factor(ndep))) +
@@ -1637,43 +1652,11 @@ p4 = dataWi %>%
     geom_smooth(aes(qi, ri, col = "black"), method = "loess", size = 0.4) +
     # ggtitle("Q ~ R") +
     ylab("Quantité du vin") + xlab("Revenus") +
-    pres_theme
-grid.arrange(p1, p2, p3, p4, nrow = 2)
+    pres_theme + xlim(-0.05, 0.05) #### ERRORS!!!!
+return(grid.arrange(p1, p2, p3, p4, nrow = 2))
 ```
 
 \FloatBarrier
-
-\newpage
-
-### A3 La correlation 
-
-#### Cas général 
-
-Le premier tableau combrend les résultats pour les données telles-quelles, le deuxieme par contre integre les résultats pour les données sous la trasformation *within*.
-
-```{r include = FALSE}
-correlation = cor(datap)
-colnames(correlation) = c("Quantité du vin", "IP", 
-        "Surface", "Revenus", 
-        "Index pésticides", "Temps")
-rownames(correlation) = c("Quantité du vin", "IP", 
-        "Surface", "Revenus", 
-        "Index pésticides", "Temps")
-```
-
-\FloatBarrier
-
-```{r echo = FALSE, results = "asis"}
-xtable(round(correlation, 4), 
-    caption = "La correlation complete",
-    align = "l|rrrrrr")
-```
-
-\FloatBarrier
-
-#### Transformation *Within*
-
-Les rélations entre les variables mieux ressortent pour les données transformées.
 
 ```{r include = FALSE}
 correlationW = cor(dataW)
@@ -1683,22 +1666,22 @@ colnames(correlationW) = c("Quantité du vin", "IP",
         "Index pésticides", "Temps")
 rownames(correlationW) = c("Quantité du vin", "IP", 
         "Surface", "Revenus", 
-        "Index pésticides", "Temps")
+        "I pésticides", "Temps")
 ```
 
 \FloatBarrier
 
 ```{r echo = FALSE, results = "asis"}
-xtable(round(correlationW, 4), 
+print(xtable(round(correlationW, 4), 
     caption = "La correlation within",
-    align = "l|rrrrrr")
+    align = "l|rrrrrr"), caption.placement = "bottom")
 ```
 
 \FloatBarrier
 
 \newpage
 
-## B Analyse des résultats M1
+## B Analyse des résultats du cadre M1
 
 ### B1 Le compoertement des résidus  
 
@@ -1717,10 +1700,10 @@ rownames(cormat) = c("Vin", "IP",
 \FloatBarrier
 
 ```{r echo = FALSE, results = "asis"}
-xtable(round(cormat, 4), 
+print(xtable(round(cormat, 4), 
     caption = "Correlation des résidus",
     align = "l|rr",
-    floating = T)
+    floating = T), caption.placement = "bottom")
 ```
 
 \FloatBarrier
@@ -1774,7 +1757,7 @@ rownames(pDW) = c("Equation d'offre")
 ```{r echo = FALSE, results = "asis"}
 stargazer(pDW, 
     header = FALSE,
-    title = "Les statistiques test de Durbin-Watson",
+    title = "Les statistiques test de Durbin-Watson, t-stat",
     summary = FALSE)
 ```
 
@@ -1798,7 +1781,7 @@ rownames(BartT) = c("Equation d'offre")
 stargazer(BartT,
     header = FALSE,
     summary = FALSE,
-    title = "Les résultat du test de Bartlett sur l'heteroscedacité")
+    title = "Les résultat du test de Bartlett sur l'heteroscedacité, p-valeur")
 ```
 
 \FloatBarrier
@@ -1822,7 +1805,7 @@ rownames(ShapT) = c("Equation d'offre")
 stargazer(ShapT,
     header = FALSE,
     summary = FALSE,
-    title = "Shapiro-Wilk test de normalité des résidus")
+    title = "Shapiro-Wilk test de normalité des résidus, p-valeur")
 ```
 
 \FloatBarrier
@@ -1832,7 +1815,7 @@ stargazer(ShapT,
 ```{r include = FALSE}
 # IV-OLS diagnostics
 ivchek = summary(ivols, diagnostics = TRUE)$diag
-ivchek[3,2] = "-"
+ivchek = ivchek[-3,]
 ```
 
 \FloatBarrier
@@ -1850,35 +1833,42 @@ stargazer(ivchek,
 
 ## C Analyse des résultats M2
 
-### C1 Comparaison des modèles 
+### C1 Comparaison des modèles 2SLS, 3SLS et i3SLS
 
 \FloatBarrier
 
 ```{r echo = FALSE, results = "asis"}
 texreg(float.pos = "!htbp", 
-    list(sls2, sls3, fiml),
-    custom.model.names = c("2SLS", "3SLS", "i3SLS"),
-    label = "table : 2sls, 3sls and fiml")
+    list(sur, sls2, sls3, fiml),
+    custom.model.names = c("SUR", "2SLS", "3SLS", "i3SLS"),
+    custom.coef.names = c("D : IP", "D : Revenu", 
+        "O : IP", "O : Surface", "O : I pésticides"),
+    label = "table : sur, 2sls, 3sls and fiml")
 ```
 
 \FloatBarrier
 
-### C1 Independance des résidus  
+\newpage
+
+### C2 Independance des résidus  
 
 ```{r include = FALSE}
 resdata3 = dataW %>% 
-    mutate(u1 = sls2$eq[[1]]$res,
-        u2 = sls2$eq[[2]]$res,
-        u3 = sls3$eq[[1]]$res,
-        u4 = sls3$eq[[2]]$res,
-        u5 = sur$eq[[1]]$res,
-        u6 = sur$eq[[2]]$res)
+    mutate(u1 = sur$eq[[1]]$res,
+        u2 = sur$eq[[2]]$res,
+        u3 = sls2$eq[[1]]$res,
+        u4 = sls2$eq[[2]]$res,
+        u5 = sls3$eq[[1]]$res,
+        u6 = sls3$eq[[2]]$res,
+        u7 = fiml$eq[[1]]$res,
+        u8 = fiml$eq[[2]]$res)
 ```
 
 ```{r include = FALSE}
 cormat = cor(resdata3[,-c(6,7)])
-cormat = cormat[1:5, 6:11]
-colnames(cormat) = c("2SLS D", "2SLS O", 
+cormat = cormat[1:5, 6:13]
+colnames(cormat) = c("SUR D", "SUR O",
+        "2SLS D", "2SLS O", 
         "3SLS D", "3SLS O",
         "i3SLS D", "i3SLS O")
 rownames(cormat) = c("Vin", "IP", 
@@ -1888,10 +1878,10 @@ rownames(cormat) = c("Vin", "IP",
 
 \FloatBarrier
 
-```{r include = FALSE}
-xtable(round(cormat, 4), 
+```{r echo = FALSE, results = "asis"}
+print(xtable(round(cormat, 4), 
     caption = "Correlation des résidus",
-    align = "l|rrrrrr")
+    align = "l|rrrrrrrr"), caption.placement = "bottom")
 ```
 
 \FloatBarrier
@@ -1931,7 +1921,7 @@ par(mfrow = c(1,2), cex = 0.5)
 plot(y = sur$eq[[1]]$res, x = as.numeric(resdata3$qi),
     col = "red", pch = 17, 
     main = "Demande", 
-    ylab = "Fitted - résidus", xlab = "Real")
+    ylab = "Fitted - résidus", xlab = "Real", xlim = c(-2, 2), ylim = c(-2, 1))
 points(y = sur$eq[[1]]$fit, x = resdata3$qi, 
     col = "blue", pch = 17)
 lines(y = sur$eq[[1]]$fit + sur$eq[[1]]$res, x = resdata3$qi,
@@ -1942,7 +1932,7 @@ legend(x = "bottomleft", legend = c("Résidus", "Fitted", "Real"),
 plot(y = sur$eq[[2]]$fit, x = as.numeric(resdata3$qi), 
     col = "blue", pch = 17, 
     main = "Offre", 
-    ylab = "Fitted - résidus", xlab = "Real")
+    ylab = "Fitted - résidus", xlab = "Real", xlim = c(-2, 2), ylim = c(-2, 1))
 points(y = sur$eq[[2]]$res, x = resdata3$qi,
     col = "red", pch = 14)
 lines(y = sur$eq[[2]]$fit + sur$eq[[2]]$res, x = resdata3$qi,
@@ -1953,7 +1943,7 @@ lines(y = sur$eq[[2]]$fit + sur$eq[[2]]$res, x = resdata3$qi,
 
 \newpage
 
-### C2 L'autocorrelation 
+### C3 L'autocorrelation 
 
 ```{r include = FALSE}
 # Panel Durbin-Watson test
@@ -1965,21 +1955,25 @@ resdataDW = resdata3 %>%
         u3_diff = u3 - dplyr::lag(u3),
         u4_diff = u4 - dplyr::lag(u4),
         u5_diff = u5 - dplyr::lag(u5),
-        u6_diff = u6 - dplyr::lag(u6)) %>%
+        u6_diff = u6 - dplyr::lag(u6),
+        u7_diff = u6 - dplyr::lag(u7),
+        u8_diff = u6 - dplyr::lag(u8)) %>%
     ungroup() %>%
     dplyr::select(contains("u")) %>%
     mutate_all(function(x) replace_na(x, 0)) %>%
     summarise_all(function(x) sum(x^2))
 # Calculate test statistics
-pDW = data.frame(ncol = 3, nrow = 2)
-pDW[1,1] = resdataDW[1,1]/resdataDW[1,7]
-pDW[2,1] = resdataDW[1,2]/resdataDW[1,8]
-pDW[1,2] = resdataDW[1,3]/resdataDW[1,9]
-pDW[2,2] = resdataDW[1,4]/resdataDW[1,10]
-pDW[1,3] = resdataDW[1,5]/resdataDW[1,11]
-pDW[2,3] = resdataDW[1,6]/resdataDW[1,12]
+pDW = data.frame(ncol = 4, nrow = 2)
+pDW[1,1] = resdataDW[1,1]/resdataDW[1,9]
+pDW[2,1] = resdataDW[1,2]/resdataDW[1,10]
+pDW[1,2] = resdataDW[1,3]/resdataDW[1,11]
+pDW[2,2] = resdataDW[1,4]/resdataDW[1,12]
+pDW[1,3] = resdataDW[1,5]/resdataDW[1,13]
+pDW[2,3] = resdataDW[1,6]/resdataDW[1,14]
+pDW[1,4] = resdataDW[1,7]/resdataDW[1,15]
+pDW[2,4] = resdataDW[1,8]/resdataDW[1,16]
 # Rename
-colnames(pDW) = c("2SLS", "3SLS", "i3SLS")
+colnames(pDW) = c("SUR", "2SLS", "3SLS", "i3SLS")
 rownames(pDW) = c("Equation de demande", "Equation d'offre")
 ```
 
@@ -1988,33 +1982,25 @@ rownames(pDW) = c("Equation de demande", "Equation d'offre")
 ```{r echo = FALSE, results = "asis"}
 stargazer(pDW,
     header = FALSE,
-    title = "Les resultats du test de Durbin-Watson",
+    title = "Les resultats du test de Durbin-Watson, t-stat",
     summary = FALSE)
 ```
 
 \FloatBarrier
 
-### C3 Test de l'hétéroskedacité
+### C4 Test de l'hétéroskedacité
 
 ```{r include = FALSE}
-resdata3 = dataW %>% 
-    mutate(u1 = sls2$eq[[1]]$res,
-        u2 = sls2$eq[[2]]$res,
-        u3 = sls3$eq[[1]]$res,
-        u4 = sls3$eq[[2]]$res,
-        u5 = sur$eq[[1]]$res,
-        u6 = sur$eq[[2]]$res)
-```
-
-```{r include = FALSE}
-BartT = data.frame(ncol = 3, nrow = 2)
+BartT = data.frame(ncol = 4, nrow = 2)
 BartT[1,1] = ols_test_bartlett(resdata3, u1, group_var = ndep)$pval
 BartT[2,1] = ols_test_bartlett(resdata3, u2, group_var = ndep)$pval
 BartT[1,2] = ols_test_bartlett(resdata3, u3, group_var = ndep)$pval
 BartT[2,2] = ols_test_bartlett(resdata3, u4, group_var = ndep)$pval
 BartT[1,3] = ols_test_bartlett(resdata3, u5, group_var = ndep)$pval
 BartT[2,3] = ols_test_bartlett(resdata3, u6, group_var = ndep)$pval
-colnames(BartT) = c("2SLS", "3SLS", "i3SLS")
+BartT[1,4] = ols_test_bartlett(resdata3, u7, group_var = ndep)$pval
+BartT[2,4] = ols_test_bartlett(resdata3, u8, group_var = ndep)$pval
+colnames(BartT) = c("SUR", "2SLS", "3SLS", "i3SLS")
 rownames(BartT) = c("Equation de demande", "Equation d'offre")
 ```
 
@@ -2022,27 +2008,28 @@ rownames(BartT) = c("Equation de demande", "Equation d'offre")
 
 ```{r echo = FALSE, results = "asis"}
 stargazer(BartT,
+    header = FALSE,
     summary = FALSE,
-    title = "Test de Bartlett sur l'heterockedacité")
+    title = "Test de Bartlett sur l'heterockedacité, p-valeur")
 ```
 
 \FloatBarrier
 
-\newpage
-
-### C4 La normalité des résidus 
+### C5 La normalité des résidus 
 
 \FloatBarrier
 
 ```{r include = FALSE}
-ShapT = data.frame(nrow = 2, ncol = 6)
-ShapT[1,1] = shapiro.test(sls2$eq[[1]]$res)$p.val
-ShapT[2,1] = shapiro.test(sls2$eq[[2]]$res)$p.val
-ShapT[1,2] = shapiro.test(sls3$eq[[1]]$res)$p.val
-ShapT[2,2] = shapiro.test(sls3$eq[[2]]$res)$p.val
-ShapT[1,3] = shapiro.test(sur$eq[[1]]$res)$p.val
-ShapT[2,3] = shapiro.test(sur$eq[[2]]$res)$p.val
-colnames(ShapT) = c("2SLS", "3SLS", "i3SLS")
+ShapT = data.frame(nrow = 2, ncol = 4)
+ShapT[1,1] = shapiro.test(sur$eq[[1]]$res)$p.val
+ShapT[2,1] = shapiro.test(sur$eq[[2]]$res)$p.val
+ShapT[1,2] = shapiro.test(sls2$eq[[1]]$res)$p.val
+ShapT[2,2] = shapiro.test(sls2$eq[[2]]$res)$p.val
+ShapT[1,3] = shapiro.test(sls3$eq[[1]]$res)$p.val
+ShapT[2,3] = shapiro.test(sls3$eq[[2]]$res)$p.val
+ShapT[1,4] = shapiro.test(fiml$eq[[1]]$res)$p.val
+ShapT[2,4] = shapiro.test(fiml$eq[[2]]$res)$p.val
+colnames(ShapT) = c("SUR", "2SLS", "3SLS", "i3SLS")
 rownames(ShapT) = c("Equation de demande", "Equation d'offre")
 ```
 
@@ -2052,7 +2039,7 @@ rownames(ShapT) = c("Equation de demande", "Equation d'offre")
 stargazer(ShapT,
     header = FALSE,
     summary = FALSE,
-    title = "Shapiro-Wilk test de normalité")
+    title = "Shapiro-Wilk test de normalité, p-valeur")
 ```
 
 \FloatBarrier
@@ -2076,7 +2063,7 @@ legend(x = "topright", legend = c("2SLS", "i3SLS", "3SLS"),
 
 \FloatBarrier
 
-### C5 Comparaison des modèles  
+### C6 Comparaison des modèles  
 
 \FloatBarrier
 
@@ -2092,7 +2079,7 @@ res = data.frame(Test = c("3SLS contre 2SLS", "3SLS contre SUR"),
 
 ```{r echo = FALSE, results = "asis"}
 stargazer(res, 
-    title = "Hausman 3SLS consistency test",
+    title = "Hausman 3SLS consistency test, p-valeur",
     summary = F, 
     header = F)
 ``` 
@@ -2106,8 +2093,8 @@ stargazer(res,
 ```
 \FloatBarrier
 
-```{r include = FALSE}
-lr = lrtest(sls2, sls3, sur)
+```{r echo = FALSE, results = "asis"}
+lr = lrtest(sur, sls2, sls3, fiml)
 xtable(round(lr, 4), 
     caption = "ML test de spécification",
     align = "c|ccccc")
@@ -2138,8 +2125,6 @@ stargazer(clusters1,
 \FloatBarrier
 
 ### D2 *Within* transformation 
-
-#### Les centres
 
 Les groupes sont définies par des caractéristiques suivantes :
 
@@ -2181,37 +2166,9 @@ stargazer(round(centers2, 6),
 
 \FloatBarrier
 
-#### Representation graphique
-
-```{r echo = FALSE, fig.height = 4, results = "asis"}
-# Plot 
-p1 = centers2 %>% ggplot(aes(y = qi, x = t, col = as.factor(k))) + 
-    geom_path() + geom_point() +
-    xlab("Temps") + ylab("Quantité") +
-    ggtitle("Q~T") +
-    pres_theme
-p2 = centers2 %>% ggplot(aes(y = ipi, x = t, col = as.factor(k))) + 
-    geom_path() + geom_point() +
-    xlab("Temps") + ylab("IP") +
-    ggtitle("IP~T") +
-    pres_theme
-p3 = centers2 %>% ggplot(aes(y = iki, x = t, col = as.factor(k))) + 
-    geom_path() + geom_point() +
-    xlab("Temps") + ylab("Index pesticides") +
-    ggtitle("IK~T") +
-    pres_theme
-p4 = centers2 %>% ggplot(aes(y = ri, x = t, col = as.factor(k))) + 
-    geom_path() + geom_point() +
-    xlab("Temps") + ylab("Revenus") +
-    ggtitle("R~T") +
-    pres_theme
-# Arrange
-grid.arrange(p1, p2, p3, p4, nrow = 2, ncol = 2)
-```
+\newpage
 
 ### D3 Cas d'information complete 
-
-#### Les centres
 
 Les groupes sont définies par des caractéristiques suivantes :
 
@@ -2249,38 +2206,6 @@ stargazer(round(centers3, 6),
     title = "Les centres des clusters",
     summary = F, 
     header = F)
-```
-
-\FloatBarrier
-
-#### Representation graphique
-
-\FloatBarrier
-
-```{r echo = FALSE, fig.height = 4, results = "asis"}
-# Plot 
-p1 = centers3 %>% ggplot(aes(y = qi, x = t, col = as.factor(k))) + 
-    geom_path() + geom_point() +
-    xlab("Temps") + ylab("Quantité") +
-    ggtitle("Q~T") +
-    pres_theme
-p2 = centers3 %>% ggplot(aes(y = ipi, x = t, col = as.factor(k))) + 
-    geom_path() + geom_point() +
-    xlab("Temps") + ylab("IP") +
-    ggtitle("IP~T") +
-    pres_theme
-p3 = centers3 %>% ggplot(aes(y = iki, x = t, col = as.factor(k))) + 
-    geom_path() + geom_point() +
-    xlab("Temps") + ylab("Index pesticides") +
-    ggtitle("IK~T") +
-    pres_theme
-p4 = centers3 %>% ggplot(aes(y = ri, x = t, col = as.factor(k))) + 
-    geom_path() + geom_point() +
-    xlab("Temps") + ylab("Revenus") +
-    ggtitle("R~T") +
-    pres_theme
-# Arrange
-grid.arrange(p1, p2, p3, p4, nrow = 2, ncol = 2)
 ```
 
 \FloatBarrier
