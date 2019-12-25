@@ -280,7 +280,7 @@ De cette façon nous chercherons à étudier l'équilibre sur le marché des vin
 Pour lutter contre l’utilisation des pesticides l’Etat Français et l’union européenne ont mis en place des mesures. 
 Ainsi, l’Etat Français lors du grenelle de l’environnement de 2006 a fixé ses objectifs. 
 Ainsi, le plan ECOPHYTO 2018 visait à réduire de 50% l’utilisation des pesticides de synthèse. 
-Le deuxième objectif est le passage en agriculture biologique à 6% de la surface agricole utilisée en 2010 et vise 20% en 2020.[@Butault2014]
+Le deuxième objectif est le passage en agriculture biologique à 6% de la surface agricole utilisée en 2010 et vise 20% en 2020.[@Butault2011]
 
 En 2008, les 30 produits les plus toxiques les plus toxiques sont interdits. 
 Une taxe sur les phytosanitaires a aussi été mise en place. 
