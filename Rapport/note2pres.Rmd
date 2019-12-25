@@ -1305,6 +1305,7 @@ Afin de pouvoir comparer des valeurs differents de WSS (*within summ of squares*
 \end{equation*}
 
 Ce qui nous permettra d'évaluer les écarts rélatives du WSS de sa valeur minimale (pour nombre des clusters égal à 15).
+Le graphique suivant démontre l'évaluation des valeurs de $WSS^{'}$ pour les trois cas differents de la définition des clusters :
 
 \FloatBarrier
 
@@ -1330,9 +1331,20 @@ legend(x = "topright",
 
 \FloatBarrier
 
-Pour la transformation *within* nous observons la convergence la plus vite vers la valeure minimale de WSS. 
+Nous pouvons observer que pour la transformation *within* nous observons la convergence la plus vite vers la valeure minimale de WSS. 
+Les deux autres approches au traitement et transformation des données offrent une vitesse de convergence plus elevé, avec des valeurs rélatives initiales également plus significatives. 
+
+Nous remarquons également que les valeurs optimales du nombre des clusters dans les trois cas sont à peu près identiques (autours de 3 et 5), avec la meilleure approximation absolute est atteint pour les huit cluster et reste rélativement inchangé après.
 
 ### M3.1 : Le cadre en absence des intéraction avec la demande 
+
+Nous commençons par la comparaison des résultats obtenus pour les differents clusters avec les modèles de type OLS et IV-OLS.
+C'est-à-dire, sous l'hypothèse de l'abcense des intérferences entre l'offre et la demande.
+
+Nous n'evaluons pas le système en introduisant les variables de grouppe (dummy variables) car cela risque de biaiser les résultats à cause d'une taille des grouppes differente. 
+Afin d'éviter ce biais nous évaluons les modèles par cluster.
+
+Le tableau suivant regrouppe les 6 modèles éstimés (3 clusters avec 2 modèles par cluster, le nombre du cluster étant affiché après *c* dans le tableau) :
 
 ```{r include = FALSE}
 # Data transformation
@@ -1392,13 +1404,19 @@ texreg(float.pos = "!htbp",
     list(olsx1, ivolsx1,
         olsx2, ivolsx2,
         olsx3, ivolsx3),
-    # custom.model.names = c("OLS", "IV-OLS"),
+    custom.model.names = c("OLS c1", "IV-OLS c1", 
+        "OLS c2", "IV-OLS c2", 
+        "OLS c3", "IV-OLS c3"),
     label = "table : ols et ivols clusters")
 ```
 
 \FloatBarrier
 
 ### M3.2 : Le cadre d'interference avec la demande
+
+Dans cette partie nous utilisons l'approche identique à celui qu'on a déjà implementé dans la partie M2. 
+Nous supposons, que le marché fonctionne en presence des liens entre l'offre et la demande.
+Les résidus des deux équations dans ce cas sont correlés entre eux.
 
 ```{r include = FALSE}
 # Equations
@@ -1413,15 +1431,12 @@ instz = ~ ri1 + ri2 + ri3 +
 systemz = list(Demande = eqdemandz, Offre = eqofferz)
 ```
 
-Nous evaluons le système en introduisant les variables de grouppe (dummy variables) sous l'hypothèse des résidus joints.
-
 ```{r include = FALSE}
 # Equations 
-# 2SLS 1
-sls2x1 = systemfit(system, 
-    inst = inst,
+# SUR 1
+surx1 = systemfit(system, 
     data = dataWZ[dataWZ$clust == 1,], 
-    method = "2SLS")
+    method = "SUR")
 # 3SLS 1
 sls3x1 = systemfit(system, 
     inst = inst,
@@ -1432,11 +1447,10 @@ fimlx1 = systemfit(system,
     inst = inst,
     data = dataWZ[dataWZ$clust == 1,], 
     method = "3SLS", maxit = 1000)
-# 2SLS 2
-sls2x2 = systemfit(system, 
-    inst = inst,
+# SUR 2
+surx2 = systemfit(system, 
     data = dataWZ[dataWZ$clust == 2,], 
-    method = "2SLS")
+    method = "SUR")
 # 3SLS 2
 sls3x2 = systemfit(system, 
     inst = inst,
@@ -1447,11 +1461,10 @@ fimlx2 = systemfit(system,
     inst = inst,
     data = dataWZ[dataWZ$clust == 2,], 
     method = "3SLS", maxit = 1000)
-# 2SLS 3
-sls2x3 = systemfit(system, 
-    inst = inst,
+# SUR 3
+surx3 = systemfit(system, 
     data = dataWZ[dataWZ$clust == 3,], 
-    method = "2SLS")
+    method = "SUR")
 # 3SLS 3
 sls3x3 = systemfit(system, 
     inst = inst,
@@ -1464,80 +1477,50 @@ fimlx3 = systemfit(system,
     method = "3SLS", maxit = 1000)
 ```
 
-Cluster 1
+Identiquement à la section précedente nous régrouppons les résultats d'estimation pour les 6 modèles (2 modèles par 3 clusters) sous la forme d'un tableau.
 
 \FloatBarrier
 
 ```{r echo = FALSE, results = "asis"}
 texreg(float.pos = "!htbp", 
-    list(sls2x1, sls3x1, fimlx1),
-    custom.model.names = c("2SLS", "3SLS", "i3SLS"),
-    label = "table : 2sls, 3sls and fiml cluster 1")
+    list(surx1, sls3x1, 
+        surx2, sls3x2, 
+        surx3, sls3x3),
+    custom.model.names = c("SUR c1", "3SLS c1",
+        "SUR c2", "3SLS c2", 
+        "SUR c3", "3SLS c3"),
+    label = "table : sur et 3sls clusters")
 ```
 
 \FloatBarrier
 
-Cluster 2
-
-\FloatBarrier
-
-```{r echo = FALSE, results = "asis"}
-texreg(float.pos = "!htbp", 
-    list(sls2x2, sls3x2, fimlx2),
-    custom.model.names = c("2SLS", "3SLS", "i3SLS"),
-    label = "table : 2sls, 3sls and fiml cluster 2")
-```
-
-\FloatBarrier
-
-Cluster 3
-
-\FloatBarrier
-
-```{r echo = FALSE, results = "asis"}
-texreg(float.pos = "!htbp", 
-    list(sls2x3, sls3x3, fimlx3),
-    custom.model.names = c("2SLS", "3SLS", "i3SLS"),
-    label = "table : 2sls, 3sls and fiml cluster 3")
-```
-
-\FloatBarrier
+Nous observons que ...
 
 # 9. Conclusions 
 
 ```{r eval = FALSE, include = FALSE}
-#####################################################
-###################  Modèlisation  ##################
-#####################################################
+####################################################
+###################  Conclusions  ##################
+####################################################
 ```
 
-- Le marché du vin
-- Le rôle des pésticides  
-- Validité 
+Nous avons étudié et comparé plusieurs modèles differents qui visent à étudier les effets d'utilisation des pésticides sur l'offre du vin de table. 
+Nous constatons, que parmis toutes les modèles, le meilleur éstimateur des effets moyens par département est obtenus avec un simple modèle OLS en absence des effets d'intéraction avec la demande ou l'éndogeneité des prix. 
+Ce fait est souténu par les hypothèses théoriques sur le fonctionnement du marché des vins simples disponibles dans la litérature. 
+Les agriculteurs proposant du vin simples sont dans la pluspart des cas preneurs des prix offerts par les distributeurs, ce qui explique l'exogénéité des prix.
+Le même fait explique l'absence des interactions entre l'offre et la demande, car les grands enseignes achetes le vin simple sous conditions *take or leave* (ce qui n'est pas vrai pour les autres types du vin).
 
-\FloatBarrier
+L'analyse des données clustérisés permet d'observer une certaine degré d'hétérogénéité entre les départements et les effets d'utilisation des pésticides sur l'offre du vin ne sont pas évidents que pour une grouppe de entités étudiés.
 
-## Le marché du vin
-- Un comportement inattendus 
-    - Les effets de substitution contre les produits de la haute gamme 
-    - Les effets négatives du revenu 
-    - 
+Les résultats obtenus dans cette étude confirment des résultats d'autres chercheurs, ainsi bien que les suppositions théorique sur le rôle des pésticides dans la commerce du vin. 
+Plus precisement les pésticides sont utilisé par les viticulteurs pour minimiser les pertes causé par les maladies, fungi etc.
+Nous captons ce fait en éstimant le modèle d'équilibre du marché de vin simple 
 
-\FloatBarrier
-
-## Le rôle des pésticides
-
-- Confirmation des résultats des études précedentes 
-    - Utilisés pour réduire les pertes 
-
-\FloatBarrier
-
-## Validité 
-
-- Faible validité du modèle économétrique 
-    - Variables ommises 
-
-\FloatBarrier
+Nous devons également souligner que le modèle presenté dans ce travail est loin d'une perfection absolue. 
+Plusieurs problèmes reestent non-traité ou non-résolus. 
+Parmis ces problèmes nous pouvons citer: un faible nombre d'observations sur la dimention temporelle, presence d'heteroscedacité dans les résidus, non-normalité des résidus, des variables omises, dess instruments faibles, etc.
+Toutefois, nous avons reussi de capter la tendance principale dans le comprotement de l'offre face à l'utilisation des pesticides par les agriculteurs. 
+Ils peut être interessant d'étudier ces point et traiter ces problèmes revelés dans les études futurs.
 
 \newpage
 
