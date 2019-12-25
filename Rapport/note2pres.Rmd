@@ -638,7 +638,11 @@ Puis, nous allons finir avec l'étude des données alternées par une transforma
 ## Visualisation au niveau de la France 
 
 Pour la première analyse il peut être interessant de voir la situation du point du vue géographique. 
-Nous visualisons les valeurs moyennes par département des differentes variables (une partie des répresentation se trouve dans l'annexe X).
+Nous visualisons les valeurs moyennes par département des differentes variables (une partie des répresentation se trouve dans l'annexe A1). 
+Cette representation nous permet d'obtenir une prémiere intuition sur la répartition spatiale des valeurs clé par département. 
+Particulierement la répartition de la quantité du vin simple vendus par département semble d'avoir une structure autocorrelé dans l'espace. 
+Quand même nous allons ignorer les interactions spatiales possibles, parce que notre échantillon ne comprend pas l'entité des départements français (nous avons exclus plusieurs départements qui ne produisent pas du vin simle).
+Le comportement des autres variables est similaire.
 
 ```{r include = FALSE}
 # Creation de la base des données 
@@ -721,7 +725,7 @@ stargazer(results,
 
 \FloatBarrier
 
-Il est facile de remarquer que la variance *between* est plus significative que la variance *within*. 
+Il est facile de remarquer que la variance *between* est plus grande que la variance *within*. 
 Cela nous amène à l'idée qu'il faut utiliser un modèle qui permettra d'estimer et de corriger ces inégalités entre les individus, car nous sommes plus interessés par des effets individuels moyens (les effets moyens pour tous les départements).
 Cela est complètement conforme à l'hypothèse que l'on a exprimé lors de la formalisation du modèle économique théorique.
 
@@ -744,7 +748,7 @@ Le tableau suivant regroupe les p-valeurs de ce test pour les différents modèl
 ```{r echo = FALSE, results = "asis"}
 stargazer(Dtest[,c(1:2)],  
     header = FALSE,
-    title = "Les p-valeurs de pooling-test de Chow",
+    title = "Pooling-test de Chow, p-valeurs",
     summary = FALSE)
 ```
 
@@ -775,8 +779,9 @@ Selon les résultats obtenus, ainsi que les évidences théoriques des études a
 
 ## L'analyse de la corrélation
 
-Dans le tableau ci-dessous nous présentons les corrélations des variables après la correction pour les effets fixes individuels (nous effectuons la transformation *within* sur nos données en soustrayant les moyennes individuelles pour l'ensemble des variables).
-Dans les annexes nous proposons également un tableau de corrélation pour les données non-transformées, ce qui permet d'observer les inégalités et une pauvre répresentativitée des liens entres les variables pour les données initiales.
+Dans le tableau A2.2 des annexes nous présentons les corrélations des variables après la correction pour les effets fixes individuels (nous effectuons la transformation *within* sur nos données en soustrayant les moyennes individuelles pour l'ensemble des variables).
+Dans les annexes nous proposons également un tableau de corrélation pour les données non-transformées (A2.1), ce qui permet d'observer les inégalités et une pauvre répresentativitée des liens entres les variables pour les données initiales.
+Il est facile à remarquer la correlation des ordres inférieurs à 0.1 pour tous les variables sauf les intéraction entre le surface cultivé et la quantité du vin offerte, ce qui explique pourquoi nous n'avons pas le choix et devons passer à la forme *within*.
 
 ```{r include = FALSE}
 ###################
@@ -791,8 +796,9 @@ dataW$si = Within(datap$si)
 dataW$ri = Within(datap$ri)
 ```
 
-Particulierement nous pouvons remarquer une forte corrélation entre la quantité offerte et le prix d'équilibre.
-Egalement ...
+En ce qui concerne les données *within*, particulierement nous pouvons remarquer une forte corrélation entre la quantité offerte et le prix d'équilibre.
+Egalement nous observons une correlation positive suffisament significative (supérieure en grandeur de 0.2) entre la surface cultivé et la quantité du vin simple sur le marché, aussi bien que entre les revenus et l'index d'utilisation des pésticides (ce qui est probablement juste une coincidence). 
+Finalement, nous remarquons une correlation négative entre la surface cultivée et l'index d'utilisation des pésticides, ce qui est tout à fait naturel.
 
 # 6. Modèlisation
 
@@ -804,15 +810,7 @@ Egalement ...
 
 \noindent\rule[0.5ex]{\linewidth}{1pt} 
 
-\textcolor{red}{Séparer les modèles (OLS, 3SLS avec justification par 2SLS et la comparaison avec i3SLS, clusters en OLS et 3SLS).}
-
-\textcolor{red}{Justifier le choix des modèles par 3 cas théoriques. Discuter les avantages et les inconveniences}
-
 \textcolor{red}{Ajouter des liens avec des études méthodologiques precedents.}
-
-\textcolor{red}{Pour le modèle 2SLS préciser la forme, tester les instruments}
-
-\textcolor{red}{Arbitrage du choix de 2SLS vs 3SLS}
 
 \noindent\rule[0.5ex]{\linewidth}{1pt}
 
@@ -969,7 +967,7 @@ Sur ce point nous adresson au travail de @mackay2018 (et plus particulierement l
 Dans notre cas nous pouvons instrumenter les prix par les revenus dans les départements étudiés, ce qui est conforme à la théorie économique, car le niveau des prix doit être correlé avec le revenu réel.
 
 Neanmoins, nous allons encore vérifier la validité de cet instrument et du modèle résultant.
-Par example, bien que notre supposition sur l'instrument rentre parfaitement dans le cadre théorique, nous n'observons qu'une faible correlation entre l'index des prix et les révenus (voir l'annexe X).
+Par example, bien que notre supposition sur l'instrument rentre parfaitement dans le cadre théorique, nous n'observons qu'une faible correlation entre l'index des prix et les révenus (voir l'annexe A2.2).
 Les revenus ont la moindre correlation avec la variable explicative quand même.
 
 Les résultats pour les deux modèles sont présenté dans le tableau ci-aprés : 
@@ -1013,10 +1011,10 @@ De plus, à partir des résultats du test de Wu-Haussman nous pouvons conclure q
 Les résultats de ces tests sont regrouppés dans l'annexe X.
 
 Toutefois, les résultats obtenus par l'estimateur de OLS risquent d'être également biaisés.
-Dans l'annexe X nous pouvons voir que Shapiro-Wilk test rejette la normalité des résidus de notre modèle (annexe X), bien que la fonction de répartition partielle a une forme proche à normale (annexe X).
-Nous risquons également d'avoir des biais dans la variance des estimateurs, car selon le test de Bartlett sur l'heteroscedacité nous réjétons l'hypothèse de l'homoscedacité des résidus (annexe X).
-Au moins dans ce cas nous n'avons pas des problèmes avec l'autocorrelation, ce qui peut s'expliquer par utilisation des données temporelles en série trop courte pour y pouvoir detecter l'autocorrelation.
-Les résidus également ne sont pas correlé avec des variables explicatives, mais ont oune correlation forte avec la variable dependante, ce qui nous indique sur la misspécification possible dans notre modèle (annexe X).
+Dans l'annexe X nous pouvons voir que Shapiro-Wilk test rejette la normalité des résidus de notre modèle (annexe B4), bien que la fonction de répartition partielle a une forme proche à normale (annexe B1).
+Nous risquons également d'avoir des biais dans la variance des estimateurs, car selon le test de Bartlett sur l'heteroscedacité nous réjétons l'hypothèse de l'homoscedacité des résidus (annexe B3).
+Au moins dans ce cas nous n'avons pas des problèmes avec l'autocorrelation (les résultats du test de Durbin-Watson sont grouppé dans l'annexe B2), ce qui peut s'expliquer par utilisation des données temporelles en série trop courte pour y pouvoir detecter l'autocorrelation.
+Les résidus également ne sont pas correlé avec des variables explicatives, mais ont oune correlation forte avec la variable dependante, ce qui nous indique sur la misspécification possible dans notre modèle (annexe B1).
 L'explication la plus probable à ce problème est qu'on n'étudie pas suffisament d'effets dans notre modèle et rencontrons par suite le biais de variable omise.
 Le graphique des résidus nous montre en même temps la nature quasi-aléatoire des résidus.
 
@@ -1043,7 +1041,7 @@ Nous allons comparér des résultats des plusieurs modèles afin de verifier sa 
 Le prémier modèle éstimé par les 3SLS est complexe et nous risquons d'obtenir des résultats biaisé suite à des misspécification eventuelles.
 Afin de contracter la variance des estimateurs les rendant plus efficaces nous pouvons impliquer la procedre i3SLS (*iterated three step least squares*).
 Cette méthode nous donne des résultats similaire à ceux obtenus par FIML (*full information maximum likelihood*).
-Quand même l'utilisations des procedures itératives ne semble pas donner une diminution dans les variances des estimateurs significative (annexe X). 
+Quand même l'utilisations des procedures itératives ne semble pas donner une diminution dans les variances des estimateurs significative (annexe C1). 
 
 Nous pouvons également comparer les résultats obtenus par 3SLS avec le modèle en absence des intéractions (sous l'hypothèse que les résidus des deux équations ont une correlation nulle) éstimé par 2SLS (*two step least squares*). 
 Dans ce cas, les regresseurs endogenes de la demande sont instrumentés tout comme décrit dans @wooldridge2005instrumental.
@@ -1102,20 +1100,24 @@ texreg(float.pos = "!htbp",
 Les résultats obtenus pour le cadre avec les prix endogènes (l'estimation par 3SLS) donne forcement des résultats biaisé, car comme nous avons vu dans la séctions précedente nous ne dispososns pas d'instruments suffisament forts pour instrumenter l'index des prix.
 Cela se confirme par la nonsignificativité des indices des prix estimé par l'approche des variables instrumentalles.
 Ces effets sont négatives non-differents de zero, ce qui n'est pas normal pour un bien n'étant le bien de Giffen (bien que nous pouvons arbitrer que le vin le plus ismple pourrais se comporter d'une telle façon, car c'est un des produits alimentaires les plus basiques).
-Des autres tests nous confirment la misspécification  de ctte modèle : les résidus sont parfaitment correlé avec les valeurs de variable dépendante et les prédictions, ce qui est evident des graphiques dans les annexe X; une forte hétereroscedacité, qui cette fois est apparente sur les graphiques (annexes X et X), etc.
+Des autres tests nous confirment la misspécification  de ctte modèle : les résidus sont parfaitment correlé avec les valeurs de variable dépendante et les prédictions, ce qui est evident des graphiques dans les annexe C2; une forte hétereroscedacité, qui cette fois est apparente sur les graphiques (annexes C2 et C5), etc.
 Quand même les tests de spécification ne donne pas aucune indication de misspécification du modèle 3SLS par rapport au modèle 2SLS, ce qui nous rassure dans notre supposition que nous n'utilisaons pas suffisament des variables explicatives dans notre modèle pour utiliser ces approches économétriqes.
 
 Tout de même, nous obtenons des résultats proches à ceux obtenus par OLS simples dans la séction precedente ($-0.16$ contre $-0.17$). 
 Cela confirme notre hypothèse sur le rôle joué par les pésticides dans la propositions du vin simple sur le marché. 
 Néanmoins, nous préferions de ne pas utiliser ce modèle comme notre modèle de réference en futur à cause de plusieurs sources des biais.
 
-En ce qui concerne les résultats d'estimation par SUR, nous constatons des effets ...
+En ce qui concerne les résultats d'estimation par SUR, nous constatons des effets sont presque idéntiques à ceux, obtenus par l'estimateur OLS simple. 
+Bien que dans ce cas les effets d'utilisation des pésticides sont un peu plus accentués, avec un comportement des résidus plus abnormaux.
 
 ## M3 : Les résultats pour des départements grouppés
 
 Dans cette séction nous allons commencer par la présentation et la comparaison des differentes téchniques pour la clustérisation de nos données. 
 Puis nous allons proceder avec un étude et la modèlisation des données clustérisé. 
 Nous suppososn que cet approche peut donner des résultats significativement differents, car nous supposons une forte héterogeneité dans le comportement des differents départements.
+
+Le regrouppement des département dans les clusters par leurs caractéristiques possiblement proches, doit nous permettre de traiter les problèmes d'hétérogénéité possibles (nous pouvons observer des traces de ces effets sur les graphiques dans l'annexe A2).
+Cela devra permettre d'ameillorer les résultats des estimations en réduisant la variance de nos estimateurs.
 
 ### Clusterisation 
 
@@ -1137,7 +1139,8 @@ Plus précisement nous pouvons :
 
 Nous supposons que les départements ayant des valeurs moyennes inter-annuelles proches, obtenus par la transformation *between*, ont des caractéristiques proches, ainsi qu'un comportement presque identique.
 La clusterisation est effectuée sur les données *between* pour l'ensemble des départements étudiés.
-Les résultats des éstimations ainsi que les centres théoriques pour $k = 3$ se trouvent dans l'annexe X.
+
+Les résultats des éstimations ainsi que les centres théoriques pour $k = 3$ se trouvent dans l'annexe D1.1.
 
 ```{r include = FALSE}
 # Clustering 
@@ -1162,8 +1165,6 @@ for (i in 2:15) {
 }
 ```
 
-Dans ce cas le nombre des clusters optimaux est entre 3 et 8.
-
 ```{r include = FALSE}
 # Intermediary data
 dataWi = as.data.frame(dataW) 
@@ -1184,6 +1185,8 @@ clusters = cbind(fit1$centers, fit1$size, k <- c(1:3)) %>%
 Dans ce cas nous supposons que les départements ayant des tendances et les évolutions de leurs caractéristiques identiques ont un comportement qui ressamble.
 Plus, précisement, nous commençon par la transformation des nos données en *within*, ce qui implique qu'on substrait les moyennes empiriques intra-annuelles pour toutes les caractéristiques.
 Après, nous transformons les données créant pour chaque caractéristique pour chaque année une variable séparée, ce qui permet de préserver la dimention temporelle de nos données.
+
+Les centres théoriques obtenus pour $k = 3$ se trouvent dans l'annexe D1.2.
 
 ```{r include = FALSE}
 # Clustering Within
@@ -1235,6 +1238,8 @@ clusters2 = cbind(fit2$centers, fit2$size, k <- c(1:3)) %>%
 
 Dans le cas de l'information complète nous utilisons l'ensemble des informations disponibles sur les individus afin de construire les clusters. 
 Nous utilisons l'approche similaire à celui utilisé dans le cas de clusterisation *within*, sauf que cette fois nous n'effectuons pas la correction sur les valeurs moyennes intra-annuelles.
+
+Les centres obtenus pour ce type des données sont presenté dans l'annexe D1.3.
 
 ```{r include = FALSE}
 # Clustering 
@@ -1398,6 +1403,15 @@ texreg(float.pos = "!htbp",
 
 \FloatBarrier
 
+Nous observons que un cluster réssort d'une façon abnormale ayant des valeurs d'une magnitude excessive (c'est le département numéro 57 où l'indice a une variation intra-annuelle abnormale, on peut le considérer comme un outlier et ne pas le commenter).
+En ce qui concerne les deux autres clusters, nous observons qu'un entre eux comprend les départements se spécialisant dans la production des vins simples (avec des effets des prix, de surface et d'utilisation des pésticides accentuté). 
+L'autre regroupe des département qui montrent des effets moins réssortissants et evidents.
+
+Les diagnostiques détaillés sont présentes dans l'annexe D2, où tous les tests principaux sont présents. 
+Les tests sur la validité des éstimateurs IV sont les plus interessants et se trouvent dans l'annexe D2.3, ou nous observons que les estimations par les variables instrumentale n'est pas toujours valide dans notre cas. 
+On ne peut pas rejeter l'hypothèse des faibles instruments seulement pour un des clusters, et le test de Wu-Haussman donne des résultats négatives pour tous les clusters, nous indiquant que le modèle OLS est préferable. 
+Finalement, les résidus sont toujours non-normaux, bien que les résults du test sont les méilleurs dans l'ensemble (annexe D2.2).
+
 ### M3.2 : Le cadre d'interference avec la demande
 
 Dans cette partie nous utilisons l'approche identique à celui qu'on a déjà implementé dans la partie M2. 
@@ -1482,7 +1496,17 @@ texreg(float.pos = "!htbp",
 
 \FloatBarrier
 
-Nous observons que ...
+Nous observons que les effets des pésticides sur la quantité marchande du vin sont négligeables pour tous les clusters pour tous les modèles. 
+La validité de ces modèles laisse à désirer.
+D'abord, pour les modèles supposant l'endogénéité des prix dans notre modèle nous avons des instruments trop faibles, qui resultenet dans des modèles non-efficients.
+De plus, l'introduction de l'hypothèse des liens entre les deux cotés du marché (introduction de la correlation entre les résidus) n'ameillore pas l'explicativité des modèles.
+
+### Avis sur l'utilisation des clusters 
+
+En genéral les clusters n'ameilleurent pas les résumtats des éstimations. 
+Nous avons réussi à identifier un département trop different du reste dans sa nature, mais en total cette méthode n'a abouti à rien. 
+
+De plus, nous rétirons de ces tentatives d'ammeilloration de notre modèle une evidence qu'il existent des département qui sont plus incliné à la production du vin de table que le reste, ce qui est tout à fait logique. 
 
 # 9. Conclusion
 
@@ -1498,7 +1522,7 @@ Ce fait est souténu par les hypothèses théoriques sur le fonctionnement du ma
 Les agriculteurs proposant du vin simples sont dans la pluspart des cas preneurs des prix offerts par les distributeurs, ce qui explique l'exogénéité des prix.
 Le même fait explique l'absence des interactions entre l'offre et la demande, car les grands enseignes achetes le vin simple sous conditions *take or leave* (ce qui n'est pas vrai pour les autres types du vin).
 
-L'analyse des données clustérisés permet d'observer une certaine degré d'hétérogénéité entre les départements et les effets d'utilisation des pésticides sur l'offre du vin ne sont pas évidents que pour une grouppe de entités étudiés.
+L'analyse des données clustérisés permet d'observer une certaine faible degré d'hétérogénéité entre les départements et les effets d'utilisation des pésticides sur l'offre du vin ne sont pas évidents que pour une grouppe de entités étudiés.
 
 Les résultats obtenus dans cette étude confirment des résultats d'autres chercheurs, ainsi bien que les suppositions théorique sur le rôle des pésticides dans la commerce du vin. 
 Plus precisement les pésticides sont utilisé par les viticulteurs pour minimiser les pertes causé par les maladies, fungi etc.
@@ -1509,6 +1533,9 @@ Plusieurs problèmes reestent non-traité ou non-résolus.
 Parmis ces problèmes nous pouvons citer: un faible nombre d'observations sur la dimention temporelle, presence d'heteroscedacité dans les résidus, non-normalité des résidus, des variables omises, dess instruments faibles, etc.
 Toutefois, nous avons reussi de capter la tendance principale dans le comprotement de l'offre face à l'utilisation des pesticides par les agriculteurs. 
 Ils peut être interessant d'étudier ces point et traiter ces problèmes revelés dans les études futurs.
+
+Pour des chercheurs futurs nous conseillerons d'étudier directement l'impact des pésticides sur la production et non sur l'équilibre du marché, parce que, comme nous avons vu des nos résultats, la modèlisation du marché par des équation simultanées ne nous permet pas d'ameillorer significativement nos estimateurs. 
+Ce qui est plus important, vu le nombre faible des variables explicatives et des défauts possibles dans la spécification du modèle, dans notre étude ces modèles se prouvent d'être innefficaces et ne donne pas des résultats fiables.
 
 \newpage
 
@@ -1916,7 +1943,7 @@ legend(x = "topright", legend = c("2SLS", "i3SLS", "3SLS"),
 
 \FloatBarrier
 
-```{r echo = FALSE, fig.cap = "Les résidus et les prédictions, le cas de i3SLS"}
+```{r echo = FALSE, fig.cap = "Les résidus et les prédictions, le cas de SUR"}
 par(mfrow = c(1,2), cex = 0.5)
 plot(y = sur$eq[[1]]$res, x = as.numeric(resdata3$qi),
     col = "red", pch = 17, 
@@ -1956,8 +1983,8 @@ resdataDW = resdata3 %>%
         u4_diff = u4 - dplyr::lag(u4),
         u5_diff = u5 - dplyr::lag(u5),
         u6_diff = u6 - dplyr::lag(u6),
-        u7_diff = u6 - dplyr::lag(u7),
-        u8_diff = u6 - dplyr::lag(u8)) %>%
+        u7_diff = u7 - dplyr::lag(u7),
+        u8_diff = u8 - dplyr::lag(u8)) %>%
     ungroup() %>%
     dplyr::select(contains("u")) %>%
     mutate_all(function(x) replace_na(x, 0)) %>%
@@ -2106,7 +2133,9 @@ xtable(round(lr, 4),
 
 ## D Clusterisation 
 
-### D1 *Between* transformation 
+### D1 Méthodes de clusterisation
+
+#### D1.1 Les centres pour les données *between* 
 
 Les groupes sont définies par des caractéristiques suivantes :
 
@@ -2124,7 +2153,7 @@ stargazer(clusters1,
 
 \FloatBarrier
 
-### D2 *Within* transformation 
+#### D1.2 Les centres pour les données *within*  
 
 Les groupes sont définies par des caractéristiques suivantes :
 
@@ -2168,7 +2197,7 @@ stargazer(round(centers2, 6),
 
 \newpage
 
-### D3 Cas d'information complete 
+#### D1.3 Les centres pour l'information complete 
 
 Les groupes sont définies par des caractéristiques suivantes :
 
@@ -2206,6 +2235,207 @@ stargazer(round(centers3, 6),
     title = "Les centres des clusters",
     summary = F, 
     header = F)
+```
+
+\FloatBarrier
+
+\newpage
+
+### D2 Les modèles en absence des intéraction du marché
+
+#### D2.1 Le comportement des résidus
+
+```{r echo = FALSE, fig.cap = "Le comportement des résidus pour le modèle OLS"}
+# Visualisation des résidus
+par(mfrow = c(1,2), cex = 0.5)
+plot(y = as.numeric(olsx1$res), x = as.numeric(olsx1$fit),
+    col = "blue", 
+    main = "Les résidus contre la variable prédite", 
+    ylab = "Residuals", xlab = "Fitted")
+points(y = as.numeric(olsx2$res), x = as.numeric(olsx2$fit),
+    col = "red", pch = 17)
+points(y = as.numeric(olsx3$res), x = as.numeric(olsx3$fit),
+    col = "green4", pch = 14)
+legend(x = "topright", legend = c("Cluster 1", "Cluster 2", "Cluster 3"),
+    col = c("blue", "red", "green4"), xpd = NA,
+    cex = 1, lwd = 3)
+# Representation graphique des résidus
+plot(density(olsx1$res), col = "blue", 
+    main = "Les PDF des résidus", xlab = "Residuals")
+lines(density(olsx2$res), col = "red")
+lines(density(olsx3$res), col = "green4")
+legend(x = "topright", legend = c("Cluster 1", "Cluster 2", "Cluster 3"),
+    col = c("blue", "red", "green4"), xpd = NA,
+    cex = 1, lwd = 3)
+```
+
+\FloatBarrier
+
+#### D2.2 La normalité des résidus 
+
+\FloatBarrier
+
+```{r include = FALSE}
+# Shapiro-Wilk test
+ShapT = data.frame(nrow = 1, ncol = 2)
+ShapT[1,1] = shapiro.test(olsx1$res)$p.val
+ShapT[1,2] = shapiro.test(ivolsx1$res)$p.val
+ShapT[1,3] = shapiro.test(olsx2$res)$p.val
+ShapT[1,4] = shapiro.test(ivolsx2$res)$p.val
+ShapT[1,5] = shapiro.test(olsx3$res)$p.val
+ShapT[1,6] = shapiro.test(ivolsx3$res)$p.val
+colnames(ShapT) = c("OLS c1", "IV-OLS c1", 
+        "OLS c2", "IV-OLS c2", 
+        "OLS c3", "IV-OLS c3")
+rownames(ShapT) = c("Equation d'offre")
+```
+
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
+stargazer(ShapT,
+    header = FALSE,
+    summary = FALSE,
+    title = "Shapiro-Wilk test de normalité des résidus, p-valeur")
+```
+
+\FloatBarrier
+
+\newpage
+
+#### B2.3 Diagnostiques IV-OLS 
+
+```{r include = FALSE}
+# IV-OLS diagnostics
+ivchek1 = summary(ivolsx1, diagnostics = TRUE)$diag
+ivchek1 = ivchek1[-3,]
+```
+
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
+stargazer(ivchek1,
+    header = FALSE,
+    summary = FALSE,
+    title = "Diagnostiques d'estimateur IV, cluster 1")
+```
+
+\FloatBarrier
+
+```{r include = FALSE}
+# IV-OLS diagnostics
+ivchek2 = summary(ivolsx2, diagnostics = TRUE)$diag
+ivchek2 = ivchek2[-3,]
+```
+
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
+stargazer(ivchek2,
+    header = FALSE,
+    summary = FALSE,
+    title = "Diagnostiques d'estimateur IV, cluster 2")
+```
+
+\FloatBarrier
+
+```{r include = FALSE}
+# IV-OLS diagnostics
+ivchek3 = summary(ivolsx3, diagnostics = TRUE)$diag
+ivchek3 = ivchek3[-3,]
+```
+
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
+stargazer(ivchek3,
+    header = FALSE,
+    summary = FALSE,
+    title = "Diagnostiques d'estimateur IV, cluster 3")
+```
+
+\FloatBarrier
+
+\newpage 
+
+### D3 Analyse des résultats M2
+
+#### D3.1 Independance des résidus  
+
+\FloatBarrier
+
+```{r echo = FALSE, fig.cap = "Les résidus contre la variable prédite, le cadre SUR"}
+par(mfrow = c(1,2), cex = 0.5)
+plot(y = surx1$eq[[1]]$res, x = surx1$eq[[1]]$fit,
+    col = "blue", 
+    main = "Demande", 
+    ylab = "Residuals", xlab = "Fitted")
+points(y = surx2$eq[[1]]$res, x = surx2$eq[[1]]$fit,
+    col = "green4", pch = 17)
+points(y = surx3$eq[[1]]$res, x = surx3$eq[[1]]$fit,
+    col = "red", pch = 14)
+plot(y = surx1$eq[[2]]$res, x = surx1$eq[[2]]$fit,
+    col = "blue", 
+    main = "Offre", 
+    ylab = "Residuals", xlab = "Fitted")
+points(y = surx2$eq[[2]]$res, x = surx2$eq[[2]]$fit,
+    col = "green4", pch = 17)
+points(y = surx3$eq[[2]]$res, x = surx3$eq[[2]]$fit,
+    col = "red", pch = 14)
+par(xpd = NA)
+legend(x = "topright", 
+    legend = c("Cluster 1", "Cluster 2", "Cluster 3"),
+    col = c("blue", "green4", "red"), xpd = NA,
+    cex = 1, lwd = 3)
+```
+
+\FloatBarrier
+
+\newpage
+
+### D3.2 La normalité des résidus, le cadre de SUR
+
+\FloatBarrier
+
+```{r include = FALSE}
+ShapT = data.frame(nrow = 2, ncol = 3)
+ShapT[1,1] = shapiro.test(surx1$eq[[1]]$res)$p.val
+ShapT[2,1] = shapiro.test(surx1$eq[[2]]$res)$p.val
+ShapT[1,2] = shapiro.test(surx2$eq[[1]]$res)$p.val
+ShapT[2,2] = shapiro.test(surx2$eq[[2]]$res)$p.val
+ShapT[1,3] = shapiro.test(surx3$eq[[1]]$res)$p.val
+ShapT[2,3] = shapiro.test(surx3$eq[[2]]$res)$p.val
+colnames(ShapT) = c("Cluster 1", "Cluster 2", "Cluster 3")
+rownames(ShapT) = c("Equation de demande", "Equation d'offre")
+```
+
+\FloatBarrier
+
+```{r echo = FALSE, results = "asis"}
+stargazer(ShapT,
+    header = FALSE,
+    summary = FALSE,
+    title = "Shapiro-Wilk test de normalité, p-valeur")
+```
+
+\FloatBarrier
+
+\FloatBarrier
+
+```{r echo = FALSE, fig.height = 4, fig.cap = "Les PDF des résidus"}
+par(mfrow = c(1,2), cex = 0.5)
+plot(density(surx1$eq[[1]]$res), col = "blue", 
+    main = "Demande", xlab = "Residuals")
+lines(density(surx2$eq[[1]]$res), col = "green4")
+lines(density(surx3$eq[[1]]$res), col = "red")
+plot(density(surx3$eq[[2]]$res), col = "red", 
+    main = "Offre", xlab = "Residuals")
+lines(density(surx2$eq[[2]]$res), col = "green4")
+lines(density(surx1$eq[[2]]$res), col = "blue")
+legend(x = "topright", 
+    legend = c("Cluster 1", "Cluster 2", "Cluster 3"),
+    col = c("blue", "green4", "red"), xpd = NA,
+    cex = 1, lwd = 3)
 ```
 
 \FloatBarrier
