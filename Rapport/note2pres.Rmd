@@ -285,10 +285,10 @@ Le deuxième objectif est le passage en agriculture biologique à 6% de la surfa
 En 2008, les 30 produits les plus toxiques les plus toxiques sont interdits. 
 Une taxe sur les phytosanitaires a aussi été mise en place. 
 Cette taxe est croissante avec le niveau de toxicité de ces produits. 
-Cette taxe devait augmenter au fil des années. De plus, l’octroi de crédits d’impôt en faveur de l’agriculture biologique devait aussi permettre de réduire l'utilisation des pesticides.[@Butault2014]
+Cette taxe devait augmenter au fil des années. De plus, l’octroi de crédits d’impôt en faveur de l’agriculture biologique devait aussi permettre de réduire l'utilisation des pesticides.[@Butault2011]
 
 Malgré tous ces efforts, l’utilisation des pesticides perdurent.  
-En 2008, le nombre de doses unités a été créé pour enregistrer l’évolution de la demande de pesticide.[@Butault2014]
+En 2008, le nombre de doses unités a été créé pour enregistrer l’évolution de la demande de pesticide.[@Butault2011]
 On remarque que les doses utilisées augmentent de 12% en 2014-2016 par rapport à 2009-2011.  
 
 ## Etat actuel
@@ -302,7 +302,7 @@ Mais, cet indicateur connaît lui aussi une hausse de 15% entre 2011 et 2017.
 Néanmoins, les politiques ont quand même eu quelques effets positifs, puisque l’achat des produits les plus dangereux baisse de 6% en 2017. [@Moghaddam2019] 
 Les grandes cultures sont les premières utilisatrices de pesticides. 
 Elles représentent 67,4% de l’utilisation de pesticides. 
-La deuxième culture est celle de la vigne ce qui représente 14,4%  des pesticides utilisés.[@Butault2014]
+La deuxième culture est celle de la vigne ce qui représente 14,4%  des pesticides utilisés.[@Butault2011]
 
 ## Comment baisser l'utilisation de pesticides
 
