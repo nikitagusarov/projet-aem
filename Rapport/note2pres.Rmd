@@ -342,7 +342,7 @@ Les bassins viticoles Français utilisent en majorité des fongicides et des bac
 Pour lutter contre le développement de ces champignons, les viticulteurs ne peuvent utiliser que des fongicides. En effet, ils ne peuvent pas utiliser la rotation des cultures qui pourraient réduire ou empêcher le développement de ces champignons puisque la vigne est une culture pérenne. Les pieds de vigne ne sont pas replantés chaque année. Il est donc nécessaire d’utiliser les pesticides dans la vigne pour protéger la production et éviter les pertes. En effet, les champignons s’attaquent aux feuilles de la vigne et aux fruits. Donc la pulvérisation de pesticides est un des seuls moyens pour protéger les rendements des cultures viticoles.  Néanmoins, l’utilisation des pesticides a aussi un impact du côté de la demande de vin. Cet impact est plus ambigu, à cause d’un manque de transparence d’information sur les bouteilles de vin. [@Prudent2018.bib]
 Un sondage de l’Ifop sur les habitudes et perceptions de consommation des Français a montré que 93% des Français considèrent que la présence de pesticides dans les aliments a un impact sur la santé. 89% des Français souhaiteraient être informés de la présence ou non de pesticides dans les produits alimentaires, à travers un étiquetage. [@Ifop2017.bib]
 
-## Le problème d'heterogénéité
+## Le problème d'hétérogénéité
 
 Le secteur du vin est constitué de produits qui sont fortement hétérogènes.
 En effet, il existe une forte hétérogénéité entre les différents labels (AOP, IGP, sans IG) mais aussi au sein de ces labels. 
@@ -398,7 +398,7 @@ Le marché des vins sans indication géographiques connaît de forte variation. 
 
 \noindent\rule[0.5ex]{\linewidth}{1pt}
 
-Comme proposé dans la littérature, notre étude sur les vins non coûteux (non IGP) est effectué au niveau du pays @cembalo2014 pour deux raisons. 
+Comme proposé dans la littérature, notre étude sur les vins non coûteux (non IGP) est effectuée au niveau du pays @cembalo2014 pour deux raisons. 
 D'abord, les prix de vente moyens des marchés sont diffèrents en raison des droits de douane à l'importation et des taxes à la consommation différentes [@anderson2011global].
 De plus, la perception des produits de consommation varie d'un pays à l'autre [@makela2006].
 
@@ -629,16 +629,16 @@ Il est aussi déflatée de l’indice des prix à la consommation (base 100 en 2
 
 Toutes les variables subissent une transformation logarithmique, ce qui nous permet d'interpreter les effets estimés plus facilement. 
 Pour un modèle logarithmique nous pourrions traiter les estimateurs obtenus comme l'elasticité de la demande/l'offre par rapport à des facteurs differents. 
-Ainsi, nous cherchons particulierement l'elasticité de quantité offerte sur le marché par rapport à la quantité des pésticides utilisés.
+Ainsi, nous cherchons particulièrement l'élasticité des quantités offertes sur le marché par rapport à la quantité des pesticides utilisés.
 
-Les propriétés de ces données sont suivantes :
+Les propriétés de ces données sont les suivantes :
 
 - Toutes les variables varient par département et par année.
 - Le période temporelle comprise dans notre échantillon est de 2012 à 2016.
 - Nous ne considérons que les régions produisant du vin. 
 - Nous éliminons les effets fixes pour en substrayant les moyennes départamentales.
 - Données en panel "cylindrées".
-- Nombre des individus large (69 départements, qui produisent le vin simple et qui utilisent des pésticides) et le nombre des périodes pauvre (5 périodes).
+- Nombre des individus large (69 départements, qui produisent le vin simple et qui utilisent des pesticides) et le nombre des périodes pauvre (5 périodes).
 
 # 5. L'étude statistique
 
@@ -648,15 +648,15 @@ Les propriétés de ces données sont suivantes :
 #####################################################
 ```
 
-Dans cette partie de travail nous allons explorer les données collectées. 
+Dans cette partie de l'étude nous allons mener une étude exploratoire sur les données collectées. 
 
-De l'étude de la variance pour les données en panel avec des statistiques générales, nous passerons vers l'étude des interdependances des variables. 
-Puis, nous allons finir avec étude des donnée alternées par une transformation **within**.
+De l'étude de la variance pour les données en panel avec des statistiques générales, nous passerons à l'étude de l'interdependance des variables. 
+Puis, nous allons finir avec l'étude des données alternées par une transformation **within**.
 
 ## Visualisation au niveau de la France 
 
-Pour le prémier analyse il peut être interessant de voir la situation du point du vue géographique. 
-Nous visualisons les valuers moyens par département des differentes variables (une partie des répresentation se trouve dans l'annexe X).
+Pour la première analyse il peut être interessant de voir la situation du point du vue géographique. 
+Nous visualisons les valeurs moyennes par département des differentes variables (une partie des répresentation se trouve dans l'annexe X).
 
 ```{r include = FALSE}
 # Creation de la base des données 
@@ -683,8 +683,8 @@ formes$ri = risp
 formes$si = sisp 
 ```
 
-D'abord nous étudions le comportement de la variable dépendante de notre systhéme. 
-La quantité du vin sans IG produit par département semble pouvoir être correlé à partir de la figure suivante.
+D'abord nous étudions le comportement de la variable dépendante de notre système. 
+La quantité de vin sans IG produit par département semble pouvoir être correlée à partir de la figure suivante.
 
 \FloatBarrier
 
@@ -697,15 +697,15 @@ spplot(formes, "qi",
 
 \FloatBarrier
 
-Puis, nous observons le comportement du reste des variables (les representations graphiques sont grouppés dans l'annexe X).
-L'indice des prix se comporte pratiquement comme quantité du vin produite, car cet indice fut construit par biais de cette variable. 
-Les autres moyennes ne semblent pas avoir des structures corrélés dans l'espace au niveau de la France. 
-Dans notre analyse nous nous laissons liberté d'ignorer les effets possibles d'autocorrelation spatiale dans nos données, parce que au moment de constructions de notre base des données nous avons ignoré les département ne produisant pas le vin simple, mais qui peuvent quand même jouer son rôle si nous étions à prendre en compte la structure spatiale des nos données. 
+Puis, nous observons le comportement du reste des variables (les représentations graphiques sont groupés dans l'annexe X).
+L'indice des prix se comporte pratiquement comme la quantité du vin produite, car cet indice fut construit par l'intermédiaire de cette variable. 
+Les autres moyennes ne semblent pas avoir des structures corrélées dans l'espace au niveau de la France. 
+Dans notre analyse nous nous laissons la liberté d'ignorer les effets possibles d'autocorrélation spatiale dans nos données. En effet, au moment de la constructions de notre base de données, nous avons ignoré les départements ne produisant pas de vin simple. Mais, ils peuvent quand même jouer un rôle si nous prenions en compte la structure spatiale de nos données. 
 
 ## Etude de la variance 
 
-Passons maintenant à l'étude de la variance. 
-Nous allons décortiquer la variance par type (between et within) afin d'obtenir une idée sur le choix preferable de la dimention d'aggregation des nos données, car il peut se reveler que la théorie ne corresponde pas à la réalitée (ex: nous faisons face aux effets fixes par année et non par département).
+Passons maintenant, à l'étude de la variance. 
+Nous allons décortiquer la variance par type (between et within) afin d'obtenir une idée sur le choix préférable de la dimension d'agrégation de nos données, car il se peut que la théorie ne corresponde pas à la réalitée (ex: nous faisons face aux effets fixes par année et non par département).
 
 ```{r include = FALSE}
 lxtsums = list()
@@ -721,7 +721,7 @@ rownames(results) = c("Index prix", "Index pesticides",
     "Surface", "Revenus", "Temps")
 ```
 
-Le tableau suivant regrouppe les statistiques déscriptives essentielles : 
+Le tableau suivant regroupe les statistiques déscriptives essentielles : 
 
 - Moyennes 
 - Variance sur l'échantillon complet 
@@ -739,9 +739,9 @@ stargazer(results,
 
 \FloatBarrier
 
-Il est facile a rémarquer que la variance *between* est plus significative que la variance *within*. 
-Cela nous amêne à l'idée qu'il faut utiliser un modèle qui permettra estimer et corriger ces inégalités entre les individus, car nous sommes plus interessés par des effets individuels moyens (les effets moyens pour tous les départemetns).
-Ce qui est completement conforme à notre hypothèse qu'on a exprimé lors de la formalisation du modèle économique théorique.
+Il est facile de remarquer que la variance *between* est plus significative que la variance *within*. 
+Cela nous amène à l'idée qu'il faut utiliser un modèle qui permettra d'estimer et de corriger ces inégalités entre les individus, car nous sommes plus interessés par des effets individuels moyens (les effets moyens pour tous les départements).
+Cela est complètement conforme à l'hypothèse que l'on a exprimé lors de la formalisation du modèle économique théorique.
 
 ```{r include = FALSE}
 Formulas = list(
@@ -754,8 +754,8 @@ rownames(Dtest) = c("Index prix", "Index pesticides",
     "Surface", "Revenus")
 ```
 
-De plus, il est interessant d'observer les résultats obtenus pour le test de Chow comparant le modèle complet (*pooled model*) contre les modèles au effet fixes et randomes. 
-Le tableau suivant régrouppe les p-valeurs de ce test pour les modèles univariées differents.
+De plus, il est intéressant d'observer les résultats obtenus pour le test de Chow comparant le modèle complet (*pooled model*) contre les modèles aux effets fixes et aléatoires. 
+Le tableau suivant regroupe les p-valeurs de ce test pour les différents modèles univariées.
 
 \FloatBarrier
 
@@ -768,15 +768,15 @@ stargazer(Dtest[,c(1:2)],
 
 \FloatBarrier
 
-Sauf le cas de la surface nous ne pouvons pas rejeter l'hypothese nulle, specifiant que les individus ont des effets identiques pour toute la population. 
+A part le cas de la surface nous ne pouvons pas rejeter l'hypothèse nulle, spécifiant que les individus ont des effets identiques pour toute la population. 
 
 ## L'étude des types d'effets  
 
-Nous avons déjà vu, qu'il est fortement probable que nous faisons face à un modèle aux effets fixes individuelles. 
+Nous avons déjà vu, qu'il est fortement probable que nous faisions face à un modèle à effets fixes individuelles. 
 Il faut quand même le justifier.
-Pour faire cela, nous allons effectuer le test de multiplicateur de Lagrange sur la nature des effets (individuels, temporels ou en double dimention). 
-Selon les résultats des tests il est difficile de choisir arbitrairement un type des effets. 
-Il est évidente que nous avons des effets fixes au niveau individuel ou des fixes en double dimention pour toutes les variables. 
+Pour faire cela, nous allons effectuer le test du multiplicateur de Lagrange sur la nature des effets (individuels, temporels ou en double dimention). 
+Selon les résultats des tests il est difficile de choisir arbitrairement un type d'effets. 
+Il est évident que nous avons des effets fixes au niveau individuel ou des effets fixes en double dimension pour toutes les variables. 
 
 \FloatBarrier
 
@@ -789,12 +789,12 @@ stargazer(Dtest[,c(3:ncol(Dtest))],
 
 \FloatBarrier
 
-Selon les résultats obtenus, ainsi que les evidences théoriques des études anterieurs nous décidons de ne garder que les effets fixes au niveau individuel afin de faciliter l'analyse.
+Selon les résultats obtenus, ainsi que les évidences théoriques des études antérieurs nous décidons de ne garder que les effets fixes au niveau individuel afin de faciliter l'analyse.
 
-## L'analyse de la correlation
+## L'analyse de la corrélation
 
-Dans le tableau ci-dessous nous presentons les correlations des variables après la correction pour les effets fixes individuels (nous effectuons la transformation *within* sur nos données en substrayant les moyennes individuelles pour l'ensemble des variables).
-Dans les annexes nous proposons egalement un tableau de correlation pour les données non-transformées, ce qui permet d'observer les inégalités et une pauvre répresentativitée des liens entres les variables pour les données initiales.
+Dans le tableau ci-dessous nous présentons les corrélations des variables après la correction pour les effets fixes individuels (nous effectuons la transformation *within* sur nos données en soustrayant les moyennes individuelles pour l'ensemble des variables).
+Dans les annexes nous proposons également un tableau de corrélation pour les données non-transformées, ce qui permet d'observer les inégalités et une pauvre répresentativitée des liens entres les variables pour les données initiales.
 
 ```{r include = FALSE}
 ###################
@@ -809,7 +809,7 @@ dataW$si = Within(datap$si)
 dataW$ri = Within(datap$ri)
 ```
 
-Particulierement nous pouvons remarquer une forte correlation entre la quantité offerte et le prix d'équilibre.
+Particulierement nous pouvons remarquer une forte corrélation entre la quantité offerte et le prix d'équilibre.
 Egalement ...
 
 # 6. Modèlisation
@@ -834,38 +834,38 @@ Egalement ...
 
 \noindent\rule[0.5ex]{\linewidth}{1pt}
 
-Cette partie du travail abordera la formulation économétrique du notre problème.
-Nous allons débuter par la présentation des notions théoriques implimentés dans ce travail, suivis par la formalisation économétrique du modèle théorique que nous avons spécifié dans la séction 5.
+Cette partie du travail abordera la formulation économétrique de notre problème.
+Nous allons débuter par la présentation des notions théoriques utilisées dans ce travail, suivis par la formalisation économétrique du modèle théorique que nous avons spécifié dans la séction 5.
 Après, nous expliquerons la stratégie d'identification utilisée.
 
 ## Presentation de la méthodologie
 
 L'AIDS (*almost ideal demand system*) et les autres modèles de demande cités dans la littérature ont de nombreuses lacunes qui les rendent impropres pour l'estimation du marché du vin, selon @cembalo2014. 
-Quand même, dans notre étude nous allons utiliser un approche similaire à ce modèle là, sous des suppositions restrictives. 
+Dans notre étude nous allons, tout de même, utiliser une approche similaire à ce modèle là, sous des suppositions restrictives. 
 
-Ce modèle nous permettra de simuler l'équilibre sur le marché du vin, prenant ainsi en compte la pluspart des facteurs incitant les producteurs du vin d'utiliser les pésticides. 
+Ce modèle nous permettra de simuler l'équilibre sur le marché du vin, prenant ainsi en compte la plupart des facteurs incitant les producteurs de vin à utiliser les pesticides. 
 
 ## Modèle économétrique 
 
-Dans cette séction nous allons presenter une par une nos modèles économétriques correspondant chacune à un des trois cadres théoriques possibles.
-Tous les modèles visent à estimer les effets moyenns pour tous les départements sous des hypothèses differentes du fonctionnement du marché.
-Dans tous les cas, l'aggregation des effets au niveau national (ou au niveau des grouppes) nous permet de mitiger les biais eventuels, liés à la misspecification du modèle.
+Dans cette section, nous allons présenter un par un nos modèles économétriques correspondant chacun à un des trois cadres théoriques possibles.
+Tous les modèles visent à estimer les effets moyens pour tous les départements sous des hypothèses differentes de fonctionnement de marché.
+Dans tous les cas, l'agrégation des effets au niveau national (ou au niveau des groupes) nous permet de réduire les biais eventuels, liés à la mauvaise spécification du modèle.
 
-Pour le cadre où nous n'observons pas des interactions entre la demande et l'offre sur le marché (M1), nous ésimons un modèle simple.
+Pour le cadre où nous n'observons pas les intéractions entre la demande et l'offre sur le marché (M1). Nous estimons un modèle simple.
 Nous écrivons notre modèle sous la forme suivante :
 
 \begin{equation*}
   qo_{i,t} = a_1 + b Po_{i,t} + c X_{i,t} + u_{i,t}
 \end{equation*}
 
-A ce point nous avons un choix : soit nous supposons que les agriculteurs sont des preneurs des prix, ce qui nous permet de traiter le prix comme une variable exogène; soit nous dévrions construire un estimateur IV afin de traiter l'endogénéité eventuelle de l'index des prix.
-Evidement le premier cas est le plus simple, mais pour justifier l'implementation de cette méthode nous dévrions effectuer des tests d'énogénéité des prix. 
-Le deuxième cas est beaucoup plus réaliste, puisque les viticulteurs sont rarement preneurs des prix et l'offre aussi joue son rôle sur l'équilibre du marché.
+A ce point nous avons un choix : soit nous supposons que les agriculteurs sont des preneurs de prix, ce qui nous permet de traiter le prix comme une variable exogène; soit nous devrions construire un estimateur de variables instrumentales afin de traiter l'endogénéité eventuelle de l'indice des prix.
+Evidement le premier cas est le plus simple, mais pour justifier l'utilisation de cette méthode nous devrions effectuer des tests d'énogénéité de prix. 
+Le deuxième cas est beaucoup plus réaliste, puisque les viticulteurs sont rarement preneurs de prix et l'offre aussi joue son rôle sur l'équilibre du marché.
 
-Dans la dérnier situation nous utilisons les idées de @mackay2018, supposant que les variables détérminant la demande sont des instruments fiables pour la prédiction des variables endogènes dans l'équation d'offre (bien que dans notre cas nous ignorons les effets des intéractions entre l'offre et la demande).
-Particulieremnt ici nous pourrions utiliser les données sur les revenus afin d'instrumenter le niveau des prix (l'indice des prix du vin).
+Dans la dernière situation nous utilisons les idées de @mackay2018, supposant que les variables déterminant la demande sont des instruments fiables pour la prédiction des variables endogènes dans l'équation d'offre (bien que dans notre cas nous ignorons les effets des intéractions entre l'offre et la demande).
+Particulièremnt ici, nous pourrions utiliser les données sur les revenus afin d'instrumenter le niveau des prix (l'indice des prix du vin).
 
-Passons maintenant au modèle plus complexe (M2), basé sur l'hypothèse que la demande influence l'offre, affectant également le mode d'utilisation des pésticides par les agriculteurs.
+Passons maintenant au modèle plus complexe (M2), basé sur l'hypothèse que la demande influence l'offre, affectant également le l'utilisation des pesticides par les agriculteurs.
 Nous pouvons réécrire notre système d'equations dans ce cas sous la forme suivante :
 
 \begin{align*}
@@ -873,10 +873,10 @@ Nous pouvons réécrire notre système d'equations dans ce cas sous la forme sui
   qd_{i,t} & = \alpha_{i} + \beta Pd_{i,t} + \gamma Z_{i,t} + \epsilon_{i,t}  \\
 \end{align*}
 
-Nous posons que l'offre et la demande sont egaux au niveau de département : $qd_{i,t} = qo_{i,t}$.
-C'est à dire l'offre interne du département vise à satisfaire la demande interne du même département. 
+Nous posons que l'offre et la demande sont egaux au niveau de chaque département : $qd_{i,t} = qo_{i,t}$.
+C'est à dire que l'offre interne du département vise à satisfaire la demande interne du même département. 
 
-En termes d'aggregation ex-post des effets estimés, nous sommes sensé de tomber sur l'équilibre au niveau du marché national. 
+En termes d'agrégation ex-post des effets estimés, nous sommes sensés tomber sur l'équilibre au niveau du marché national. 
 En d'autre mots, le système (qui implique : $Qd = Qo$) :
 
 \begin{equation*}
@@ -890,61 +890,61 @@ Au point d'équilibre nous rencontrons également l'égalité des prix :
 \end{equation*}
 
 De cette façon nous obtenons un système des systèmes des équations.
-En simplifiant l'écriture nous pouvons la representer sous la forme suivante :
+En simplifiant l'écriture nous pouvons la représenter sous la forme suivante :
 
 \begin{align*}
   q_{i,t} & = \alpha_{i} + \beta P_{i,t} + \gamma Z_{i,t} + \epsilon_{i,t} \\
   q_{i,t} & = a_i + b P_{i,t} + c X_{i,t} + u_{i,t}
 \end{align*}
 
-Et finalement, nous pouvons estimer les deux modèles (M1 et M2) en regrouppant les département par leurs caractéristiques.
-Appelons ces modèles M3.1 et M3.2 réspectivement.
+Et finalement, nous pouvons estimer les deux modèles (M1 et M2) en regroupant les département par leurs caractéristiques.
+Appelons ces modèles M3.1 et M3.2 respectivement.
 
-Le prémiér prénant la forme :
+Le premier prenant la forme :
 
 \begin{align*}
   qo_{i,t} & = a_1 + b Po_{i,t} + c X_{i,t} + u_{i,t} \\ 
 \end{align*}
 
-Tandis que le dérnier :
+Tandis que le dernier :
 
 \begin{align*}
   q_{i_{c},t} & = \alpha_{i_{c}} + \beta P_{i_{c},t} + \gamma Z_{i_{c},t} + \epsilon_{i_{c},t} \\
   q_{i_{c},t} & = a_i + b P_{i_{c},t} + c X_{i_{c},t} + u_{i_{c},t}
 \end{align*}
 
-Avec $c$ décrivant l'appartenance de département à un des clusters.
+Avec $c$ décrivant l'appartenance du département à un des clusters.
 
-Pour finir cette partie, resumons que nous avons à notre disposition plusieurs chemins differents à traiter ce modèle du point de vue économétrique. 
-Le plus simple est d'estimer les effets des pésticides sur l'offre du vin en ignorant les impacts du comportement des consommaterus sur les producteurs. 
-Cette méthode implique une éstimation par OLS simples (ou IV-OLS, lesquels introduisent la notion d'éndogénéité des prix).
-D'autre coté, nous pouvons implementer les tripples moindre carrés (nous dévrions comparer les résultats obtenus avec un système des équations non-réliées, éstimé par 2SLS afin de traiter l'éndogenèité), qui nous permettrons d'obtenir des résultats identiques aux résultats d'estimations des équation structurelles sous l'hypothèse des intéractions entre l'offre et la demande. 
-Cette méthode offre la possibilité d'estimer le système d'équations avec plusieurs variables endogèenes en prenant en compte les deux coté du marché à la fois. 
-Finalement, si on trouve qu'il y existe une heterogeneité entre les départements en termes d'équilibre interne, nous pourrions réestimer les modèles en clusterisant nos *individus* (départements) par des differents classes selon leurs attributs, pour après estimer les equations par cluster.
+Pour finir cette partie, nous avons à notre disposition plusieurs chemins differents pour traiter ce modèle du point de vue économétrique. 
+Le plus simple est d'estimer l'effet des pesticides sur l'offre de vin en ignorant les impacts du comportement des consommaterus sur les producteurs. 
+Cette méthode implique une estimation par OLS simples (ou IV-OLS, lesquels introduisent la notion d'endogénéité des prix).
+De l'autre coté, nous pouvons utiliser les triples moindre carrés (nous devrions comparer les résultats obtenus avec un système d' équations non-réliées, éstimé par 2SLS afin de traiter l'endogenèité), qui nous permettront d'obtenir des résultats identiques aux résultats d'estimations des équations structurelles sous l'hypothèse de l'intéraction entre l'offre et la demande. 
+Cette méthode offre la possibilité d'estimer le système d'équations avec plusieurs variables endogènes en prenant en compte les deux coté du marché, à la fois. 
+Finalement, si on trouve qu'il existe une heterogeneité entre les départements en termes d'équilibre interne, nous pourrions réestimer les modèles en clusterisant nos *individus* (départements) par des classes différentes selon leurs attributs, pour estimer les equations par cluster.
 
-## Hypothèses sur le comportement des estimateurs
+## Hypothèses sur les résultats 
 
-Nous attendons à ce que l'éstimateur de 3SLS, qui permet de capter les effets de correlations entre les équation en presence de plusieures variables exogènes nous permettra d'obtenir des estimations les plus fiables. 
-Cette méthode nous permet à depasser le biais de simultanéité qui apparaisse dans le cas d'estimation des systèmes d'équations liées (dans notre cas nous étudions les effets des pésticides sur l'offre et production du vin simple sous hypothèse de présence des effets du marché).
-L'estimateur pareil donne des résultats similaires à l'éstimateur de ILS (*indirect least squares*).
-De plus, sa version iterée (qui converge à des résultats similaires à ceux obtenus par l'éstimation avec maximum de vraisamblance) donne des résultats avec la moindre variance.
+Nous attendons que l'estimateur de 3SLS, qui permet de capter les effets de corrélations entre les équations en présence de plusieures variables exogènes nous permettra d'obtenir des estimations plus fiables. 
+Cette méthode nous permet à depasser le biais de simultanéité qui apparaît dans le cas d'estimation des systèmes d'équations liés (dans notre cas nous étudions les effets des pésticides sur l'offre et production du vin simple sous l'hypothèse de présence des effets du marché).
+L'estimateur pareil donne des résultats similaires à l'estimateur de ILS (*indirect least squares*).
+De plus, sa version iterée (qui converge à des résultats similaires à ceux obtenus par l'éstimation avec maximum de vraisamblance) donne des résultats avec la variance la plus faible.
 
-Les propriétés de cet éstimateurs sont :
+Les propriétés de cet estimateur sont :
 
 - Consistence ;
 - Efficience (asymptotique) ;
-- La distribuitions pour les estimateurs suit une loi normale suelement dans des grands échantillons.
+- La distributions pour les estimateurs suit une loi normale seulement dans des grands échantillons.
 
-Quand même dès le debut nous envisageons que cet éstimateur ne refletera pas la nature du marché. 
+Dès le debut nous envisagions que cet estimateur ne reflètera pas la nature du marché. 
 C'est pourquoi nous, dans ce travail, testons plusieurs modèles.
 
-Parmis les inconveniences eventuelles on a également la faible representation des effets hetérogenes entre les départements par le modèle. 
-Nous estimons seulemnt les effets moyens et ainsi ignorons les differences des élasticités pour des départements differents. 
-Hereusement ce problème peut être rémédiée par l'introduction des clusters, regrouppant des département ayant le comportement similaire.
+Parmi les inconvenients éventuels, on a également la faible représentation des effets hetérogènes entre les départements par le modèle. 
+Nous estimons seulement les effets moyens et ainsi nous ignorons les différences des élasticités pour des départements différents. 
+Hereusement ce problème peut être rémédié par l'introduction des clusters, regroupant des départements ayant des comportements similaires.
 
-Finalement, il existe des effets qu'on ignore completement, mais qui risquent d'intervenir. 
-Par example, nous ignorons la présence d'autocorrelation spatiale et/ou temporelle dans notre modèle. 
-Egalement, un nombre probablement insuffisant des facteurs est utilisé dans ce modèle, ce qui risaue d'apporter le biais des variables omises dans nos estimations. 
+Finalement, il existe des effets que l'on ignore complètement, mais qui risquent d'intervenir. 
+Par exemple, nous ignorons la présence d'autocorrélation spatiale et/ou temporelle dans notre modèle. 
+Egalement, un nombre probablement insuffisant de facteurs est utilisé dans ce modèle, ce qui augmente le risque du biais des variables omises dans nos estimations. 
 
 # 7. Résultats des estimations 
 
@@ -954,14 +954,14 @@ Egalement, un nombre probablement insuffisant des facteurs est utilisé dans ce 
 #####################################################
 ```
 
-Dans cette séction nous allons presenter les résultats économétriques pour des differents modèles ainsi que les comparer.
+Dans cette section nous allons présenter les résultats économétriques pour les différents modèles et les comparer.
 
-Nous estimons l'enseble des differents modèles possibles afin de pouvoir choisir la méthode la plus raisonnable. 
-Les modèles suivantes sont traitées séparement :
+Nous estimons un ensemble de modèles différents possibles afin de pouvoir choisir la méthode la plus raisonnable. 
+Les modèles suivants sont traités séparement :
 
-- M1 : modèle simple sans intéractions entre l'offre et la demande ;
-- M2 : modèle complexe visant à integrer les intéractions entre l'offre et la demande en presence des variables éndogènes ;
-- M3 : les modèles sur les données clustérisés (M3.1 et M3.2 réspectivement pour les deux cas précedents).
+- M1 : modèle simple sans intéraction entre l'offre et la demande ;
+- M2 : modèle complexe visant à intégrer les intéractions entre l'offre et la demande en présence de variables éndogènes ;
+- M3 : les modèles sur les données clustérisées (M3.1 et M3.2 respectivement pour les deux cas précédents).
 
 ```{r include = FALSE, eval = FALSE}
 # - Vérification des hypothèses (5 hypothèses) :
@@ -974,7 +974,7 @@ Les modèles suivantes sont traitées séparement :
 # Hence 3SLS is efficient and FIML is consistent even if residuals are not normal.
 ```
 
-## M1 : Les résultats en absence des intéractions
+## M1 : Les résultats en absence d'intéractions
 
 ```{r include = FALSE}
 # Data transformation for systemfit
@@ -1068,14 +1068,14 @@ texreg(float.pos = "!htbp",
 
 #### *Between* 
 
-Nous avons vus dans le comportement des résidus une nature non-aléatoire grouppé. 
-Cela nous amène à l'idée de construire k-clusters pour modèliser les rélations par grouppe.
+Nous avons vus dans le comportement des résidus une nature non-aléatoire groupé. 
+Cela nous amène à l'idée de construire k-clusters pour modèliser les relations par groupe.
 
-Nous supposons que les départements ayant des valeurs moyennes interannuelles proches (transformation Between) ont le comportement identique.
-La clusterisation est effectué sur les données Between pour les départements.
+Nous supposons que les départements ayant des valeurs moyennes interannuelles proches (transformation Between) ont un comportement identique.
+La clusterisation est effectuée sur les données Between pour les départements.
 
 ```{r include = FALSE}
-# Clustering Between
+# Clustering 
 # Between dataframe
 dataB = datap 
 dataB$qi = Between(datap$qi)
@@ -1097,8 +1097,8 @@ for (i in 2:15) {
 }
 ```
 
-Nous povons supposer que le nombre des clusters optimal est entre 3 et 5.
-Prenant en compte les graphiques des résidus vus lros d'analse des modèles nous allons supposer qu'il n'y a que 3 clusters principaux.
+Nous pouvons supposer que le nombre des clusters optimaux est entre 3 et 5.
+Prenant en compte les graphiques des résidus vus lors des analyses des modèles, nous allons supposer qu'il n'y a que 3 clusters principaux.
 
 ```{r include = FALSE}
 # Intermediary data
@@ -1115,14 +1115,14 @@ clusters = cbind(fit1$centers, fit1$size, k <- c(1:3)) %>%
     as.data.frame()
 ```
 
-#### *Within*
+### *Within*
 
-Nous avons vus dans le comportement des résidus une nature non-aléatoire grouppé. 
-Cela nous amène à l'idée de construire k-clusters pour modèliser les rélations par grouppe.
+Nous avons vus dans le comportement des résidus une nature non-aléatoire groupé. 
+Cela nous amène à l'idée de construire k-clusters pour modèliser les relations par groupe.
 
-D'abord on compare le comportement des cluster pour les données à l'information complete et les données Within.
+D'abord on compare le comportement des cluster pour les données à l'information complète et les données Within.
 
-Comme nous pouvons voir dans les résultats le nombre des cluster optimaux est trop large pour les séparer dans l'analyse.
+Comme nous pouvons le voir dans les résultats le nombre de clusters optimaux est trop large pour les séparer dans l'analyse :
 
 ```{r include = FALSE}
 # Clustering Within
@@ -1170,9 +1170,9 @@ clusters2 = cbind(fit2$centers, fit2$size, k <- c(1:3)) %>%
 # dataWZ %>% filter(clust == 2) %>% select(ndep)
 ```
 
-#### *Between* et *Within* 
+### Information complète
 
-Dans le cas d'information complete on a :
+Dans le cas de l'information complète, on a :
 
 ```{r include = FALSE}
 # Clustering 
@@ -1209,9 +1209,8 @@ for (i in 2:15) {
 }
 ```
 
-Nous povons supposer que le nombre des clusters optimal est entre 3 et 5.
-Prenant en compte les graphiques des résidus vus lros d'analse des modèles nous allons supposer qu'il n'y a que 3 clusters principaux.
-
+Nous pouvons supposer que le nombre de cluster optimal est entre 3 et 5.
+Prenant en compte les graphiques des résidus vus lors de l'analyse des modèles, nous allons supposer qu'il n'y a que 3 clusters principaux.
 
 ```{r include = FALSE}
 # Grouping
