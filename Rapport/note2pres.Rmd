@@ -1,6 +1,6 @@
 ---
-title: "Etude des effets des pésticides dans la production des vins de table"
-shorttitle : "Les effets des pésticides"
+title: "Etude des effets des pesticides dans la production des vins de table"
+shorttitle : "Les effets des pesticides"
 subtitle: "Analyse empirique des marchés"
 author: Arnaud Blanc, Nikita Gusarov, Sasha Picon
 shortauthor : A.Blanc, N.Gusarov, S.Picon
