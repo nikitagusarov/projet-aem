@@ -1052,17 +1052,24 @@ Cette nature révele des implications importantes en termes de traitement futur 
 ## M2 : Les résultats dans le cas des effets du marché presents
 
 Dans cette séction nous allons étudier le modèle sous l'hypothèse de présence des effets de la conjoncture sur les décisions des agriculteurs. 
+Identiquement au cadre précedent nous avons deux choix possibles. 
+D'abord, sous l'hypothèse d'endogénéité des prix nous povons estimer le modèle par le méthode de 3SLS, en introduisant dans notre modèle à la fois l'endogénéité des prix pour l'offre et la demande et la correlation entre les résidus de ces deux équations décrivant le comportement des agents du marché.
+Deuxiemement, nous avons la possibilité d'imposer l'exogeneité des prix dans nos équations, ce qui peut être les cas si les enseignes rachetant le vin des agriculteurs sont des preneurs des prix du consommateur final.
 Nous allons comparér des résultats des plusieurs modèles afin de verifier sa validité. 
 
-Le modèle ... 3SLS ...
+Le prémier modèle éstimé par les 3SLS est complexe et nous risquons d'obtenir des résultats biaisé suite à des misspécification eventuelles.
+Afin de contracter la variance des estimateurs les rendant plus efficaces nous pouvons impliquer la procedre i3SLS (*iterated three step least squares*).
+Cette méthode nous donne des résultats similaire à ceux obtenus par FIML (*full information maximum likelihood*).
+Quand même l'utilisations des procedures itératives ne semble pas donner une diminution dans les variances des estimateurs significative (annexe X). 
 
-Afin de contracter la variance des estimateurs ... i3SLS ...
-Cette méthode nous donne des résultats similaire à ceux obtenus par FIML ...
+Nous pouvons également comparer les résultats obtenus par 3SLS avec le modèle en absence des intéractions (sous l'hypothèse que les résidus des deux équations ont une correlation nulle) éstimé par 2SLS (*two step least squares*). 
+Dans ce cas, les regresseurs endogenes de la demande sont instrumentés tout comme décrit dans @wooldridge2005instrumental.
+Ce méthode donne des résultats équivalents à ILS (*indirect least squares*), une téchnique utilisé pour estimer les systémés des équations.
 
-Nous comparons les résultats obtenus avec le modèle en absence des intéractions (sous l'hypothèse que les résidus des deux équations ont une correlation nulle) ... 2SLS ... .
-Ce méthode donne des résultats équivalents à ILS ...
+Dans le deuxieme cas nous réjetons l'hypothèse de l'endogénéité des prix pour le marché du vins simple, en supposant qu'il est dicté par le consommateurs final à les acteurs en amont (le distributeur qui rachete le vin d'agriculteur).
+Cela nous amene à imlimenter le méthode SUR (*seamingly unrelated equations*) afin d'introduire la correlation entre les résidus dans notre modèle du marché tout en ignorant l'endogénéité des prix.
 
-Les résultats sont régrouppé sous format d'un tableau ...
+Les résultats pour les deux modèles sont régrouppé sous format d'un tableau ci-dessous :
 
 ```{r include = FALSE}
 # Equations
@@ -1107,7 +1114,17 @@ texreg(float.pos = "!htbp",
 
 \FloatBarrier
 
+Les résultats obtenus pour le cadre avec les prix endogènes (l'estimation par 3SLS) donne forcement des résultats biaisé, car comme nous avons vu dans la séctions précedente nous ne dispososns pas d'instruments suffisament forts pour instrumenter l'index des prix.
+
+Tout de même, nous obtenons des résultats proches à ceux obtenus par OLS simples dans la séction precedente ($-0.16$ contre $-0.17$). 
+Cela confirme notre hypothèse sur le rôle joué par les pésticides dans la propositions du vin simple sur le marché. 
+Néanmoins, nous préferions de ne pas utiliser ce modèle comme notre modèle de réference en futur à cause de plusieurs sources des biais.
+
 ## M3 : Les résultats pour des départements grouppés
+
+Dans cette séction nous allons commencer par la présentation et la comparaison des differentes téchniques pour la clustérisation de nos données. 
+Puis nous allons proceder avec un étude et la modèlisation des données clustérisé. 
+Nous suppososn que cet approche peut donner des résultats significativement differents, car nous supposons une forte héterogeneité dans le comportement des differents départements.
 
 ### Clusterisation 
 
