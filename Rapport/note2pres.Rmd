@@ -282,13 +282,13 @@ Ainsi, l’Etat Français lors du grenelle de l’environnement de 2006 a fixé 
 Ainsi, le plan ECOPHYTO 2018 visait à réduire de 50% l’utilisation des pesticides de synthèse. 
 Le deuxième objectif est le passage en agriculture biologique à 6% de la surface agricole utilisée en 2010 et vise 20% en 2020.[@Butault2011]
 
-En 2008, les 30 produits les plus toxiques les plus toxiques sont interdits. 
+En 2008, les 30 produits les plus toxiques sont interdits. 
 Une taxe sur les phytosanitaires a aussi été mise en place. 
 Cette taxe est croissante avec le niveau de toxicité de ces produits. 
-Cette taxe devait augmenter au fil des années. De plus, l’octroi de crédits d’impôt en faveur de l’agriculture biologique devait aussi permettre de réduire l'utilisation des pesticides.[@Butault2011]
+Elle devait augmenter au fil des années. De plus, l’octroi de crédits d’impôt en faveur de l’agriculture biologique devait aussi permettre de réduire l'utilisation des pesticides.[@Butault2011]
 
 Malgré tous ces efforts, l’utilisation des pesticides perdurent.  
-En 2008, le nombre de doses unités a été créé pour enregistrer l’évolution de la demande de pesticide.[@Butault2011]
+En 2008, le nombre de doses unités (Nodu) a été créé pour enregistrer l’évolution de la demande de pesticides.[@Butault2011]
 On remarque que les doses utilisées augmentent de 12% en 2014-2016 par rapport à 2009-2011.  
 
 ## Etat actuel
@@ -306,7 +306,7 @@ La deuxième culture est celle de la vigne ce qui représente 14,4%  des pestici
 
 ## Comment baisser l'utilisation de pesticides
 
-Afin de baisser l’utilisation des pesticides, des méthodes de cultures ont été développées pour baisser l’utilisation des pesticides. 
+Afin de baisser l’utilisation des pesticides, des méthodes de cultures ont été développées. 
 Il est possible d’utiliser différents mode de culture. 
 On peut en retenir trois principaux. 
 
@@ -314,11 +314,11 @@ On peut en retenir trois principaux.
 - l’agriculture raisonnée, qui limite le recours aux pesticides en fonction de seuils ;
 - l’agriculture biologique, qui vise à supprimer les traitements avec des produits phytosanitaires de synthèse. 
 
-Quand même ces méthodes sont difficiles à mettre en place dan la viticulture, ce qui nous amêne eu problème de comprehension des raisons pour lesquels les agriculteur utilisent les pésticides.
-Les professionnels proposent de commencer par utiliser l’agriculture raisonnée en viticulture qui permetra de réduire les doses de pesticides légales. 
+Néanmoins, ces méthodes sont difficiles à mettre en place dans la viticulture, ce qui nous amène à un problème de compréhension des raisons pour lesquels les agriculteur utilisent les pesticides.
+Les professionnels proposent de commencer par utiliser l’agriculture raisonnée en viticulture qui permettra de réduire les doses de pesticides légales. 
 Ensuite l’agriculture doit se déplacer vers l’agriculture biologique qui n’utilise aucun produit phytosanitaire de synthèse. 
-Ces proposition sont purement théoriques et on connait pas encore des téchniques pour influencer le comportement des viticulteurs. 
-Un des méchanismes possibles est le méchanisme du marché. 
+Ces propositions sont purement théoriques puisque l'on ne connait pas encore les techniques qui pourraient influencer le comportement des viticulteurs. 
+Un des mécanisme possible est le mécanisme du marché. 
 En manipulant l'offre et la demande du vin le but est théoriquement atteignable. 
 
 # 2. Le marché du vin français
@@ -329,7 +329,7 @@ En manipulant l'offre et la demande du vin le but est théoriquement atteignable
 #####################################################
 ```
 
-La France est l’un des principaux producteurs de vins. En effet, la France représente 10% de la surface des vignes mondiales. La production de vins représentait 4.6 milliards  de litres. La France représentait 17% de la production totale de vins. 3% de la surface agricole française est consacrée à la production agricole. Néanmoins, le vin représente 15% de la production agricole en valeur. [@CNIV2018]
+La France est l’un des principaux producteurs de vins. En effet, la France représente 10% de la surface des vignes mondiales. La production de vins représentait 4.6 milliards  de litres. La France représentait 17% de la production totale de vins. 3% de la surface agricole française est consacrée à la production des vins. Néanmoins, le vin représente 15% de la production agricole en valeur. [@CNIV2018]
 La France est aussi l’un des principaux consommateurs de vins. En effet, en France, il s’agit de la boisson alcoolisée la plus consommée. 88% des ventes de vins en France sont effectuées en grande surface. Néanmoins, la consommation française de vin baisse depuis une trentaine d’années. [@CNIV2018] 
 
 ## Utilisation des pesticides dans la viticulture
@@ -337,12 +337,12 @@ La France est aussi l’un des principaux consommateurs de vins. En effet, en Fr
 Nous avons déjà montré que la viticulture est le deuxième secteur agricole en termes d’utilisation des pesticides. En effet, elle représente plus de 14.4% des dépenses de produits phytosanitaires,  en France. Néanmoins, ces pesticides ne sont pas utilisés dans la même proportion dans toutes les régions de France. [@Butault2011] 
 
 Les bassins viticoles Français utilisent en majorité des fongicides et des bactéricides. En effet, la vigne fait face à des aléas climatiques qui permettent le développement de champignons comme le Mildiou. [@Pujol2017] 
-Pour lutter contre le développement de ces champignons, les viticulteurs ne peuvent utiliser que des fongicides. En effet, ils ne peuvent pas utiliser la rotation des cultures qui pourraient réduire ou empêcher le développement de ces champignons puisque la vigne est une culture pérenne. Les pieds de vigne ne sont pas replantés chaque année. Il est donc nécessaire d’utiliser les pesticides dans la vigne pour protéger la production et éviter les pertes. En effet, les champignons s’attaquent aux feuilles de la vigne et aux fruits. Donc la pulvérisation de pesticides est un des seuls moyens pour protéger les rendements des cultures viticoles.  Néanmoins, l’utilisation des pesticides a aussi un impact du côté de la demande de vin. Cet impact est plus ambigu, à cause d’un manque de transparence d’information sur les bouteilles de vin. [@Prudent2018]
+Pour lutter contre le développement de ces champignons, les viticulteurs ne peuvent utiliser que des fongicides. En effet, ils ne peuvent pas utiliser la rotation des cultures qui pourrait réduire ou empêcher le développement de ces champignons puisque la vigne est une culture pérenne. Les pieds de vigne ne sont pas replantés chaque année. Il est donc nécessaire d’utiliser les pesticides dans la vigne pour protéger la production et éviter les pertes. En effet, les champignons s’attaquent aux feuilles de la vigne et aux fruits. Donc la pulvérisation de pesticides est un des seuls moyens pour protéger les rendements des cultures viticoles.  Néanmoins, l’utilisation des pesticides a aussi un impact du côté de la demande de vin. Cet impact est plus ambigu, à cause d’un manque de transparence d’information sur les bouteilles de vin. [@Prudent2018]
 
 Un sondage de l’Ifop sur les habitudes et perceptions de consommation des Français a montré que 93% des Français considèrent que la présence de pesticides dans les aliments a un impact sur la santé. 89% des Français souhaiteraient être informés de la présence ou non de pesticides dans les produits alimentaires, à travers un étiquetage. [@Ifop2017]
 
-Il est particulierement interressant et avantageux d'étudier le marché du vin afin d'identifier les méchanismes eventuelles d'influence sur le montant des pésticides utilisé dans la production. 
-Dans cette étude nous visons à comprendre les méchanismes figurant dans ces rélations.
+Il est particulierement intérressant et avantageux d'étudier le marché du vin afin d'identifier les méchanismes éventuels qui influencent le montant des pesticides utilisés dans la production. 
+Dans cette étude nous visons à comprendre les méchanismes figurant dans ces relations.
 
 ## Le problème d'hétérogénéité
 
@@ -352,26 +352,26 @@ En effet, il existe une forte hétérogénéité entre les différents labels (A
 
 Dans le commerce du vin, il est courant de diviser les vins en deux grandes classes en fonction de leurs prix [@cembalo2014] : 
 
-- les vins de qualité inférieure, les moins chers avec les caractéristiques de qualité de base ;
+- les vins de qualité inférieure, les moins chers avec des caractéristiques de qualité de base ;
 - les vins de qualité supérieure plus chers, dotés de caractéristiques qualitatives complexes et d'une image de grande valeur.
 
 De plus, pour les vins français, selon @steiner2004, le système européen de classification des "*vins de qualité produits dans certaines régions*" (VQPRD) contient à la fois des vins AOC et des "*vins de haute qualité provenant d'un vignoble régional agréé*" (VDQS). 
 Les vins de cépage appartiennent à la catégorie des vins autres que VQPRD, qui comprend les \textbf{vins de table} et les \textbf{vins de pays}.
 
-En tenant compte des spécificités du marhcé du vin français, nous utilisons la méthodologie du ministère d'agriculture et divisons le marché en deux parties :
+En tenant compte des spécificités du marhcé du vin français, nous utilisons la méthodologie du ministère de l'agriculture et divisons le marché en deux parties :
 
 - La gamme haute (les vins IGP et AOP, vendus dans des magasins spécifiques) ;
 - La gamme basse (les vins sans IG, vendus en grands surfaces).
 
-La première partie est soumise à des règlements spécifiques : limitations des quantités produites, origine contrôlé, un caractère de la demande spécifique. 
-De plus, les viticulteurs peuvent être réticents de changer son processus de production déjà rafiné au maximum de peur d'avoir des pertes de qualité.
+La première partie est soumise à des règlements spécifiques : limitations des quantités produites, origine contrôlée, un caractère de la demande spécifique. 
+De plus, les viticulteurs peuvent être réticents à changer leurs processus de production déjà rafiné au maximum de peur d'avoir des pertes de qualité.
 
-La deuxième, c'est-à-dire le marché des vins moins chers, est un peu plus simple et comprehensible. Néanmoins, elle demeure moins hétérogène @cembalo2014. En effet, les vins qui se situent dans une fourchette de prix étroite sont quasiment homogènes. Ainsi, les vins sans indication géographique ont des attributs intrinsèques simples, une complexité de qualité faible. Il s’agit donc de vins peu différenciés. Nous avons, donc, choisit de nous concentrer sur ces vins sans indication géographique à cause de leur degré d’homogénéité qui est plus fort que pour les autres labels.
-Cela nous permet d'analyser le marché par département est non par des marques/produits.
+La deuxième, c'est-à-dire le marché des vins moins chers, est un peu plus simple et compréhensible. Elle demeure moins hétérogène @cembalo2014. En effet, les vins qui se situent dans une fourchette de prix étroite sont quasiment homogènes. Ainsi, les vins sans indication géographique ont des attributs intrinsèques simples, une complexité de qualité faible. Il s’agit donc de vins peu différenciés. Nous avons, donc, choisi de nous concentrer sur ces vins sans indication géographique à cause de leur degré d’homogénéité qui est plus fort que pour les autres labels.
+Cela nous permet d'analyser le marché par département est non par marques/produits.
 
 ## Les vins de table
 
-Le marché des vins sans indication géographiques connaît de forte variation. Nous allons donc revenir sur la période qui précède notre étude. Ainsi, en 2011, les transactions de vente de vins rouges ont augmenté de 29%. Les transactions de vins rosés ont également augmenté de 13%. Les transactions de vins blancs augmentaient de 76%. Les prix de ces vins bien que faible connaissent aussi des variations importantes. Ainsi, en 2011, les trois couleurs de vins ont connus des hausses de prix. Les vins rouges ont vu leurs prix moyens augmenté de 12%. Le prix moyens des vins rosés ont aussi crus de 3 %. Pour finir, les prix moyens des vins blancs ont cru de 13%. Les vins de France sans indications géographiques  ont connu une baisse en volume des ventes de 14.6% par rapport à la moyenne des ventes sur la période 2006 à 2010. [@FranceAgriMer2011].
+Le marché des vins sans indication géographique connaît de forte variation. Nous allons donc revenir sur la période qui précède notre étude. Ainsi, en 2011, les transactions de vente de vins rouges ont augmenté de 29%. Les transactions de vins rosés ont également augmenté de 13%. Les transactions de vins blancs augmentaient de 76%. Les prix de ces vins bien que faible connaissent aussi des variations importantes. Ainsi, en 2011, les trois couleurs de vins ont connus des hausses de prix. Les vins rouges ont vu leur prix moyen augmenté de 12%. Le prix moyen des vins rosés a aussi cru de 3 %. Pour finir, le prix moyen des vins blancs ont cru de 13%. Les vins de France sans indication géographique  ont connu une baisse en volume des ventes de 14.6% par rapport à la moyenne des ventes sur la période 2006 à 2010. [@FranceAgriMer2011].
 
 # 3. Le cadre théorique
 
