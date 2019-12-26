@@ -1,5 +1,5 @@
 ---
-title: "Etude des effets des pesticides dans la production des vins de table"
+title: "Etude des effets des pesticides sur le marché des vins de table"
 shorttitle : "Les effets des pesticides"
 subtitle: "Analyse empirique des marchés"
 author: Arnaud Blanc, Nikita Gusarov, Sasha Picon
@@ -2150,13 +2150,14 @@ Les groupes sont définit par des caractéristiques suivantes :
 \FloatBarrier
 
 ```{r echo = FALSE, results = "asis"}
-clusters1 = cbind(fit1$centers, fit1$size)
-names(clusters1) = c("Groupe", "Quantité", "IP", 
-    "Surface", "Revenus", "Index pesticides", "n ")
+clusters1 = data.frame(fit1$centers, fit1$size , k = 1:3)
+names(clusters1) = c("Quantité du vin", "IP", "Surface", "Revenu", "I pesticides", 
+    "N", "Cluster")
 stargazer(clusters1, 
-    title = "Les centres des clusters",
+    title = "Les centres des clusters en between",
     summary = F, 
-    header = F)
+    header = F,
+    rownames = F)
 ```
 
 \FloatBarrier
@@ -2188,17 +2189,21 @@ c5 = clusters2 %>%
 names(c5)[1:5] = c("qi", "ipi", "si", "ri", "iki")
 centers2 = rbind(c1, c2, c3, c4, c5) %>% 
     group_by(k) %>% 
-    arrange(t, .by_group = T)
+    arrange(t, .by_group = T) %>%
+    mutate(t = t + 2012 - 1)
 ```
 
 \FloatBarrier
 
 ```{r echo = FALSE, results = "asis"}
+names(centers2) = c("Quantité du vin", "IP", "Surface", "Revenu", "I pesticides", 
+    "N", "Cluster", "Année")
 # Print results
 stargazer(round(centers2, 6), 
-    title = "Les centres des clusters",
+    title = "Les centres des clusters en within",
     summary = F, 
-    header = F)
+    header = F,
+    rownames = F)
 ```
 
 \FloatBarrier
@@ -2238,11 +2243,14 @@ centers3 = rbind(c1, c2, c3, c4, c5) %>%
 \FloatBarrier
 
 ```{r echo = FALSE, results = "asis"}
+names(centers3) = c("Quantité du vin", "IP", "Surface", "Revenu", "I pesticides", 
+    "N", "Cluster", "Année")
 # Print 
 stargazer(round(centers3, 6), 
-    title = "Les centres des clusters",
+    title = "Les centres des clusters pour l'information complète",
     summary = F, 
-    header = F)
+    header = F,
+    rownames = F)
 ```
 
 \FloatBarrier
