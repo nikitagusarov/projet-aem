@@ -541,39 +541,59 @@ Où $c$ décrit l'appartenance des départements à un des groupes (clusters).
 #####################################################
 ```
 
-Avant de passer à la discussion des modèles économétriques il nous faut prendre connaissance de la nature des données en notre disposition.
-Dans cette partie de notre travail nous allons presenter la base des données utilisé lors de cette étude. 
-Nous commencerons par une presentation des sources et des types des données extraits de ces sources. 
-Puis, nous procederons avec la déscription des méthodes et thécniques utilisées pour transformer ces données et les rendre traitables. 
-Finalement, nous presenterons un dictionnaire des variables pour nos bases des données.
+Avant de passer à la discussion des modèles économétriques, il nous faut prendre connaissance de la nature des données à notre disposition. 
+Dans cette section,  nous allons présenter et commenter les principales étapes de la construction de notre base de données que nous avons utilisée pour mener notre étude. 
+Nous commencerons par une présentation des sources principales à partir desquelles nous avons collecté nos données. 
+Ensuite, nous procéderons à la description des méthodes et techniques utilisées pour transformer ces données et les rendre traitables. 
+Enfin,  nous nous attarderons à présenter l’ensemble des variables que nous avons jugés pertinent d’intégrer dans notre modèle économétrique. Nous préciserons notamment les effets attendus des variables exogènes sur la variable dépendante de notre modèle.
 
-## Sources des données : 
+## Sources des données  
 
-Nous avons utilisé les bases des données suivantes pour notre analyse :
+Nous avons eu recours aux bases des données suivantes pour collecter les données nécessaires à notre analyse : 
 
-- Les données de ventes de pesticides par département (INERIS)
-- Les données sur les prix du vin (France Agrimer)
-- Les données sur la population (INSEE)
-- Les données sur la production de vin (SSM Finances Publiques)
+Les bases données de ventes de pesticides par département (Institut national de l’environnement Industriel et des Risques, @ineris) sur la période 2008-2017, qui nous indiquent les quantités totales de  chaque type de produit phytosanitaire (identifiable par leur numéro d’autorisation de mise sur le marché) vendues par département selon le type de conditionnement de ces produits (en litres ou en kilogrammes).
+
+Des bases de données sur les prix du vin (FranceAgrimer, @franceagrimer), lesquelles nous transmettent notamment des informations sur les prix moyen du vin blanc puis du vin rouge-rosé entre 2009 et 2017 (selon la catégorie de vin : IG ou non IG). 
+Plus spécifiquement, ce sont des prix moyens nationaux (ils ne varient donc pas par département) déflatés via l’indice des prix à la consommation (base 100 en 2014).
+
+Des base de données sur la population (INSEE, @insee), qui contiennent notamment des données sur les diverses caractéristiques du niveau de revenu des ménages pour chaque département français sur la période 2009-2017.
+
+Des bases de données sur la production de vin (SSM Finances Publiques, @ssm), nous fournissant des informations sur les quantités mensuelles produites chaque année de vin rouge-rosé puis de vin blanc (distinction entre les vins IG et non IG)  de août 2009 à juillet 2019.  
+De plus, elles nous indiquent les surfaces totales viticoles par département qui sont dédiées à la production de différentes catégories de vins (AOC,  IGP, vins de qualité supérieure, vins non IG, etc.) sur la période 2009-2018.
+
 
 ## Les variables utilisées pour notre modèle
 
-Dans notre étude nous faisons face à un problème avec deux variables endogènes et trois variables exogènes.
+Une fois l’ensemble des données collectées, un important travail de traitement des données a été nécessaire à mettre en œuvre. 
+Tout d’abord, notre objectif principal était de concaténer les différentes bases de données entre elles. 
+Le premier obstacle qui est apparu est que chaque base de données ne portait pas toute sur la même période. 
+Il a fallu donc trouver une période d’étude commune entre les différentes bases. 
+Il est apparu que la période s’écoulant entre 2009 et 2017 était celle compatible avec les différentes bases de données. 
+Dans un premier temps, nous avons donc procédé à une élimination des observations se situant en dehors de cette période dans chacune des différentes bases de données.
 
-Variables endogènes : 
-- la quantité totale produite de vin rouge et blanc non IG par département (en hectolitres, en log), 
-- le prix moyen des vins rouges-blancs (idice, en log).
+Nous avons ensuite sélectionné les variables nécessaires à la mise en œuvre de notre analyse économétrique dans chaque base de données.
 
-Variables exogènes : 
-- le revenu médian par département (en euros par personne par année, en log), 
-- la surface agricole destinée aux vins de table (en hectares, en log),
-- la quantité des pesticides utilisés sur la vigne (indice, en log).
+Au niveau des variables endogènes de notre modèle matérialisant l’équilibre sur le marché des vins sans IG, nous avons sélectionné uniquement les variables de production se rapportant aux vins non IG dans la base de données de production du vin puis nous avons pris uniquement les variables de prix se rapportant à la même catégorie de vin dans la base de données correspondante. 
+Nous nous attendons à un effet positif du prix des vins non IG sur la quantité d’équilibre de vin dans l’équation d’offre mais à un effet négatif prix des vins non IG du côté de l’équation de demande. 
+Nous avons également calculé les quantités totales produites de vin non IG chaque mois en additionnant les quantités produites de vin-rouge et de vin blanc pour chaque département puis nous avons ensuite calculé les quantités moyennes de vin non IG produite chaque année par département afin de se placer au même niveau d’agrégation que dans les autres bases de données. 
 
-Au niveau des pesticides, on va s’intéresser plus particulièrement aux quantités de produits vendus par département entre 2009 et 2017 utilisés principalement sur les cultures viticoles. 
-Il faut faire preuve de vigilance sur le conditionnement des produits qui n’est pas exprimé dans la même unité au sein de cette base : en litres ou en kilos.
-Dans notre étude nous allons étudier l'impact de la masse totale des pésticides utilisés.
-Pour pouvoir le faire, nous créons un indice qui permet de prendre en compte les évolutions des differents types des produits à la fois.
-Nous créons un indice simple :
+Au niveau de la base de données des prix, nous avons pour chaque département déterminé le prix moyen des vins non IG sur la base d’une moyenne simple entre les prix des vins rouges-rosés non IG et ceux des vins blancs non IG.  
+Enfin, étant donné que le prix moyen des vins non IG correspond à une moyenne nationale, nous voulions concevoir artificiellement un estimateur de ce prix moyen pour chaque département. 
+Dans cet optique, nous avons créé en quelque sorte l’indice des prix du vin de table départementale, calculé de la manière suivante :
+
+\begin{equation*}
+  P = \frac{p_{rouge, t} q_{rouge, t} + p_{blanc, t} q_{blanc, t}}{p_{rouge, 0} q_{rouge, 0} + p_{blanc, 0} q_{blanc, 0}}
+\end{equation*}
+
+Avec $t$ étant l'année où la variable est mesurée.
+
+En ce qui concerne les variables exogènes influant sur l’offre de vin non IG, nous avons sélectionné uniquement les surfaces viticoles dédiés à la production de vin non IG. 
+Nous estimons que cette variable devrait avoir un impact positif sur la quantité d’équilibre de vin non IG puisque une augmentation des surfaces viticoles signifie qu’une plus quantité de vin non IG peut potentiellement être produite. 
+
+Au niveau de la base de données sur les ventes de pesticides, nous avons également agrégé les quantités vendues de chaque type de produit phytosanitaire afin d’obtenir à chaque fois deux valeurs pour chaque département et chaque année (2009 à 2017) : une quantité totale de pesticides vendues en litres puis une quantité totale de pesticides vendue en kilogrammes. 
+Comme nous pouvons le constater, il faut faire preuve de vigilance sur le conditionnement des produits qui n’est pas exprimé dans la même unité au sein de cette base : en litres ou en kilos. 
+Or, dans notre étude, nous chercher étudier l’impact de la masse totale des pesticides utilisés sur l’équilibre du marché du vin non IG. Pour pouvoir le faire, nous créons un indice qui permet de prendre en compte les évolutions des différents types des produits à la fois ce qui nous permet d’obtenir une variable unique pour représenter la quantité totale de pesticides vendue sur le marché.
+Cet indice simple est calculé de la manière suivante : 
 
 \begin{equation*}
   P = \frac{\sum_j p_{j, t} q_{j, t}}{\sum_j p_{j, 0} q_{j, 0}}
@@ -581,34 +601,37 @@ Nous créons un indice simple :
 
 Avec $j$ désignant le produit $j$, et $p$ étant un coefficient de pondération (dans le cas le plus simple $p = 1$).
 
-En ce qui concerne les données sur le prix du vin, on s’intéresse principalement au prix moyen des vins rouge- rosés et blancs sans IG (Indication Géographique) sur la période 2009-2017. 
-Ces prix sont déflatés par l’indice des prix à la consommation (base 100 en 2014). 
-On ne considère ici que le prix moyen déflaté au niveau national.
-Dans le deuxième modèle nous avons besoin de créer artificiellement un estimateur qui va varier par département.
-Dans ce but nous créons l'indice de prix du vin de table départementale, calculé de façon suivante :
+Nous estimons que la quantité totale de pesticides devrait exercer une influence positive sur la quantité d’équilibre des vins non IG étant donné que nous avons vu que les produits phytosanitaires constituent un intrant important pour la production de vin. En effet, ces produits sont utilisés sur les cultures viticoles pour les protéger ce qui permet d’améliorer leur rendement et par conséquent la quantité produite de vin.
 
-\begin{equation*}
-  P = \frac{p_{rouge, t} q_{rouge, t} + p_{blanc, t} q_{blanc, t}}{p_{rouge, 0} q_{rouge, 0} + p_{blanc, 0} q_{blanc, 0}}
-\end{equation*}
+En ce qui concerne les variables exogènes influant sur la demande de vin non IG, nous avons sélectionné uniquement le niveau de revenu médian des ménages, exprimé au niveau départemental (laquelle, si besoin nous pourrions facilement agréger au niveau national) au sein de la base de données de la population que nous avons préalablement importé. Cette variable est, comme dans notre base de données sur les prix moyens des vins,  déflatée de l’indice des prix à la consommation (base 100 en 2014). En terme d’effet attendu sur l’équilibre du marché du vin non IG, nous estimons qu’elle devrait influer positivement sur la quantité d’équilibre des vins non IG. En effet, une hausse du revenu des ménages se traduirait par une hausse de leur pouvoir d’achat et donc une augmentation de la demande potentielle adressée aux vins non IG si bien que cela se répercuterait soit sur la quantité d’équilibre par une hausse de la production pour répondre à la demande supplémentaire soit sur le prix d’équilibre des vins non IG qui augmenterait.
 
-Avec $t$ étant l'anée au période $t$.
+Une fois la sélection et la construction des variables finalisée, il s’est avéré alors possible de concaténer les différentes bases pour obtenir une base de données unique en panel qui nous fait office d’appui pour la bonne conduite de notre étude économétrique et statistiques. Nous avons ensuite restreint notre champ d’analyse à la période s’écoulant entre 2012 et 2016 car nous avons constaté qu’il manquait certaines données par rapport à certaines variables dans les autres périodes. 
+Le nombre de périodes devient donc plutôt pauvre (on passe d’une échelle de 8 années à une échelle de 5 années) mais l’intérêt de cette démarche est de pouvoir disposer d’un panel « cylindré » (nombre de mesures respectifs de chaque variable de la base de données identique pour chaque département). 
+Nous avons également éliminé les départements non producteurs de vin non IG  puisqu’ils se trouvent alors en dehors du cadre d’analyse de notre étude économétrique (pas d’offre de vin non IG dans ces départements puisque nous estimons que tout le vin produit dans chaque département est consommé dans le même département : pas de mobilité des produits entre les départements). 
+Au final, il y a 69 départements producteurs de vin non IG que nous avons inclut dans notre base de donnée finale. 
+Nous avons également exclut la Corse de notre champ d’analyse même si cette région est productrice de vin car le comportement du marché du vin dans cette région est relativement atypique par rapport à l’ensemble des départements français métropolitains. 
+L’inclure dans notre analyse risquerait alors de biaiser nos résultats d’estimation et de formuler des interprétations erronées. Pour un récapitulatif des différentes 
 
-Au niveau des données sur la population, la variable qui nous intéresse ici est relative au niveau de revenu, exprimée au niveau départemental (laquelle, si besoin nous pourrions facilement aggréger au niveau national). 
-Plus précisément, on va utiliser le revenu médian par département.
-Il est aussi déflatée de l’indice des prix à la consommation (base 100 en 2014).
+En ce qui concerne la forme que doivent prendre l’ensemble des variables de notre base de données dans notre modèle économétrique,  nous avons décidé  de leur faire subir une transformation logarithmique, ce qui nous permet ainsi de pouvoir interpréter les effets estimés plus facilement. 
+Nous obtenons ainsi un modèle à équations simultanées sous forme logarithmique où nous pouvons traiter les estimateurs obtenus comme l’élasticité de la demande/l’offre par rapport à des facteurs différents. 
+Concrètement, dans notre étude économétrique, nous cherchons spécifiquement à estimer l’élasticité de la quantité d’équilibre de vin non IG par rapport à la quantité de pesticides vendue sur le marché. 
+De plus, l’intérêt de cette transformation logarithmique réside aussi dans le fait qu’elle permet de réduire la variance des résidus de notre modèle économétrique et donc de réduire ainsi le risque d’hétéroscédasticité (variance non constante de l’erreur)
 
-Toutes les variables subissent une transformation logarithmique, ce qui nous permet d'interpreter les effets estimés plus facilement. 
-Pour un modèle logarithmique nous pourrions traiter les estimateurs obtenus comme l'elasticité de la demande/l'offre par rapport à des facteurs differents. 
-Ainsi, nous cherchons particulièrement l'élasticité des quantités offertes sur le marché par rapport à la quantité des pesticides utilisés.
+Nous pouvons résumer les propriétés de notre base de données finale de la manière suivante :
 
-Les propriétés de ces données sont les suivantes :
+- Une base de données en panel “cylindrée”.
+- Nombre d’individus large (69 départements producteurs de vin de table) combiné à un nombre de périodes pauvre (5 années : de 2012 à 2016).
+- Chacune des variables de notre base de données varie par département et par année.
+- La pluspart des variable est exprimée à l’échelle logarithmique (sauf les indices des prix et de quantité des pésticides utilisés)
 
-- Toutes les variables varient par département et par année.
-- Le période temporelle comprise dans notre échantillon est de 2012 à 2016.
-- Nous ne considérons que les régions produisant du vin. 
-- Nous éliminons les effets fixes pour en substrayant les moyennes départamentales.
-- Données en panel "cylindrées".
-- Nombre des individus large (69 départements, qui produisent le vin simple et qui utilisent des pesticides) et le nombre des périodes pauvre (5 périodes).
+- 2 variables endogènes :
+    - la quantité totale produite de vin rouge et blanc non IG par département(en hectolitres, en log)
+    - le prix moyen des vins rouges-blancs (indice).
+
+- 3 variables exogènes : 
+    - le revenu médian par département (en euros par personne par année, en log),
+    - la surface agricole destinée aux vins de table (en hectares, en log),
+    - la quantité des pesticides utilisés sur la vigne (indice).
 
 # 5. L'étude statistique
 

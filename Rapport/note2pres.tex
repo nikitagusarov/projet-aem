@@ -29,7 +29,6 @@
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
-\usepackage{longtable,booktabs}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -1120,6 +1119,16 @@ des pesticides, ce qui est tout à fait naturel.
 \hypertarget{modelisation}{%
 \section{6. Modèlisation}\label{modelisation}}
 
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
+\textcolor{red}{Ajouter des liens avec des études méthodologiques precedents.}
+
+\noindent
+
+\rule[0.5ex]{\linewidth}{1pt}
+
 Cette partie du travail abordera la formulation économétrique de notre
 problème. Nous allons débuter par la présentation des notions théoriques
 utilisées dans ce travail, suivis par la formalisation économétrique du
@@ -1382,7 +1391,7 @@ RMSE         & 0.29          & 0.58         \\
 \hline
 \multicolumn{3}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
-\caption{Statistical models}
+\caption{Modèles économétriques, variable dépendante - la quantité du vin vendu (en log)}
 \label{table : ols et ivols}
 \end{center}
 \end{table}
@@ -1520,7 +1529,7 @@ Num. obs. (total)   & 690          & 690            \\
 \hline
 \multicolumn{3}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
-\caption{Statistical models}
+\caption{Modèles économétriques, variable dépendante - la quantité du vin vendu (en log)}
 \label{table : sur et 3sls}
 \end{center}
 \end{table}
@@ -1723,7 +1732,7 @@ RMSE         & 0.14         & 0.21        & 0.39     & 0.39     & 0.23          
 \hline
 \multicolumn{7}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
-\caption{Statistical models}
+\caption{Modèles économétriques, variable dépendante - la quantité du vin vendu (en log)}
 \label{table : ols et ivols clusters}
 \end{center}
 \end{table}
@@ -1791,7 +1800,7 @@ Num. obs. (total)   & 290          & 290           & 10         & 10         & 3
 \hline
 \multicolumn{7}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
-\caption{Statistical models}
+\caption{Modèles économétriques, variable dépendante - la quantité du vin vendu (en log)}
 \label{table : sur et 3sls clusters}
 \end{center}
 \end{table}
@@ -1824,51 +1833,53 @@ logique.
 \hypertarget{conclusion}{%
 \section{9. Conclusion}\label{conclusion}}
 
-Nous avons étudié et comparé plusieurs modèles differents qui visent à
-étudier les effets d'utilisation des pésticides sur l'offre du vin de
-table. Nous constatons, que parmis toutes les modèles, le meilleur
-éstimateur des effets moyens par département est obtenus avec un simple
-modèle OLS en absence des effets d'intéraction avec la demande ou
-l'éndogeneité des prix. Ce fait est souténu par les hypothèses
-théoriques sur le fonctionnement du marché des vins simples disponibles
-dans la litérature. Les agriculteurs proposant du vin simples sont dans
-la pluspart des cas preneurs des prix offerts par les distributeurs, ce
-qui explique l'exogénéité des prix. Le même fait explique l'absence des
-interactions entre l'offre et la demande, car les grands enseignes
-achetes le vin simple sous conditions \emph{take or leave} (ce qui n'est
-pas vrai pour les autres types du vin).
+Nous avons étudié et comparé plusieurs modèles distincts qui visent à
+apprécier les effets d'utilisation des pesticides sur l'offre de vin de
+table. Nous constatons, que parmi tout ces modèles, le meilleur
+estimateur des effets moyens par département est obtenu à travers un
+simple modèle OLS en absence d'effets d'interaction avec la demande de
+vin de table ou d'éndogénéité des prix. Ce fait est soutenu par les
+hypothèses théoriques sur le fonctionnement du marché des vins simples
+disponibles dans la littérature. Les agriculteurs proposant du vin
+simples sont dans la plupart des cas preneurs des prix offerts par les
+distributeurs, ce qui explique l'exogénéité des prix. Le même fait
+explique l'absence des interactions entre l'offre et la demande, car les
+grands enseignes achetes le vin simple sous conditions \emph{take or
+leave} (ce qui n'est pas vrai pour les autres types du vin).
 
-L'analyse des données clustérisés permet d'observer une certaine faible
-degré d'hétérogénéité entre les départements et les effets d'utilisation
-des pésticides sur l'offre du vin ne sont pas évidents que pour une
-grouppe de entités étudiés.
+L'analyse des données clusterisées permet d'observer un degré
+d'hétérogénéité relativement faible entre les départements. De plus, les
+effets d'utilisation des pesticides sur l'offre de vin ne sont
+clairement identifiables que pour un groupe spécifique d'entités
+étudiées.
 
-Les résultats obtenus dans cette étude confirment des résultats d'autres
-chercheurs, ainsi bien que les suppositions théorique sur le rôle des
-pésticides dans la commerce du vin. Plus precisement les pésticides sont
-utilisé par les viticulteurs pour minimiser les pertes causé par les
-maladies, fungi etc. Nous captons ce fait en éstimant le modèle
-d'équilibre du marché de vin simple
+Les résultats obtenus dans cette étude confirment des résultats obtenus
+par d'autres chercheurs, ainsi que les suppositions théoriques sur le
+rôle des pesticides dans le commerce du vin. Plus precisement, les
+pesticides sont utilisés par les viticulteurs pour minimiser les pertes
+causées par les maladies, les fongicides\ldots{} etc. Nous captons ce
+phénomène en estimant le modèle d'équilibre du marché du vin simple.
 
 Nous devons également souligner que le modèle presenté dans ce travail
-est loin d'une perfection absolue. Plusieurs problèmes reestent
-non-traité ou non-résolus. Parmis ces problèmes nous pouvons citer: un
-faible nombre d'observations sur la dimention temporelle, presence
-d'heteroscedacité dans les résidus, non-normalité des résidus, des
+est loin de frôler la perfection absolue. Plusieurs problèmes restent
+non-traité ou non-résolus. Parmi ces problèmes nous pouvons citer: un
+faible nombre d'observations sur la dimention temporelle, la présence
+d'heteroscedasticité dans les résidus, la non-normalité des résidus, des
 variables omises, dess instruments faibles, etc. Toutefois, nous avons
-reussi de capter la tendance principale dans le comprotement de l'offre
-face à l'utilisation des pesticides par les agriculteurs. Ils peut être
-interessant d'étudier ces point et traiter ces problèmes revelés dans
-les études futurs.
+reussi à capter la tendance principale dans le comportement de l'offre
+face à l'utilisation des pesticides par les agriculteurs. Il peut donc
+s'avérer interessant d'étudier ces aspects et de traiter ces problèmes
+revelés dans de futures études.
 
-Pour des chercheurs futurs nous conseillerons d'étudier directement
-l'impact des pésticides sur la production et non sur l'équilibre du
-marché, parce que, comme nous avons vu des nos résultats, la
-modèlisation du marché par des équation simultanées ne nous permet pas
-d'ameillorer significativement nos estimateurs. Ce qui est plus
-important, vu le nombre faible des variables explicatives et des défauts
-possibles dans la spécification du modèle, dans notre étude ces modèles
-se prouvent d'être innefficaces et ne donne pas des résultats fiables.
+Pour de futures recherches, nous conseillerons d'étudier directement
+l'impact des pesticides sur la production et non sur l'équilibre du
+marché parce que, comme nous avons pu le constater dans nos résultats,
+la modélisation du marché via des équations simultanées ne nous permet
+pas d'améliorer significativement nos estimateurs. Ceci constitue un
+point important, étant donné le faible nombre de variables explicatives
+sélectionnées et les défauts potentiels dans la spécification de notre
+modèle, dans notre étude ces modèles se prouvent d'être innefficaces et
+ne donne pas des résultats fiables.
 
 \newpage
 
@@ -1877,7 +1888,7 @@ se prouvent d'être innefficaces et ne donne pas des résultats fiables.
 
 \hypertarget{a-les-statistiques-descriptives}{%
 \subsection{A Les statistiques
-déscriptives}\label{a-les-statistiques-descriptives}}
+descriptives}\label{a-les-statistiques-descriptives}}
 
 \hypertarget{a1-les-moyennes-par-departement}{%
 \subsubsection{A1 Les moyennes par
@@ -1900,14 +1911,14 @@ département}\label{a1-les-moyennes-par-departement}}
 
 \hypertarget{a2-letude-des-interdependances}{%
 \subsubsection{A2 L'étude des
-interdependances}\label{a2-letude-des-interdependances}}
+interdépendances}\label{a2-letude-des-interdependances}}
 
 La premier de cet annexe combrend les résultats pour les données
 telles-quelles, le deuxieme par contre integre les résultats pour les
 données sous la trasformation \emph{within}.
 
 \hypertarget{a2.1-information-complete}{%
-\paragraph{A2.1 Information complete}\label{a2.1-information-complete}}
+\paragraph{A2.1 Information complète}\label{a2.1-information-complete}}
 
 \FloatBarrier
 
@@ -2094,8 +2105,8 @@ Equation d'offre & $0$ & $0$ \\
 
 \FloatBarrier
 
-\hypertarget{b5-diagnostiques-iv-ols}{%
-\subsubsection{B5 Diagnostiques IV-OLS}\label{b5-diagnostiques-iv-ols}}
+\hypertarget{b5-diagnostics-iv-ols}{%
+\subsubsection{B5 Diagnostics IV-OLS}\label{b5-diagnostics-iv-ols}}
 
 \FloatBarrier
 
@@ -2152,7 +2163,7 @@ Num. obs. (total)   & 690          & 690            & 690            & 690      
 \hline
 \multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
-\caption{Statistical models}
+\caption{Modèles économétriques, variable dépendante - la quantité du vin vendu (en log)}
 \label{table : sur, 2sls, 3sls and fiml}
 \end{center}
 \end{table}
@@ -2162,7 +2173,7 @@ Num. obs. (total)   & 690          & 690            & 690            & 690      
 \newpage
 
 \hypertarget{c2-independance-des-residus}{%
-\subsubsection{C2 Independance des
+\subsubsection{C2 Indépendance des
 résidus}\label{c2-independance-des-residus}}
 
 \FloatBarrier
@@ -2234,9 +2245,9 @@ Equation d'offre & $0.683$ & $0.637$ & $0.638$ & $0.638$ \\
 
 \FloatBarrier
 
-\hypertarget{c4-test-de-lheteroskedacite}{%
+\hypertarget{c4-test-de-lheteroscedasticite}{%
 \subsubsection{C4 Test de
-l'hétéroskedacité}\label{c4-test-de-lheteroskedacite}}
+l'hétéroscedasticité}\label{c4-test-de-lheteroscedasticite}}
 
 \FloatBarrier
 
@@ -2319,17 +2330,20 @@ modèles}\label{c6-comparaison-des-modeles}}
 
 \FloatBarrier
 
-\begin{longtable}[]{@{}rrrrr@{}}
-\toprule
-\#Df & LogLik & Df & Chisq & Pr(\textgreater Chisq)\tabularnewline
-\midrule
-\endhead
-8 & 816.0971 & NA & NA & NA\tabularnewline
-6 & -514.9105 & -2 & 2662.0151 & 0\tabularnewline
-8 & -504.9661 & 2 & 19.8887 & 0\tabularnewline
-8 & -505.6559 & 0 & 1.3797 & 0\tabularnewline
-\bottomrule
-\end{longtable}
+\begin{table}[ht]
+\centering
+\begin{tabular}{c|ccccc}
+  \hline
+ & \#Df & LogLik & Df & Chisq & Pr($>$Chisq) \\ 
+  \hline
+1 & 8 & 816.10 &  &  &  \\ 
+  2 & 6 & -514.91 & -2 & 2662.02 & 0.0000 \\ 
+  3 & 8 & -504.97 & 2 & 19.89 & 0.0000 \\ 
+  4 & 8 & -505.66 & 0 & 1.38 & 0.0000 \\ 
+   \hline
+\end{tabular}
+\caption{ML test de spécification} 
+\end{table}
 
 \FloatBarrier
 
@@ -2358,9 +2372,9 @@ Les groupes sont définies par des caractéristiques suivantes :
 \hline \\[-1.8ex] 
  & qi & ipi & si & ri & iki & .1 \\ 
 \hline \\[-1.8ex] 
-1 & $10.609$ & $1.393$ & $6.705$ & $9.880$ & $1.273$ & $27$ \\ 
-2 & $4.340$ & $1.622$ & $1.098$ & $9.870$ & $1.284$ & $8$ \\ 
-3 & $7.468$ & $1.416$ & $4.345$ & $9.905$ & $1.238$ & $34$ \\ 
+1 & $8.245$ & $1.235$ & $4.914$ & $9.914$ & $1.213$ & $30$ \\ 
+2 & $5.445$ & $1.872$ & $2.395$ & $9.882$ & $1.290$ & $18$ \\ 
+3 & $10.940$ & $1.332$ & $7.000$ & $9.867$ & $1.290$ & $21$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
@@ -2388,16 +2402,16 @@ Les groupes sont définies par des caractéristiques suivantes :
 3 & 0.049743 & 0.107731 & -0.01841 & -0.006913 & 0.122468 & 29 & 1 & 3 \\ 
 4 & -0.032737 & 0.065232 & -0.147634 & 0.004155 & -0.089222 & 29 & 1 & 4 \\ 
 5 & 0.262272 & 0.562683 & 0.038803 & 0.015506 & 0.196468 & 29 & 1 & 5 \\ 
-6 & -1.595397 & -7.941881 & -0.261529 & -0.02149 & -0.049931 & 1 & 2 & 1 \\ 
-7 & 0.253285 & -1.404496 & -0.153318 & 0.001641 & -0.013255 & 1 & 2 & 2 \\ 
-8 & 0.529538 & 2.487263 & 0.747453 & -0.004844 & 0.080087 & 1 & 2 & 3 \\ 
-9 & 0.936501 & 9.608734 & 0.226164 & 0.006494 & -0.034652 & 1 & 2 & 4 \\ 
-10 & -0.123927 & -2.749621 & -0.55877 & 0.018199 & 0.017751 & 1 & 2 & 5 \\ 
-11 & 0.098311 & -0.291704 & 0.206247 & -0.01031 & -0.27852 & 39 & 3 & 1 \\ 
-12 & 0.223902 & 0.18426 & 0.174215 & 0.002905 & -0.108882 & 39 & 3 & 2 \\ 
-13 & 0.283634 & 0.373141 & 0.059067 & -0.006982 & 0.141058 & 39 & 3 & 3 \\ 
-14 & 0.086134 & 0.306445 & -0.065995 & 0.002333 & -0.059896 & 39 & 3 & 4 \\ 
-15 & -0.691981 & -0.572142 & -0.373534 & 0.012054 & 0.30624 & 39 & 3 & 5 \\ 
+6 & 0.098311 & -0.291704 & 0.206247 & -0.01031 & -0.27852 & 39 & 2 & 1 \\ 
+7 & 0.223902 & 0.18426 & 0.174215 & 0.002905 & -0.108882 & 39 & 2 & 2 \\ 
+8 & 0.283634 & 0.373141 & 0.059067 & -0.006982 & 0.141058 & 39 & 2 & 3 \\ 
+9 & 0.086134 & 0.306445 & -0.065995 & 0.002333 & -0.059896 & 39 & 2 & 4 \\ 
+10 & -0.691981 & -0.572142 & -0.373534 & 0.012054 & 0.30624 & 39 & 2 & 5 \\ 
+11 & -1.595397 & -7.941881 & -0.261529 & -0.02149 & -0.049931 & 1 & 3 & 1 \\ 
+12 & 0.253285 & -1.404496 & -0.153318 & 0.001641 & -0.013255 & 1 & 3 & 2 \\ 
+13 & 0.529538 & 2.487263 & 0.747453 & -0.004844 & 0.080087 & 1 & 3 & 3 \\ 
+14 & 0.936501 & 9.608734 & 0.226164 & 0.006494 & -0.034652 & 1 & 3 & 4 \\ 
+15 & -0.123927 & -2.749621 & -0.55877 & 0.018199 & 0.017751 & 1 & 3 & 5 \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
@@ -2410,7 +2424,7 @@ Les groupes sont définies par des caractéristiques suivantes :
 \paragraph{D1.3 Les centres pour l'information
 complete}\label{d1.3-les-centres-pour-linformation-complete}}
 
-Les groupes sont définies par des caractéristiques suivantes :
+Les groupes sont définit par les caractéristiques suivantes :
 
 \FloatBarrier
 
@@ -2445,9 +2459,9 @@ Les groupes sont définies par des caractéristiques suivantes :
 
 \newpage
 
-\hypertarget{d2-les-modeles-en-absence-des-interaction-du-marche}{%
-\subsubsection{D2 Les modèles en absence des intéraction du
-marché}\label{d2-les-modeles-en-absence-des-interaction-du-marche}}
+\hypertarget{d2-les-modeles-en-absence-d-interactions-du-marche}{%
+\subsubsection{D2 Les modèles en absence d' intéractions du
+marché}\label{d2-les-modeles-en-absence-d-interactions-du-marche}}
 
 \hypertarget{d2.1-le-comportement-des-residus}{%
 \paragraph{D2.1 Le comportement des
