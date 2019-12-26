@@ -302,7 +302,7 @@ Mais, cet indicateur connaît lui aussi une hausse de 15% entre 2011 et 2017.
 Néanmoins, les politiques ont quand même eu quelques effets positifs, puisque l’achat des produits les plus dangereux baisse de 6% en 2017. [@Moghaddam2019] 
 Les grandes cultures sont les premières utilisatrices de pesticides. 
 Elles représentent 67,4% de l’utilisation de pesticides. 
-La deuxième culture est celle de la vigne ce qui représente 14,4%  des pesticides utilisés.[@Butault2011]
+La deuxième culture est celle de la vigne ce qui représente 14,4%  des pesticides utilisés [@Butault2011], ce qui la rend d'un intérét particulier à étudier.
 
 ## Comment baisser l'utilisation de pesticides
 
@@ -314,8 +314,12 @@ On peut en retenir trois principaux.
 - l’agriculture raisonnée, qui limite le recours aux pesticides en fonction de seuils ;
 - l’agriculture biologique, qui vise à supprimer les traitements avec des produits phytosanitaires de synthèse. 
 
+Quand même ces méthodes sont difficiles à mettre en place dan la viticulture, ce qui nous amêne eu problème de comprehension des raisons pour lesquels les agriculteur utilisent les pésticides.
 Les professionnels proposent de commencer par utiliser l’agriculture raisonnée en viticulture qui permetra de réduire les doses de pesticides légales. 
 Ensuite l’agriculture doit se déplacer vers l’agriculture biologique qui n’utilise aucun produit phytosanitaire de synthèse. 
+Ces proposition sont purement théoriques et on connait pas encore des téchniques pour influencer le comportement des viticulteurs. 
+Un des méchanismes possibles est le méchanisme du marché. 
+En manipulant l'offre et la demande du vin le but est théoriquement atteignable. 
 
 # 2. Le marché du vin français
 
@@ -330,15 +334,19 @@ La France est aussi l’un des principaux consommateurs de vins. En effet, en Fr
 
 ## Utilisation des pesticides dans la viticulture
 
-La viticulture est le deuxième secteur agricole en termes d’utilisation des pesticides. En effet, elle représente plus de 14.4% des dépenses de produits phytosanitaires,  en France. Néanmoins, ces pesticides ne sont pas utilisés dans la même proportion dans toutes les régions de France. [@Butault2011] 
+Nous avons déjà montré que la viticulture est le deuxième secteur agricole en termes d’utilisation des pesticides. En effet, elle représente plus de 14.4% des dépenses de produits phytosanitaires,  en France. Néanmoins, ces pesticides ne sont pas utilisés dans la même proportion dans toutes les régions de France. [@Butault2011] 
 
 Les bassins viticoles Français utilisent en majorité des fongicides et des bactéricides. En effet, la vigne fait face à des aléas climatiques qui permettent le développement de champignons comme le Mildiou. [@Pujol2017] 
 Pour lutter contre le développement de ces champignons, les viticulteurs ne peuvent utiliser que des fongicides. En effet, ils ne peuvent pas utiliser la rotation des cultures qui pourraient réduire ou empêcher le développement de ces champignons puisque la vigne est une culture pérenne. Les pieds de vigne ne sont pas replantés chaque année. Il est donc nécessaire d’utiliser les pesticides dans la vigne pour protéger la production et éviter les pertes. En effet, les champignons s’attaquent aux feuilles de la vigne et aux fruits. Donc la pulvérisation de pesticides est un des seuls moyens pour protéger les rendements des cultures viticoles.  Néanmoins, l’utilisation des pesticides a aussi un impact du côté de la demande de vin. Cet impact est plus ambigu, à cause d’un manque de transparence d’information sur les bouteilles de vin. [@Prudent2018]
 
 Un sondage de l’Ifop sur les habitudes et perceptions de consommation des Français a montré que 93% des Français considèrent que la présence de pesticides dans les aliments a un impact sur la santé. 89% des Français souhaiteraient être informés de la présence ou non de pesticides dans les produits alimentaires, à travers un étiquetage. [@Ifop2017]
 
+Il est particulierement interressant et avantageux d'étudier le marché du vin afin d'identifier les méchanismes eventuelles d'influence sur le montant des pésticides utilisé dans la production. 
+Dans cette étude nous visons à comprendre les méchanismes figurant dans ces rélations.
+
 ## Le problème d'hétérogénéité
 
+Mais comment étudier le marché du vin ?
 Le secteur du vin est constitué de produits qui sont fortement hétérogènes.
 En effet, il existe une forte hétérogénéité entre les différents labels (AOP, IGP, sans IG) mais aussi au sein de ces labels. 
 
@@ -356,8 +364,9 @@ En tenant compte des spécificités du marhcé du vin français, nous utilisons 
 - La gamme basse (les vins sans IG, vendus en grands surfaces).
 
 La première partie est soumise à des règlements spécifiques : limitations des quantités produites, origine contrôlé, un caractère de la demande spécifique. 
-La deuxième, c'est-à-dire le marché des vins moins chers, est aussi complexe. Néanmoins, elle demeure moins hétérogène @cembalo2014. En effet, les vins qui se situent dans une fourchette de prix étroite sont quasiment homogènes. Ainsi, les vins sans indication géographique ont des attributs intrinsèques simples, une complexité de qualité faible. Il s’agit donc de vins peu différenciés. Nous avons, donc, choisit de nous concentrer sur ces vins sans indication géographique à cause de leur degré d’homogénéité qui est plus fort que pour les autres labels.
+De plus, les viticulteurs peuvent être réticents de changer son processus de production déjà rafiné au maximum de peur d'avoir des pertes de qualité.
 
+La deuxième, c'est-à-dire le marché des vins moins chers, est un peu plus simple et comprehensible. Néanmoins, elle demeure moins hétérogène @cembalo2014. En effet, les vins qui se situent dans une fourchette de prix étroite sont quasiment homogènes. Ainsi, les vins sans indication géographique ont des attributs intrinsèques simples, une complexité de qualité faible. Il s’agit donc de vins peu différenciés. Nous avons, donc, choisit de nous concentrer sur ces vins sans indication géographique à cause de leur degré d’homogénéité qui est plus fort que pour les autres labels.
 Cela nous permet d'analyser le marché par département est non par des marques/produits.
 
 ## Les vins de table
@@ -374,50 +383,37 @@ Le marché des vins sans indication géographiques connaît de forte variation. 
 
 ## Les hypothèses théoriques
 
-\noindent\rule[0.5ex]{\linewidth}{1pt}
-
-\textcolor{red}{Ajouter les réferences ...}
-
-\noindent\rule[0.5ex]{\linewidth}{1pt}
-
 Comme proposé dans la littérature, notre étude sur les vins non coûteux (non IGP) est effectuée au niveau du pays @cembalo2014 pour deux raisons. 
 D'abord, les prix de vente moyens des marchés sont diffèrents en raison des droits de douane à l'importation et des taxes à la consommation différentes [@anderson2011global].
 De plus, la perception des produits de consommation varie d'un pays à l'autre [@makela2006].
 
-Rachat du vin par les enseignes (grand surfaces) ... @kremer2004
+Rachat du vin par les enseignes (grand surfaces) peut avvoir une impact sur l'offre du vin. 
+Nous étudions deux cadres differents en les comparant dans ce travail.
+Un type des intéractions pose que les prix sont éxogènes pour les fournisseurs du vin simple, comme cela fut démontré par @kremer2004.
+L'autre possibilité suppose qu'il existent quand même des intercations entre l'offre et la demande et que les prix du vin sont endogènes. 
+Nous devrions trouver une façon pour formaliser ces deux approches differents et pouvoir les comparer.
 
 La plupart des bouteilles achetées sont achetées dans la grande distribution. 
-Néanmoins, dans un souci de simplicité nous estimerons que les consommateurs achètent leurs bouteilles directement auprès du viticulteur. 
-Donc nous supprimerons tous les intermédiaires entre le producteur et le marché final.
+Néanmoins, dans un souci de simplicité nous n'estimerons que la situation sur le marché en amont où les distributeurs achètent leurs bouteilles directement auprès du viticulteur (nous simulons l'indice des prix en amont à partir des prix sur le marché final, disponible dans la base des données de FranceAgrimer). 
+Donc nous supprimerons tous les intermédiaires entre le producteur et le distributeur (les grands enseignes, puisque presque la totalité du vin simple est vendu dans les grand surfaces).
 
 Quand aux exportations et aux importations, n'ayant pas la possibilité contrôler le montant des vins non IGP exportés/importés, nous laissons ces effets au terme d'erreur. 
 Nous ignorons complétement les interactions internationales. 
+Nous simplifions davantage notre modèle en imposant l'abcese des flux du vin entre le département (ce qui peut être justifié si le grand enseignes rachetent le vin auprès de viticulteurs et seulement après le rédistribuent aux sein de leurs chaines).
 
 ```{r include = FALSE}
 # Il existe indéniablement, au sein de la grande distribution, une offre différenciée par format de vente : les hypermarchés se sont plutôt spécialisés dans le haut et le milieu de gamme avec une sur-représentation des VQPRD, les supermarchés ont privilégié les AOC à bas prix et les vins de table et de pays tandis que le hard discount se spécialisait dans le bas de gamme
 ```
 
-Facteurs de production ... @laporte1996 
-
-```{r include = FALSE} 
-# Les variables explicatives retenues ont été regroupées en cinq catégories :
-# - un indicateur du portefeuille d'appellations : son contenu a été présenté et largem ent commenté aux § 22 et 31 ;
-# - un indicateur de stratégie technique : il s'agit soit du rendement, soit de la politique de rendem ent ;
-# - un indicateur de stratégie commerciale : la part de la production vendue en bouteilles ;
-# - la surface de l'exploitation en vigne, en hectare ; cette information est issue ici de la déclaration de récolte qui est effectuée chaque année ;
-# - un indicateur du coût de la main-d'oeuvre à l'hectare dont il n'a pu être déterm in é jusqu'à présent qu'une prem ière approxim ation, m ais pour laquelle u n effort a été fait afin de prendre en compte la rém unération du personnel familial (les détails du calcul sont fournis en annexe). Son effet sur le coût est naturellem ent évident, au même titre que les coûts en équipements.
-```
-
-Les coûts des viticulteurs ... @laporte1996
-
-Facteurs influençant le prix ... @outreville2010
+Nous supposons que les facteurs de production jouent le rôle de modificateur de l'offre (*supply shifter*) ce qui nous permet d'integrer les variables déterminant le niveau de la production (telles que la surface ou la quantité des pésticides utilisée) directement dans l'équation de l'offre.
+Pour l'information sur les facteurs de production du vin nous referençons les articles de @laporte1996 et de @outreville2010.
 
 Avant de conclure, nous proposons au lecteur une liste exhaustive des suppositions sur le comportement du marché des vins simples. 
 Premièrement, nous supposons que chaque département à une fonction de production unique détérminée par des spécificités historiques, les traditions, la législation, le terroir, ainsi que des conditions météorologiques et géographiques.
 Les effets sont fixes au niveau départamental et peuvent être isolés par des transformations spécifiques des données (ex : une transformation Within).
-Deuxièmement, la quantité vendu sur le marché départamental est consommé au sein du même département. 
+Deuxièmement, la quantité vendu sur le marché départamental est racheté (consommé) au sein du même département. 
 C'est une hypothèse très restrictive, qui nous eloigne de la réalité, mais nous devrions l'adopter si nous voulons intégrer les relations entre l'offre et la demande dans notre modèle. 
-Afin de vérifier cette hypothèse nous allons construire deux modèles différents.
+Afin de vérifier cette hypothèse nous allons construire plusieurs modèles différents.
 Finalement, les effets qu'on vise à estimer sont des effets moyens au niveau départamental.
 C'est à dire nous allons obtenir un estimateur des effets moyens pour l'ensemble des département inclus dans notre analyse, ou des effets moyens au sein des groupes de département, si nous révèlons des differences significatives entre les départements. 
 Un autre modèle nous permettra de vérifier et justifier cette hypothèse.
@@ -432,7 +428,7 @@ Puis, nous pourrons choisir entre ces modèles differents le plus vraisamblable,
 
 ## Formalisation 
 
-En formalisant notre modèle théorique de base, nous posons, que l'offre agregée pour toute la France est donnée identiquement par l'équation suivante : 
+En formalisant notre modèle théorique de base, nous posons, que l'offre agregée pour toute la France est donnée par l'équation suivante : 
 
 \begin{equation}
     Qo = \sum_{i = 1}^{N} qo_i
@@ -444,9 +440,13 @@ Avec la quantité offerte déterminé par des contraintes de production et le pr
     qo_i = a_i + b_i Po_i + c_i X_i
 \end{equation}
 
-Où $X$ est un vecteur des variables explicatives influençant la production. Dans le cas le plus simple nous ne prenons en compte que les quantités des pesticides utilisées et la surface disponible, alors l'effet $c_{i1} : c_i = (c_{i1}, c{i2})$ represente l'effet d'utilisation des pesticides dans la production du vin sur l'offre de ce dernier.
+Où $X$ est un vecteur des variables explicatives influençant la production. 
+Dans le cas le plus simple nous ne prenons en compte que les quantités des pesticides utilisées et la surface disponible, alors l'effet $c_{i1} : c_i = (c_{i1}, c{i2})$ represente l'effet d'utilisation des pesticides dans la production du vin sur l'offre de ce dernier.
 
-Cette équation permet déjà d'estimer les effets de l'utilisation des pesticides sur le marché du vin. 
+Cette équation permet déjà d'estimer les effets de l'utilisation des pesticides sur le marché du vin.
+Toutefois il existent deux possibilités sur l'organisation du marché dans ce cas. 
+D'abord, dans le cadre le plus simple et probable du point de vue théorique nous supposons, suivant les résultats de @kremer2004, que les prix sont imposés par les grands enseignes aux distriduteurs du vin simple. 
+D'autre cotè nous povons supposer que les prix sont endogenes parce qu'ils sont négocié entre le distributeur et le producteur.
 Appelons ce modèle théorique M1 pour le réfèrencer dans le futur, nous permettant de distinguer le cas sans intéractions simultanées entre l'offre et la demande. 
 
 Il faut tenir compte que de cette façon nous ignorons plusieurs effets pervers, tels que :
@@ -557,18 +557,6 @@ Nous avons utilisé les bases des données suivantes pour notre analyse :
 - Les données sur la production de vin (SSM Finances Publiques)
 
 ## Les variables utilisées pour notre modèle
-
-\noindent\rule[0.5ex]{\linewidth}{1pt}
-
-\textcolor{red}{Réverifier tous les sources et la naure des données ...}
-
-\textcolor{red}{Expliciter la procedure de création des variables}
-
-\textcolor{red}{Preciser les effets attendus des variables}
-
-\textcolor{red}{Discuter les externalités (ou c'est mieux de l'inclure dans la partie théorique ? ou contextualisation ? A VOIR)}
-
-\noindent\rule[0.5ex]{\linewidth}{1pt}
 
 Dans notre étude nous faisons face à un problème avec deux variables endogènes et trois variables exogènes.
 
