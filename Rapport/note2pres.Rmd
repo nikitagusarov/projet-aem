@@ -820,12 +820,6 @@ Finalement, nous remarquons une corrélation négative entre la surface cultivé
 #####################################################
 ```
 
-\noindent\rule[0.5ex]{\linewidth}{1pt} 
-
-\textcolor{red}{Ajouter des liens avec des études méthodologiques precedents.}
-
-\noindent\rule[0.5ex]{\linewidth}{1pt}
-
 Cette partie du travail abordera la formulation économétrique de notre problème.
 Nous allons débuter par la présentation des notions théoriques utilisées dans ce travail, suivis par la formalisation économétrique du modèle théorique que nous avons spécifié dans la séction 5.
 Après, nous expliquerons la stratégie d'identification utilisée.
