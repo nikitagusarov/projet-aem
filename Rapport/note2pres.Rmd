@@ -318,8 +318,8 @@ Néanmoins, ces méthodes sont difficiles à mettre en place dans la viticulture
 Les professionnels proposent de commencer par utiliser l’agriculture raisonnée en viticulture qui permettra de réduire les doses de pesticides légales. 
 Ensuite l’agriculture doit se déplacer vers l’agriculture biologique qui n’utilise aucun produit phytosanitaire de synthèse. 
 Ces propositions sont purement théoriques puisque l'on ne connait pas encore les techniques qui pourraient influencer le comportement des viticulteurs. 
-Un des mécanisme possible est le mécanisme du marché. 
-En manipulant l'offre et la demande du vin le but est théoriquement atteignable. 
+Un des mécanismes possibles est le mécanisme du marché. 
+En manipulant l'offre et la demande du vin, le but est théoriquement atteignable. 
 
 # 2. Le marché du vin français
 
@@ -605,12 +605,12 @@ Nous estimons que la quantité totale de pesticides devrait exercer une influenc
 
 En ce qui concerne les variables exogènes influant sur la demande de vin non IG, nous avons sélectionné uniquement le niveau de revenu médian des ménages, exprimé au niveau départemental (laquelle, si besoin nous pourrions facilement agréger au niveau national) au sein de la base de données de la population que nous avons préalablement importé. Cette variable est, comme dans notre base de données sur les prix moyens des vins,  déflatée de l’indice des prix à la consommation (base 100 en 2014). En terme d’effet attendu sur l’équilibre du marché du vin non IG, nous estimons qu’elle devrait influer positivement sur la quantité d’équilibre des vins non IG. En effet, une hausse du revenu des ménages se traduirait par une hausse de leur pouvoir d’achat et donc une augmentation de la demande potentielle adressée aux vins non IG si bien que cela se répercuterait soit sur la quantité d’équilibre par une hausse de la production pour répondre à la demande supplémentaire soit sur le prix d’équilibre des vins non IG qui augmenterait.
 
-Une fois la sélection et la construction des variables finalisée, il s’est avéré alors possible de concaténer les différentes bases pour obtenir une base de données unique en panel qui nous fait office d’appui pour la bonne conduite de notre étude économétrique et statistiques. Nous avons ensuite restreint notre champ d’analyse à la période s’écoulant entre 2012 et 2016 car nous avons constaté qu’il manquait certaines données par rapport à certaines variables dans les autres périodes. 
+Une fois la sélection et la construction des variables finalisée, il s’est avéré alors possible de concaténer les différentes bases pour obtenir une base de données unique en panel qui nous fait office d’appui pour la bonne conduite de notre étude économétrique et statistique. Nous avons ensuite restreint notre champ d’analyse à la période s’écoulant entre 2012 et 2016 car nous avons constaté qu’il manquait certaines données par rapport à certaines variables dans les autres périodes. 
 Le nombre de périodes devient donc plutôt pauvre (on passe d’une échelle de 8 années à une échelle de 5 années) mais l’intérêt de cette démarche est de pouvoir disposer d’un panel « cylindré » (nombre de mesures respectifs de chaque variable de la base de données identique pour chaque département). 
 Nous avons également éliminé les départements non producteurs de vin non IG  puisqu’ils se trouvent alors en dehors du cadre d’analyse de notre étude économétrique (pas d’offre de vin non IG dans ces départements puisque nous estimons que tout le vin produit dans chaque département est consommé dans le même département : pas de mobilité des produits entre les départements). 
-Au final, il y a 69 départements producteurs de vin non IG que nous avons inclut dans notre base de donnée finale. 
+Au final, il y a 69 départements producteurs de vin non IG que nous avons inclut dans notre base de données finale. 
 Nous avons également exclut la Corse de notre champ d’analyse même si cette région est productrice de vin car le comportement du marché du vin dans cette région est relativement atypique par rapport à l’ensemble des départements français métropolitains. 
-L’inclure dans notre analyse risquerait alors de biaiser nos résultats d’estimation et de formuler des interprétations erronées. Pour un récapitulatif des différentes 
+L’inclure dans notre analyse risquerait alors de biaiser nos résultats d’estimation et de formuler des interprétations erronées.  
 
 En ce qui concerne la forme que doivent prendre l’ensemble des variables de notre base de données dans notre modèle économétrique,  nous avons décidé  de leur faire subir une transformation logarithmique, ce qui nous permet ainsi de pouvoir interpréter les effets estimés plus facilement. 
 Nous obtenons ainsi un modèle à équations simultanées sous forme logarithmique où nous pouvons traiter les estimateurs obtenus comme l’élasticité de la demande/l’offre par rapport à des facteurs différents. 
@@ -622,7 +622,7 @@ Nous pouvons résumer les propriétés de notre base de données finale de la ma
 - Une base de données en panel “cylindrée”.
 - Nombre d’individus large (69 départements producteurs de vin de table) combiné à un nombre de périodes pauvre (5 années : de 2012 à 2016).
 - Chacune des variables de notre base de données varie par département et par année.
-- La pluspart des variable est exprimée à l’échelle logarithmique (sauf les indices des prix et de quantité des pésticides utilisés)
+- La plupart des variables sont exprimées à l’échelle logarithmique (sauf les indices des prix et de quantité des pesticides utilisés)
 
 - 2 variables endogènes :
     - la quantité totale produite de vin rouge et blanc non IG par département(en hectolitres, en log)
@@ -632,6 +632,8 @@ Nous pouvons résumer les propriétés de notre base de données finale de la ma
     - le revenu médian par département (en euros par personne par année, en log),
     - la surface agricole destinée aux vins de table (en hectares, en log),
     - la quantité des pesticides utilisés sur la vigne (indice).
+    
+
 
 # 5. L'étude statistique
 
@@ -811,19 +813,13 @@ En ce qui concerne les données *within*, particulierement nous pouvons remarque
 Egalement nous observons une corrélation positive suffisamment significative (supérieure en grandeur de 0.2) entre la surface cultivé et la quantité du vin simple sur le marché, aussi bien qu'entre les revenus et l'indice d'utilisation des pesticides (ce qui est probablement juste une coïncidence). 
 Finalement, nous remarquons une corrélation négative entre la surface cultivée et l'indice d'utilisation des pesticides, ce qui est tout à fait naturel.
 
-# 6. Modèlisation
+# 6. Modélisation
 
 ```{r eval = FALSE, include = FALSE}
 #####################################################
 ###################  Modèlisation  ##################
 #####################################################
 ```
-
-\noindent\rule[0.5ex]{\linewidth}{1pt} 
-
-\textcolor{red}{Ajouter des liens avec des études méthodologiques precedents.}
-
-\noindent\rule[0.5ex]{\linewidth}{1pt}
 
 Cette partie du travail abordera la formulation économétrique de notre problème.
 Nous allons débuter par la présentation des notions théoriques utilisées dans ce travail, suivis par la formalisation économétrique du modèle théorique que nous avons spécifié dans la séction 5.
@@ -916,22 +912,21 @@ Finalement, si on trouve qu'il existe une hétérogénéité entre les départem
 ## Hypothèses sur les résultats 
 
 Nous attendons que l'estimateur de 3SLS, qui permet de capter les effets de corrélations entre les équations en présence de plusieures variables exogènes nous permettra d'obtenir des estimations plus fiables. 
-Cette méthode nous permet à depasser le biais de simultanéité qui apparaît dans le cas d'estimation des systèmes d'équations liés (dans notre cas nous étudions les effets des pesticides sur l'offre et production du vin simple sous l'hypothèse de présence des effets du marché).
-L'estimateur pareil donne des résultats similaires à l'estimateur de ILS (*indirect least squares*).
-De plus, sa version iterée (qui converge à des résultats similaires à ceux obtenus par l'éstimation avec maximum de vraisamblance) donne des résultats avec la variance la plus faible.
+Cette méthode nous permet de depasser le biais de simultanéité qui apparaît dans le cas d'estimation des systèmes d'équations liés (dans notre cas nous étudions les effets des pesticides sur l'offre et la production du vin simple sous l'hypothèse de présence des effets du marché).
+L'estimateur 3SLS donne des résultats similaires à l'estimateur de ILS (*indirect least squares*).
+De plus, sa version iterée (qui converge à des résultats similaires à ceux obtenus par l'estimation avec maximum de vraisamblance) donne des résultats avec la variance la plus faible.
 
 Les propriétés de cet estimateur sont :
 
-- Consistence ;
-- Efficience (asymptotique) ;
-- La distributions pour les estimateurs suit une loi normale seulement dans des grands échantillons.
+- La consistence ;
+- L'efficience (asymptotique) ;
+- La distribution pour les estimateurs suit une loi normale seulement dans des grands échantillons.
 
-Dès le debut nous envisagions que cet estimateur ne reflètera pas la nature du marché. 
-C'est pourquoi nous, dans ce travail, testons plusieurs modèles.
+Dès le debut, nous envisagions que cet estimateur ne reflète pas la nature du marché c'est pourquoi nous testons plusieurs modèles dans notre travail.
 
-Parmi les inconvénients éventuels, on a également la faible représentation des effets hetérogènes entre les départements par le modèle. 
-Nous estimons seulement les effets moyens et ainsi nous ignorons les différences des élasticités pour des départements différents. 
-Hereusement ce problème peut être rémédié par l'introduction des clusters, regroupant des départements ayant des comportements similaires.
+Parmi les inconvénients éventuels, on a également une faible représentation des effets hétérogènes entre les départements par le modèle. 
+Nous estimons seulement les effets moyens et ainsi nous ignorons les différences d'élasticités pour des départements différents. 
+Hereusement, ce problème peut être traité par l'introduction des clusters, regroupant des départements ayant des comportements similaires.
 
 Finalement, il existe des effets que l'on ignore complètement, mais qui risquent d'intervenir. 
 Par exemple, nous ignorons la présence d'autocorrélation spatiale et/ou temporelle dans notre modèle. 
@@ -945,13 +940,13 @@ Egalement, un nombre probablement insuffisant de facteurs est utilisé dans ce m
 #####################################################
 ```
 
-Dans cette section nous allons présenter les résultats économétriques pour les différents modèles et les comparer.
+Dans cette section, nous allons présenter les résultats économétriques pour les différents modèles et les comparer.
 
 Nous estimons un ensemble de modèles différents possibles afin de pouvoir choisir la méthode la plus raisonnable. 
 Les modèles suivants sont traités séparement :
 
-- M1 : modèle simple sans intéraction entre l'offre et la demande ;
-- M2 : modèle complexe visant à intégrer les intéractions entre l'offre et la demande en présence de variables éndogènes ;
+- M1 : modèle simple sans interaction entre l'offre et la demande ;
+- M2 : modèle complexe visant à intégrer les interactions entre l'offre et la demande en présence de variables endogènes ;
 - M3 : les modèles sur les données clustérisées (M3.1 et M3.2 respectivement pour les deux cas précédents).
 
 ```{r include = FALSE, eval = FALSE}
@@ -965,16 +960,16 @@ Les modèles suivants sont traités séparement :
 # Hence 3SLS is efficient and FIML is consistent even if residuals are not normal.
 ```
 
-## M1 : Les résultats en absence d'intéractions
+## M1 : Les résultats en absence d'interactions
 
-Dans le cas des modèles sans intéractions avec la demande, nous pouvons séparer deux cas différents.
-Le premier, le plus simple, se base sur l'hypothèse, que les prix des vins simples sont imposés aux agriculteurs par les consomateurs (ou, ce qui est beaucoup plus probable, par des grandes enseignes ayant un pouvoir de négociation significatif).
-Cela implique que nous pouvons considèrer les prix comme exogènes dans notre modèlisation d'offre et par conséquent estimer notre modèle par des MCO (OLS - *ordinary least squares*) simples.
+Dans le cas des modèles sans interactions avec la demande, nous pouvons séparer deux cas différents.
+Le premier, le plus simple, se base sur l'hypothèse que les prix des vins simples sont imposés aux agriculteurs par les consomateurs (ou, ce qui est beaucoup plus probable, par des grandes enseignes ayant un pouvoir de négociation significatif).
+Cela implique que nous pouvons considérer les prix comme exogènes dans notre modélisation d'offre et par conséquent estimer notre modèle par des MCO (OLS - *ordinary least squares*) simples.
 En ce qui concerne le deuxième cas, nous posons que les prix dans l'equation d'offre sont endogènes. 
-C'est-à-dire, les agriculteurs affectent les prix par leur niveau de production et par les quantités émises sur le marché final. 
+En d'autres termes, les agriculteurs affectent les prix par leur niveau de production et par les quantités écoulées de vin simple sur le marché final. 
 Afin de traiter ce problème d'endogénéité nous pouvons utiliser la méthode des variables instrumentales (IV-OLS). 
 Mais quels instruments choisir ?
-Sur ce point nous nous référons au travail de @mackay2018 (et plus particulierement le travail fondateur de @hausman1996valuation), où les auteurs démontrent que les instrument d'offre choisis parmis les régresseurs de l'équation de la demande sont des instruments suffisament pertinents.
+Sur ce point nous nous référons au travail de @mackay2018 (et plus particulierement le travail fondateur de @hausman1996valuation), où les auteurs démontrent que les instruments d'offre choisit parmis les régresseurs de l'équation de la demande constituent des instruments suffisamment pertinents.
 Dans notre cas nous pouvons instrumenter les prix par les revenus dans les départements étudiés, ce qui est conforme à la théorie économique, car le niveau des prix doit être corrélé avec le revenu réel.
 
 Neanmoins, nous allons encore vérifier la validité de cet instrument et du modèle résultant.
@@ -1017,52 +1012,52 @@ texreg(float.pos = "!htbp",
 
 \FloatBarrier
 
-Avant de commenter les effets estimés, nous devons supposer que le modèle en présence d'endogénéité n'est pas correcte (les estimateurs obtenus sont biaisé et loins de la réalité). 
-D'abord, les instruments utilisé pour l'estimer sont asssez faibles et donne pas des résultats pertinents.
-De plus, à partir des résultats du test de Wu-Haussman nous pouvons conclure qui nous indique que les estimateurs OLS et IV-OLS sont identiquement consistent et que nous n'avons pas des raisons pour utiliser l'estimateurs de IV-OLS (dans cette situation les résultats obtenus par OLS sont plus efficaces).
-Les résultats de ces tests sont regrouppés dans l'annexe X.
+Avant de commenter les effets estimés, nous devons supposer que le modèle en présence d'endogénéité n'est pas correcte (les estimateurs obtenus sont biaisés et loin de la réalité). 
+D'abord, les instruments utilisés pour l'estimer sont assez faibles et ne donnent pas de résultats pertinents.
+De plus, à partir des résultats du test de Wu-Haussman, nous pouvons conclure que les estimateurs OLS et IV-OLS sont identiquement consistents et que nous n'avons pas des raisons de les utiliser (dans cette situation, les résultats obtenus par OLS sont plus efficaces).
+Les résultats de ces tests sont regroupés dans l'annexe X.
 
 Toutefois, les résultats obtenus par l'estimateur de OLS risquent d'être également biaisés.
 Dans l'annexe X nous pouvons voir que Shapiro-Wilk test rejette la normalité des résidus de notre modèle (annexe B4), bien que la fonction de répartition partielle a une forme proche à normale (annexe B1).
-Nous risquons également d'avoir des biais dans la variance des estimateurs, car selon le test de Bartlett sur l'heteroscedacité nous réjétons l'hypothèse de l'homoscedacité des résidus (annexe B3).
-Au moins dans ce cas nous n'avons pas des problèmes avec l'autocorrelation (les résultats du test de Durbin-Watson sont grouppé dans l'annexe B2), ce qui peut s'expliquer par utilisation des données temporelles en série trop courte pour y pouvoir detecter l'autocorrelation.
-Les résidus également ne sont pas correlé avec des variables explicatives, mais ont oune correlation forte avec la variable dependante, ce qui nous indique sur la misspécification possible dans notre modèle (annexe B1).
-L'explication la plus probable à ce problème est qu'on n'étudie pas suffisament d'effets dans notre modèle et rencontrons par suite le biais de variable omise.
+Nous risquons également d'avoir des biais dans la variance des estimateurs, car selon le test de Bartlett sur l'heteroscedasticité, nous rejetons l'hypothèse de l'homoscedasticité des résidus (annexe B3).
+Au moins dans ce cas, nous n'avons pas de problèmes avec l'autocorrélation (les résultats du test de Durbin-Watson sont regroupés dans l'annexe B2), ce qui peut s'expliquer par utilisation des données temporelles en série trop courte pour y pouvoir detecter l'autocorrélation.
+Les résidus également ne sont pas correlés avec des variables explicatives, mais ont une corrélation forte avec la variable dependante, ce qui nous indique une erreur de spécification potentielle dans notre modèle (annexe B1).
+L'explication la plus probable à ce problème est qu'on n'étudie pas suffisamment d'effets dans notre modèle et rencontrons par suite le biais de variable omise.
 Le graphique des résidus nous montre en même temps la nature quasi-aléatoire des résidus.
 
 Maintenant, passons au résultats obtenus. 
-L'indexe des prix a une faible effet positive sur l'équilibre du marché.
-Néanmoins il n'est pas trop sensible de commenter ces effets plus précisement, car nous n'avons toujour pas une évidence forte sur sa exogénité.
-La surface dediée au vins simples a également un effet positive sur la quantité du vin simple vendu, ce qui est toutà fait naturelle, vu que c'est le facteur principal de production du vin. 
-Finalement, nous passons à l'effet le plus interessant dans le contexte de notre étude. 
-Nous rappelons à notre lecteur que c'est exactement cet effet, l'effet des pésticides sur le marché du vin, qu'on vise à estimer.
-Conformement aux études precedents nous découvrons que les pésticides ont un impact négative sur l'offre du vin simple, ce qui s'explique par leur nature d'utilisation.
-C'est-à-dire, nous obtenons une confirmation que les pésticides sont utilisés pour minimiser les pertes par les agriculteurs. 
-Particulierement dans le cadre du modèle estimé, l'effet moyen pour l'ensemble des départements est qu'une augmentation de 1% d'utilisation des pésticides est une reponse des agriculteurs à des pértes et de la baisse de l'offre d'au moint de 0.0016%, toutes choses égales par ailleurs.
-Les résultats en termes numeriques sont assez ambigus, car nous faisons face à des nombreux problèmes dans la spécification du modèle, quand même nous pouvons constater un effet de minimisation des pertes dans l'utilisation des pésticides.  
-Cette nature révele des implications importantes en termes de traitement futur du problème d'utilisation excessif des pésticicdes dans la viticulture.
+L'indice des prix a un faible effet positif sur l'équilibre du marché.
+Néanmoins, il n'est pas très pertinent pour l'instant de commenter ces effets plus précisement, car nous n'avons toujours pas une évidence forte sur leur éxogénité.
+La surface dediée au vins simples a également un effet positif sur la quantité de vin simple vendue, ce qui est tout à fait naturel, vu que cela représente le facteur principal de production du vin. 
+Finalement, nous passons à l'effet le plus intéressant dans le contexte de notre étude. 
+Nous rappelons à notre lecteur que c'est exactement cet effet, l'effet des pesticides sur le marché du vin, qu'on vise à estimer.
+Conformement aux études precedentes nous découvrons que les pesticides ont un impact négatif sur l'offre du vin simple, ce qui s'explique par leur nature d'utilisation.
+C'est-à-dire, nous obtenons une confirmation que les pesticides sont utilisés pour minimiser les pertes par les agriculteurs. 
+Particulierement dans le cadre du modèle estimé, l'effet moyen pour l'ensemble des départements est qu'une augmentation de 1% d'utilisation des pesticides est une reponse des agriculteurs à des pertes d'où une réduction de l'offre d'au moins de 0.0016%, toutes choses égales par ailleurs.
+Les résultats en termes numériques sont assez ambigus, car nous sommes confrontés à de nombreux problèmes dans la spécification du modèle. Nous pouvons tout de même constater un effet de minimisation des pertes dans l'utilisation des pesticides.  
+Cette nature révele des implications importantes en termes de traitement futur du problème d'utilisation excessif des pésticides dans la viticulture.
 
-## M2 : Les résultats dans le cas des effets du marché presents
+## M2 : Les résultats dans le cas des effets du marché present
 
-Dans cette séction nous allons étudier le modèle sous l'hypothèse de présence des effets de la conjoncture sur les décisions des agriculteurs. 
-Identiquement au cadre précedent nous avons deux choix possibles. 
-D'abord, sous l'hypothèse d'endogénéité des prix nous povons estimer le modèle par le méthode de 3SLS, en introduisant dans notre modèle à la fois l'endogénéité des prix pour l'offre et la demande et la correlation entre les résidus de ces deux équations décrivant le comportement des agents du marché.
-Deuxiemement, nous avons la possibilité d'imposer l'exogeneité des prix dans nos équations, ce qui peut être les cas si les enseignes rachetant le vin des agriculteurs sont des preneurs des prix du consommateur final.
-Nous allons comparér des résultats des plusieurs modèles afin de verifier sa validité. 
+Dans cette section nous allons étudier le modèle sous l'hypothèse de présence des effets de la conjoncture sur les décisions des agriculteurs. 
+Identiquement au cadre précedent, nous avons deux choix possibles. 
+D'abord, sous l'hypothèse d'endogénéité des prix, nous povons estimer le modèle par le méthode de 3SLS, en introduisant dans notre modèle à la fois l'endogénéité des prix pour l'offre et la demande puis la corrélation entre les résidus de ces deux équations décrivant le comportement des agents du marché.
+Deuxièmement, nous avons la possibilité d'imposer l'éxogénéité des prix dans nos équations, ce qui peut être le cas si les enseignes rachetant le vin des agriculteurs sont preneuses de prix du vin vendu au consommateur final.
+Nous allons comparer des résultats de plusieurs modèles afin de verifier sa validité. 
 
-Le prémier modèle éstimé par les 3SLS est complexe et nous risquons d'obtenir des résultats biaisé suite à des misspécification eventuelles.
-Afin de contracter la variance des estimateurs les rendant plus efficaces nous pouvons impliquer la procedre i3SLS (*iterated three step least squares*).
-Cette méthode nous donne des résultats similaire à ceux obtenus par FIML (*full information maximum likelihood*).
-Quand même l'utilisations des procedures itératives ne semble pas donner une diminution dans les variances des estimateurs significative (annexe C1). 
+Le premier modèle estimé par les 3SLS est complexe et nous risquons d'obtenir des résultats biaisés suite à des misspécifications eventuelles.
+Afin de contracter la variance des estimateurs pour les rendre plus efficace, nous pouvons recourir à la procédure i3SLS (*iterated three step least squares*).
+Cette méthode nous donne des résultats similaires à ceux obtenus par FIML (*full information maximum likelihood*).
+Pourtant, l'utilisation de procédures itératives ne semble pas provoquer une diminution significative dans les variances des estimateurs  (annexe C1). 
 
-Nous pouvons également comparer les résultats obtenus par 3SLS avec le modèle en absence des intéractions (sous l'hypothèse que les résidus des deux équations ont une correlation nulle) éstimé par 2SLS (*two step least squares*). 
-Dans ce cas, les regresseurs endogenes de la demande sont instrumentés tout comme décrit dans @wooldridge2005instrumental.
+Nous pouvons également comparer les résultats obtenus par 3SLS avec le modèle en absence des interactions (sous l'hypothèse que les résidus des deux équations ont une corrélation nulle) estimé par 2SLS (*two step least squares*). 
+Dans ce cas, les régresseurs endogènes de la demande sont instrumentés tout comme cela est décrit dans @wooldridge2005instrumental.
 Ce méthode donne des résultats équivalents à ILS (*indirect least squares*), une téchnique utilisé pour estimer les systémés des équations.
 
-Dans le deuxieme cas nous réjetons l'hypothèse de l'endogénéité des prix pour le marché du vins simple, en supposant qu'il est dicté par le consommateurs final à les acteurs en amont (le distributeur qui rachete le vin d'agriculteur).
-Cela nous amène à implementer le méthode SUR (*seamingly unrelated equations*) afin d'introduire la correlation entre les résidus dans notre modèle du marché tout en ignorant l'endogénéité des prix.
+Dans le deuxième cas, nous rejetons l'hypothèse de l'endogénéité des prix sur le marché du vin simple, en supposant qu'il est dicté par le consommateur final à des acteurs en amont (le distributeur qui rachàte le vin produit par les agriculteurs).
+Cela nous amène à implementer la méthode SURE (*seamingly unrelated equations*) afin d'introduire la corrélation entre les résidus dans notre modèle du marché tout en ignorant l'endogénéité des prix.
 
-Les résultats pour les deux modèles sont régrouppé sous format d'un tableau ci-dessous ("D" désigne les coefficients de l'équation de la demande et "O" de l'équation de l'offre, qui nous interesse) :
+Les résultats pour les deux modèles sont régroupés sous format d'un tableau ci-dessous ("D" désigne les coefficients de l'équation de la demande et "O" de l'équation de l'offre, qui nous interessent) :
 
 ```{r include = FALSE}
 # Equations
@@ -1110,36 +1105,36 @@ texreg(float.pos = "!htbp",
 
 \FloatBarrier
 
-Les résultats obtenus pour le cadre avec les prix endogènes (l'estimation par 3SLS) donne forcement des résultats biaisé, car comme nous avons vu dans la séctions précedente nous ne dispososns pas d'instruments suffisament forts pour instrumenter l'index des prix.
-Cela se confirme par la nonsignificativité des indices des prix estimé par l'approche des variables instrumentalles.
-Ces effets sont négatives non-differents de zero, ce qui n'est pas normal pour un bien n'étant le bien de Giffen (bien que nous pouvons arbitrer que le vin le plus ismple pourrais se comporter d'une telle façon, car c'est un des produits alimentaires les plus basiques).
+Les résultats obtenus pour le cadre avec prix endogènes (l'estimation par 3SLS) donne forcément des résultats biaisés, car comme nous l'avons vu dans la section précédente, nous ne disposons pas d'instruments suffisament fort pour instrumenter l'indice des prix.
+Cela se confirme par la non-significativité des indices des prix estimés par l'approche des variables instrumentales.
+Ces effets sont négatifs et non-differents de zéro, ce qui n'est pas normal pour un bien appartenant à la catégorie des biens de Giffen (bien que nous pourrions arbitrer que le vin le plus simple pourrait se comporter d'une telle façon, puisque c'est l'un des produits alimentaire les plus basiques).
 Des autres tests nous confirment la misspécification  de ctte modèle : les résidus sont parfaitment correlé avec les valeurs de variable dépendante et les prédictions, ce qui est evident des graphiques dans les annexe C2; une forte hétereroscedacité, qui cette fois est apparente sur les graphiques (annexes C2 et C5), etc.
 Quand même les tests de spécification ne donne pas aucune indication de misspécification du modèle 3SLS par rapport au modèle 2SLS, ce qui nous rassure dans notre supposition que nous n'utilisaons pas suffisament des variables explicatives dans notre modèle pour utiliser ces approches économétriqes.
 
-Tout de même, nous obtenons des résultats proches à ceux obtenus par OLS simples dans la séction precedente ($-0.16$ contre $-0.17$). 
-Cela confirme notre hypothèse sur le rôle joué par les pésticides dans la propositions du vin simple sur le marché. 
-Néanmoins, nous préferions de ne pas utiliser ce modèle comme notre modèle de réference en futur à cause de plusieurs sources des biais.
+Tout de même, nous obtenons des résultats proches à ceux obtenus par OLS simples dans la section precedente ($-0.16$ contre $-0.17$). 
+Cela confirme notre hypothèse sur le rôle joué par les pésticides dans l'offre du vin simple sur le marché. 
+Néanmoins, nous préferions ne pas utiliser ce modèle comme notre modèle de réference  à cause de plusieurs sources de biais.
 
-En ce qui concerne les résultats d'estimation par SUR, nous constatons des effets sont presque idéntiques à ceux, obtenus par l'estimateur OLS simple. 
-Bien que dans ce cas les effets d'utilisation des pésticides sont un peu plus accentués, avec un comportement des résidus plus abnormaux.
+En ce qui concerne les résultats d'estimation par SURE, nous constatons des effets presque identiques à ceux, obtenus par l'estimateur OLS simple. 
+Bien que dans ce cas, les effets d'utilisation des pesticides sont un peu plus accentués, avec un comportement des résidus plus anormaux.
 
-## M3 : Les résultats pour des départements grouppés
+## M3 : Les résultats pour des départements groupés
 
-Dans cette séction nous allons commencer par la présentation et la comparaison des differentes téchniques pour la clustérisation de nos données. 
-Puis nous allons proceder avec un étude et la modèlisation des données clustérisé. 
-Nous suppososn que cet approche peut donner des résultats significativement differents, car nous supposons une forte héterogeneité dans le comportement des differents départements.
+Dans cette section nous allons commencer par la présentation et la comparaison des differentes techniques pour effectuer la clustérisation de nos données. 
+Puis nous allons procéder à une étude de la modèlisation des données clustérisées. 
+Nous supposons que cette approche peut donner des résultats significativement differents, car nous supposons une forte héterogeneité dans le comportement des differents départements.
 
-Le regrouppement des département dans les clusters par leurs caractéristiques possiblement proches, doit nous permettre de traiter les problèmes d'hétérogénéité possibles (nous pouvons observer des traces de ces effets sur les graphiques dans l'annexe A2).
-Cela devra permettre d'ameillorer les résultats des estimations en réduisant la variance de nos estimateurs.
+Le regroupement des départements dans des clusters par leurs caractéristiques relativement similaires, doit nous permettre de traiter les problèmes d'hétérogénéité potentiels (nous pouvons observer des traces de ces effets sur les graphiques dans l'annexe A2).
+Cela devrait permettre d'améliorer les résultats des estimations en réduisant la variance de nos estimateurs.
 
 ### Clusterisation 
 
 Il existent plusieurs façons de séparer et clustériser les données. 
-Nous, dans notre travail, allons implementer la procedure *k-means* ou *k-moyennes*. 
-Cette procedure regrouppes les individus autours des *centres* (dont le nombre est *k*) choisis par un algorithme itérative. 
-Cet algorithme itérative minimise la distance inta-cluster.
-La qualité d'ajustement des clusters est evalué par le paramétre WSS (*within sum of squares*).
-C'est exactement ce paramétre la qu'on va utiliser pour comparer les differents approches et en choisir le plus approprié.
+Dans le cadre de notre travail, nous allons implémenter la procedure *k-means* ou *k-moyennes*. 
+Cette procedure regroupe les individus autour des *centres* (dont le nombre est *k*) choisit par un algorithme itératif. 
+Cet algorithme itératif minimise la distance inta-cluster.
+La qualité d'ajustement des clusters est evalué par le paramètre WSS (*within sum of squares*).
+C'est spécifiquement ce paramètre qu'on va utiliser pour comparer les differents approches et ainsi choisir laquelle est la plus appropriée.
 
 En ce qui concerne les differents méthodes de clustérisation, nous pouvons les choisir en manipulant les données à l'entrée (les *inputs*) de cet algorithme.
 Plus précisement nous pouvons :
@@ -1150,10 +1145,10 @@ Plus précisement nous pouvons :
 
 #### *Between* 
 
-Nous supposons que les départements ayant des valeurs moyennes inter-annuelles proches, obtenus par la transformation *between*, ont des caractéristiques proches, ainsi qu'un comportement presque identique.
+Nous supposons que les départements ayant des valeurs moyennes inter-annuelles proches, obtenus par la transformation *between*, ont des caractéristiques similaires, ainsi qu'un comportement presque identique.
 La clusterisation est effectuée sur les données *between* pour l'ensemble des départements étudiés.
 
-Les résultats des éstimations ainsi que les centres théoriques pour $k = 3$ se trouvent dans l'annexe D1.1.
+Les résultats des estimations ainsi que les centres théoriques pour $k = 3$ se trouvent dans l'annexe D1.1.
 
 ```{r include = FALSE}
 # Clustering 
@@ -1195,9 +1190,9 @@ clusters = cbind(fit1$centers, fit1$size, k <- c(1:3)) %>%
 
 ### *Within*
 
-Dans ce cas nous supposons que les départements ayant des tendances et les évolutions de leurs caractéristiques identiques ont un comportement qui ressamble.
-Plus, précisement, nous commençon par la transformation des nos données en *within*, ce qui implique qu'on substrait les moyennes empiriques intra-annuelles pour toutes les caractéristiques.
-Après, nous transformons les données créant pour chaque caractéristique pour chaque année une variable séparée, ce qui permet de préserver la dimention temporelle de nos données.
+Dans ce cas, nous supposons que les départements ayant des tendances et des évolutions de leurs caractéristiques identique ont un comportement similaire.
+Plus, précisement, nous commençons par une transformation des nos données en *within*, ce qui implique qu'on soustrait les moyennes empiriques intra-annuelles pour toutes les caractéristiques.
+Ensuite, nous transformons les données en créant pour chaque caractéristique et pour chaque année une variable séparée, ce qui permet de préserver la dimention temporelle de nos données.
 
 Les centres théoriques obtenus pour $k = 3$ se trouvent dans l'annexe D1.2.
 
@@ -1249,10 +1244,10 @@ clusters2 = cbind(fit2$centers, fit2$size, k <- c(1:3)) %>%
 
 ### Information complète
 
-Dans le cas de l'information complète nous utilisons l'ensemble des informations disponibles sur les individus afin de construire les clusters. 
-Nous utilisons l'approche similaire à celui utilisé dans le cas de clusterisation *within*, sauf que cette fois nous n'effectuons pas la correction sur les valeurs moyennes intra-annuelles.
+Dans le cas de l'information complète, nous utilisons l'ensemble des informations disponibles sur les individus afin de construire les clusters. 
+Nous utilisons l'approche similaire à celle utilisée dans le cas d'une clusterisation *within*, sauf que cette fois nous n'effectuons pas la correction sur les valeurs moyennes intra-annuelles.
 
-Les centres obtenus pour ce type des données sont presenté dans l'annexe D1.3.
+Les centres obtenus pour ce type des données sont presentés dans l'annexe D1.3.
 
 ```{r include = FALSE}
 # Clustering 
@@ -1301,13 +1296,13 @@ clusters3 = cbind(fit3$centers, fit3$size, k <- c(1:3)) %>%
 
 #### Comparaison des differentes méthodes
 
-Afin de pouvoir comparer des valeurs differents de WSS (*within summ of squares*) nous allons visualiser la valeur dun indice : 
+Afin de pouvoir comparer des valeurs differents de WSS (*within summ of squares*) nous allons visualiser la valeur d'un indice : 
 
 \begin{equation*}
     WSS^{'} = \frac{WSS}{min(WSS)}
 \end{equation*}
 
-Ce qui nous permettra d'évaluer les écarts rélatives du WSS de sa valeur minimale (pour nombre des clusters égal à 15).
+Ce qui nous permettra d'évaluer les écarts relatifs du WSS de sa valeur minimale (pour un nombre de clusters égal à 15).
 Le graphique suivant démontre l'évaluation des valeurs de $WSS^{'}$ pour les trois cas differents de la définition des clusters :
 
 \FloatBarrier
@@ -1334,18 +1329,18 @@ legend(x = "topright",
 
 \FloatBarrier
 
-Nous pouvons observer que pour la transformation *within* nous observons la convergence la plus vite vers la valeure minimale de WSS. 
-Les deux autres approches au traitement et transformation des données offrent une vitesse de convergence plus elevé, avec des valeurs rélatives initiales également plus significatives. 
+Nous pouvons observer que pour la transformation *within*, nous observons une convergence importante vers la valeure minimale de WSS. 
+Les deux autres approches au traitement et à la transformation des données offrent une vitesse de convergence encore plus elevée, avec des valeurs relatives initiales également plus significatives. 
 
-Nous remarquons également que les valeurs optimales du nombre des clusters dans les trois cas sont à peu près identiques (autours de 3 et 5), avec la meilleure approximation absolute est atteint pour les huit cluster et reste rélativement inchangé après.
+Nous remarquons également que les valeurs optimales du nombre des clusters dans les trois cas sont à peu près identiques (autours de 3 et 5). Par conséquent, la meilleure approximation absolue est atteint pour les huit clusters et reste rélativement inchangée après.
 
 ### M3.1 : Le cadre en absence des intéraction avec la demande 
 
 Nous commençons par la comparaison des résultats obtenus pour les differents clusters avec les modèles de type OLS et IV-OLS.
-C'est-à-dire, sous l'hypothèse de l'abcense des intérferences entre l'offre et la demande.
+C'est-à-dire, sous l'hypothèse de l'absence d' intérferences entre l'offre et la demande.
 
-Nous n'evaluons pas le système en introduisant les variables de grouppe (dummy variables) car cela risque de biaiser les résultats à cause d'une taille des grouppes differente. 
-Afin d'éviter ce biais nous évaluons les modèles par cluster.
+Nous n'evaluons pas le système en introduisant les variables de grouppe (dummy variables) car cela risque de biaiser les résultats à cause d'une taille des groupes differente. 
+Afin d'éviter ce biais, nous évaluons les modèles par cluster.
 
 Le tableau suivant regrouppe les 6 modèles éstimés (3 clusters avec 2 modèles par cluster, le nombre du cluster étant affiché après *c* dans le tableau) :
 
@@ -1417,19 +1412,19 @@ texreg(float.pos = "!htbp",
 
 \FloatBarrier
 
-Nous observons que un cluster réssort d'une façon abnormale ayant des valeurs d'une magnitude excessive (c'est le département numéro 57 où l'indice a une variation intra-annuelle abnormale, on peut le considérer comme un outlier et ne pas le commenter).
-En ce qui concerne les deux autres clusters, nous observons qu'un entre eux comprend les départements se spécialisant dans la production des vins simples (avec des effets des prix, de surface et d'utilisation des pésticides accentuté). 
-L'autre regroupe des département qui montrent des effets moins réssortissants et evidents.
+Nous observons que un cluster ressort d'une façon anormale car il a des valeurs d'une magnitude excessive (c'est le département numéro 57 où l'indice a une variation intra-annuelle anormale, on peut le considérer comme un outlier et ne pas le commenter).
+En ce qui concerne les deux autres clusters, nous observons qu'un d'entre eux comprend les départements se spécialisant dans la production des vins simples (avec des effets de prix, de surface et d'utilisation des pesticides accentué). 
+L'autre regroupe des départements qui montre des effets moins nets et evidents.
 
-Les diagnostiques détaillés sont présentes dans l'annexe D2, où tous les tests principaux sont présents. 
-Les tests sur la validité des éstimateurs IV sont les plus interessants et se trouvent dans l'annexe D2.3, ou nous observons que les estimations par les variables instrumentale n'est pas toujours valide dans notre cas. 
-On ne peut pas rejeter l'hypothèse des faibles instruments seulement pour un des clusters, et le test de Wu-Haussman donne des résultats négatives pour tous les clusters, nous indiquant que le modèle OLS est préferable. 
-Finalement, les résidus sont toujours non-normaux, bien que les résults du test sont les méilleurs dans l'ensemble (annexe D2.2).
+Les diagnostics détaillés sont consultables dans l'annexe D2, où tous les tests principaux sont présentés. 
+Les tests sur la validité des estimateurs IV sont les plus interessants et se trouvent dans l'annexe D2.3, ou nous observons que les estimations par les variables instrumentales ne sont pas toujours valides dans notre cas. 
+On ne peut pas rejeter l'hypothèse des faibles instruments seulement pour un des clusters, et le test de Wu-Haussman donne des résultats négatifs pour tous les clusters, nous indiquant que le modèle OLS est préferable. 
+Finalement, les résidus sont toujours non-normaux, bien que les résultats du test sont les meilleurs dans l'ensemble (annexe D2.2).
 
 ### M3.2 : Le cadre d'interference avec la demande
 
-Dans cette partie nous utilisons l'approche identique à celui qu'on a déjà implementé dans la partie M2. 
-Nous supposons, que le marché fonctionne en presence des liens entre l'offre et la demande.
+Dans cette partie, nous utilisons l'approche identique à celle qu'on a déjà implementé dans la partie M2. 
+Nous supposons, que le marché fonctionne en presence de liens entre l'offre et la demande.
 Les résidus des deux équations dans ce cas sont correlés entre eux.
 
 ```{r include = FALSE}
@@ -1491,7 +1486,7 @@ fimlx3 = systemfit(system,
     method = "3SLS", maxit = 1000)
 ```
 
-Identiquement à la section précedente nous régrouppons les résultats d'estimation pour les 6 modèles (2 modèles par 3 clusters) sous la forme d'un tableau.
+Identiquement à la section précédente, nous regroupons les résultats d'estimation pour les 6 modèles (2 modèles par 3 clusters) sous la forme d'un tableau.
 
 \FloatBarrier
 
@@ -1511,17 +1506,17 @@ texreg(float.pos = "!htbp",
 
 \FloatBarrier
 
-Nous observons que les effets des pésticides sur la quantité marchande du vin sont négligeables pour tous les clusters pour tous les modèles. 
-La validité de ces modèles laisse à désirer.
-D'abord, pour les modèles supposant l'endogénéité des prix dans notre modèle nous avons des instruments trop faibles, qui resultenet dans des modèles non-efficients.
-De plus, l'introduction de l'hypothèse des liens entre les deux cotés du marché (introduction de la correlation entre les résidus) n'ameillore pas l'explicativité des modèles.
+Nous observons que les effets des pesticides sur la quantité marchande du vin sont négligeables pour tous les clusters dans tous les modèles. 
+La validité de ces modèles laisse donc à désirer.
+D'abord, pour les modèles supposant l'endogénéité des prix, nous avons retenu des instruments trop faibles ce qui rend ces modèles inefficients.
+De plus, l'introduction de l'hypothèse des liens entre les deux côtés du marché (introduction de la corrélation entre les résidus) n'améliore pas l'explicativité des modèles.
 
 ### Avis sur l'utilisation des clusters 
 
-En genéral les clusters n'ameilleurent pas les résumtats des éstimations. 
-Nous avons réussi à identifier un département trop different du reste dans sa nature, mais en total cette méthode n'a abouti à rien. 
+En genéral les clusters n'améliorent pas les résultats des estimations. 
+Nous avons réussi à identifier un département trop différent du reste dans sa nature, mais au final cette méthode n'a abouti à rien de concret. 
 
-De plus, nous rétirons de ces tentatives d'ammeilloration de notre modèle une evidence qu'il existent des département qui sont plus incliné à la production du vin de table que le reste, ce qui est tout à fait logique. 
+De plus, nous retirons de ces tentatives d'amélioration de notre modèle l'évidence qu'il existe des départements étant plus inclinés à la production du vin de table que les autres, ce qui est tout à fait logique. 
 
 # 9. Conclusion
 
@@ -1532,10 +1527,10 @@ De plus, nous rétirons de ces tentatives d'ammeilloration de notre modèle une 
 ```
 
 Nous avons étudié et comparé plusieurs modèles distincts qui visent à apprécier les effets d'utilisation des pesticides sur l'offre de vin de table. 
-Nous constatons, que parmi tout ces modèles, le meilleur estimateur des effets moyens par département est obtenu à travers un simple modèle OLS en absence d'effets d'interaction avec la demande de vin de table ou d'éndogénéité des prix. 
+Nous constatons, que parmi tout ces modèles, le meilleur estimateur des effets moyens par département est obtenu à travers un simple modèle OLS en absence d'effets d'interaction avec la demande de vin de table ou d'endogénéité des prix. 
 Ce fait est soutenu par les hypothèses théoriques sur le fonctionnement du marché des vins simples disponibles dans la littérature. 
 Les agriculteurs proposant du vin simples sont dans la plupart des cas preneurs des prix offerts par les distributeurs, ce qui explique l'exogénéité des prix.
-Le même fait explique l'absence des interactions entre l'offre et la demande, car les grands enseignes achetes le vin simple sous conditions *take or leave* (ce qui n'est pas vrai pour les autres types du vin).
+Le même fait explique l'absence des interactions entre l'offre et la demande, car les grandes enseignes achetent le vin simple sous conditions *take or leave* (ce qui n'est pas vrai pour les autres types du vin).
 
 L'analyse des données clusterisées permet d'observer un degré d'hétérogénéité relativement faible entre les départements. De plus, les effets d'utilisation des pesticides sur l'offre de vin ne sont clairement identifiables que pour un groupe spécifique d'entités étudiées.
 
@@ -1544,10 +1539,10 @@ Plus precisement, les pesticides sont utilisés par les viticulteurs pour minimi
 Nous captons ce phénomène en estimant le modèle d'équilibre du marché du vin simple. 
 
 Nous devons également souligner que le modèle presenté dans ce travail est loin de frôler la perfection absolue. 
-Plusieurs problèmes restent non-traité ou non-résolus. Parmi ces problèmes nous pouvons citer: un faible nombre d'observations sur la dimention temporelle, la présence d'heteroscedasticité dans les résidus, la non-normalité des résidus, des variables omises, dess instruments faibles, etc.
+Plusieurs problèmes restent non-traité ou non-résolus. Parmi ces problèmes nous pouvons citer: un faible nombre d'observations sur la dimention temporelle, la présence d'hétéroscedasticité dans les résidus, la non-normalité des résidus, des variables omises, dess instruments faibles, etc.
 Toutefois, nous avons reussi à capter la tendance principale dans le comportement de l'offre face à l'utilisation des pesticides par les agriculteurs. Il peut donc s'avérer interessant d'étudier ces aspects et de traiter ces problèmes revelés dans de futures études.
 
-Pour de futures recherches, nous conseillerons d'étudier directement l'impact des pesticides sur la production et non sur l'équilibre du marché parce que, comme nous avons pu le constater dans nos résultats, la modélisation du marché via des équations simultanées ne nous permet pas d'améliorer significativement nos estimateurs. Ceci constitue un point important, étant donné le faible nombre de variables explicatives sélectionnées et les défauts potentiels dans la spécification de notre modèle, dans notre étude ces modèles se prouvent d'être innefficaces et ne donne pas des résultats fiables.
+Pour de futures recherches, nous conseillerons d'étudier directement l'impact des pesticides sur la production et non sur l'équilibre du marché parce que, comme nous avons pu le constater dans nos résultats, la modélisation du marché via des équations simultanées ne nous permet pas d'améliorer significativement nos estimateurs. Ceci constitue un point important, étant donné le faible nombre de variables explicatives sélectionnées et les défauts potentiels dans la spécification de notre modèle. Dans notre étude, ces types de modèle ne donnent pas des résultats fiables et sont donc inefficaces
 
 \newpage
 
@@ -1588,7 +1583,7 @@ return(grid.arrange(p1, p2, p3, p4, nrow = 2))
 
 ### A2 L'étude des interdépendances
 
-La premier de cet annexe combrend les résultats pour les données telles-quelles, le deuxieme par contre integre les résultats pour les données sous la trasformation *within*.
+La première section de cette annexe comprend les résultats pour les données non transformées, le deuxieme par contre intègre les résultats pour les données sous la transformation *within*.
 
 ####  A2.1 Information complète 
 
@@ -1653,8 +1648,8 @@ print(xtable(round(correlation, 4),
 
 #### A2.2 Transformation *within*
 
-Les rélations entre les variables mieux ressortent pour les données transformées. 
-Ce sont les données que nous intégrons dans nos modèles économétriques.
+Les relations entre les variables ressortent mieux pour les données transformées. 
+Ce sont ces données que nous intégrons dans nos modèles économétriques.
 
 \FloatBarrier
 
@@ -1673,7 +1668,7 @@ p2 = dataWi %>%
     geom_smooth(method = "lm", se = F, size = 0.25) +
     geom_smooth(aes(qi, iki, col = "black"), method = "loess", size = 0.4) +
     # ggtitle("Q ~ IK") +
-    ylab("Quantité du vin") + xlab("Index des pésticides") +
+    ylab("Quantité du vin") + xlab("Index des pesticides") +
     pres_theme + xlim(-1, 4)
 # Probably it is better to do it by variable
 p3 = dataWi %>% 
@@ -1722,7 +1717,7 @@ print(xtable(round(correlationW, 4),
 
 ## B Analyse des résultats du cadre M1
 
-### B1 Le compoertement des résidus  
+### B1 Le comportement des résidus  
 
 ```{r include = FALSE}
 # Correlation
@@ -1772,7 +1767,7 @@ legend(x = "topright", legend = c("OLS", "IV-OLS"),
 
 \FloatBarrier
 
-### B2 L'autocorrelation
+### B2 L'autocorrélation
 
 ```{r include = FALSE}
 # Panel Durbin-Watson test
@@ -1802,7 +1797,7 @@ stargazer(pDW,
 
 \FloatBarrier
 
-### B3 Test de l'hétéroskedacité
+### B3 Test de l'hétéroscédasticité
 
 ```{r include = FALSE}
 BartT = data.frame(ncol = 2, nrow = 1)
@@ -1820,7 +1815,7 @@ rownames(BartT) = c("Equation d'offre")
 stargazer(BartT,
     header = FALSE,
     summary = FALSE,
-    title = "Les résultat du test de Bartlett sur l'heteroscedacité, p-valeur")
+    title = "Les résultat du test de Bartlett sur l'heteroscedasticité, p-valeur")
 ```
 
 \FloatBarrier
@@ -1983,7 +1978,7 @@ lines(y = sur$eq[[2]]$fit + sur$eq[[2]]$res, x = resdata3$qi,
 
 \newpage
 
-### C3 L'autocorrelation 
+### C3 L'autocorrélation 
 
 ```{r include = FALSE}
 # Panel Durbin-Watson test
@@ -2150,7 +2145,7 @@ print(xtable(round(lr, 4),
 
 #### D1.1 Les centres pour les données *between* 
 
-Les groupes sont définies par des caractéristiques suivantes :
+Les groupes sont définit par des caractéristiques suivantes :
 
 \FloatBarrier
 
@@ -2168,7 +2163,7 @@ stargazer(clusters1,
 
 #### D1.2 Les centres pour les données *within*  
 
-Les groupes sont définies par des caractéristiques suivantes :
+Les groupes sont définit par les caractéristiques suivantes :
 
 ```{r include = FALSE}
 names(clusters2)[(ncol(clusters2)-1):ncol(clusters2)] = c("n", "k")
@@ -2210,7 +2205,7 @@ stargazer(round(centers2, 6),
 
 \newpage
 
-#### D1.3 Les centres pour l'information complete 
+#### D1.3 Les centres pour l'information complète 
 
 Les groupes sont définit par les caractéristiques suivantes :
 
@@ -2254,7 +2249,7 @@ stargazer(round(centers3, 6),
 
 \newpage
 
-### D2 Les modèles en absence d' intéractions du marché
+### D2 Les modèles en absence d' interactions du marché
 
 #### D2.1 Le comportement des résidus
 
@@ -2316,7 +2311,7 @@ stargazer(ShapT,
 
 \newpage
 
-#### B2.3 Diagnostiques IV-OLS 
+#### B2.3 Diagnostics IV-OLS 
 
 ```{r include = FALSE}
 # IV-OLS diagnostics
@@ -2373,7 +2368,7 @@ stargazer(ivchek3,
 
 ### D3 Analyse des résultats M2
 
-#### D3.1 Independance des résidus  
+#### D3.1 Indépendance des résidus  
 
 \FloatBarrier
 
@@ -2406,7 +2401,7 @@ legend(x = "topright",
 
 \newpage
 
-### D3.2 La normalité des résidus, le cadre de SUR
+### D3.2 La normalité des résidus, le cadre de SURE
 
 \FloatBarrier
 
@@ -2455,10 +2450,11 @@ legend(x = "topright",
 
 \newpage
 
-# References 
+# Références 
 
 ```{r eval = FALSE, include = FALSE}
 #####################################################
 ###################   References   ##################
 #####################################################
 ```
+
