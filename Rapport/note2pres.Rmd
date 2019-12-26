@@ -1006,7 +1006,8 @@ texreg(float.pos = "!htbp",
     list(ols, ivols),
     custom.model.names = c("OLS", "IV-OLS"),
     custom.coef.names = c("IP", "Surface", "I pésticides"),
-    label = "table : ols et ivols")
+    label = "table : ols et ivols",
+    caption = "Modèles économétriques, variable dépendante - la quantité du vin vendu (en log)")
 ```
 
 \FloatBarrier
@@ -1098,7 +1099,8 @@ texreg(float.pos = "!htbp",
     custom.model.names = c("SUR", "3SLS"),
     custom.coef.names = c("D : IP", "D : Revenu", 
         "O : IP", "O : Surface", "O : I pésticides"),
-    label = "table : sur et 3sls")
+    label = "table : sur et 3sls",
+    caption = "Modèles économétriques, variable dépendante - la quantité du vin vendu (en log)")
 ```
 
 \FloatBarrier
@@ -1404,7 +1406,8 @@ texreg(float.pos = "!htbp",
         "OLS c2", "IV-OLS c2", 
         "OLS c3", "IV-OLS c3"),
     custom.coef.names = c("IP", "Surface", "I pésticides"),
-    label = "table : ols et ivols clusters")
+    label = "table : ols et ivols clusters",
+    caption = "Modèles économétriques, variable dépendante - la quantité du vin vendu (en log)")
 ```
 
 \FloatBarrier
@@ -1497,7 +1500,8 @@ texreg(float.pos = "!htbp",
         "SUR c3", "3SLS c3"),
     custom.coef.names = c("D : IP", "D : Revenu", 
         "O : IP", "O : Surface", "O : I pésticides"),
-    label = "table : sur et 3sls clusters")
+    label = "table : sur et 3sls clusters",
+    caption = "Modèles économétriques, variable dépendante - la quantité du vin vendu (en log)")
 ```
 
 \FloatBarrier
@@ -1876,7 +1880,8 @@ texreg(float.pos = "!htbp",
     custom.model.names = c("SUR", "2SLS", "3SLS", "i3SLS"),
     custom.coef.names = c("D : IP", "D : Revenu", 
         "O : IP", "O : Surface", "O : I pésticides"),
-    label = "table : sur, 2sls, 3sls and fiml")
+    label = "table : sur, 2sls, 3sls and fiml",
+    caption = "Modèles économétriques, variable dépendante - la quantité du vin vendu (en log)")
 ```
 
 \FloatBarrier
@@ -2128,9 +2133,9 @@ stargazer(res,
 
 ```{r echo = FALSE, results = "asis"}
 lr = lrtest(sur, sls2, sls3, fiml)
-xtable(round(lr, 4), 
+print(xtable(round(lr, 4), 
     caption = "ML test de spécification",
-    align = "c|ccccc")
+    align = "c|ccccc"), caption.placement = "bottom")
 ```
 
 \FloatBarrier
@@ -2259,19 +2264,19 @@ plot(y = as.numeric(olsx1$res), x = as.numeric(olsx1$fit),
     main = "Les résidus contre la variable prédite", 
     ylab = "Residuals", xlab = "Fitted")
 points(y = as.numeric(olsx2$res), x = as.numeric(olsx2$fit),
-    col = "red", pch = 17)
+    col = "green4", pch = 17)
 points(y = as.numeric(olsx3$res), x = as.numeric(olsx3$fit),
-    col = "green4", pch = 14)
+    col = "red", pch = 14)
 legend(x = "topright", legend = c("Cluster 1", "Cluster 2", "Cluster 3"),
-    col = c("blue", "red", "green4"), xpd = NA,
+    col = c("blue", "green4", "red"), xpd = NA,
     cex = 1, lwd = 3)
 # Representation graphique des résidus
 plot(density(olsx1$res), col = "blue", 
     main = "Les PDF des résidus", xlab = "Residuals")
-lines(density(olsx2$res), col = "red")
-lines(density(olsx3$res), col = "green4")
+lines(density(olsx2$res), col = "green4")
+lines(density(olsx3$res), col = "red")
 legend(x = "topright", legend = c("Cluster 1", "Cluster 2", "Cluster 3"),
-    col = c("blue", "red", "green4"), xpd = NA,
+    col = c("blue", "green4", "red"), xpd = NA,
     cex = 1, lwd = 3)
 ```
 
