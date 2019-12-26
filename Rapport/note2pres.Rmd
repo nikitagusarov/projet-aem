@@ -384,47 +384,47 @@ Le marché des vins sans indication géographique connaît de forte variation. N
 ## Les hypothèses théoriques
 
 Comme proposé dans la littérature, notre étude sur les vins non coûteux (non IGP) est effectuée au niveau du pays @cembalo2014 pour deux raisons. 
-D'abord, les prix de vente moyens des marchés sont diffèrents en raison des droits de douane à l'importation et des taxes à la consommation différentes [@anderson2011global].
+D'abord, les prix de vente moyen des marchés sont diffèrents en raison des droits de douane à l'importation et des taxes à la consommation différentes [@anderson2011global].
 De plus, la perception des produits de consommation varie d'un pays à l'autre [@makela2006].
 
-Rachat du vin par les enseignes (grand surfaces) peut avvoir une impact sur l'offre du vin. 
-Nous étudions deux cadres differents en les comparant dans ce travail.
-Un type des intéractions pose que les prix sont éxogènes pour les fournisseurs du vin simple, comme cela fut démontré par @kremer2004.
-L'autre possibilité suppose qu'il existent quand même des intercations entre l'offre et la demande et que les prix du vin sont endogènes. 
-Nous devrions trouver une façon pour formaliser ces deux approches differents et pouvoir les comparer.
+Le rachat du vin par les enseignes (grand surfaces) peut avoir une impact sur l'offre du vin. 
+Nous étudions deux cadres différents en les comparant dans ce travail.
+Un type d'interaction pose que les prix sont éxogènes pour les fournisseurs de vin simple, comme cela fut démontré par @kremer2004.
+L'autre possibilité suppose qu'il existe quand même des interactions entre l'offre et la demande et que les prix du vin sont endogènes. 
+Nous devrions trouver une façon pour formaliser ces deux approches différenets et pouvoir les comparer.
 
-La plupart des bouteilles achetées sont achetées dans la grande distribution. 
-Néanmoins, dans un souci de simplicité nous n'estimerons que la situation sur le marché en amont où les distributeurs achètent leurs bouteilles directement auprès du viticulteur (nous simulons l'indice des prix en amont à partir des prix sur le marché final, disponible dans la base des données de FranceAgrimer). 
-Donc nous supprimerons tous les intermédiaires entre le producteur et le distributeur (les grands enseignes, puisque presque la totalité du vin simple est vendu dans les grand surfaces).
+La plupart des bouteilles achetées le sont dans la grande distribution. 
+Néanmoins, dans un souci de simplicité nous n'estimerons que la situation sur le marché en amont où les distributeurs achètent leurs bouteilles directement auprès du viticulteur (nous simulons l'indice des prix en amont à partir des prix sur le marché final, disponible dans la base de données de FranceAgrimer). 
+Donc, nous supprimerons tous les intermédiaires entre le producteur et le distributeur (les grands enseignes, puisque presque la totalité du vin simple est vendu dans les grandes surfaces).
 
-Quand aux exportations et aux importations, n'ayant pas la possibilité contrôler le montant des vins non IGP exportés/importés, nous laissons ces effets au terme d'erreur. 
+Quand aux exportations et aux importations, n'ayant pas la possibilité de les contrôler le montant des vins non IGP exportés/importés, nous laissons ces effets au terme d'erreur. 
 Nous ignorons complétement les interactions internationales. 
-Nous simplifions davantage notre modèle en imposant l'abcese des flux du vin entre le département (ce qui peut être justifié si le grand enseignes rachetent le vin auprès de viticulteurs et seulement après le rédistribuent aux sein de leurs chaines).
+Nous simplifions davantage notre modèle en imposant l'absence des flux du vin entre les départements (ce qui peut être justifié si les grandes enseignes rachètent le vin auprès des viticulteurs et seulement après le redistribuent au sein de leurs chaînes).
 
 ```{r include = FALSE}
 # Il existe indéniablement, au sein de la grande distribution, une offre différenciée par format de vente : les hypermarchés se sont plutôt spécialisés dans le haut et le milieu de gamme avec une sur-représentation des VQPRD, les supermarchés ont privilégié les AOC à bas prix et les vins de table et de pays tandis que le hard discount se spécialisait dans le bas de gamme
 ```
 
-Nous supposons que les facteurs de production jouent le rôle de modificateur de l'offre (*supply shifter*) ce qui nous permet d'integrer les variables déterminant le niveau de la production (telles que la surface ou la quantité des pésticides utilisée) directement dans l'équation de l'offre.
-Pour l'information sur les facteurs de production du vin nous referençons les articles de @laporte1996 et de @outreville2010.
+Nous supposons que les facteurs de production jouent le rôle de modificateur de l'offre (*supply shifter*) ce qui nous permet d'intégrer les variables déterminants le niveau de la production (telles que la surface ou la quantité de pesticides utilisés) directement dans l'équation d'offre.
+Pour information sur les facteurs de production du vin nous référençons les articles de @laporte1996 et de @outreville2010.
 
 Avant de conclure, nous proposons au lecteur une liste exhaustive des suppositions sur le comportement du marché des vins simples. 
 Premièrement, nous supposons que chaque département à une fonction de production unique détérminée par des spécificités historiques, les traditions, la législation, le terroir, ainsi que des conditions météorologiques et géographiques.
 Les effets sont fixes au niveau départamental et peuvent être isolés par des transformations spécifiques des données (ex : une transformation Within).
-Deuxièmement, la quantité vendu sur le marché départamental est racheté (consommé) au sein du même département. 
-C'est une hypothèse très restrictive, qui nous eloigne de la réalité, mais nous devrions l'adopter si nous voulons intégrer les relations entre l'offre et la demande dans notre modèle. 
+Deuxièmement, la quantité vendue sur le marché départamental est racheté (consommé) au sein du même département. 
+C'est une hypothèse très restrictive, qui nous eloigne de la réalité, mais nous devons l'adopter si nous voulons intégrer les relations entre l'offre et la demande dans notre modèle. 
 Afin de vérifier cette hypothèse nous allons construire plusieurs modèles différents.
-Finalement, les effets qu'on vise à estimer sont des effets moyens au niveau départamental.
-C'est à dire nous allons obtenir un estimateur des effets moyens pour l'ensemble des département inclus dans notre analyse, ou des effets moyens au sein des groupes de département, si nous révèlons des differences significatives entre les départements. 
-Un autre modèle nous permettra de vérifier et justifier cette hypothèse.
+Finalement, les effets que l'on vise à estimer sont des effets moyens au niveau départamental.
+C'est à dire nous allons obtenir un estimateur des effets moyens pour l'ensemble des départements inclus dans notre analyse, ou des effets moyens au sein des groupes de département, si nous révèlons des differences significatives entre les départements. 
+Un autre modèle nous permettra de vérifier et de justifier cette hypothèse.
 
-En ce qui concerne les pesticides, nous supposons d'abord, que l'utilisation des pesticides par les viticulteurs est relié à la demande sur le vin et les préférences des consomamteurs.
-De plus, nous posons, que la demande des pesticides est inélastique au prix, ce qui nous permet d'exclure les interactions entre les fournisseurs des pesticides et les agriculteurs de notre analyse. 
+En ce qui concerne les pesticides, nous supposons d'abord, que l'utilisation des pesticides par les viticulteurs est reliée à la demande sur le vin et les préférences des consomamteurs.
+De plus, nous posons, que la demande des pesticides est inélastique au prix, ce qui nous permet d'exclure les interactions entre les fournisseurs de pesticides et les agriculteurs de notre analyse. 
 La quantité de pesticides utilisés par les agriculteurs correspond seulement à leurs besoins. 
 
 Pour résumer cette partie,  ce travail va porter sur les effets des pesticides sur l'offre des vins simples. 
-Nous allons tester certaines hypothèses sur le comportement et l'organisation des relations sur le marché des vins simples en comparant les differents modèles. 
-Puis, nous pourrons choisir entre ces modèles differents le plus vraisamblable, qui nous servira à répondre à la question de recherche. 
+Nous allons tester certaines hypothèses sur le comportement et l'organisation des relations sur le marché des vins simples en comparant les différents modèles. 
+Puis, nous pourrons choisir entre ces modèles différents le plus vraisamblable, qui nous servira à répondre à la question de recherche. 
 
 ## Formalisation 
 
@@ -434,20 +434,20 @@ En formalisant notre modèle théorique de base, nous posons, que l'offre agreg�
     Qo = \sum_{i = 1}^{N} qo_i
 \end{equation}
 
-Avec la quantité offerte déterminé par des contraintes de production et le prix sur le marché :
+Avec la quantité offerte déterminée par des contraintes de production et le prix sur le marché :
 
 \begin{equation}
     qo_i = a_i + b_i Po_i + c_i X_i
 \end{equation}
 
 Où $X$ est un vecteur des variables explicatives influençant la production. 
-Dans le cas le plus simple nous ne prenons en compte que les quantités des pesticides utilisées et la surface disponible, alors l'effet $c_{i1} : c_i = (c_{i1}, c{i2})$ represente l'effet d'utilisation des pesticides dans la production du vin sur l'offre de ce dernier.
+Dans le cas le plus simple nous ne prenons en compte que les quantités des pesticides utilisées et la surface disponible, alors l'effet $c_{i1} : c_i = (c_{i1}, c{i2})$ représente l'effet de l'utilisation des pesticides dans la production du vin sur l'offre de ce dernier.
 
 Cette équation permet déjà d'estimer les effets de l'utilisation des pesticides sur le marché du vin.
 Toutefois il existent deux possibilités sur l'organisation du marché dans ce cas. 
-D'abord, dans le cadre le plus simple et probable du point de vue théorique nous supposons, suivant les résultats de @kremer2004, que les prix sont imposés par les grands enseignes aux distriduteurs du vin simple. 
-D'autre cotè nous povons supposer que les prix sont endogenes parce qu'ils sont négocié entre le distributeur et le producteur.
-Appelons ce modèle théorique M1 pour le réfèrencer dans le futur, nous permettant de distinguer le cas sans intéractions simultanées entre l'offre et la demande. 
+D'abord, dans le cadre le plus simple et probable du point de vue théorique nous supposons, les résultats suivants de @kremer2004, que les prix sont imposés par les grandes enseignes aux distriduteurs de vin simple. 
+De l'autre côté, nous pouvons supposer que les prix sont endogènes parce qu'ils sont négociés entre le distributeur et le producteur.
+Appelons ce modèle théorique M1 pour le référencer dans le futur, nous permettant de distinguer le cas sans intéraction simultanée entre l'offre et la demande. 
 
 Il faut tenir compte que de cette façon nous ignorons plusieurs effets pervers, tels que :
 
@@ -478,7 +478,7 @@ Pour intégrer cette information dans notre *framework* analytique, nous devons 
 Il existe plusieures façons de le faire. 
 
 Dans le premier cas, nous pouvons essayer de capter les effets au niveau national.
-Pour ce faire nous réécrivons les deux équation (de la demande et de l'offre respectivement) sous la forme suivante :
+Pour ce faire nous réécrivons les deux équations (de la demande et de l'offre respectivement) sous la forme suivante :
 
 \begin{equation*}
     Q_o = \sum_{i = 1}^{N} (a_i + b_i Po_i + c_i X) = \sum_{i = 1}^{N} a_i + \sum_{i = 1}^{N} b_i Po_i + \sum_{i = 1}^{N} c_i X
@@ -488,7 +488,7 @@ Pour ce faire nous réécrivons les deux équation (de la demande et de l'offre 
     Qd = \sum_{i = 1}^{N} ( \alpha_i + \beta_i Pd_i + \gamma_i Z_i ) = \sum_{i = 1}^{N} \alpha_i + \sum_{i = 1}^{N} \beta_i Pd_i + \sum_{i = 1}^{N} \gamma_i Z_i
 \end{equation*}
 
-Ce qui nous produira un système des deux équations, avec $Qd = Qo$ dans la situation d'équilibre :
+Ce qui nous conduira à un système de deux équations, avec $Qd = Qo$ dans la situation d'équilibre :
 
 \begin{align*}
     Qd & = \sum_{i = 1}^{N} \alpha_i + \sum_{i = 1}^{N} \beta_i Pd_i + \sum_{i = 1}^{N} \gamma_i Z_i \\
@@ -496,9 +496,9 @@ Ce qui nous produira un système des deux équations, avec $Qd = Qo$ dans la sit
 \end{align*}
 
 Neanmoins, ce cas se révèle être très complexe. 
-D'abord, les effets peuvent être differents pour tous les départements, ce qui nous conduira à une augmentation dans le nombre des paramètres à estimer significative. 
-De plus, même si tous les effets sont identiques pour l'ensemble des départements, des contraintes au niveau des données peuvent se révèler trop restrictives, réduisant, ainsi à néant la puissance statistique de notre estimateur (ex : le nombre des observations par années très faible). 
-Dans le deux cas nous faisons face à une impasse.
+D'abord, les effets peuvent être différents pour tous les départements, ce qui nous conduira à une augmentation dans le nombre des paramètres à estimer significative. 
+De plus, même si tous les effets sont identiques pour l'ensemble des départements, des contraintes au niveau des données peuvent se révèler trop restrictives, réduisant, ainsi à néant la puissance statistique de notre estimateur (ex : le nombre des observations par années est très faible). 
+Dans les deux cas nous faisons face à une impasse.
 
 Une des modifications possibles dans ce cas sera l'introduction d'une contrainte supplémentaire au niveau de la demande sur le vin de table.
 Afin de pouvoir identifier les effets de toutes les variables par un système d'équations, nous pouvons supposer, que tout le vin produit dans un département est consommé dans le même department. 
@@ -519,9 +519,9 @@ Où $qd_i = qo_i$ et $Pd_i = Po_i$, ce qui permet de relier les équations au ni
 Les coefficients $b$, $c$, $\beta$ et $\gamma$ sont supposés fixes pour tous les départements. Ils nous donnent un estimateur des effets moyens au niveau de la France.
 L'effet des pesticides dans la production du vin sera capté par le terme $c_{1} : c = (c_{1}, c_{2})$ dans ce cas.
 
-Néanmoins, nous nous posons la question, comment réagir dans le cas où les effets sont differents pour les differents départements à cause des spécificité des marché locaux, géographiques ou autres ?
+Néanmoins, nous nous posons la question, comment réagir dans le cas où les effets sont différents pour les differents départements à cause des spécificité des marché locaux, géographiques ou autres ?
 On peut supposer, qu'il existe au moins quelques groupes majeures ayant des caractéristiques et des comportements similaires. 
-Dans ce cas nous pourrions construire des clusters, qui regrouppent des départements ayant des caractéristiques identiques. 
+Dans ce cas nous pourrions construire des clusters, qui regroupent des départements ayant des caractéristiques identiques. 
 Cela nous permettra de modèliser les effets moyens par cluster en réduisant les biais eventuels.
 
 Ce système peut être formalisé par les $K$ systèmes d'équations suivants :
