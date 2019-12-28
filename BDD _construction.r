@@ -35,25 +35,21 @@ write.csv(vin, file = "Donnees_ref/vin-p.csv")
 ## End first changes  
 
 # Loading data
-# usage=read.csv("C:/Users/jupiter/Documents/Blanc Arnaud/master MIASHS C2ES/M2/analyse empirique de marchï¿½/pesticides/info/usages_des_produits_autorises_v2_utf8.csv", sep = ";")
-write.csv(usage, file = "Donnees_ref/usage_pa.csv")
-# superficie=read.csv("C:/Users/jupiter/Documents/projet-aem-s/Donnees/superficie départementale par an de vignes.csv", sep = ";", skip = 7, header = T)
-write.csv(superficie, file = "Donnees_ref/superficie_vignes.csv")
-View(superficie)
+# usages_des_produits_autorises_v2_utf8.csv
+usage = read.csv("Donnees_ref/usage_pa.csv")
+# superficie départementale par an de vignes.csv
+superficie = read.csv("Donnees_ref/superficie_vignes.csv")
 
-
-#Construction de la table pesticides
-library(tidyverse)
-usage %>% as.numeric(X.produit..numero.AMM)
-
-pesticide=left_join(bnvd, usage, by=c("amm"="X.produit..numero.AMM"))
+# Construction de la table pesticides
+usage = usage %>% as.numeric(X.produit..numero.AMM)
+pesticide = left_join(bnvd, usage, 
+  by = c("amm" = "X.produit..numero.AMM"))
 
 ## Loading data
 usage = read.csv("Donnees_ref/usage_pa.csv")
 ## identifiant.usage
 usage.v = usage %>% 
   filter(str_detect(identifiant.usage, "Vigne"))
-dim(usage.v) # succesfull filtering
 ## Preparation for concat
 names(usage.v)[3]
 class(usage.v$X.produit..numero.AMM)
