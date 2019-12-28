@@ -1,5 +1,5 @@
 ---
-title: "Etude des effets des pesticides dans la production des vins de table"
+title: "Etude des effets des pesticides sur le marché des vins de table" 
 shorttitle : "Les effets des pesticides"
 subtitle: "Analyse empirique des marchés"
 author: A. Blanc, N. Gusarov, S. Picon
@@ -29,7 +29,7 @@ fontsize: 11pt
 # geometry: margin = 0.5in
 ---
 
-```{r include = FALSE}
+```{r include = FALSE} 
 ###################
 # Setting r options
 ###################
@@ -75,6 +75,9 @@ require(gridExtra)
 require(stargazer)
 require(texreg)
 require(xtable)
+# Options
+options(xtable.comment = FALSE)
+options(warn = -1)
 ```
 
 ```{r include = FALSE}
@@ -464,18 +467,18 @@ Représente 10% de la production (VIN & SOCIETE, 2018)
 ## Visualisatoin des interdépendances
 ```{r echo = FALSE}
 p1 = datai %>% 
-    ggplot(aes(qi, ipi, col = as.factor(ndep))) +
+    ggplot(aes(y = qi, x = ipi, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
     geom_smooth(method = "lm", se = F, size = 0.25) +
     # ggtitle("Q ~ IP") +
-    xlab("Quantité du vin") + ylab("Index du prix") +
+    ylab("Quantité du vin") + xlab("Index du prix") +
     pres_theme
 p2 = datai %>% 
-    ggplot(aes(qi, iki, col = as.factor(ndep))) +
+    ggplot(aes(y = qi, x = iki, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
     geom_smooth(method = "lm", se = F, size = 0.25) +
     # ggtitle("Q ~ IK") +
-    xlab("Quantité du vin") + ylab("Index des pésticides") +
+    ylab("Quantité du vin") + xlab("Index des pésticides") +
     pres_theme
 grid.arrange(p1, p2, nrow = 1)
 # Probably it is better to do it by variable
@@ -484,18 +487,18 @@ grid.arrange(p1, p2, nrow = 1)
 ## Visualisation des interdépendances
 ```{r echo = FALSE}
 p1 = datai %>% 
-    ggplot(aes(qi, si, col = as.factor(ndep))) +
+    ggplot(aes(y = qi, x = si, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
     geom_smooth(method = "lm", se = F, size = 0.25) +
     # ggtitle("Q ~ S") +
-    xlab("Quantité du vin") + ylab("Surface qultivé") +
+    ylab("Quantité du vin") + xlab("Surface qultivé") +
     pres_theme
 p2 = datai %>% 
-    ggplot(aes(qi, ri, col = as.factor(ndep))) +
+    ggplot(aes(y = qi, x = ri, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
     geom_smooth(method = "lm", se = F, size = 0.25) +
     # ggtitle("Q ~ R") +
-    xlab("Quantité du vin") + ylab("Revenus") +
+    ylab("Quantité du vin") + xlab("Revenus") +
     pres_theme
 grid.arrange(p1, p2, nrow = 1)
 ```
@@ -569,9 +572,9 @@ rownames(correlation) = c("Quantité du vin", "IP",
 
 
 ```{r echo = FALSE, results = "asis"}
-xtable(round(correlation, 4), 
+print(xtable(round(correlation, 4), 
     caption = "Overall correlation",
-    align = "l|cccccc")
+    align = "l|cccccc"), caption.placement = "bottom")
 ```
 
 
@@ -601,9 +604,9 @@ rownames(correlationW) = c("Quantité du vin", "IP",
 
 
 ```{r echo = FALSE, results = "asis"}
-xtable(round(correlationW, 4), 
+print(xtable(round(correlationW, 4), 
     caption = "Within transformation correlation",
-    align = "l|rrrrrr")
+    align = "l|rrrrrr"), caption.placement = "bottom")
 ```
 
 
@@ -612,20 +615,20 @@ xtable(round(correlationW, 4),
 
 ```{r echo = FALSE}
 p1 = dataW %>% 
-    ggplot(aes(qi, ipi, col = as.factor(ndep))) +
+    ggplot(aes(y = qi, x = ipi, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
     geom_smooth(method = "lm", se = F, size = 0.25) +
     geom_smooth(aes(qi, ipi, col = "black"), method = "loess", size = 0.4) +
     # ggtitle("Q ~ IP") +
-    xlab("Quantité du vin") + ylab("Index du prix") +
-    pres_theme
+    ylab("Quantité du vin") + xlab("Index du prix") +
+    pres_theme + xlim(-1, 4)
 p2 = dataW %>% 
-    ggplot(aes(qi, iki, col = as.factor(ndep))) +
+    ggplot(aes(y = qi, x = iki, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
     geom_smooth(method = "lm", se = F, size = 0.25) +
     geom_smooth(aes(qi, iki, col = "black"), method = "loess", size = 0.4) +
     # ggtitle("Q ~ IK") +
-    xlab("Quantité du vin") + ylab("Index des pésticides") +
+    ylab("Quantité du vin") + xlab("Index des pésticides") +
     pres_theme
 grid.arrange(p1, p2, nrow = 1)
 # Probably it is better to do it by variable
@@ -637,21 +640,21 @@ grid.arrange(p1, p2, nrow = 1)
 
 ```{r echo = FALSE}
 p1 = dataW %>% 
-    ggplot(aes(qi, si, col = as.factor(ndep))) +
+    ggplot(aes(y = qi, x = si, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
     geom_smooth(method = "lm", se = F, size = 0.25) +
     geom_smooth(aes(qi, si, col = "black"), method = "loess", size = 0.4) +
     # ggtitle("Q ~ S") +
-    xlab("Quantité du vin") + ylab("Surface qultivé") +
+    ylab("Quantité du vin") + xlab("Surface qultivé") +
     pres_theme
 p2 = dataW %>% 
-    ggplot(aes(qi, ri, col = as.factor(ndep))) +
+    ggplot(aes(y = qi, x = ri, col = as.factor(ndep))) +
     geom_point(size = 0.5) + 
     geom_smooth(method = "lm", se = F, size = 0.25) +
     geom_smooth(aes(qi, ri, col = "black"), method = "loess", size = 0.4) +
     # ggtitle("Q ~ R") +
-    xlab("Quantité du vin") + ylab("Revenus") +
-    pres_theme
+    ylab("Quantité du vin") + xlab("Revenus") +
+    pres_theme + xlim(-0.05, 0.05) #### ERRORS!!!!
 grid.arrange(p1, p2, nrow = 1)
 ```
 
@@ -793,8 +796,9 @@ texreg(list(ols #, wls, sur
         ),
     custom.model.names = c("OLS" #, "WLS", "SUR"
         ),
-    label = "table : ols" #, wls and sur"
-        )
+    label = "table : ols", # wls and sur"
+    custom.coef.names = c("IP", "Surface", "I pésticides"),
+    caption = "Modèle économétrique, variable dependante - quantité du vin")
 ```
 
 
@@ -822,10 +826,10 @@ rownames(cormat) = c("Vin", "IP",
 
 
 ```{r echo = FALSE, results = "asis"}
-xtable(round(cormat, 4),
+print(xtable(round(cormat, 4),
     caption = "Correlation des résidus",
     align = "l|r" #rrrr"
-    )
+    ), caption.placement = "bottom")
 # cordata %>% ggplot(aes(x = u6, y = f6)) + geom_point() + geom_smooth()
 ```
 
@@ -863,7 +867,7 @@ rownames(pDW) = c( #"Equation de demande",
 ```{r echo = FALSE, results = "asis"}
 stargazer(pDW, 
     header = FALSE,
-    title = "Durbin-Watson test statistics",
+    title = "Durbin-Watson test statistics, t-stat",
     summary = F)
 ```
 
@@ -894,7 +898,7 @@ rownames(BartT) = c(#"Equation de demande",
 stargazer(BartT,
     header = FALSE,
     summary = FALSE,
-    title = "Bartlett heteroscedasticity test")
+    title = "Bartlett heteroscedasticity test, p-valeur")
 ```
 
 ```{r include = FALSE}
@@ -916,7 +920,7 @@ rownames(ShapT) = c(#"Equation de demande",
 stargazer(ShapT,
     header = FALSE,
     summary = FALSE,
-    title = "Shapiro-Wilk normality test")
+    title = "Shapiro-Wilk normality test, p-valeur")
 ```
 
 
@@ -930,7 +934,8 @@ plot(y = as.numeric(ols$res),
     x = as.numeric(dataWX$qi), 
     col = "red", 
     main = "Demande", 
-    ylab = "Fitted - résidus", xlab = "Real")
+    ylab = "Fitted - résidus", xlab = "Real",
+    xlim = c(-2, 1), ylim = c(-2, 1))
 points(y = as.numeric(ols$fit), 
     x = as.numeric(dataWX$qi), 
     col = "blue", pch = 17)
@@ -1012,7 +1017,10 @@ fiml = systemfit(system,
 ```{r echo = FALSE, results = "asis"}
 texreg(list(sls2, wsls2, sls3, fiml),
     custom.model.names = c("2SLS", "W2SLS", "3SLS", "i3SLS"),
-    label = "table : 2sls, w2sls, 3sls and fiml")
+    label = "table : 2sls, w2sls, 3sls and fiml", # wls and sur"
+    custom.coef.names = c("D : IP", "D : Revenu", 
+        "O : IP", "O : Surface", "O : I pésticides"),
+    caption = "Modèle économétrique, variable dependante - quantité du vin")
 ```
 
 
@@ -1028,7 +1036,7 @@ res = data.frame(Test = c("2SLS contre 3SLS", "2SLS contre i3SLS"),
 
 ```{r echo = FALSE, results = "asis"}
 stargazer(res, 
-    title = "Hausman 3SLS consistency test",
+    title = "Hausman 3SLS consistency test, p-valeur",
     summary = F, 
     header = F)
 ```
@@ -1043,9 +1051,9 @@ lr = lrtest(sls2, sls3, fiml)
 
 
 ```{r include = FALSE}
-xtable(lr, 
+print(xtable(lr, 
     caption = "Likelihood test",
-    align = "l|rrrrr")
+    align = "l|rrrrr"), caption.placement = "bottom")
 ```
  
 
@@ -1067,7 +1075,7 @@ rownames(ShapT) = c("Equation de demande", "Equation d'offre")
 stargazer(ShapT,
     header = FALSE,
     summary = FALSE,
-    title = "Shapiro-Wilk normality test")
+    title = "Shapiro-Wilk normality test, p-valeur")
 ```
 
 
@@ -1097,7 +1105,7 @@ rownames(BartT) = c("Equation de demande", "Equation d'offre")
 stargazer(BartT,
     header = FALSE,
     summary = FALSE,
-    title = "Bartlett heteroscedasticity test")
+    title = "Bartlett heteroscedasticity test, p-valeur")
 ```
  
 
@@ -1148,7 +1156,8 @@ par(mfrow = c(1,2), cex = 0.5)
 plot(y = fiml$eq[[1]]$res, x = as.numeric(resdata3$qi),
     col = "red", pch = 17, 
     main = "Demande", 
-    ylab = "Fitted - résidus", xlab = "Real")
+    ylab = "Fitted - résidus", xlab = "Real",,
+    ylim = c(-7,4), xlim = c(-7,4))
 points(y = fiml$eq[[1]]$fit, x = resdata3$qi, 
     col = "blue", pch = 17)
 lines(y = fiml$eq[[1]]$fit + fiml$eq[[1]]$res, x = resdata3$qi,
@@ -1159,7 +1168,8 @@ legend(x = "bottomleft", legend = c("Résidus", "Fitted", "Real"),
 plot(y = fiml$eq[[2]]$fit, x = as.numeric(resdata3$qi), 
     col = "blue", pch = 17, 
     main = "Offre", 
-    ylab = "Fitted - résidus", xlab = "Real")
+    ylab = "Fitted - résidus", xlab = "Real",
+    ylim = c(-2.5, 2), xlim = c(-2.5, 2))
 points(y = fiml$eq[[2]]$res, x = resdata3$qi,
     col = "red", pch = 14)
 lines(y = fiml$eq[[2]]$fit + fiml$eq[[2]]$res, x = resdata3$qi,
@@ -1199,7 +1209,7 @@ rownames(pDW) = c("Equation de demande", "Equation d'offre")
 ```{r echo = FALSE, results = "asis"}
 stargazer(pDW, 
     header = FALSE,
-    title = "Durbin-Watson test statistics",
+    title = "Durbin-Watson test statistics, t-stat",
     summary = F)
 ```
 
@@ -1225,9 +1235,9 @@ rownames(cormat) = c("Vin", "IP",
 
 
 ```{r echo = FALSE, results = "asis"}
-xtable(round(cormat, 4), 
+print(xtable(round(cormat, 4), 
     caption = "Correlation des résidus",
-    align = "l|rrrrrr")
+    align = "l|rrrrrr"), caption.placement = "bottom")
 ```
 
 ## Clusterisation
@@ -1328,7 +1338,12 @@ sls3x = systemfit(systemz,
 texreg(float.pos = "!htbp", 
     list(olsx, sls2x, sls3x),
     custom.model.names = c("OLS", "2SLS", "3SLS"),
-    label = "table : ols, 2sls et 3sls, full information clusters")
+    label = "table : ols, 2sls et 3sls, full information clusters",custom.coef.names = c("D : IP", 
+        "D : Revenu c1", "D : Revenu c2","D : Revenu c3", 
+        "O : IP", 
+        "O : Surface c1", "O : Surface c2", "O : Surface c3", 
+        "O : I pésticides c1", "O : I pésticides c2", "O : I pésticides c3"),
+    caption = "Modèle économétrique, variable dependante - quantité du vin")
 ```
 
 # Conclusions 

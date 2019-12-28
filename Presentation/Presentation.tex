@@ -69,18 +69,12 @@
 }
 \usepackage{hyperref}
 \hypersetup{
-            pdftitle={Etude des effets des pesticides dans la production des vins de table},
+            pdftitle={Etude des effets des pesticides sur le marché des vins de table},
             pdfauthor={A. Blanc, N. Gusarov, S. Picon},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
 \newif\ifbibliography
-\usepackage{longtable,booktabs}
-\usepackage{caption}
-% These lines are needed to make table captions work with longtable:
-\makeatletter
-\def\fnum@table{\tablename~\thetable}
-\makeatother
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -110,7 +104,7 @@
 }
 \makeatother
 
-\title{Etude des effets des pesticides dans la production des vins de table}
+\title{Etude des effets des pesticides sur le marché des vins de table}
 \providecommand{\subtitle}[1]{}
 \subtitle{Analyse empirique des marchés}
 \author{A. Blanc, N. Gusarov, S. Picon}
@@ -711,50 +705,43 @@ Revenus & $0$ & $0.248$ & $0$ \\
 
 \tiny
 
-\begin{longtable}[]{@{}lrrrrrr@{}}
-\toprule
-& Quantité du vin & IP & Surface & Revenus & Index pésticides &
-Temps\tabularnewline
-\midrule
-\endhead
-Quantité du vin & 1.0000 & 0.0177 & 0.9559 & -0.0266 & -0.0667 &
--0.0360\tabularnewline
-IP & 0.0177 & 1.0000 & -0.0513 & 0.0065 & -0.0590 &
-0.1082\tabularnewline
-Surface & 0.9559 & -0.0513 & 1.0000 & -0.0567 & -0.0486 &
--0.0640\tabularnewline
-Revenus & -0.0266 & 0.0065 & -0.0567 & 1.0000 & -0.0433 &
-0.1188\tabularnewline
-Index pésticides & -0.0667 & -0.0590 & -0.0486 & -0.0433 & 1.0000 &
-0.2971\tabularnewline
-Temps & -0.0360 & 0.1082 & -0.0640 & 0.1188 & 0.2971 &
-1.0000\tabularnewline
-\bottomrule
-\end{longtable}
+\begin{table}[ht]
+\centering
+\begin{tabular}{l|cccccc}
+  \hline
+ & Quantité du vin & IP & Surface & Revenus & Index pésticides & Temps \\ 
+  \hline
+Quantité du vin & 1.00 & 0.02 & 0.96 & -0.03 & -0.07 & -0.04 \\ 
+  IP & 0.02 & 1.00 & -0.05 & 0.01 & -0.06 & 0.11 \\ 
+  Surface & 0.96 & -0.05 & 1.00 & -0.06 & -0.05 & -0.06 \\ 
+  Revenus & -0.03 & 0.01 & -0.06 & 1.00 & -0.04 & 0.12 \\ 
+  Index pésticides & -0.07 & -0.06 & -0.05 & -0.04 & 1.00 & 0.30 \\ 
+  Temps & -0.04 & 0.11 & -0.06 & 0.12 & 0.30 & 1.00 \\ 
+   \hline
+\end{tabular}
+\caption{Overall correlation} 
+\end{table}
 
 \normalsize
 
 \tiny
 
-\begin{longtable}[]{@{}lrrrrrr@{}}
-\toprule
-& Quantité du vin & IP & Surface & Revenus & Index pésticides &
-Temps\tabularnewline
-\midrule
-\endhead
-Quantité du vin & 1.0000 & 0.6656 & 0.3655 & -0.1601 & -0.1813 &
--0.1994\tabularnewline
-IP & 0.6656 & 1.0000 & 0.1862 & 0.1119 & -0.0108 & 0.1640\tabularnewline
-Surface & 0.3655 & 0.1862 & 1.0000 & -0.1657 & -0.2035 &
--0.3103\tabularnewline
-Revenus & -0.1601 & 0.1119 & -0.1657 & 1.0000 & 0.2103 &
-0.6522\tabularnewline
-Index pésticides & -0.1813 & -0.0108 & -0.2035 & 0.2103 & 1.0000 &
-0.4100\tabularnewline
-Temps & -0.1994 & 0.1640 & -0.3103 & 0.6522 & 0.4100 &
-1.0000\tabularnewline
-\bottomrule
-\end{longtable}
+\begin{table}[ht]
+\centering
+\begin{tabular}{l|rrrrrr}
+  \hline
+ & Quantité du vin & IP & Surface & Revenus & Index pésticides & Temps \\ 
+  \hline
+Quantité du vin & 1.00 & 0.67 & 0.37 & -0.16 & -0.18 & -0.20 \\ 
+  IP & 0.67 & 1.00 & 0.19 & 0.11 & -0.01 & 0.16 \\ 
+  Surface & 0.37 & 0.19 & 1.00 & -0.17 & -0.20 & -0.31 \\ 
+  Revenus & -0.16 & 0.11 & -0.17 & 1.00 & 0.21 & 0.65 \\ 
+  Index pésticides & -0.18 & -0.01 & -0.20 & 0.21 & 1.00 & 0.41 \\ 
+  Temps & -0.20 & 0.16 & -0.31 & 0.65 & 0.41 & 1.00 \\ 
+   \hline
+\end{tabular}
+\caption{Within transformation correlation} 
+\end{table}
 
 \normalsize
 
@@ -907,21 +894,21 @@ Temps & -0.1994 & 0.1640 & -0.3103 & 0.6522 & 0.4100 &
 \hline
  & OLS \\
 \hline
-ipi        & $0.30^{***}$  \\
-           & $(0.02)$      \\
-si         & $0.23^{***}$  \\
-           & $(0.04)$      \\
-iki        & $-0.16^{***}$ \\
-           & $(0.05)$      \\
+IP           & $0.30^{***}$  \\
+             & $(0.02)$      \\
+Surface      & $0.23^{***}$  \\
+             & $(0.04)$      \\
+I pésticides & $-0.16^{***}$ \\
+             & $(0.05)$      \\
 \hline
-R$^2$      & 0.52          \\
-Adj. R$^2$ & 0.52          \\
-Num. obs.  & 345           \\
-RMSE       & 0.29          \\
+R$^2$        & 0.52          \\
+Adj. R$^2$   & 0.52          \\
+Num. obs.    & 345           \\
+RMSE         & 0.29          \\
 \hline
 \multicolumn{2}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
-\caption{Statistical models}
+\caption{Modèle économétrique, variable dependante - quantité du vin}
 \label{table : ols}
 \end{center}
 \end{table}
@@ -935,18 +922,21 @@ RMSE       & 0.29          \\
 
 \tiny
 
-\begin{longtable}[]{@{}lr@{}}
-\toprule
-& OLS\tabularnewline
-\midrule
-\endhead
-Vin & 0.6932\tabularnewline
-IP & 0.0000\tabularnewline
-Surface & 0.0000\tabularnewline
-Revenus & -0.2389\tabularnewline
-Pesticides & 0.0000\tabularnewline
-\bottomrule
-\end{longtable}
+\begin{table}[ht]
+\centering
+\begin{tabular}{l|r}
+  \hline
+ & OLS \\ 
+  \hline
+Vin & 0.69 \\ 
+  IP & -0.00 \\ 
+  Surface & 0.00 \\ 
+  Revenus & -0.24 \\ 
+  Pesticides & -0.00 \\ 
+   \hline
+\end{tabular}
+\caption{Correlation des résidus} 
+\end{table}
 
 \normalsize
 
@@ -958,7 +948,7 @@ Pesticides & 0.0000\tabularnewline
 \tiny
 
 \begin{table}[!htbp] \centering 
-  \caption{Durbin-Watson test statistics} 
+  \caption{Durbin-Watson test statistics, t-stat} 
   \label{} 
 \begin{tabular}{@{\extracolsep{5pt}} ccc} 
 \\[-1.8ex]\hline 
@@ -979,7 +969,7 @@ Equation d'offre & $0.627$ & $1$ \\
 \tiny
 
 \begin{table}[!htbp] \centering 
-  \caption{Bartlett heteroscedasticity test} 
+  \caption{Bartlett heteroscedasticity test, p-valeur} 
   \label{} 
 \begin{tabular}{@{\extracolsep{5pt}} ccc} 
 \\[-1.8ex]\hline 
@@ -996,7 +986,7 @@ Equation d'offre & $0$ & $1$ \\
 \tiny
 
 \begin{table}[!htbp] \centering 
-  \caption{Shapiro-Wilk normality test} 
+  \caption{Shapiro-Wilk normality test, p-valeur} 
   \label{} 
 \begin{tabular}{@{\extracolsep{5pt}} ccc} 
 \\[-1.8ex]\hline 
@@ -1038,15 +1028,15 @@ Equation d'offre & $0$ & $6$ \\
 \hline
  & 2SLS & W2SLS & 3SLS & i3SLS \\
 \hline
-Demande: ipi        & $0.79^{***}$   & $0.79^{***}$   & $0.79^{***}$   & $0.79^{***}$   \\
+D : IP              & $0.79^{***}$   & $0.79^{***}$   & $0.79^{***}$   & $0.79^{***}$   \\
                     & $(0.15)$       & $(0.15)$       & $(0.15)$       & $(0.15)$       \\
-Demande: ri         & $-13.07^{***}$ & $-13.07^{***}$ & $-13.07^{***}$ & $-13.07^{***}$ \\
+D : Revenu          & $-13.07^{***}$ & $-13.07^{***}$ & $-13.07^{***}$ & $-13.07^{***}$ \\
                     & $(2.76)$       & $(2.76)$       & $(2.76)$       & $(2.76)$       \\
-Offre: ipi          & $-0.28$        & $-0.28$        & $-0.25$        & $-0.25$        \\
+O : IP              & $-0.28$        & $-0.28$        & $-0.25$        & $-0.25$        \\
                     & $(0.25)$       & $(0.25)$       & $(0.25)$       & $(0.24)$       \\
-Offre: si           & $0.47^{***}$   & $0.47^{***}$   & $0.45^{***}$   & $0.45^{***}$   \\
+O : Surface         & $0.47^{***}$   & $0.47^{***}$   & $0.45^{***}$   & $0.45^{***}$   \\
                     & $(0.13)$       & $(0.13)$       & $(0.13)$       & $(0.12)$       \\
-Offre: iki          & $-0.11$        & $-0.11$        & $-0.17^{*}$    & $-0.17^{*}$    \\
+O : I pésticides    & $-0.11$        & $-0.11$        & $-0.17^{*}$    & $-0.17^{*}$    \\
                     & $(0.09)$       & $(0.09)$       & $(0.08)$       & $(0.08)$       \\
 \hline
 Demande: R$^2$      & -0.41          & -0.41          & -0.41          & -0.41          \\
@@ -1057,7 +1047,7 @@ Num. obs. (total)   & 690            & 690            & 690            & 690    
 \hline
 \multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
-\caption{Statistical models}
+\caption{Modèle économétrique, variable dependante - quantité du vin}
 \label{table : 2sls, w2sls, 3sls and fiml}
 \end{center}
 \end{table}
@@ -1072,7 +1062,7 @@ Num. obs. (total)   & 690            & 690            & 690            & 690    
 \tiny
 
 \begin{table}[!htbp] \centering 
-  \caption{Hausman 3SLS consistency test} 
+  \caption{Hausman 3SLS consistency test, p-valeur} 
   \label{} 
 \begin{tabular}{@{\extracolsep{5pt}} ccc} 
 \\[-1.8ex]\hline 
@@ -1095,7 +1085,7 @@ Num. obs. (total)   & 690            & 690            & 690            & 690    
 \tiny
 
 \begin{table}[!htbp] \centering 
-  \caption{Shapiro-Wilk normality test} 
+  \caption{Shapiro-Wilk normality test, p-valeur} 
   \label{} 
 \begin{tabular}{@{\extracolsep{5pt}} cccc} 
 \\[-1.8ex]\hline 
@@ -1113,7 +1103,7 @@ Equation d'offre & $0$ & $0$ & $0$ \\
 \tiny
 
 \begin{table}[!htbp] \centering 
-  \caption{Bartlett heteroscedasticity test} 
+  \caption{Bartlett heteroscedasticity test, p-valeur} 
   \label{} 
 \begin{tabular}{@{\extracolsep{5pt}} cccc} 
 \\[-1.8ex]\hline 
@@ -1169,7 +1159,7 @@ Equation d'offre & $0$ & $0$ & $0$ \\
 \tiny
 
 \begin{table}[!htbp] \centering 
-  \caption{Durbin-Watson test statistics} 
+  \caption{Durbin-Watson test statistics, t-stat} 
   \label{} 
 \begin{tabular}{@{\extracolsep{5pt}} cccc} 
 \\[-1.8ex]\hline 
@@ -1202,23 +1192,21 @@ Equation d'offre & $0.637$ & $0.638$ & $0.638$ \\
 
 \tiny
 
-\begin{longtable}[]{@{}lrrrrrr@{}}
-\toprule
-& 2SLS D & 2SLS O & 3SLS D & 3SLS O & i3SLS D & i3SLS O\tabularnewline
-\midrule
-\endhead
-Vin & -0.1309 & 0.8783 & -0.1309 & 0.8803 & -0.1309 &
-0.8802\tabularnewline
-IP & -0.7983 & 0.8470 & -0.7983 & 0.8355 & -0.7983 &
-0.8364\tabularnewline
-Surface & 0.0005 & 0.0000 & 0.0005 & -0.0002 & 0.0005 &
--0.0002\tabularnewline
-Revenus & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 &
-0.0000\tabularnewline
-Pesticides & -0.0764 & 0.0000 & -0.0764 & 0.0349 & -0.0764 &
-0.0324\tabularnewline
-\bottomrule
-\end{longtable}
+\begin{table}[ht]
+\centering
+\begin{tabular}{l|rrrrrr}
+  \hline
+ & 2SLS D & 2SLS O & 3SLS D & 3SLS O & i3SLS D & i3SLS O \\ 
+  \hline
+Vin & -0.13 & 0.88 & -0.13 & 0.88 & -0.13 & 0.88 \\ 
+  IP & -0.80 & 0.85 & -0.80 & 0.84 & -0.80 & 0.84 \\ 
+  Surface & 0.00 & 0.00 & 0.00 & -0.00 & 0.00 & -0.00 \\ 
+  Revenus & 0.00 & -0.00 & 0.00 & 0.00 & 0.00 & 0.00 \\ 
+  Pesticides & -0.08 & 0.00 & -0.08 & 0.03 & -0.08 & 0.03 \\ 
+   \hline
+\end{tabular}
+\caption{Correlation des résidus} 
+\end{table}
 
 \normalsize
 
@@ -1253,28 +1241,28 @@ Pesticides & -0.0764 & 0.0000 & -0.0764 & 0.0349 & -0.0764 &
 \hline
  & OLS & 2SLS & 3SLS \\
 \hline
-Demande: ipi        & $0.33^{***}$   & $0.68^{***}$   & $0.68^{***}$   \\
+D : IP              & $0.33^{***}$   & $0.68^{***}$   & $0.68^{***}$   \\
                     & $(0.02)$       & $(0.10)$       & $(0.10)$       \\
-Demande: ri1        & $-12.97^{***}$ & $-18.98^{***}$ & $-19.39^{***}$ \\
+D : Revenu c1       & $-12.97^{***}$ & $-18.98^{***}$ & $-19.39^{***}$ \\
                     & $(2.78)$       & $(4.26)$       & $(4.23)$       \\
-Demande: ri2        & $-6.52^{*}$    & $-7.41$        & $-6.72$        \\
-                    & $(2.82)$       & $(4.01)$       & $(3.94)$       \\
-Demande: ri3        & $-8.11^{***}$  & $-10.60^{***}$ & $-10.59^{***}$ \\
+D : Revenu c2       & $-8.11^{***}$  & $-10.60^{***}$ & $-10.59^{***}$ \\
                     & $(2.13)$       & $(3.09)$       & $(3.04)$       \\
-Offre: ipi          & $0.29^{***}$   & $-0.15$        & $-0.14$        \\
+D : Revenu c3       & $-6.52^{*}$    & $-7.41$        & $-6.72$        \\
+                    & $(2.82)$       & $(4.01)$       & $(3.94)$       \\
+O : IP              & $0.29^{***}$   & $-0.15$        & $-0.14$        \\
                     & $(0.02)$       & $(0.17)$       & $(0.17)$       \\
-Offre: si1          & $0.18^{**}$    & $0.46^{**}$    & $0.42^{**}$    \\
+O : Surface c1      & $0.18^{**}$    & $0.46^{**}$    & $0.42^{**}$    \\
                     & $(0.06)$       & $(0.14)$       & $(0.14)$       \\
-Offre: si2          & $0.83^{***}$   & $1.38^{***}$   & $1.41^{***}$   \\
-                    & $(0.17)$       & $(0.35)$       & $(0.35)$       \\
-Offre: si3          & $0.23^{***}$   & $0.28^{**}$    & $0.32^{***}$   \\
+O : Surface c2      & $0.23^{***}$   & $0.28^{**}$    & $0.32^{***}$   \\
                     & $(0.06)$       & $(0.10)$       & $(0.09)$       \\
-Offre: iki1         & $-0.13$        & $-0.03$        & $-0.07$        \\
+O : Surface c3      & $0.83^{***}$   & $1.38^{***}$   & $1.41^{***}$   \\
+                    & $(0.17)$       & $(0.35)$       & $(0.35)$       \\
+O : I pésticides c1 & $-0.13$        & $-0.03$        & $-0.07$        \\
                     & $(0.09)$       & $(0.15)$       & $(0.15)$       \\
-Offre: iki2         & $0.07$         & $0.27$         & $0.23$         \\
-                    & $(0.09)$       & $(0.17)$       & $(0.16)$       \\
-Offre: iki3         & $-0.27^{***}$  & $-0.35^{**}$   & $-0.37^{**}$   \\
+O : I pésticides c2 & $-0.27^{***}$  & $-0.35^{**}$   & $-0.37^{**}$   \\
                     & $(0.07)$       & $(0.12)$       & $(0.12)$       \\
+O : I pésticides c3 & $0.07$         & $0.27$         & $0.23$         \\
+                    & $(0.09)$       & $(0.17)$       & $(0.16)$       \\
 \hline
 Demande: R$^2$      & 0.50           & -0.00          & -0.01          \\
 Offre: R$^2$        & 0.54           & -0.27          & -0.21          \\
@@ -1284,7 +1272,7 @@ Num. obs. (total)   & 690            & 690            & 690            \\
 \hline
 \multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
-\caption{Statistical models}
+\caption{Modèle économétrique, variable dependante - quantité du vin}
 \label{table : ols, 2sls et 3sls, full information clusters}
 \end{center}
 \end{table}
